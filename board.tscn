@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfr8mh116oi0f"]
+
+[ext_resource type="Script" uid="uid://b6dl48d375f1o" path="res://board_controller.gd" id="1_psm7c"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_psm7c")
+
+[node name="Player1Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 800.0
+offset_right = 1700.0
+offset_bottom = 800.0
+rotation = 1.5707964
+
+[node name="Player2Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 800.0
+offset_top = 900.0
+offset_right = 1700.0
+offset_bottom = 1700.0
+rotation = -1.5707964

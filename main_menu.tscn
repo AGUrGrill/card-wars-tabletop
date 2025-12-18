@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvrtd28tihpqp"]
+
+[ext_resource type="Script" uid="uid://bwwu5rivclkm3" path="res://main_menu_controller.gd" id="1_06t4h"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_06t4h")
+
+[node name="StartServer" type="Button" parent="."]
+offset_left = 518.0
+offset_top = 217.0
+offset_right = 644.0
+offset_bottom = 248.0
+text = "STARTS SERVER"
+
+[node name="StartClient" type="Button" parent="."]
+offset_left = 526.0
+offset_top = 267.0
+offset_right = 641.0
+offset_bottom = 298.0
+text = "START CLIENT"
+
+[connection signal="pressed" from="StartServer" to="." method="_on_start_server_pressed"]
+[connection signal="pressed" from="StartClient" to="." method="_on_start_client_pressed"]

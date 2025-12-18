@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmvkn00sedqin"]
+
+[ext_resource type="Script" uid="uid://dw7u3fak148is" path="res://player_data.gd" id="1_4flbx"]
+
+[node name="Player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4flbx")
+
+[node name="Player_Stats" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HP:
+ACTIONS: "
+
+[node name="DrawCard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 568.0
+offset_right = 644.0
+offset_bottom = 599.0
+text = "DRAW CARD"
+
+[connection signal="pressed" from="DrawCard" to="." method="_on_draw_card_pressed"]
