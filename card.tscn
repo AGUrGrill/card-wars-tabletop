@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://dycs2rc7imye2"]
+
+[ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://card_data.gd" id="1_e484p"]
+[ext_resource type="Texture2D" uid="uid://bkuqpel75myiu" path="res://Assets/Evil_Eye.png" id="1_q5obu"]
+[ext_resource type="Texture2D" uid="uid://8btsowtxmc67" path="res://Assets/atk_token.png" id="2_e484p"]
+[ext_resource type="Texture2D" uid="uid://regtbfytaw8b" path="res://Assets/def_token.png" id="3_fpac0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1i5pp"]
+size = Vector2(140, 210)
+
+[node name="Card" type="Area2D"]
+z_index = 9
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_e484p")
+
+[node name="Image" type="Sprite2D" parent="."]
+texture = ExtResource("1_q5obu")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_1i5pp")
+metadata/_edit_lock_ = true
+
+[node name="Attack" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 109.935
+offset_right = 109.935
+
+[node name="AttackIcon" type="Sprite2D" parent="Attack"]
+position = Vector2(-164.36357, 89.28571)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("2_e484p")
+
+[node name="AttackUP" type="Button" parent="Attack"]
+layout_mode = 0
+offset_left = -181.36357
+offset_top = 105.285706
+offset_right = -163.36357
+offset_bottom = 136.28572
+text = "+"
+
+[node name="AttackLabel" type="Label" parent="Attack"]
+layout_mode = 0
+offset_left = -179.36357
+offset_top = 77.285706
+offset_right = -149.36357
+offset_bottom = 104.285706
+text = "1"
+horizontal_alignment = 1
+
+[node name="AttackDOWN" type="Button" parent="Attack"]
+layout_mode = 0
+offset_left = -162.36357
+offset_top = 105.285706
+offset_right = -144.36357
+offset_bottom = 136.28572
+text = "-"
+
+[node name="Defense" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="DefenseIcon" type="Sprite2D" parent="Defense"]
+position = Vector2(55.57141, 90.1145)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("3_fpac0")
+
+[node name="DefenseUP" type="Button" parent="Defense"]
+layout_mode = 0
+offset_left = 38.57143
+offset_top = 106.11427
+offset_right = 56.57143
+offset_bottom = 137.11427
+text = "+"
+
+[node name="DefenseLabel" type="Label" parent="Defense"]
+layout_mode = 0
+offset_left = 40.57143
+offset_top = 78.11427
+offset_right = 70.57143
+offset_bottom = 105.11427
+text = "1"
+horizontal_alignment = 1
+
+[node name="DefenseDOWN" type="Button" parent="Defense"]
+layout_mode = 0
+offset_left = 57.57143
+offset_top = 106.11427
+offset_right = 75.57143
+offset_bottom = 137.11427
+text = "-"
+
+[node name="FloopButton" type="Button" parent="."]
+offset_left = -30.0
+offset_top = 106.0
+offset_right = 31.0
+offset_bottom = 137.0
+text = "FLOOP"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Attack/AttackUP" to="." method="_on_attack_up_pressed"]
+[connection signal="pressed" from="Attack/AttackDOWN" to="." method="_on_attack_down_pressed"]
+[connection signal="pressed" from="Defense/DefenseUP" to="." method="_on_defense_up_pressed"]
+[connection signal="pressed" from="Defense/DefenseDOWN" to="." method="_on_defense_down_pressed"]
+[connection signal="pressed" from="FloopButton" to="." method="_on_floop_button_pressed"]

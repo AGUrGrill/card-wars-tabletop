@@ -4,7 +4,7 @@ const IP_ADDRESS: String = "localhost"
 const PORT: int = 34782
 
 var peer: ENetMultiplayerPeer
-var is_peer_connected = false
+var peers_connected: int = 0
 
 func start_server() -> void:
 	peer = ENetMultiplayerPeer.new()
@@ -18,7 +18,9 @@ func start_client() -> void:
 	multiplayer.multiplayer_peer = peer
 
 func _on_peer_connected(peer_id):
-	print("Client connected. Starting game...")
-	is_peer_connected = true
-	await get_tree().create_timer(2).timeout
-	GameManager.start_game()
+	if multiplayer.is_server():
+		print("Client " + str(peer_id) + "connected.")
+		peers_connected += 1
+		if peers_connected == 2:
+			print("Game starting...")
+			GameManager.start_game()

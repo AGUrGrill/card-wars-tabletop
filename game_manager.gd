@@ -7,25 +7,35 @@ const MAX_CARDS = 568 # 717 is newest, 568 is released
 const DEFAULT_HP: int = 25
 const DEFAULT_ACTIONS: int = 2
 
+var player1_id: int
+var player2_id: int
+
 @export var player1_health: int = DEFAULT_HP
 @export var player1_actions: int = DEFAULT_ACTIONS
-@export var player1_hand: Array
-@export var player1_played_creatures: Array
-@export var player1_played_buildings: Array
+@export var player1_hand: Array[Dictionary]
+@export var player1_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
+@export var player1_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
 
 @export var player2_health: int = DEFAULT_HP
 @export var player2_actions: int = DEFAULT_ACTIONS
-@export var player2_hand: Array
-@export var player2_played_creatures: Array
-@export var player2_played_buildings: Array
+@export var player2_hand: Array[Dictionary]
+@export var player2_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
+@export var player2_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
+
+var player_selected_card: Dictionary
 
 func _ready() -> void:
 	return
 
 func start_game():
-	for i in range(5):
-		draw_card(1)
-		draw_card(2)
+	if multiplayer.is_server():
+		for i in range(5):
+			player1_hand.append(draw_card())
+			player2_hand.append(draw_card())
+		for id in multiplayer.get_peers():
+			print("sending cards to " + str(id))
+			update_player_hand.rpc_id(id, 1, player1_hand)
+			update_player_hand.rpc_id(id, 2, player2_hand)
 
 func start_turn():
 	return
@@ -81,7 +91,7 @@ func get_specific_card_data_from_list(card_name: String):
 				return card_data
 	
 # DRAW FUNCTIONS
-func draw_card(player_num: int):
+func draw_card():
 	var json_data = GameManager.load_json_file(GameManager.CARD_LIST)
 	if !json_data:
 		return
@@ -91,14 +101,10 @@ func draw_card(player_num: int):
 		if card_data["Name"] == "Unknown" or card_data == null:
 			continue
 		elif card_data["Card Type"] != "Landscape" and card_data["Card Type"] != "Hero" and card_data["Card Type"] != "Teamwork":
-			if player_num == 1:
-				player1_hand.append(card_data)
-			elif player_num == 2:
-				player2_hand.append(card_data)
-			print(str(card_data["Name"]) + " drawn for player " + str(player_num))
-			break
+			return card_data
 
-# PLAYER FUNCTIONS
+# SERVER -> CLIENT UPDATES
+@rpc("any_peer")
 func update_player_health(player_num: int, modifier: int):
 	if player_num == 1:
 		var temp_health = player1_health + modifier
@@ -113,6 +119,7 @@ func update_player_health(player_num: int, modifier: int):
 		else:
 			player2_health = 0
 
+@rpc("any_peer")
 func update_player_actions(player_num: int, modifier: int):
 	if player_num == 1:
 		var temp_actions = player1_actions + modifier
@@ -127,41 +134,53 @@ func update_player_actions(player_num: int, modifier: int):
 		else:
 			player2_actions = 0
 
-
-# LANDSCAPE MODIFICATION FUNCTIONS
-func add_building_to_landscape(player_num: int, landscape_num: int, card_name: String):
+@rpc("any_peer")
+func update_player_hand(player_num: int, hand: Array):
 	if player_num == 1:
-		player1_played_buildings[landscape_num] = card_name
+		player1_hand = hand
 	elif player_num == 2:
-		player2_played_buildings[landscape_num] = card_name
+		player2_hand = hand
 
-func add_creature_to_landscape(player_num: int, landscape_num: int, card_name: String, attack: int, defense: int):
-	var creature: Array = [card_name, attack, defense]
+@rpc("any_peer")
+func change_card_on_landscape(player_num: int, landscape_num: int, card: Dictionary):
 	if player_num == 1:
-		player1_played_creatures[landscape_num] = creature
+		if card["Card Type"] == "Creature":
+			player1_played_creatures[landscape_num] = card
+		elif card["Card Type"] == "Building":
+			player1_played_buildings[landscape_num] = card
 	elif player_num == 2:
-		player2_played_creatures[landscape_num] = creature
+		if card["Card Type"] == "Creature":
+			player2_played_creatures[landscape_num] = card
+		elif card["Card Type"] == "Building":
+			player2_played_buildings[landscape_num] = card
 
-func update_creature_on_landscape(player_num: int, landscape_num: int, attack: int, defense: int):
+@rpc("any_peer")
+func update_card_on_landscape(player_num: int, landscape_num: int, card_type: String, attack: int, defense: int, is_flooped: bool):
+	print("Updating " + str(card_type) + " on landscape" + str(landscape_num) + " for P" + str(player_num) + "(" + str(multiplayer.get_unique_id()) + ")")
 	if player_num == 1:
-		var temp_creature = player1_played_creatures[landscape_num]
-		temp_creature[1] = attack
-		temp_creature[2] = defense
-		player1_played_creatures[landscape_num] = temp_creature
+		if card_type == "Creature":
+			player1_played_creatures[landscape_num]["Attack"] = attack
+			player1_played_creatures[landscape_num]["Defense"] = defense
+			player1_played_creatures[landscape_num]["Floop Status"] = is_flooped
+		elif card_type == "Building":
+			player1_played_buildings[landscape_num]["Floop Status"] = is_flooped
 	elif player_num == 2:
-		var temp_creature = player2_played_creatures[landscape_num]
-		temp_creature[1] = attack
-		temp_creature[2] = defense
-		player2_played_creatures[landscape_num] = temp_creature
+		if card_type == "Creature":
+			player2_played_creatures[landscape_num]["Attack"] = attack
+			player2_played_creatures[landscape_num]["Defense"] = defense
+			player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
+		elif card_type == "Building":
+			player2_played_buildings[landscape_num]["Floop Status"] = is_flooped
 
-func remove_creature_from_landscape(player_num: int, landscape_num: int, card_name: String):
+@rpc("any_peer")
+func remove_creature_from_landscape(player_num: int, landscape_num: int):
 	if player_num == 1:
-		player1_played_creatures[landscape_num] = ""
+		player1_played_creatures[landscape_num].clear()
 	elif player_num == 2:
-		player2_played_creatures[landscape_num] = ""
-
-func remove_building_from_landscape(player_num: int, landscape_num: int, card_name: String):
+		player2_played_creatures[landscape_num].clear()
+@rpc("any_peer")
+func remove_building_from_landscape(player_num: int, landscape_num: int):
 	if player_num == 1:
-		player1_played_buildings[landscape_num] = ""
+		player1_played_buildings[landscape_num].clear()
 	elif player_num == 2:
-		player2_played_buildings[landscape_num] = ""
+		player2_played_buildings[landscape_num].clear()

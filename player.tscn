@@ -1,29 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmvkn00sedqin"]
+[gd_scene load_steps=3 format=3 uid="uid://cmvkn00sedqin"]
 
-[ext_resource type="Script" uid="uid://dw7u3fak148is" path="res://player_data.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dw7u3fak148is" path="res://player_controller.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://cjnoi5mfcfn1f" path="res://landscape.tscn" id="2_sweqy"]
 
-[node name="Player" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Player" type="Node2D"]
 script = ExtResource("1_4flbx")
+metadata/_edit_lock_ = true
 
-[node name="Player_Stats" type="Label" parent="."]
-layout_mode = 0
+[node name="PlayerStats" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "HP:
 ACTIONS: "
 
 [node name="DrawCard" type="Button" parent="."]
-layout_mode = 0
 offset_left = 541.0
 offset_top = 568.0
 offset_right = 644.0
 offset_bottom = 599.0
 text = "DRAW CARD"
+
+[node name="Hand" type="HBoxContainer" parent="."]
+offset_left = 296.0
+offset_top = 431.0
+offset_right = 879.0
+offset_bottom = 531.0
+alignment = 1
+
+[node name="Landscape1" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(369, 109)
+landscape_num = 0
+designated_card_type = "Creature"
+
+[node name="Landscape2" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(516, 109)
+landscape_num = 1
+designated_card_type = "Creature"
+
+[node name="Landscape3" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(663, 109)
+landscape_num = 2
+designated_card_type = "Creature"
+
+[node name="Landscape4" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(810, 109)
+landscape_num = 3
+designated_card_type = "Creature"
+
+[node name="Building1" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(369, 320)
+landscape_num = 0
+designated_card_type = "Building"
+
+[node name="Building2" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(516, 320)
+landscape_num = 1
+designated_card_type = "Building"
+
+[node name="Building3" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(663, 320)
+landscape_num = 2
+designated_card_type = "Building"
+
+[node name="Building4" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(810, 320)
+landscape_num = 3
+designated_card_type = "Building"
 
 [connection signal="pressed" from="DrawCard" to="." method="_on_draw_card_pressed"]
