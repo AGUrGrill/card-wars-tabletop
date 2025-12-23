@@ -57,28 +57,8 @@ func remove_card_data():
 
 func update_card_on_server():
 	print("Updating " + str(card_type) + " on landscape" + str(landscape.landscape_num) + " for P" + str(landscape.player.player_num) + "(" + str(multiplayer.get_unique_id()) + ")")
-	update_card_on_client(landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
-	if GameManager.player1_id == multiplayer.get_unique_id():
-		GameManager.update_card_on_landscape.rpc_id(GameManager.player2_id, landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
-	elif GameManager.player2_id == multiplayer.get_unique_id():
-		GameManager.update_card_on_landscape.rpc_id(GameManager.player1_id, landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
-
-func update_card_on_client(player_num: int, landscape_num: int, card_type: String, attack: int, defense: int, is_flooped: bool):
-	print("Updating " + str(card_type) + " on landscape" + str(landscape_num) + " for P" + str(player_num) + "(" + str(multiplayer.get_unique_id()) + ")")
-	if player_num == 1:
-		if card_type == "Creature":
-			GameManager.player1_played_creatures[landscape_num]["Attack"] = attack
-			GameManager.player1_played_creatures[landscape_num]["Defense"] = defense
-			GameManager.player1_played_creatures[landscape_num]["Floop Status"] = is_flooped
-		elif card_type == "Building":
-			GameManager.player1_played_buildings[landscape_num]["Floop Status"] = is_flooped
-	elif player_num == 2:
-		if card_type == "Creature":
-			GameManager.player2_played_creatures[landscape_num]["Attack"] = attack
-			GameManager.player2_played_creatures[landscape_num]["Defense"] = defense
-			GameManager.player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
-		elif card_type == "Building":
-			GameManager.player2_played_buildings[landscape_num]["Floop Status"] = is_flooped
+	#GameManager.local_update_card_on_landscape(landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
+	landscape.update_card_data_on_landscape.rpc(landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
 
 # CARD FUNCTIONS
 func update_card_image(_name: String):
@@ -148,7 +128,7 @@ func _on_mouse_exited() -> void:
 # Select Card
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_pressed():
-		GameManager.player_selected_card.clear()
+		GameManager.update_player_selected_card.rpc({})
 		
 		if not selected:
 			card.modulate = "aeaeae"
@@ -165,7 +145,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				"Floop Status": is_flooped
 			}
 			
-			GameManager.player_selected_card = card_data
+			GameManager.update_player_selected_card.rpc(card_data)
 		else:
 			card.modulate = "ffffff"
 			selected = false

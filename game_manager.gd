@@ -24,6 +24,10 @@ var player2_id: int
 
 var player_selected_card: Dictionary
 
+# GAME DATA
+var round: int = 0
+var turn_num: int = 0
+
 func _ready() -> void:
 	return
 
@@ -32,22 +36,53 @@ func start_game():
 		for i in range(5):
 			player1_hand.append(draw_card())
 			player2_hand.append(draw_card())
-		for id in multiplayer.get_peers():
-			print("sending cards to " + str(id))
-			update_player_hand.rpc_id(id, 1, player1_hand)
-			update_player_hand.rpc_id(id, 2, player2_hand)
+		update_player_hand.rpc(1, player1_hand)
+		update_player_hand.rpc(2, player2_hand)
+	start_turn()
 
-func start_turn():
-	return
+func start_turn(): 
+	# Update round every 2 turns, (p1 and p2)
+	if turn_num % 2 == 0:
+		round += 1  
+	# Update turns played  
+	turn_num += 1
+	# If not first round draw
+	if round != 1:
+		draw_phase()
 
 func draw_phase():
-	return
+	if turn_num == 1:
+		player1_hand.append(draw_card())
+		update_player_hand.rpc(1, player1_hand)
+	elif turn_num == 2:
+		player2_hand.append(draw_card())
+		update_player_hand.rpc(2, player2_hand)
+
+# For call when player is ready
+func start_attack_phase():
+	attack_phase()
 
 func attack_phase():
-	return
-
+	for landscape_num in range(4):
+		if turn_num == 1:
+			if not player1_played_creatures[landscape_num]["Floop Status"]:
+				var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
+				var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
+				var p2_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
+				var p2_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
+				player2_played_creatures[landscape_num]["Defense"] = p2_creature_defense - p1_creature_attack
+				player1_played_creatures[landscape_num]["Defense"] = p1_creature_defense - p2_creature_attack
+		if round % 2 == 0:
+			if not player1_played_creatures[landscape_num]["Floop Status"]:
+				var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
+				var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
+				var p2_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
+				var p2_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
+				player2_played_creatures[landscape_num]["Defense"] = p2_creature_defense - p1_creature_attack
+				player1_played_creatures[landscape_num]["Defense"] = p1_creature_defense - p2_creature_attack
 func end_turn():
-	return
+	round += 1
+	start_turn()
 
 func end_game():
 	return
@@ -134,43 +169,17 @@ func update_player_actions(player_num: int, modifier: int):
 		else:
 			player2_actions = 0
 
-@rpc("any_peer")
+@rpc("any_peer") # FOR SERVER USE
 func update_player_hand(player_num: int, hand: Array):
 	if player_num == 1:
 		player1_hand = hand
 	elif player_num == 2:
 		player2_hand = hand
 
-@rpc("any_peer")
-func change_card_on_landscape(player_num: int, landscape_num: int, card: Dictionary):
-	if player_num == 1:
-		if card["Card Type"] == "Creature":
-			player1_played_creatures[landscape_num] = card
-		elif card["Card Type"] == "Building":
-			player1_played_buildings[landscape_num] = card
-	elif player_num == 2:
-		if card["Card Type"] == "Creature":
-			player2_played_creatures[landscape_num] = card
-		elif card["Card Type"] == "Building":
-			player2_played_buildings[landscape_num] = card
-
-@rpc("any_peer")
-func update_card_on_landscape(player_num: int, landscape_num: int, card_type: String, attack: int, defense: int, is_flooped: bool):
-	print("Updating " + str(card_type) + " on landscape" + str(landscape_num) + " for P" + str(player_num) + "(" + str(multiplayer.get_unique_id()) + ")")
-	if player_num == 1:
-		if card_type == "Creature":
-			player1_played_creatures[landscape_num]["Attack"] = attack
-			player1_played_creatures[landscape_num]["Defense"] = defense
-			player1_played_creatures[landscape_num]["Floop Status"] = is_flooped
-		elif card_type == "Building":
-			player1_played_buildings[landscape_num]["Floop Status"] = is_flooped
-	elif player_num == 2:
-		if card_type == "Creature":
-			player2_played_creatures[landscape_num]["Attack"] = attack
-			player2_played_creatures[landscape_num]["Defense"] = defense
-			player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
-		elif card_type == "Building":
-			player2_played_buildings[landscape_num]["Floop Status"] = is_flooped
+@rpc("any_peer", "call_local") 
+func update_player_selected_card(card: Dictionary):
+	print("Selected " + str(card))
+	player_selected_card = card
 
 @rpc("any_peer")
 func remove_creature_from_landscape(player_num: int, landscape_num: int):
@@ -178,6 +187,7 @@ func remove_creature_from_landscape(player_num: int, landscape_num: int):
 		player1_played_creatures[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_creatures[landscape_num].clear()
+
 @rpc("any_peer")
 func remove_building_from_landscape(player_num: int, landscape_num: int):
 	if player_num == 1:
