@@ -20,18 +20,20 @@ const CARD_LOCATION: String = "res://Assets/Cards/"
 @export var card_cost: int = 0
 @export var card_attack: int = 0
 @export var card_defense: int = 0
+@export var card_base_attack: int = 0
+@export var card_base_defense: int = 0
 @export var is_flooped: bool = false
-@export var is_in_hand: bool = false
-var selected = false
+@export var is_in_hand: bool = true
+var is_dead: bool = false
+var selected: bool = false
 
 func _ready() -> void:
 	remove_card_data()
-	if is_in_hand:
-		attack_node.visible = false
-		defense_node.visible = false
-		floop_button.visible = false
 
 func change_card_data(landscape: String, type: String, _name: String, desc: String, cost: int, attack: int, defense: int, _is_flooped: bool):
+	if card_name != "tempname": # If card was already played and now replaced, send to discards
+		return
+	
 	update_card_image(_name)
 	card_landscape = landscape
 	card_type = type
@@ -39,14 +41,18 @@ func change_card_data(landscape: String, type: String, _name: String, desc: Stri
 	card_description = desc
 	card_cost = cost
 	card_attack = attack
+	card_base_attack = attack
 	attack_label.text = str(card_attack)
 	card_defense = defense
+	card_base_defense = defense
 	defense_label.text = str(card_defense)
 	if _is_flooped:
 		floop_card()
+		print("Flooping")
+	hide_card(false)
 
 func remove_card_data():
-	card_image.texture = TEMP_IMG
+	card_image.texture = null
 	card_landscape = "templandscape"
 	card_type = "temptype"
 	card_name = "tempname"
@@ -54,11 +60,21 @@ func remove_card_data():
 	card_cost = 0
 	card_attack = 0
 	card_defense = 0
+	hide_card(true)
 
-func update_card_on_server():
-	print("Updating " + str(card_type) + " on landscape" + str(landscape.landscape_num) + " for P" + str(landscape.player.player_num) + "(" + str(multiplayer.get_unique_id()) + ")")
-	#GameManager.local_update_card_on_landscape(landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
-	landscape.update_card_data_on_landscape.rpc(landscape.player.player_num, landscape.landscape_num, card_type, card_attack, card_defense, is_flooped)
+func hide_card(should_hide: bool):
+	if should_hide:
+		card.visible = false
+		card.input_pickable = false
+		attack_node.visible = false
+		defense_node.visible = false
+		floop_button.visible = false
+	else:
+		card.visible = true
+		card.input_pickable = true
+		attack_node.visible = true
+		defense_node.visible = true
+		floop_button.visible = true
 
 # CARD FUNCTIONS
 func update_card_image(_name: String):
@@ -82,7 +98,6 @@ func update_card_attack(modifier: int):
 	else:
 		card_attack = 0
 	attack_label.text = str(card_attack)
-	update_card_on_server()
 
 func update_card_defense(modifier: int):
 	var temp_defense = card_defense + modifier
@@ -90,8 +105,8 @@ func update_card_defense(modifier: int):
 		card_defense = temp_defense
 	else:
 		card_defense = 0
+		is_dead = true
 	defense_label.text = str(card_defense)
-	update_card_on_server()
 
 func floop_card():
 	if !is_flooped:
@@ -100,7 +115,50 @@ func floop_card():
 	else:
 		is_flooped = false
 		card.rotation = 0
-	update_card_on_server()
+
+func get_card_data(is_base: bool) -> Dictionary:
+	var card_data: Dictionary
+	if is_base: 
+		card_data = {
+			"Name": card_name,
+			"Card Type": card_type,
+			"Landscape": card_landscape,
+			"Ability": card_description,
+			"Cost": card_cost,
+			"Attack": card_base_attack,
+			"Defense": card_base_defense,
+			"Floop Status": is_flooped,
+			"Landscape Played": get_card_landscape_num()
+		}
+	else:
+		card_data = {
+			"Name": card_name,
+			"Card Type": card_type,
+			"Landscape": card_landscape,
+			"Ability": card_description,
+			"Cost": card_cost,
+			"Attack": card_attack,
+			"Defense": card_defense,
+			"Floop Status": is_flooped,
+			"Landscape Played": get_card_landscape_num()
+		}
+	return card_data
+
+func get_card_player_num() -> int:
+	var player_num: int
+	if landscape.get_class() == "HBoxContainer": # If hand get player num via metadata
+		player_num = landscape.get_meta("player_num")
+	else:
+		player_num = landscape.player.player_num
+	return player_num
+
+func get_card_landscape_num() -> int:
+	var landscape_num: int
+	if landscape.get_class() == "HBoxContainer": # If hand get player num via metadata
+		landscape_num = 99
+	else:
+		landscape_num = landscape.landscape_num
+	return landscape_num
 
 # BUTTONS
 func _on_attack_up_pressed() -> void:
@@ -128,24 +186,11 @@ func _on_mouse_exited() -> void:
 # Select Card
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_pressed():
-		GameManager.update_player_selected_card.rpc({})
-		
+		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), {})
 		if not selected:
 			card.modulate = "aeaeae"
 			selected = true
-			
-			var card_data: Dictionary = {
-				"Card Name": card_name,
-				"Card Type": card_type,
-				"Landscape": card_landscape,
-				"Ability": card_description,
-				"Cost": card_cost,
-				"Attack": card_attack,
-				"Defense": card_defense,
-				"Floop Status": is_flooped
-			}
-			
-			GameManager.update_player_selected_card.rpc(card_data)
+			GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
 		else:
 			card.modulate = "ffffff"
 			selected = false

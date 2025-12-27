@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dycs2rc7imye2"]
 
-[ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://card_data.gd" id="1_e484p"]
+[ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://card_controller.gd" id="1_e484p"]
 [ext_resource type="Texture2D" uid="uid://bkuqpel75myiu" path="res://Assets/Evil_Eye.png" id="1_q5obu"]
 [ext_resource type="Texture2D" uid="uid://8btsowtxmc67" path="res://Assets/atk_token.png" id="2_e484p"]
 [ext_resource type="Texture2D" uid="uid://regtbfytaw8b" path="res://Assets/def_token.png" id="3_fpac0"]

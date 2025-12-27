@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjnoi5mfcfn1f"]
 
-[ext_resource type="Script" uid="uid://dx8tbqfm6kjyi" path="res://landscape_data.gd" id="1_asa4r"]
+[ext_resource type="Script" uid="uid://dx8tbqfm6kjyi" path="res://landscape_controller.gd" id="1_asa4r"]
 [ext_resource type="Texture2D" uid="uid://bc0e5t5k7xnl6" path="res://Assets/Cards/Blue Plains.png" id="1_j1j1h"]
 [ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://card.tscn" id="2_asa4r"]
 

@@ -1,6 +1,5 @@
 extends Node
 
-var round_num: int = 0
 const CARD_LIST = "res://card_list.json"
 const MAX_CARDS = 568 # 717 is newest, 568 is released
 
@@ -10,23 +9,27 @@ const DEFAULT_ACTIONS: int = 2
 var player1_id: int
 var player2_id: int
 
+# PLAYER DATA
 @export var player1_health: int = DEFAULT_HP
 @export var player1_actions: int = DEFAULT_ACTIONS
 @export var player1_hand: Array[Dictionary]
+@export var player1_discards: Array[Dictionary]
 @export var player1_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
 @export var player1_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
+var player1_selected_card: Dictionary
 
 @export var player2_health: int = DEFAULT_HP
 @export var player2_actions: int = DEFAULT_ACTIONS
 @export var player2_hand: Array[Dictionary]
+@export var player2_discards: Array[Dictionary]
 @export var player2_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
 @export var player2_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
-
-var player_selected_card: Dictionary
+var player2_selected_card: Dictionary
 
 # GAME DATA
-var round: int = 0
+var round_num: int = 0
 var turn_num: int = 0
+var game_ended: bool = false
 
 func _ready() -> void:
 	return
@@ -34,29 +37,25 @@ func _ready() -> void:
 func start_game():
 	if multiplayer.is_server():
 		for i in range(5):
-			player1_hand.append(draw_card())
-			player2_hand.append(draw_card())
-		update_player_hand.rpc(1, player1_hand)
-		update_player_hand.rpc(2, player2_hand)
+			net_add_card_to_player_hand.rpc(1, draw_card())
+			net_add_card_to_player_hand.rpc(2, draw_card())
 	start_turn()
 
 func start_turn(): 
 	# Update round every 2 turns, (p1 and p2)
 	if turn_num % 2 == 0:
-		round += 1  
+		round_num += 1  
 	# Update turns played  
 	turn_num += 1
 	# If not first round draw
-	if round != 1:
+	if round_num != 1:
 		draw_phase()
 
 func draw_phase():
 	if turn_num == 1:
-		player1_hand.append(draw_card())
-		update_player_hand.rpc(1, player1_hand)
+		net_add_card_to_player_hand.rpc(1, draw_card())
 	elif turn_num == 2:
-		player2_hand.append(draw_card())
-		update_player_hand.rpc(2, player2_hand)
+		net_add_card_to_player_hand.rpc(2, draw_card())
 
 # For call when player is ready
 func start_attack_phase():
@@ -65,27 +64,34 @@ func start_attack_phase():
 func attack_phase():
 	for landscape_num in range(4):
 		if turn_num == 1:
-			if not player1_played_creatures[landscape_num]["Floop Status"]:
+			if not player1_played_creatures[landscape_num]["Floop Status"] == true:
 				var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
 				var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
 				var p2_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
 				var p2_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
 				player2_played_creatures[landscape_num]["Defense"] = p2_creature_defense - p1_creature_attack
 				player1_played_creatures[landscape_num]["Defense"] = p1_creature_defense - p2_creature_attack
-		if round % 2 == 0:
-			if not player1_played_creatures[landscape_num]["Floop Status"]:
+		if turn_num == 2:
+			if not player2_played_creatures[landscape_num]["Floop Status"] == true:
 				var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
 				var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
 				var p2_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
 				var p2_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
 				player2_played_creatures[landscape_num]["Defense"] = p2_creature_defense - p1_creature_attack
 				player1_played_creatures[landscape_num]["Defense"] = p1_creature_defense - p2_creature_attack
-func end_turn():
-	round += 1
-	start_turn()
 
-func end_game():
-	return
+func end_turn():
+	check_end_game()
+	if not game_ended:
+		start_turn()
+
+func check_end_game():
+	if player1_health <= 0:
+		print("Player 2 Wins!")
+		game_ended = true
+	elif player2_health <= 0:
+		print("Player 1 Wins!")
+		game_ended = true
 
 
 # RETRIEVE CARD DATA
@@ -138,9 +144,92 @@ func draw_card():
 		elif card_data["Card Type"] != "Landscape" and card_data["Card Type"] != "Hero" and card_data["Card Type"] != "Teamwork":
 			return card_data
 
-# SERVER -> CLIENT UPDATES
-@rpc("any_peer")
-func update_player_health(player_num: int, modifier: int):
+# MISC
+func can_card_can_be_played(player_num: int, card: Dictionary) -> bool:
+	if player_num == 1:
+		if GameManager.player1_actions - int(card["Cost"]) < 0:
+			print("Card cost too high.")
+			return false
+	elif player_num == 2:
+		if GameManager.player2_actions - int(card["Cost"]) < 0:
+			print("Card cost too high.")
+			return false
+	return true
+
+func print_all_stats():
+	print("PLAYER 1")
+	print ("HP: " + str(player1_health), ", ACTIONS: " + str(player1_actions))
+	var hand: String
+	for card in player1_hand:
+		if card != null:
+			hand += card["Name"] + ", "
+	print("HAND: " + str(hand))
+	var discards: String
+	for card in player1_discards:
+		if card != null:
+			discards += card["Name"] + ", "
+	print("DISCARDS: " + str(discards))
+	var played_creatures: String
+	for card in player1_played_creatures:
+		if card != null:
+			for key in card:
+				if key == "Name":
+					played_creatures += card["Name"] + ", "
+				else:
+					played_creatures += ", "
+	print("PLAYED CREATURES: " + str(played_creatures))
+	var played_buildings: String
+	for card in player1_played_buildings:
+		if card != null:
+			for key in card:
+				if key == "Name":
+					played_buildings += card["Name"] + ", "
+				else:
+					played_buildings += ", "
+	print("PLAYED BUILDINGS: " + str(played_buildings))
+	if player1_selected_card != null:
+		for key in player1_selected_card:
+			if key == "Name":
+				print("SELECTED CARD: " + str(player1_selected_card["Name"]))
+	
+	print("PLAYER 2")
+	print ("HP: " + str(player2_health), ", ACTIONS: " + str(player2_actions))
+	var hand2: String
+	for card in player2_hand:
+		if card != null:
+			hand2 += card["Name"] + ", "
+	print("HAND: " + str(hand2))
+	var discards2: String
+	for card in player2_discards:
+		if card != null:
+			discards2 += card["Name"] + ", "
+	print("DISCARDS: " + str(discards2))
+	var played_creatures2: String
+	for card in player2_played_creatures:
+		if card != null:
+			for key in card:
+				if key == "Name":
+					played_creatures2 += card["Name"] + ", "
+				else:
+					played_creatures2 += ", "
+	print("PLAYED CREATURES: " + str(played_creatures2))
+	var played_buildings2: String
+	for card in player2_played_buildings:
+		if card != null:
+			for key in card:
+				if key == "Name":
+					played_buildings2 += card["Name"] + ", "
+				else:
+					played_buildings2 += ", "
+	print("PLAYED BUILDINGS: " + str(played_buildings2))
+	if player2_selected_card != null:
+		for key in player1_selected_card:
+			if key == "Name":
+				print("SELECTED CARD: " + str(player2_selected_card["Name"]))
+
+# PLAYER STAT UPDATES
+@rpc("any_peer", "call_local")
+func net_update_player_health(player_num: int, modifier: int):
 	if player_num == 1:
 		var temp_health = player1_health + modifier
 		if temp_health >= 0:
@@ -154,43 +243,94 @@ func update_player_health(player_num: int, modifier: int):
 		else:
 			player2_health = 0
 
-@rpc("any_peer")
-func update_player_actions(player_num: int, modifier: int):
+@rpc("any_peer", "call_local")
+func net_update_player_actions(player_num: int, modifier: int):
 	if player_num == 1:
 		var temp_actions = player1_actions + modifier
-		if temp_actions >= 0:
+		if temp_actions > 0:
+			print("Total: " + str(player1_actions) + " + " + str(modifier) + " = " + str(temp_actions))
 			player1_actions = temp_actions
-		else:
+		elif temp_actions <= 0:
 			player1_actions = 0
 	elif player_num == 2:
 		var temp_actions = player2_actions + modifier
-		if temp_actions >= 0:
+		if temp_actions > 0:
+			print("Total: " + str(player1_actions) + " + " + str(modifier) + " = " + str(temp_actions))
 			player2_actions = temp_actions
-		else:
+		elif temp_actions <= 0:
 			player2_actions = 0
 
-@rpc("any_peer") # FOR SERVER USE
-func update_player_hand(player_num: int, hand: Array):
+# PLAYER HAND UPDATES
+@rpc("any_peer", "call_local")
+func net_remove_card_from_player_hand(player_num: int, _card: Dictionary):
 	if player_num == 1:
-		player1_hand = hand
+		for card in player1_hand:
+			if card["Name"] == _card["Name"]:
+				player1_hand.remove_at(player1_hand.find(card))
 	elif player_num == 2:
-		player2_hand = hand
+		for card in player2_hand:
+			if card["Name"] == _card["Name"]:
+				player2_hand.remove_at(player2_hand.find(card))
+
+@rpc("any_peer", "call_local")
+func net_add_card_to_player_hand(player_num: int, card: Dictionary):
+	if player_num == 1:
+		player1_hand.append(card)
+	elif player_num == 2:
+		player2_hand.append(card)
+
+# PLAYER DISCARDS UPDATES
+@rpc("any_peer", "call_local")
+func net_remove_card_from_player_discards(player_num: int, _card: Dictionary):
+	if player_num == 1:
+		for card in player1_discards:
+			if card["Name"] == _card["Name"]:
+				player1_discards.remove_at(player1_discards.find(card))
+	elif player_num == 2:
+		for card in player2_hand:
+			if card["Name"] == _card["Name"]:
+				player2_discards.remove_at(player2_discards.find(card))
+
+@rpc("any_peer", "call_local")
+func net_add_card_to_player_discards(player_num: int, card: Dictionary):
+	if player_num == 1:
+		player1_discards.append(card)
+	elif player_num == 2:
+		player2_discards.append(card)
+
+# LANDSCAPE UPDATES
+@rpc("any_peer", "call_local") 
+func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):
+	if player_num == 1:
+		player1_played_creatures[landscape_num] = card
+	elif player_num == 2:
+		player2_played_creatures[landscape_num] = card
 
 @rpc("any_peer", "call_local") 
-func update_player_selected_card(card: Dictionary):
-	print("Selected " + str(card))
-	player_selected_card = card
+func net_add_building_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):
+	if player_num == 1:
+		player1_played_buildings[landscape_num] = card
+	elif player_num == 2:
+		player2_played_buildings[landscape_num] = card
 
-@rpc("any_peer")
-func remove_creature_from_landscape(player_num: int, landscape_num: int):
+@rpc("any_peer", "call_local") 
+func net_remove_creature_from_landscape_array(player_num: int, landscape_num: int):
 	if player_num == 1:
 		player1_played_creatures[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_creatures[landscape_num].clear()
 
-@rpc("any_peer")
-func remove_building_from_landscape(player_num: int, landscape_num: int):
+@rpc("any_peer", "call_local") 
+func net_remove_building_from_landscape_array(player_num: int, landscape_num: int):
 	if player_num == 1:
 		player1_played_buildings[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_buildings[landscape_num].clear()
+
+# MISC
+@rpc("any_peer", "call_local") 
+func net_update_player_selected_card(player_num: int, card: Dictionary):
+	if player_num == 1:
+		player1_selected_card = card
+	elif player_num == 2:
+		player2_selected_card = card

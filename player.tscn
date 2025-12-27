@@ -7,18 +7,77 @@
 script = ExtResource("1_4flbx")
 metadata/_edit_lock_ = true
 
-[node name="PlayerStats" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "HP:
-ACTIONS: "
+[node name="StatPanel" type="Panel" parent="."]
+offset_right = 96.0
+offset_bottom = 146.0
+
+[node name="PlayerLabel" type="Label" parent="StatPanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 64.0
+offset_bottom = 24.0
+text = "PLAYER:"
+
+[node name="HPLabel" type="Label" parent="StatPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 30.0
+offset_right = 42.0
+offset_bottom = 53.0
+text = "HP:"
+
+[node name="HPDown" type="Button" parent="StatPanel/HPLabel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 38.0
+offset_bottom = 55.0
+text = "-"
+
+[node name="HPUp" type="Button" parent="StatPanel/HPLabel"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 18.0
+offset_bottom = 55.0
+text = "+"
+
+[node name="ActionsLabel" type="Label" parent="StatPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 89.0
+offset_right = 75.0
+offset_bottom = 112.0
+text = "ACTIONS:"
+
+[node name="ActionsDown" type="Button" parent="StatPanel/ActionsLabel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 38.0
+offset_bottom = 55.0
+text = "-"
+
+[node name="ActionsUp" type="Button" parent="StatPanel/ActionsLabel"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 18.0
+offset_bottom = 55.0
+text = "+"
 
 [node name="DrawCard" type="Button" parent="."]
-offset_left = 541.0
-offset_top = 568.0
-offset_right = 644.0
-offset_bottom = 599.0
+offset_left = 145.0
+offset_top = 58.0
+offset_right = 248.0
+offset_bottom = 89.0
 text = "DRAW CARD"
+
+[node name="DiscardCard" type="Button" parent="."]
+offset_left = 139.0
+offset_top = 105.0
+offset_right = 262.0
+offset_bottom = 136.0
+text = "DISCARD CARD"
 
 [node name="Hand" type="HBoxContainer" parent="."]
 offset_left = 296.0
@@ -26,30 +85,31 @@ offset_top = 431.0
 offset_right = 879.0
 offset_bottom = 531.0
 alignment = 1
+metadata/player_num = 0
 
 [node name="Landscape1" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(369, 109)
-landscape_num = 0
-designated_card_type = "Creature"
+landscape_num = null
+designated_card_type = null
 
 [node name="Landscape2" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(516, 109)
 landscape_num = 1
-designated_card_type = "Creature"
+designated_card_type = null
 
 [node name="Landscape3" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(663, 109)
 landscape_num = 2
-designated_card_type = "Creature"
+designated_card_type = null
 
 [node name="Landscape4" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(810, 109)
 landscape_num = 3
-designated_card_type = "Creature"
+designated_card_type = null
 
 [node name="Building1" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(369, 320)
-landscape_num = 0
+landscape_num = null
 designated_card_type = "Building"
 
 [node name="Building2" parent="." instance=ExtResource("2_sweqy")]
@@ -67,4 +127,25 @@ position = Vector2(810, 320)
 landscape_num = 3
 designated_card_type = "Building"
 
+[node name="DeckSwitch" type="CheckButton" parent="."]
+offset_left = 105.0
+offset_top = 9.0
+offset_right = 284.0
+offset_bottom = 40.0
+text = "HAND/DISCARDS"
+
+[node name="StatCheck" type="Button" parent="."]
+offset_left = 3.0
+offset_top = 154.0
+offset_right = 124.0
+offset_bottom = 185.0
+text = "GET ALL STATS"
+
+[connection signal="pressed" from="StatPanel/HPLabel/HPDown" to="." method="_on_hp_down_pressed"]
+[connection signal="pressed" from="StatPanel/HPLabel/HPUp" to="." method="_on_hp_up_pressed"]
+[connection signal="pressed" from="StatPanel/ActionsLabel/ActionsDown" to="." method="_on_actions_down_pressed"]
+[connection signal="pressed" from="StatPanel/ActionsLabel/ActionsUp" to="." method="_on_actions_up_pressed"]
 [connection signal="pressed" from="DrawCard" to="." method="_on_draw_card_pressed"]
+[connection signal="pressed" from="DiscardCard" to="." method="_on_discard_card_pressed"]
+[connection signal="toggled" from="DeckSwitch" to="." method="_on_deck_switch_toggled"]
+[connection signal="pressed" from="StatCheck" to="." method="_on_stat_check_pressed"]
