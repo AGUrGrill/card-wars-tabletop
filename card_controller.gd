@@ -13,17 +13,17 @@ const CARD_LOCATION: String = "res://Assets/Cards/"
 @onready var landscape = $".." # Can be hand or landscape so leave vague
 
 # CARD DATA
-@export var card_landscape: String = ""
-@export var card_type: String = ""
-@export var card_name: String = ""
-@export var card_description: String = ""
-@export var card_cost: int = 0
-@export var card_attack: int = 0
-@export var card_defense: int = 0
-@export var card_base_attack: int = 0
-@export var card_base_defense: int = 0
-@export var is_flooped: bool = false
-@export var is_in_hand: bool = true
+var card_landscape: String = ""
+var card_type: String = ""
+var card_name: String = ""
+var card_description: String = ""
+var card_cost: int = 0
+var card_attack: int = 0
+var card_defense: int = 0
+var card_base_attack: int = 0
+var card_base_defense: int = 0
+var is_flooped: bool = false
+var is_in_hand: bool = true
 var is_dead: bool = false
 var selected: bool = false
 
@@ -37,6 +37,12 @@ func change_card_data(landscape: String, type: String, _name: String, desc: Stri
 	update_card_image(_name)
 	card_landscape = landscape
 	card_type = type
+	if type == "Creature":
+		attack_node.visible = true
+		defense_node.visible = true
+	elif type == "Building":
+		attack_node.visible = false
+		defense_node.visible = false
 	card_name = _name
 	card_description = desc
 	card_cost = cost
@@ -62,6 +68,10 @@ func remove_card_data():
 	card_defense = 0
 	hide_card(true)
 
+func update_played_card_info_to_server():
+	GameManager.net_update_creature_in_landscape_array.rpc(get_card_player_num(), get_card_landscape_num(), card_type, card_attack, card_defense, is_flooped)
+	landscape.player.net_update_player_landscapes.rpc()
+
 func hide_card(should_hide: bool):
 	if should_hide:
 		card.visible = false
@@ -83,13 +93,15 @@ func update_card_image(_name: String):
 	if dir == null: printerr("Could not open folder"); return
 	dir.list_dir_begin()
 	for file: String in dir.get_files():
-		if (_name == file.trim_suffix(".png")):
+		if (_name == file.trim_suffix(".png") or _name == file.trim_suffix(".jpg") or _name == file.trim_suffix(".webp")):
 			img_path = dir.get_current_dir() + "/" + file
 	var img: Image = Image.load_from_file(img_path)
 	if img != null:
-		img.resize(140, 210)
+		img.resize(140, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	card_image.texture = texture
+	
+	
 
 func update_card_attack(modifier: int):
 	var temp_attack = card_attack + modifier
@@ -98,6 +110,7 @@ func update_card_attack(modifier: int):
 	else:
 		card_attack = 0
 	attack_label.text = str(card_attack)
+	update_played_card_info_to_server()
 
 func update_card_defense(modifier: int):
 	var temp_defense = card_defense + modifier
@@ -107,6 +120,7 @@ func update_card_defense(modifier: int):
 		card_defense = 0
 		is_dead = true
 	defense_label.text = str(card_defense)
+	update_played_card_info_to_server()
 
 func floop_card():
 	if !is_flooped:
@@ -115,6 +129,7 @@ func floop_card():
 	else:
 		is_flooped = false
 		card.rotation = 0
+	update_played_card_info_to_server()
 
 func get_card_data(is_base: bool) -> Dictionary:
 	var card_data: Dictionary

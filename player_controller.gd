@@ -21,12 +21,11 @@ const CARD = preload("uid://dycs2rc7imye2")
 var is_player_board: bool
 
 func _ready() -> void:
-	net_update_player_stat_display()
 	hand.set_meta("player_num", player_num)
 	if not is_player_board:
 		player.modulate = "7a7a7a"
 		draw_card.disabled = true
-	await get_tree().create_timer(1).timeout
+	net_update_player_stat_display()
 	net_update_player_hand_display()
 
 # UPDATES
@@ -37,7 +36,7 @@ func net_update_player_stat_display():
 	if player_num == 1:
 		health = GameManager.player1_health
 		actions = GameManager.player1_actions
-	elif player_num == 1:
+	elif player_num == 2:
 		health = GameManager.player2_health
 		actions = GameManager.player2_actions
 	player_label.text = "PLAYER " + str(player_num)
@@ -103,21 +102,59 @@ func net_update_player_discards_display():
 		idx += 1
 		
 		var card_ability: String = ""
+		var card_broken_temp_fix: bool = true
 		for key in card:
 			if key == "Ability":
 				card_ability = card["Ability"]
+			if key == "Name":
+				card_broken_temp_fix = false
+		if card_broken_temp_fix:
+			continue
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
 		else:
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
 	print(discards_hand)
 
-func perform_super_hand_update_across_clients():
-	GameManager.net_update_player_hand.rpc(1, GameManager.player1_hand)
-	GameManager.net_update_player_hand.rpc(2, GameManager.player2_hand)
-	GameManager.net_update_player_discards.rpc(1, GameManager.player1_discards)
-	GameManager.net_update_player_discards.rpc(2, GameManager.player2_discards)
-	net_update_player_hand_display.rpc()
+@rpc("any_peer", "call_local")
+func net_update_player_landscapes():
+	landscape_1_creature.remove_card_data()
+	landscape_2_creature.remove_card_data()
+	landscape_3_creature.remove_card_data()
+	landscape_4_creature.remove_card_data()
+	landscape_1_building.remove_card_data()
+	landscape_2_building.remove_card_data()
+	landscape_3_building.remove_card_data()
+	landscape_4_building.remove_card_data()
+	
+	var creatures: Array[Dictionary]
+	var buildings: Array[Dictionary]
+	if player_num == 1:
+		creatures = GameManager.player1_played_creatures
+		buildings = GameManager.player1_played_buildings
+	if player_num == 2:
+		creatures = GameManager.player2_played_creatures
+		buildings = GameManager.player2_played_buildings
+	
+	# CREATURES
+	if not creatures[0].is_empty():
+		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"])
+	if not creatures[1].is_empty():
+		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Defense"], creatures[1]["Floop Status"])
+	if not creatures[2].is_empty():
+		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Defense"], creatures[2]["Floop Status"])
+	if not creatures[3].is_empty():
+		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"])
+	
+	# BUILDINGS
+	if not buildings[0].is_empty():
+		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Defense"], buildings[0]["Floop Status"])
+	if not buildings[1].is_empty():
+		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Defense"], buildings[1]["Floop Status"])
+	if not buildings[2].is_empty():
+		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Defense"], buildings[2]["Floop Status"])
+	if not buildings[3].is_empty():
+		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Defense"], buildings[3]["Floop Status"])
 
 # UPDATE BUTTON CHANGES
 func _on_hp_down_pressed() -> void:
@@ -134,10 +171,11 @@ func _on_actions_up_pressed() -> void:
 
 func _on_draw_card_pressed() -> void:
 	if player_num == 1:
-		GameManager.net_add_card_to_player_hand.rpc(1, draw_card)
+		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.draw_card())
 	if player_num == 2:
-		GameManager.net_add_card_to_player_handd.rpc(2, draw_card)
+		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_card())
 	net_update_player_hand_display.rpc()
+	print("draw")
 
 func _on_discard_card_pressed() -> void:
 	var temp_card: Dictionary
@@ -145,58 +183,59 @@ func _on_discard_card_pressed() -> void:
 		if GameManager.player1_selected_card.is_empty():
 			return
 		temp_card = GameManager.player1_selected_card
+		GameManager.net_update_player_selected_card.rpc(1, {})
 	elif player_num == 2:
 		if GameManager.player2_selected_card.is_empty():
 			return
 		temp_card = GameManager.player2_selected_card
+		GameManager.net_update_player_selected_card.rpc(2, {})
 	
 	print("Sending " + str(temp_card))
 	if temp_card["Card Type"] == "Creature":
 		match temp_card["Landscape Played"]:
 			0:
-				landscape_1_creature.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_creature_from_landscape_array.rpc(player_num, 0)
 			1:
-				landscape_2_creature.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_creature_from_landscape_array.rpc(player_num, 1)
 			2:
-				landscape_3_creature.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_creature_from_landscape_array.rpc(player_num, 2)
 			3:
-				landscape_4_creature.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_creature_from_landscape_array.rpc(player_num, 3)
 			99:
 				if player_num == 1:
-					for card in GameManager.player1_hand:
-						if card["Name"] == temp_card["Name"]:
-							GameManager.player1_hand.remove_at(GameManager.player1_hand.find(card))
-							GameManager.player1_discards.append(card)
-							print("Removed " + card["Name"])
+					GameManager.net_remove_card_from_player_hand.rpc(player_num, temp_card)
+					GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
 				elif player_num == 2:
-					for card in GameManager.player2_hand:
-						if card["Name"] == temp_card["Name"]:
-							GameManager.player2_hand.remove_at(GameManager.player2_hand.find(card))
-							GameManager.player2_discards.append(card)
-							print("Removed " + card["Name"])
+					GameManager.net_remove_card_from_player_hand.rpc(player_num, temp_card)
+					GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
 	elif temp_card["Card Type"] == "Building":
 		match temp_card["Landscape Played"]:
 			0:
-				landscape_1_building.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_building_from_landscape_array.rpc(player_num, 0)
 			1:
-				landscape_2_building.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_building_from_landscape_array.rpc(player_num, 1)
 			2:
-				landscape_3_building.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_building_from_landscape_array.rpc(player_num, 2)
 			3:
-				landscape_4_building.send_card_to_discards()
+				GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
+				GameManager.net_remove_building_from_landscape_array.rpc(player_num, 3)
 			99:
 				if player_num == 1:
-					for card in GameManager.player1_hand:
-						if card["Name"] == temp_card["Name"]:
-							GameManager.player1_hand.remove_at(GameManager.player1_hand.find(card))
-							GameManager.player1_discards.append(card)
+					GameManager.net_remove_card_from_player_hand.rpc(player_num, temp_card)
+					GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
 				elif player_num == 2:
-					for card in GameManager.player2_hand:
-						if card["Name"] == temp_card["Name"]:
-							GameManager.player2_hand.remove_at(GameManager.player2_hand.find(card))
-							GameManager.player2_discards.append(card)
+					GameManager.net_remove_card_from_player_hand.rpc(player_num, temp_card)
+					GameManager.net_add_card_to_player_discards.rpc(player_num, temp_card)
 	print("Discarded " + temp_card["Name"] + " from P" + str(player_num))
-	perform_super_hand_update_across_clients()
+	net_update_player_hand_display.rpc()
+	net_update_player_landscapes.rpc()
 
 func _on_deck_switch_toggled(toggled_on: bool) -> void:
 	if toggled_on:

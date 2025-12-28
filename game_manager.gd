@@ -93,7 +93,6 @@ func check_end_game():
 		print("Player 1 Wins!")
 		game_ended = true
 
-
 # RETRIEVE CARD DATA
 func load_json_file(file_path: String) -> Dictionary:
 	if FileAccess.file_exists(file_path):
@@ -167,14 +166,18 @@ func print_all_stats():
 	var discards: String
 	for card in player1_discards:
 		if card != null:
-			discards += card["Name"] + ", "
+			for key in card:
+				if key == "Name":
+					discards += card["Name"] + ", "
+				else:
+					discards += ", "
 	print("DISCARDS: " + str(discards))
 	var played_creatures: String
 	for card in player1_played_creatures:
 		if card != null:
 			for key in card:
 				if key == "Name":
-					played_creatures += card["Name"] + ", "
+					played_creatures += card["Name"] + " [" + str(card["Attack"]) + ", " + str(card["Defense"]) + "], "
 				else:
 					played_creatures += ", "
 	print("PLAYED CREATURES: " + str(played_creatures))
@@ -202,14 +205,18 @@ func print_all_stats():
 	var discards2: String
 	for card in player2_discards:
 		if card != null:
-			discards2 += card["Name"] + ", "
+			for key in card:
+				if key == "Name":
+					discards2 += card["Name"] + ", "
+				else:
+					discards2 += ", "
 	print("DISCARDS: " + str(discards2))
 	var played_creatures2: String
 	for card in player2_played_creatures:
 		if card != null:
 			for key in card:
 				if key == "Name":
-					played_creatures2 += card["Name"] + ", "
+					played_creatures2 += card["Name"] + " [" + str(card["Attack"]) + ", " + str(card["Defense"]) + "], "
 				else:
 					played_creatures2 += ", "
 	print("PLAYED CREATURES: " + str(played_creatures2))
@@ -305,6 +312,23 @@ func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, ca
 		player1_played_creatures[landscape_num] = card
 	elif player_num == 2:
 		player2_played_creatures[landscape_num] = card
+
+@rpc("any_peer", "call_local")
+func net_update_creature_in_landscape_array(player_num: int, landscape_num: int, card_type: String, new_attack: int, new_defense: int, is_flooped: bool):
+	if player_num == 1:
+		if card_type == "Creature":
+			player1_played_creatures[landscape_num]["Attack"] = new_attack
+			player1_played_creatures[landscape_num]["Defense"] = new_defense
+			player1_played_creatures[landscape_num]["Floop Status"] = is_flooped
+		elif card_type == "Building":
+			player1_played_buildings[landscape_num]["Floop Status"] = is_flooped
+	elif player_num == 2:
+		if card_type == "Creature":
+			player2_played_creatures[landscape_num]["Attack"] = new_attack
+			player2_played_creatures[landscape_num]["Defense"] = new_defense
+			player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
+		elif card_type == "Building":
+			player2_played_buildings[landscape_num]["Floop Status"] = is_flooped
 
 @rpc("any_peer", "call_local") 
 func net_add_building_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):

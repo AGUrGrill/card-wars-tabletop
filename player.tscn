@@ -89,27 +89,21 @@ metadata/player_num = 0
 
 [node name="Landscape1" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(369, 109)
-landscape_num = null
-designated_card_type = null
 
 [node name="Landscape2" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(516, 109)
 landscape_num = 1
-designated_card_type = null
 
 [node name="Landscape3" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(663, 109)
 landscape_num = 2
-designated_card_type = null
 
 [node name="Landscape4" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(810, 109)
 landscape_num = 3
-designated_card_type = null
 
 [node name="Building1" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(369, 320)
-landscape_num = null
 designated_card_type = "Building"
 
 [node name="Building2" parent="." instance=ExtResource("2_sweqy")]
@@ -147,5 +141,6 @@ text = "GET ALL STATS"
 [connection signal="pressed" from="StatPanel/ActionsLabel/ActionsUp" to="." method="_on_actions_up_pressed"]
 [connection signal="pressed" from="DrawCard" to="." method="_on_draw_card_pressed"]
 [connection signal="pressed" from="DiscardCard" to="." method="_on_discard_card_pressed"]
+[connection signal="mouse_entered" from="Hand" to="." method="_on_hand_mouse_entered"]
 [connection signal="toggled" from="DeckSwitch" to="." method="_on_deck_switch_toggled"]
 [connection signal="pressed" from="StatCheck" to="." method="_on_stat_check_pressed"]
