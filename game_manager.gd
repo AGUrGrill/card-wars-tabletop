@@ -28,70 +28,112 @@ var player2_selected_card: Dictionary
 
 # GAME DATA
 var round_num: int = 0
-var turn_num: int = 0
 var game_ended: bool = false
+var p1_turn: bool = true
+var p2_turn: bool = false
 
-func _ready() -> void:
-	return
+var refresh_needed: bool = false
 
 func start_game():
 	if multiplayer.is_server():
-		for i in range(5):
-			net_add_card_to_player_hand.rpc(1, draw_card())
-			net_add_card_to_player_hand.rpc(2, draw_card())
-	start_turn()
-
-func start_turn(): 
-	# Update round every 2 turns, (p1 and p2)
-	if turn_num % 2 == 0:
-		round_num += 1  
-	# Update turns played  
-	turn_num += 1
-	# If not first round draw
-	if round_num != 1:
-		draw_phase()
-
-func draw_phase():
-	if turn_num == 1:
-		net_add_card_to_player_hand.rpc(1, draw_card())
-	elif turn_num == 2:
-		net_add_card_to_player_hand.rpc(2, draw_card())
-
-# For call when player is ready
-func start_attack_phase():
-	attack_phase()
-
-func attack_phase():
-	for landscape_num in range(4):
-		if turn_num == 1:
-			if not player1_played_creatures[landscape_num]["Floop Status"] == true:
-				var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
-				var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
-				var p2_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
-				var p2_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
-				player2_played_creatures[landscape_num]["Defense"] = p2_creature_defense - p1_creature_attack
-				player1_played_creatures[landscape_num]["Defense"] = p1_creature_defense - p2_creature_attack
-		if turn_num == 2:
-			if not player2_played_creatures[landscape_num]["Floop Status"] == true:
-				var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
-				var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
-				var p2_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
-				var p2_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
-				player2_played_creatures[landscape_num]["Defense"] = p2_creature_defense - p1_creature_attack
-				player1_played_creatures[landscape_num]["Defense"] = p1_creature_defense - p2_creature_attack
-
-func end_turn():
-	check_end_game()
-	if not game_ended:
+		p1_turn = true
+		p2_turn = false
+		if multiplayer.is_server():
+			for i in range(5):
+				net_add_card_to_player_hand.rpc(1, draw_card())
+				net_add_card_to_player_hand.rpc(2, draw_card())
+		server_update_turn_info_for_clients(p1_turn, p2_turn, round_num)
+		net_tell_clients_to_refresh.rpc()
 		start_turn()
 
+func start_turn(): 
+	if multiplayer.is_server():
+		if round_num > 1:
+			draw_phase()
+
+func draw_phase():
+	if multiplayer.is_server():
+		if p1_turn:
+			net_add_card_to_player_hand.rpc(1, draw_card())
+		elif p2_turn:
+			net_add_card_to_player_hand.rpc(2, draw_card())
+		net_tell_clients_to_refresh.rpc()
+
+# For call when player is ready
+@rpc("any_peer", "call_remote")
+func client_start_attack_phase():
+	if multiplayer.is_server():
+		attack_phase()
+
+func attack_phase():
+	if multiplayer.is_server():
+		for landscape_num in range(4):
+			if p1_turn:
+				if player1_played_creatures[landscape_num].is_empty():
+					continue
+				if player1_played_creatures[landscape_num]["Floop Status"] == false:
+					var opponent_landscape_num: int = abs(landscape_num - 3)
+					var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
+					var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
+					if player2_played_creatures[opponent_landscape_num].is_empty():
+						net_update_player_health.rpc(2, -p1_creature_attack)
+					else:
+						var p2_creature_attack: int = player2_played_creatures[opponent_landscape_num]["Attack"]
+						var p2_creature_defense: int = player2_played_creatures[opponent_landscape_num]["Defense"]
+						net_update_creature_in_landscape_array.rpc(2, opponent_landscape_num, player2_played_creatures[opponent_landscape_num]["Card Type"], player2_played_creatures[opponent_landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[opponent_landscape_num]["Floop Status"])
+						net_update_creature_in_landscape_array.rpc(1, landscape_num, player1_played_creatures[landscape_num]["Card Type"], player1_played_creatures[landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[landscape_num]["Floop Status"])
+						print(str(landscape_num) + " fought " + str(opponent_landscape_num))
+			if p2_turn:
+				if player2_played_creatures[landscape_num].is_empty():
+					continue
+				if player2_played_creatures[landscape_num]["Floop Status"] == false:
+					var opponent_landscape_num: int = abs(landscape_num - 3)
+					var p2_creature_attack: int = player2_played_creatures[landscape_num]["Attack"]
+					var p2_creature_defense: int = player2_played_creatures[landscape_num]["Defense"]
+					if player1_played_creatures[opponent_landscape_num].is_empty():
+						net_update_player_health.rpc(1, -p2_creature_attack)
+					else:
+						var p1_creature_attack: int = player1_played_creatures[opponent_landscape_num]["Attack"]
+						var p1_creature_defense: int = player1_played_creatures[opponent_landscape_num]["Defense"]
+						net_update_creature_in_landscape_array.rpc(1, opponent_landscape_num, player1_played_creatures[opponent_landscape_num]["Card Type"], player1_played_creatures[opponent_landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[opponent_landscape_num]["Floop Status"])
+						net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[landscape_num]["Floop Status"])
+						print(str(landscape_num) + " fought " + str(opponent_landscape_num))
+		net_tell_clients_to_refresh.rpc()
+		end_turn()
+
+func end_turn():
+	if multiplayer.is_server():
+		if p1_turn:
+			p2_turn = true
+			p1_turn = false
+		elif p2_turn:
+			p1_turn = true
+			p2_turn = false
+		check_end_game()
+		if not game_ended:
+			round_num += 1
+			server_update_turn_info_for_clients.rpc(p1_turn, p2_turn, round_num)
+			start_turn()
+
 func check_end_game():
-	if player1_health <= 0:
-		print("Player 2 Wins!")
-		game_ended = true
-	elif player2_health <= 0:
-		print("Player 1 Wins!")
-		game_ended = true
+	if multiplayer.is_server():
+		if player1_health <= 0:
+			print("Player 2 Wins!")
+			game_ended = true
+		elif player2_health <= 0:
+			print("Player 1 Wins!")
+			game_ended = true
+
+@rpc("authority", "call_remote")
+func server_update_turn_info_for_clients(is_p1_turn: bool, is_p2_turn: bool, _round_num: int):
+	if is_p1_turn:
+		p1_turn = true
+		p2_turn = false
+	elif is_p2_turn:
+		p2_turn = true
+		p1_turn = false
+	round_num = _round_num
+
 
 # RETRIEVE CARD DATA
 func load_json_file(file_path: String) -> Dictionary:
@@ -233,6 +275,10 @@ func print_all_stats():
 		for key in player1_selected_card:
 			if key == "Name":
 				print("SELECTED CARD: " + str(player2_selected_card["Name"]))
+
+@rpc("any_peer", "call_local")
+func net_tell_clients_to_refresh():
+	GameManager.refresh_needed = true
 
 # PLAYER STAT UPDATES
 @rpc("any_peer", "call_local")

@@ -1,27 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfr8mh116oi0f"]
+[gd_scene load_steps=3 format=3 uid="uid://bfr8mh116oi0f"]
 
 [ext_resource type="Script" uid="uid://b6dl48d375f1o" path="res://board_controller.gd" id="1_psm7c"]
+[ext_resource type="Texture2D" uid="uid://cmdybqwtote2a" path="res://Assets/icy.webp" id="2_psm7c"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_psm7c")
 
+[node name="Icy" type="Sprite2D" parent="."]
+modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+position = Vector2(802.00006, 450)
+scale = Vector2(1.2722223, 1.2722223)
+texture = ExtResource("2_psm7c")
+
 [node name="Player1Container" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 800.0
-offset_right = 1700.0
-offset_bottom = 800.0
-rotation = 1.5707964
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 359.0
+offset_top = 443.0
+offset_right = 1649.0
+offset_bottom = 1005.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 
 [node name="Player2Container" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 800.0
-offset_top = 900.0
-offset_right = 1700.0
-offset_bottom = 1700.0
-rotation = -1.5707964
+offset_left = 1302.0001
+offset_top = 448.00003
+offset_right = 2900.9614
+offset_bottom = 1248.0
+rotation = 3.1415927
+scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 
 [node name="ID" type="Label" parent="."]

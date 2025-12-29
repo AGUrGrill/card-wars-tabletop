@@ -53,9 +53,11 @@ func change_card_data(landscape: String, type: String, _name: String, desc: Stri
 	card_base_defense = defense
 	defense_label.text = str(card_defense)
 	if _is_flooped:
-		floop_card()
+		floop_card(true, false)
 		print("Flooping")
 	hide_card(false)
+	if is_in_hand:
+		hide_buttons(true)
 
 func remove_card_data():
 	card_image.texture = null
@@ -70,21 +72,29 @@ func remove_card_data():
 
 func update_played_card_info_to_server():
 	GameManager.net_update_creature_in_landscape_array.rpc(get_card_player_num(), get_card_landscape_num(), card_type, card_attack, card_defense, is_flooped)
-	landscape.player.net_update_player_landscapes.rpc()
+	GameManager.net_tell_clients_to_refresh.rpc()
 
-func hide_card(should_hide: bool):
+func hide_buttons(should_hide: bool):
 	if should_hide:
-		card.visible = false
-		card.input_pickable = false
 		attack_node.visible = false
 		defense_node.visible = false
 		floop_button.visible = false
 	else:
-		card.visible = true
-		card.input_pickable = true
 		attack_node.visible = true
 		defense_node.visible = true
 		floop_button.visible = true
+
+func hide_card(should_hide: bool):
+	hide_buttons(should_hide)
+	if should_hide:
+		card.visible = false
+		card.input_pickable = false
+	else:
+		card.visible = true
+		card.input_pickable = true
+
+func hide_image():
+	update_card_image("card_back")
 
 # CARD FUNCTIONS
 func update_card_image(_name: String):
@@ -100,8 +110,6 @@ func update_card_image(_name: String):
 		img.resize(140, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	card_image.texture = texture
-	
-	
 
 func update_card_attack(modifier: int):
 	var temp_attack = card_attack + modifier
@@ -122,14 +130,16 @@ func update_card_defense(modifier: int):
 	defense_label.text = str(card_defense)
 	update_played_card_info_to_server()
 
-func floop_card():
-	if !is_flooped:
+func floop_card(should_floop: bool, update_to_server: bool):
+	# fix to double floop issue when second call is made
+	if should_floop:
 		is_flooped = true
-		card.rotation = 90
+		card.rotation_degrees = 90
 	else:
 		is_flooped = false
-		card.rotation = 0
-	update_played_card_info_to_server()
+		card.rotation_degrees = 0
+	if update_to_server:
+		update_played_card_info_to_server()
 
 func get_card_data(is_base: bool) -> Dictionary:
 	var card_data: Dictionary
@@ -189,7 +199,10 @@ func _on_defense_down_pressed() -> void:
 	update_card_defense(-1)
 
 func _on_floop_button_pressed() -> void:
-	floop_card()
+	if is_flooped:
+		floop_card(false, true)
+	else:
+		floop_card(true, true)
 
 # Focus Card
 func _on_mouse_entered() -> void:

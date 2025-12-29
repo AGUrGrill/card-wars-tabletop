@@ -6,6 +6,10 @@ extends Node2D
 
 @onready var player: Node2D = $"."
 @onready var draw_card: Button = $DrawCard
+@onready var discard_card: Button = $DiscardCard
+@onready var end_turn: Button = $EndTurn
+@onready var stat_check: Button = $StatCheck
+@onready var deck_switch: CheckButton = $DeckSwitch
 @onready var landscape_1_creature: Area2D = $Landscape1/Card
 @onready var landscape_2_creature: Area2D = $Landscape2/Card
 @onready var landscape_3_creature: Area2D = $Landscape3/Card
@@ -14,19 +18,76 @@ extends Node2D
 @onready var landscape_2_building: Area2D = $Building2/Card
 @onready var landscape_3_building: Area2D = $Building3/Card
 @onready var landscape_4_building: Area2D = $Building4/Card
+@onready var actions_down: Button = $StatPanel/ActionsLabel/ActionsDown
+@onready var actions_up: Button = $StatPanel/ActionsLabel/ActionsUp
+@onready var hp_up: Button = $StatPanel/HPLabel/HPUp
+@onready var hp_down: Button = $StatPanel/HPLabel/HPDown
 @onready var hand: HBoxContainer = $Hand
 const CARD = preload("uid://dycs2rc7imye2")
 
 @export var player_num: int
 var is_player_board: bool
+var disabled: bool = true
 
 func _ready() -> void:
 	hand.set_meta("player_num", player_num)
-	if not is_player_board:
-		player.modulate = "7a7a7a"
-		draw_card.disabled = true
-	net_update_player_stat_display()
+	if player_num == 1:
+		disabled = true
+	if player_num == 2:
+		disabled = false
+
+func _process(delta: float) -> void:
+	determine_display_visibility()
+
+func total_display_refresh():
 	net_update_player_hand_display()
+	net_update_player_stat_display()
+	net_update_player_landscapes()
+
+func determine_display_visibility():
+	if player_num == 1:
+		if GameManager.p1_turn and disabled:
+			disable_inputs(false, true, false)
+			disabled = false
+		elif not GameManager.p1_turn and not disabled:
+			disable_inputs(true, true, true)
+			disabled = true
+	
+	if player_num == 2:
+		if GameManager.p2_turn and disabled:
+			disable_inputs(false, true, false)
+			disabled = false
+		elif not GameManager.p2_turn and not disabled:
+			disable_inputs(true, true, true)
+			disabled = true
+
+func disable_inputs(should_disable: bool, is_player: bool, should_modulate: bool):
+	if should_disable:
+		if not is_player:
+			actions_up.disabled = true
+			actions_down.disabled = true
+			hp_up.disabled = true
+			hp_down.disabled = true
+		draw_card.disabled = true
+		discard_card.disabled = true
+		end_turn.disabled = true
+		stat_check.disabled = true
+		deck_switch.disabled = true
+	else:
+		if not is_player:
+			actions_up.disabled = true
+			actions_down.disabled = true
+			hp_up.disabled = true
+			hp_down.disabled = true
+		draw_card.disabled = false
+		discard_card.disabled = false
+		end_turn.disabled = false
+		stat_check.disabled = false
+		deck_switch.disabled = false
+	if should_modulate:
+		player.modulate = "7a7a7a"
+	else:
+		player.modulate = "ffffff"
 
 # UPDATES
 @rpc("any_peer", "call_local")
@@ -45,7 +106,7 @@ func net_update_player_stat_display():
 
 @rpc("any_peer", "call_local")
 func net_update_player_hand_display():
-	#print("Player " + str(player_num) + "'s Hand:\n" + str(local_hand))
+	
 	var main_hand: Array
 	if player_num == 1:
 		main_hand = GameManager.player1_hand
@@ -53,6 +114,7 @@ func net_update_player_hand_display():
 		main_hand = GameManager.player2_hand
 	if main_hand.is_empty():
 		return
+	print("Player " + str(player_num) + "'s Hand:\n" + str(multiplayer.get_unique_id()))
 	
 	var max_length: float = hand.size.x
 	var increment: float = max_length / main_hand.size()
@@ -76,6 +138,8 @@ func net_update_player_hand_display():
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
 		else:
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
+		if not is_player_board:
+			new_card.hide_image()
 
 @rpc("any_peer", "call_local")
 func net_update_player_discards_display():
@@ -138,22 +202,30 @@ func net_update_player_landscapes():
 	
 	# CREATURES
 	if not creatures[0].is_empty():
+		landscape_1_creature.is_in_hand = false
 		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"])
 	if not creatures[1].is_empty():
+		landscape_2_creature.is_in_hand = false
 		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Defense"], creatures[1]["Floop Status"])
 	if not creatures[2].is_empty():
+		landscape_3_creature.is_in_hand = false
 		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Defense"], creatures[2]["Floop Status"])
 	if not creatures[3].is_empty():
+		landscape_4_creature.is_in_hand = false
 		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"])
 	
 	# BUILDINGS
 	if not buildings[0].is_empty():
+		landscape_1_building.is_in_hand = false
 		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Defense"], buildings[0]["Floop Status"])
 	if not buildings[1].is_empty():
+		landscape_2_building.is_in_hand = false
 		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Defense"], buildings[1]["Floop Status"])
 	if not buildings[2].is_empty():
+		landscape_3_building.is_in_hand = false
 		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Defense"], buildings[2]["Floop Status"])
 	if not buildings[3].is_empty():
+		landscape_4_building.is_in_hand = false
 		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Defense"], buildings[3]["Floop Status"])
 
 # UPDATE BUTTON CHANGES
@@ -175,7 +247,6 @@ func _on_draw_card_pressed() -> void:
 	if player_num == 2:
 		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_card())
 	net_update_player_hand_display.rpc()
-	print("draw")
 
 func _on_discard_card_pressed() -> void:
 	var temp_card: Dictionary
@@ -245,3 +316,6 @@ func _on_deck_switch_toggled(toggled_on: bool) -> void:
 
 func _on_stat_check_pressed() -> void:
 	GameManager.print_all_stats()
+
+func _on_end_turn_pressed() -> void:
+	GameManager.client_start_attack_phase.rpc()

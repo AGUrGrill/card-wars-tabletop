@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var card: Area2D = $Card
 @onready var player: Node2D = $".."
+@onready var board: Node2D = $"..."
 @onready var image: Sprite2D = $Image
 
 @export var landscape_num: int = 0
@@ -32,8 +33,7 @@ func add_card_to_landscape():
 			GameManager.net_add_building_to_landscape_array.rpc(2, landscape_num, GameManager.player2_selected_card)
 		GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
 		GameManager.net_update_player_selected_card.rpc(2, {})
-	player.net_update_player_landscapes.rpc()
-	player.net_update_player_hand_display.rpc()
+	GameManager.net_tell_clients_to_refresh.rpc()
 
 func is_card_empty(card: Dictionary) -> bool:
 	return card.is_empty()
