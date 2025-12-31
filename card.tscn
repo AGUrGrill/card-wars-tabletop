@@ -29,7 +29,7 @@ offset_left = 109.935
 offset_right = 109.935
 
 [node name="AttackIcon" type="Sprite2D" parent="Attack"]
-position = Vector2(-164.36357, 89.28571)
+position = Vector2(-162.07785, 6.4285717)
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("2_e484p")
 
@@ -43,10 +43,10 @@ text = "+"
 
 [node name="AttackLabel" type="Label" parent="Attack"]
 layout_mode = 0
-offset_left = -179.36357
-offset_top = 77.285706
-offset_right = -149.36357
-offset_bottom = 104.285706
+offset_left = -177.07785
+offset_top = -5.571429
+offset_right = -147.07785
+offset_bottom = 21.428572
 text = "1"
 horizontal_alignment = 1
 
@@ -63,7 +63,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="DefenseIcon" type="Sprite2D" parent="Defense"]
-position = Vector2(55.57141, 90.1145)
+position = Vector2(52.142838, 5.8285675)
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("3_fpac0")
 
@@ -77,10 +77,10 @@ text = "+"
 
 [node name="DefenseLabel" type="Label" parent="Defense"]
 layout_mode = 0
-offset_left = 40.57143
-offset_top = 78.11427
-offset_right = 70.57143
-offset_bottom = 105.11427
+offset_left = 37.142857
+offset_top = -6.1716537
+offset_right = 67.14285
+offset_bottom = 20.828346
 text = "1"
 horizontal_alignment = 1
 

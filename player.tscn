@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmvkn00sedqin"]
+[gd_scene load_steps=4 format=3 uid="uid://cmvkn00sedqin"]
 
 [ext_resource type="Script" uid="uid://dw7u3fak148is" path="res://player_controller.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cjnoi5mfcfn1f" path="res://landscape.tscn" id="2_sweqy"]
+[ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://audio.tscn" id="3_i3pqv"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_4flbx")
@@ -9,7 +10,7 @@ metadata/_edit_lock_ = true
 
 [node name="StatPanel" type="Panel" parent="."]
 offset_right = 96.0
-offset_bottom = 146.0
+offset_bottom = 186.0
 
 [node name="PlayerLabel" type="Label" parent="StatPanel"]
 layout_mode = 0
@@ -21,10 +22,10 @@ text = "PLAYER:"
 
 [node name="HPLabel" type="Label" parent="StatPanel"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 30.0
-offset_right = 42.0
-offset_bottom = 53.0
+offset_left = 3.0
+offset_top = 25.0
+offset_right = 43.0
+offset_bottom = 48.0
 text = "HP:"
 
 [node name="HPDown" type="Button" parent="StatPanel/HPLabel"]
@@ -44,10 +45,10 @@ text = "+"
 
 [node name="ActionsLabel" type="Label" parent="StatPanel"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 89.0
-offset_right = 75.0
-offset_bottom = 112.0
+offset_left = 3.0
+offset_top = 84.0
+offset_right = 76.0
+offset_bottom = 107.0
 text = "ACTIONS:"
 
 [node name="ActionsDown" type="Button" parent="StatPanel/ActionsLabel"]
@@ -65,6 +66,23 @@ offset_right = 18.0
 offset_bottom = 55.0
 text = "+"
 
+[node name="OpponentLabel" type="Label" parent="StatPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 139.0
+offset_right = 90.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(1, 0.494251, 0.42709014, 1)
+text = "OPPONENT"
+
+[node name="OpponentHPLabel" type="Label" parent="StatPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 159.0
+offset_right = 90.0
+offset_bottom = 182.0
+text = "HP: "
+
 [node name="DrawCard" type="Button" parent="."]
 offset_left = 145.0
 offset_top = 58.0
@@ -80,36 +98,35 @@ offset_bottom = 136.0
 text = "DISCARD CARD"
 
 [node name="Hand" type="HBoxContainer" parent="."]
-offset_left = 296.0
-offset_top = 431.0
-offset_right = 879.0
-offset_bottom = 531.0
+offset_left = 89.0
+offset_top = 501.0
+offset_right = 1200.0
+offset_bottom = 601.0
 alignment = 1
 metadata/player_num = 0
 
+[node name="SpellArea" parent="." instance=ExtResource("2_sweqy")]
+position = Vector2(1022, 209)
+landscape_num = 69
+designated_card_type = "Spell"
+
 [node name="Landscape1" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(369, 109)
-landscape_num = null
-designated_card_type = null
 
 [node name="Landscape2" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(516, 109)
 landscape_num = 1
-designated_card_type = null
 
 [node name="Landscape3" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(663, 109)
 landscape_num = 2
-designated_card_type = null
 
 [node name="Landscape4" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(810, 109)
 landscape_num = 3
-designated_card_type = null
 
 [node name="Building1" parent="." instance=ExtResource("2_sweqy")]
 position = Vector2(369, 320)
-landscape_num = null
 designated_card_type = "Building"
 
 [node name="Building2" parent="." instance=ExtResource("2_sweqy")]
@@ -134,19 +151,69 @@ offset_right = 284.0
 offset_bottom = 40.0
 text = "HAND/DISCARDS"
 
-[node name="StatCheck" type="Button" parent="."]
-offset_left = 3.0
-offset_top = 154.0
-offset_right = 124.0
-offset_bottom = 185.0
-text = "GET ALL STATS"
-
 [node name="EndTurn" type="Button" parent="."]
-offset_left = 7.0
-offset_top = 198.0
-offset_right = 97.0
-offset_bottom = 229.0
+offset_left = 2.0
+offset_top = 193.0
+offset_right = 92.0
+offset_bottom = 224.0
 text = "END TURN"
+
+[node name="HeroImage" type="Sprite2D" parent="."]
+position = Vector2(1261, 204)
+scale = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="Audio" parent="." instance=ExtResource("3_i3pqv")]
+audio_type = "Player"
+
+[node name="SelectedCard" type="Sprite2D" parent="."]
+position = Vector2(-243.00002, 243.00002)
+scale = Vector2(1.7, 1.7)
+
+[node name="RemoveLabel" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 372.0
+offset_right = 109.0
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 8
+text = "Removes Card from Game"
+
+[node name="RemoveCard" type="Button" parent="."]
+offset_left = 2.0
+offset_top = 386.0
+offset_right = 92.0
+offset_bottom = 406.0
+theme_override_font_sizes/font_size = 8
+text = "FULLY REMOVE CARD"
+
+[node name="SwapOwner" type="Button" parent="."]
+offset_left = 2.0
+offset_top = 350.0
+offset_right = 92.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 8
+text = "SWAP CARD OWNER"
+
+[node name="InputTimer" type="Timer" parent="."]
+
+[node name="InputTimerLabel" type="Label" parent="."]
+offset_left = 249.0
+offset_top = 400.0
+offset_right = 289.0
+offset_bottom = 423.0
+text = "0.1"
+
+[node name="LogTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="LogLabel" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 3.0
+offset_right = 1294.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 12
+text = "Placed X Creature"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="StatPanel/HPLabel/HPDown" to="." method="_on_hp_down_pressed"]
 [connection signal="pressed" from="StatPanel/HPLabel/HPUp" to="." method="_on_hp_up_pressed"]
@@ -156,5 +223,8 @@ text = "END TURN"
 [connection signal="pressed" from="DiscardCard" to="." method="_on_discard_card_pressed"]
 [connection signal="mouse_entered" from="Hand" to="." method="_on_hand_mouse_entered"]
 [connection signal="toggled" from="DeckSwitch" to="." method="_on_deck_switch_toggled"]
-[connection signal="pressed" from="StatCheck" to="." method="_on_stat_check_pressed"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="RemoveCard" to="." method="_on_remove_card_pressed"]
+[connection signal="pressed" from="SwapOwner" to="." method="_on_swap_owner_pressed"]
+[connection signal="timeout" from="InputTimer" to="." method="_on_input_timer_timeout"]
+[connection signal="timeout" from="LogTimer" to="." method="_on_log_timer_timeout"]

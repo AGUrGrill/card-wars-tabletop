@@ -17,21 +17,30 @@ layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 359.0
-offset_top = 443.0
-offset_right = 1649.0
-offset_bottom = 1005.0
+offset_left = 329.2002
+offset_top = 447.9745
+offset_right = 1619.2002
+offset_bottom = 1009.9745
 grow_horizontal = 2
 scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 
+[node name="ZoomButton" type="Button" parent="Player1Container"]
+layout_mode = 0
+offset_left = 897.24963
+offset_top = 11.28186
+offset_right = 955.24963
+offset_bottom = 42.28186
+toggle_mode = true
+text = "ZOOM"
+
 [node name="Player2Container" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1302.0001
-offset_top = 448.00003
-offset_right = 2900.9614
-offset_bottom = 1248.0
+offset_left = 1272.2003
+offset_top = 452.97452
+offset_right = 2563.7007
+offset_bottom = 1016.6925
 rotation = 3.1415927
 scale = Vector2(0.8, 0.8)
 mouse_filter = 2
@@ -40,3 +49,8 @@ mouse_filter = 2
 offset_right = 40.0
 offset_bottom = 23.0
 text = "ID: "
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2(800, 450)
+
+[connection signal="toggled" from="Player1Container/ZoomButton" to="." method="_on_zoom_button_toggled"]

@@ -11,10 +11,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h8t3n")
 
-[node name="Label" type="Label" parent="."]
+[node name="GetPlayersStats" type="Button" parent="."]
 layout_mode = 0
-offset_left = 666.0
-offset_top = 357.0
-offset_right = 826.0
-offset_bottom = 380.0
-text = "YOU ARE SERVER yay"
+offset_left = 578.0
+offset_top = 776.0
+offset_right = 922.0
+offset_bottom = 851.0
+theme_override_font_sizes/font_size = 48
+text = "GET ALL STATS"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 1596.0
+offset_bottom = 751.0
+
+[connection signal="pressed" from="GetPlayersStats" to="." method="_on_get_players_stats_pressed"]

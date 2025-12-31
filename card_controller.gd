@@ -1,7 +1,6 @@
 extends Area2D
 
 const TEMP_IMG = preload("uid://bkuqpel75myiu")
-const CARD_LOCATION: String = "res://Assets/Cards/"
 
 @onready var card_image: Sprite2D = $Image
 @onready var attack_node: Control = $Attack
@@ -11,6 +10,7 @@ const CARD_LOCATION: String = "res://Assets/Cards/"
 @onready var attack_label: Label = $Attack/AttackLabel
 @onready var defense_label: Label = $Defense/DefenseLabel
 @onready var landscape = $".." # Can be hand or landscape so leave vague
+
 
 # CARD DATA
 var card_landscape: String = ""
@@ -25,12 +25,12 @@ var card_base_defense: int = 0
 var is_flooped: bool = false
 var is_in_hand: bool = true
 var is_dead: bool = false
-var selected: bool = false
+var card_owner: int
 
 func _ready() -> void:
 	remove_card_data()
 
-func change_card_data(landscape: String, type: String, _name: String, desc: String, cost: int, attack: int, defense: int, _is_flooped: bool):
+func change_card_data(landscape: String, type: String, _name: String, desc: String, cost: int, attack: int, defense: int, _is_flooped: bool, _owner: int):
 	if card_name != "tempname": # If card was already played and now replaced, send to discards
 		return
 	
@@ -38,11 +38,11 @@ func change_card_data(landscape: String, type: String, _name: String, desc: Stri
 	card_landscape = landscape
 	card_type = type
 	if type == "Creature":
-		attack_node.visible = true
-		defense_node.visible = true
+		hide_buttons(false)
 	elif type == "Building":
-		attack_node.visible = false
-		defense_node.visible = false
+		hide_buttons(true)
+	elif type == "Spell":
+		hide_buttons(true)
 	card_name = _name
 	card_description = desc
 	card_cost = cost
@@ -52,12 +52,19 @@ func change_card_data(landscape: String, type: String, _name: String, desc: Stri
 	card_defense = defense
 	card_base_defense = defense
 	defense_label.text = str(card_defense)
+	card_owner = _owner
 	if _is_flooped:
 		floop_card(true, false)
 		print("Flooping")
 	hide_card(false)
 	if is_in_hand:
 		hide_buttons(true)
+	if card_defense <= 0 and not is_in_hand and card_type == "Creature":
+		remove_card()
+
+func remove_card():
+	GameManager.net_add_card_to_player_discards.rpc(1, get_card_data(true))
+	GameManager.net_remove_creature_from_landscape_array.rpc(get_card_player_num(), get_card_landscape_num())
 
 func remove_card_data():
 	card_image.texture = null
@@ -72,7 +79,8 @@ func remove_card_data():
 
 func update_played_card_info_to_server():
 	GameManager.net_update_creature_in_landscape_array.rpc(get_card_player_num(), get_card_landscape_num(), card_type, card_attack, card_defense, is_flooped)
-	GameManager.net_tell_clients_to_refresh.rpc()
+	GameManager.net_tell_clients_to_refresh_hand.rpc()
+	GameManager.net_tell_clients_to_refresh_stats.rpc()
 
 func hide_buttons(should_hide: bool):
 	if should_hide:
@@ -98,16 +106,24 @@ func hide_image():
 
 # CARD FUNCTIONS
 func update_card_image(_name: String):
+	var tex = GameManager.db.cards.get(_name)
+	var img: Image = tex.get_image()
+	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
+	var texture: ImageTexture = ImageTexture.create_from_image(img)
+	card_image.texture = texture
+
+func old_update_card_image(_name: String):
 	var img_path: String = ""
-	var dir := DirAccess.open(CARD_LOCATION)
+	var dir := DirAccess.open(GameManager.CARD_LOCATION)
 	if dir == null: printerr("Could not open folder"); return
 	dir.list_dir_begin()
 	for file: String in dir.get_files():
 		if (_name == file.trim_suffix(".png") or _name == file.trim_suffix(".jpg") or _name == file.trim_suffix(".webp")):
 			img_path = dir.get_current_dir() + "/" + file
-	var img: Image = Image.load_from_file(img_path)
+	var img: Image = Image.new()
+	img.load(img_path)
 	if img != null:
-		img.resize(140, 210, Image.INTERPOLATE_LANCZOS)
+		img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	card_image.texture = texture
 
@@ -126,7 +142,7 @@ func update_card_defense(modifier: int):
 		card_defense = temp_defense
 	else:
 		card_defense = 0
-		is_dead = true
+		remove_card()
 	defense_label.text = str(card_defense)
 	update_played_card_info_to_server()
 
@@ -153,7 +169,8 @@ func get_card_data(is_base: bool) -> Dictionary:
 			"Attack": card_base_attack,
 			"Defense": card_base_defense,
 			"Floop Status": is_flooped,
-			"Landscape Played": get_card_landscape_num()
+			"Landscape Played": get_card_landscape_num(),
+			"Owner": card_owner
 		}
 	else:
 		card_data = {
@@ -165,7 +182,8 @@ func get_card_data(is_base: bool) -> Dictionary:
 			"Attack": card_attack,
 			"Defense": card_defense,
 			"Floop Status": is_flooped,
-			"Landscape Played": get_card_landscape_num()
+			"Landscape Played": get_card_landscape_num(),
+			"Owner": card_owner
 		}
 	return card_data
 
@@ -214,11 +232,13 @@ func _on_mouse_exited() -> void:
 # Select Card
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_pressed():
-		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), {})
-		if not selected:
-			card.modulate = "aeaeae"
-			selected = true
-			GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
+		if get_card_landscape_num() == 99:
+			$"../..".update_selected_card_image(card_name)
 		else:
-			card.modulate = "ffffff"
-			selected = false
+			if $"../..".can_select == false:
+				return
+			landscape.player.update_selected_card_image(card_name)
+		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), {})
+		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
+		print("Selected " + card_name + " for " + str(get_card_player_num()))
+		

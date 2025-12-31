@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cm5r3w4ic0uso"]
+
+[ext_resource type="Script" uid="uid://c85o0a0nukgug" path="res://audio_controller.gd" id="1_74vr2"]
+[ext_resource type="AudioStream" uid="uid://bgt1eg2jnt8si" path="res://Assets/Sounds/bird_in_forest.mp3" id="2_x5nyw"]
+[ext_resource type="AudioStream" uid="uid://dwwbphih1wsu8" path="res://Assets/Sounds/island_song.mp3" id="3_0svpk"]
+[ext_resource type="AudioStream" uid="uid://b1maiudlhvin1" path="res://Assets/Sounds/pop.mp3" id="4_5olcg"]
+[ext_resource type="Texture2D" uid="uid://bt16oonbc3buy" path="res://Assets/sound-icon.png" id="5_pgqns"]
+[ext_resource type="Texture2D" uid="uid://b6qgrocamhyy0" path="res://Assets/music_mute_icon.png" id="6_cqcg1"]
+[ext_resource type="AudioStream" uid="uid://cyi2r4d1ll2fq" path="res://Assets/Sounds/congrats_pb.mp3" id="7_0svpk"]
+[ext_resource type="AudioStream" uid="uid://dx3kglvyby8ra" path="res://Assets/Sounds/darkness_lich.mp3" id="8_5olcg"]
+
+[node name="Audio" type="Node"]
+script = ExtResource("1_74vr2")
+audio_type = "Board"
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_x5nyw")
+volume_db = -10.0
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0svpk")
+volume_db = -8.157
+parameters/looping = true
+
+[node name="ConfirmSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5olcg")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1465.0
+offset_top = 828.0
+offset_right = 1604.0
+offset_bottom = 903.0
+
+[node name="EnableSFX" type="TextureButton" parent="Panel"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 79.0
+offset_top = 12.0
+offset_right = 591.0
+offset_bottom = 524.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_pgqns")
+
+[node name="EnableBGM" type="TextureButton" parent="Panel"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 12.0
+offset_right = 519.0
+offset_bottom = 524.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_cqcg1")
+
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0svpk")
+
+[node name="Lose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5olcg")
+
+[connection signal="finished" from="SFX" to="." method="_on_sfx_finished"]
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]
+[connection signal="pressed" from="Panel/EnableSFX" to="." method="_on_enable_sfx_pressed"]
+[connection signal="pressed" from="Panel/EnableBGM" to="." method="_on_enable_bgm_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjnoi5mfcfn1f"]
+[gd_scene load_steps=6 format=3 uid="uid://cjnoi5mfcfn1f"]
 
 [ext_resource type="Script" uid="uid://dx8tbqfm6kjyi" path="res://landscape_controller.gd" id="1_asa4r"]
 [ext_resource type="Texture2D" uid="uid://bc0e5t5k7xnl6" path="res://Assets/Cards/Blue Plains.png" id="1_j1j1h"]
+[ext_resource type="Texture2D" uid="uid://2dfcdce5dsbx" path="res://Assets/spell_bg.png" id="2_6vom0"]
 [ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://card.tscn" id="2_asa4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asa4r"]
@@ -10,9 +11,14 @@ size = Vector2(146, 210)
 [node name="Landscape" type="Area2D"]
 script = ExtResource("1_asa4r")
 
-[node name="Image" type="Sprite2D" parent="."]
+[node name="LandscapeImage" type="Sprite2D" parent="."]
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("1_j1j1h")
+
+[node name="SpellImage" type="Sprite2D" parent="."]
+position = Vector2(0.49999785, -10.999995)
+scale = Vector2(0.77931035, 0.7255814)
+texture = ExtResource("2_6vom0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_asa4r")
@@ -20,4 +26,27 @@ shape = SubResource("RectangleShape2D_asa4r")
 [node name="Card" parent="." instance=ExtResource("2_asa4r")]
 position = Vector2(1.5258789e-05, -9.999999)
 
+[node name="ChangeLandscape" type="OptionButton" parent="."]
+offset_left = -46.0
+offset_top = -105.0
+offset_right = 46.0
+offset_bottom = -85.0
+theme_override_font_sizes/font_size = 8
+item_count = 7
+popup/item_0/text = "Facedown"
+popup/item_0/id = 0
+popup/item_1/text = "Cornfield"
+popup/item_1/id = 1
+popup/item_2/text = "Blue Plains"
+popup/item_2/id = 2
+popup/item_3/text = "NiceLands"
+popup/item_3/id = 3
+popup/item_4/text = "Useless Swamp"
+popup/item_4/id = 4
+popup/item_5/text = "IcyLands"
+popup/item_5/id = 5
+popup/item_6/text = "SandyLands"
+popup/item_6/id = 6
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="item_selected" from="ChangeLandscape" to="." method="_on_change_landscape_item_selected"]

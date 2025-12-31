@@ -1,6 +1,7 @@
 extends Node
 
 const CARD_LIST = "res://card_list.json"
+var db: CardDatabase = preload("res://Assets/Database/CardDatabase.tres")
 const MAX_CARDS = 568 # 717 is newest, 568 is released
 
 const DEFAULT_HP: int = 25
@@ -10,60 +11,90 @@ var player1_id: int
 var player2_id: int
 
 # PLAYER DATA
+var player1_hero: String
+var player1_deck: Array[Dictionary]
 @export var player1_health: int = DEFAULT_HP
 @export var player1_actions: int = DEFAULT_ACTIONS
 @export var player1_hand: Array[Dictionary]
 @export var player1_discards: Array[Dictionary]
 @export var player1_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
 @export var player1_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
+var player1_landscapes: Array[String] = ["", "", "", ""]
+var player1_current_spell: Dictionary
 var player1_selected_card: Dictionary
 
+var player2_hero: String
+var player2_deck: Array[Dictionary]
 @export var player2_health: int = DEFAULT_HP
 @export var player2_actions: int = DEFAULT_ACTIONS
 @export var player2_hand: Array[Dictionary]
 @export var player2_discards: Array[Dictionary]
 @export var player2_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
 @export var player2_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
+var player2_landscapes: Array[String] = ["", "", "", ""]
+var player2_current_spell: Dictionary
 var player2_selected_card: Dictionary
 
 # GAME DATA
 var round_num: int = 0
 var game_ended: bool = false
+var who_won: bool = false # P1 = false, P2 = true
 var p1_turn: bool = true
 var p2_turn: bool = false
 
-var refresh_needed: bool = false
+var hand_refresh_needed: bool = false
+var stat_refresh_needed: bool = false
+var landscape_refresh_needed: bool = false
+var hero_refresh_needed: bool = false
+
 
 func start_game():
 	if multiplayer.is_server():
+		#server_distribute_player_ids.rpc(player1_id, player2_id)
+		server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
 		p1_turn = true
 		p2_turn = false
 		if multiplayer.is_server():
 			for i in range(5):
-				net_add_card_to_player_hand.rpc(1, draw_card())
-				net_add_card_to_player_hand.rpc(2, draw_card())
+				net_add_card_to_player_hand.rpc(1, draw_card(1))
+				net_add_card_to_player_hand.rpc(2, draw_card(2))
 		server_update_turn_info_for_clients(p1_turn, p2_turn, round_num)
-		net_tell_clients_to_refresh.rpc()
+		net_tell_clients_to_refresh_hand.rpc()
+		net_tell_clients_to_refresh_landscapes.rpc()
+		net_tell_clients_to_refresh_stats.rpc()
+		net_tell_clients_to_refresh_hero.rpc()
 		start_turn()
 
 func start_turn(): 
 	if multiplayer.is_server():
 		if round_num > 1:
+			# ehh, good enough to reset to 2
+			if player1_actions == 1:
+				net_update_player_actions.rpc(1, 1)
+			elif player1_actions == 0:
+				net_update_player_actions.rpc(1, 2)
+			if player2_actions == 1:
+				net_update_player_actions.rpc(2, 1)
+			elif player2_actions == 0:
+				net_update_player_actions.rpc(2, 2)
 			draw_phase()
 
 func draw_phase():
 	if multiplayer.is_server():
 		if p1_turn:
-			net_add_card_to_player_hand.rpc(1, draw_card())
+			net_add_card_to_player_hand.rpc(1, draw_card(1))
 		elif p2_turn:
-			net_add_card_to_player_hand.rpc(2, draw_card())
-		net_tell_clients_to_refresh.rpc()
+			net_add_card_to_player_hand.rpc(2, draw_card(2))
+		net_tell_clients_to_refresh_hand.rpc()
 
 # For call when player is ready
 @rpc("any_peer", "call_remote")
 func client_start_attack_phase():
 	if multiplayer.is_server():
-		attack_phase()
+		if round_num > 0:
+			attack_phase()
+		else:
+			end_turn()
 
 func attack_phase():
 	if multiplayer.is_server():
@@ -98,7 +129,8 @@ func attack_phase():
 						net_update_creature_in_landscape_array.rpc(1, opponent_landscape_num, player1_played_creatures[opponent_landscape_num]["Card Type"], player1_played_creatures[opponent_landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[opponent_landscape_num]["Floop Status"])
 						net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[landscape_num]["Floop Status"])
 						print(str(landscape_num) + " fought " + str(opponent_landscape_num))
-		net_tell_clients_to_refresh.rpc()
+		net_tell_clients_to_refresh_landscapes.rpc()
+		net_tell_clients_to_refresh_stats.rpc()
 		end_turn()
 
 func end_turn():
@@ -120,9 +152,19 @@ func check_end_game():
 		if player1_health <= 0:
 			print("Player 2 Wins!")
 			game_ended = true
+			net_declare_game_end.rpc(false)
 		elif player2_health <= 0:
 			print("Player 1 Wins!")
 			game_ended = true
+			net_declare_game_end.rpc(true)
+
+@rpc("authority", "call_remote")
+func net_declare_game_end(was_p2_winner: bool):
+	game_ended = true
+	if was_p2_winner:
+		who_won = true 
+	else:
+		who_won = false
 
 @rpc("authority", "call_remote")
 func server_update_turn_info_for_clients(is_p1_turn: bool, is_p2_turn: bool, _round_num: int):
@@ -133,7 +175,6 @@ func server_update_turn_info_for_clients(is_p1_turn: bool, is_p2_turn: bool, _ro
 		p2_turn = true
 		p1_turn = false
 	round_num = _round_num
-
 
 # RETRIEVE CARD DATA
 func load_json_file(file_path: String) -> Dictionary:
@@ -171,19 +212,79 @@ func get_specific_card_data_from_list(card_name: String):
 		elif card_data["Card Type"] != "Landscape" and card_data["Card Type"] != "Hero" and card_data["Card Type"] != "Teamwork":
 			if card_data["Name"] == card_name:
 				return card_data
-	
+
+@rpc("any_peer", "call_remote")
+func recieve_player_deck(player_num: int, deck: Array[Dictionary]):
+	if multiplayer.is_server():
+		if player_num == 1:
+			player1_deck = deck
+			print("Loaded P1 Deck")
+		elif player_num == 2:
+			print("Loaded P2 Deck")
+			player2_deck = deck
+		print(deck)
+
+@rpc("any_peer", "call_remote")
+func recieve_player_hero(player_num: int, hero: String):
+	if multiplayer.is_server():
+		if player_num == 1:
+			player1_hero = hero
+		elif player_num == 2:
+			player2_hero = hero
+
+@rpc("authority", "call_remote")
+func server_distribute_deck_info_to_client(p1_deck, p2_deck, p1_hero, p2_hero):
+	player1_deck = p1_deck
+	player2_deck = p2_deck
+	player1_hero = p1_hero
+	player2_hero = p2_hero
+
+@rpc("any_peer", "call_remote")
+func client_give_player_id(player_num: int, id: int):
+	if multiplayer.is_server():
+		if player_num == 1:
+			player1_id = id
+		elif player_num == 2:
+			player2_id = id
+
+@rpc("authority", "call_remote")
+func server_distribute_player_ids(p1_id: int, p2_id: int):
+	player1_id = p1_id
+	player2_id = p2_id
+
 # DRAW FUNCTIONS
-func draw_card():
+func draw_card(player_num: int):
+	while true:
+		var card_data
+		if player_num == 1:
+			if player1_deck.is_empty():
+				print("Out of cards in p1 deck.")
+				return
+			card_data = player1_deck[randi() % player1_deck.size()]
+			player1_deck.remove_at(player1_deck.find(card_data))
+		elif player_num == 2:
+			if player2_deck.is_empty():
+				print("Out of cards in p2 deck.")
+				return
+			card_data = player2_deck[randi() % player2_deck.size()]
+			player2_deck.remove_at(player2_deck.find(card_data))
+		print(card_data)
+		return card_data
+
+func draw_by_name(name: String):
 	var json_data = GameManager.load_json_file(GameManager.CARD_LIST)
 	if !json_data:
-		return
+		return 
 	
-	while true:
-		var card_data = json_data[str(randi() % MAX_CARDS)]
-		if card_data["Name"] == "Unknown" or card_data == null:
-			continue
-		elif card_data["Card Type"] != "Landscape" and card_data["Card Type"] != "Hero" and card_data["Card Type"] != "Teamwork":
-			return card_data
+	var card_data: Dictionary
+	for idx in range(MAX_CARDS):
+		card_data = json_data[str(idx)]
+		if card_data["Name"] == name:
+			break
+	if card_data["Name"] == "Unknown" or card_data == null:
+		return
+	elif card_data["Card Type"] != "Landscape" and card_data["Card Type"] != "Hero" and card_data["Card Type"] != "Teamwork":
+		return card_data
 
 # MISC
 func can_card_can_be_played(player_num: int, card: Dictionary) -> bool:
@@ -197,14 +298,15 @@ func can_card_can_be_played(player_num: int, card: Dictionary) -> bool:
 			return false
 	return true
 
-func print_all_stats():
-	print("PLAYER 1")
-	print ("HP: " + str(player1_health), ", ACTIONS: " + str(player1_actions))
+func return_all_stats() -> String:
+	var return_string: String = ""
+	return_string += "PLAYER 1\n"
+	return_string += "HP: " + str(player1_health) + ", ACTIONS: " + str(player1_actions) + "\n"
 	var hand: String
 	for card in player1_hand:
 		if card != null:
 			hand += card["Name"] + ", "
-	print("HAND: " + str(hand))
+	return_string += "HAND: " + str(hand) + "\n"
 	var discards: String
 	for card in player1_discards:
 		if card != null:
@@ -213,7 +315,7 @@ func print_all_stats():
 					discards += card["Name"] + ", "
 				else:
 					discards += ", "
-	print("DISCARDS: " + str(discards))
+	return_string += "DISCARDS: " + str(discards) + "\n"
 	var played_creatures: String
 	for card in player1_played_creatures:
 		if card != null:
@@ -222,7 +324,7 @@ func print_all_stats():
 					played_creatures += card["Name"] + " [" + str(card["Attack"]) + ", " + str(card["Defense"]) + "], "
 				else:
 					played_creatures += ", "
-	print("PLAYED CREATURES: " + str(played_creatures))
+	return_string += "PLAYED CREATURES: " + str(played_creatures) + "\n"
 	var played_buildings: String
 	for card in player1_played_buildings:
 		if card != null:
@@ -231,19 +333,28 @@ func print_all_stats():
 					played_buildings += card["Name"] + ", "
 				else:
 					played_buildings += ", "
-	print("PLAYED BUILDINGS: " + str(played_buildings))
+	return_string += "PLAYED BUILDINGS: " + str(played_buildings) + "\n"
 	if player1_selected_card != null:
 		for key in player1_selected_card:
 			if key == "Name":
 				print("SELECTED CARD: " + str(player1_selected_card["Name"]))
+	var deck: String
+	for card in player1_deck:
+		if card != null:
+			for key in card:
+				if key == "Name":
+					deck += card["Name"] + ", "
+				else:
+					deck += ", "
+	return_string += "DECK: " + str(deck) + "\n"
 	
-	print("PLAYER 2")
-	print ("HP: " + str(player2_health), ", ACTIONS: " + str(player2_actions))
+	return_string += "PLAYER 2" + "\n"
+	return_string += "HP: " + str(player2_health) + ", ACTIONS: " + str(player2_actions) + "\n"
 	var hand2: String
 	for card in player2_hand:
 		if card != null:
 			hand2 += card["Name"] + ", "
-	print("HAND: " + str(hand2))
+	return_string += "HAND: " + str(hand2) + "\n"
 	var discards2: String
 	for card in player2_discards:
 		if card != null:
@@ -252,7 +363,7 @@ func print_all_stats():
 					discards2 += card["Name"] + ", "
 				else:
 					discards2 += ", "
-	print("DISCARDS: " + str(discards2))
+	return_string += "DISCARDS: " + str(discards2) + "\n"
 	var played_creatures2: String
 	for card in player2_played_creatures:
 		if card != null:
@@ -261,7 +372,7 @@ func print_all_stats():
 					played_creatures2 += card["Name"] + " [" + str(card["Attack"]) + ", " + str(card["Defense"]) + "], "
 				else:
 					played_creatures2 += ", "
-	print("PLAYED CREATURES: " + str(played_creatures2))
+	return_string += "PLAYED CREATURES: " + str(played_creatures2) + "\n"
 	var played_buildings2: String
 	for card in player2_played_buildings:
 		if card != null:
@@ -270,15 +381,38 @@ func print_all_stats():
 					played_buildings2 += card["Name"] + ", "
 				else:
 					played_buildings2 += ", "
-	print("PLAYED BUILDINGS: " + str(played_buildings2))
+	return_string += "PLAYED BUILDINGS: " + str(played_buildings2) + "\n"
 	if player2_selected_card != null:
 		for key in player1_selected_card:
 			if key == "Name":
-				print("SELECTED CARD: " + str(player2_selected_card["Name"]))
+				return_string += "SELECTED CARD: " + str(player2_selected_card["Name"]) + "\n"
+	var deck2: String
+	for card in player2_deck:
+		if card != null:
+			for key in card:
+				if key == "Name":
+					deck2 += card["Name"] + ", "
+				else:
+					deck2 += ", "
+	return_string += "DECK: " + str(deck2) + "\n"
+	
+	return return_string
 
 @rpc("any_peer", "call_local")
-func net_tell_clients_to_refresh():
-	GameManager.refresh_needed = true
+func net_tell_clients_to_refresh_hand():
+	hand_refresh_needed = true
+
+@rpc("any_peer", "call_local")
+func net_tell_clients_to_refresh_stats():
+	stat_refresh_needed = true
+
+@rpc("any_peer", "call_local")
+func net_tell_clients_to_refresh_landscapes():
+	landscape_refresh_needed = true
+
+@rpc("any_peer", "call_local")
+func net_tell_clients_to_refresh_hero():
+	hero_refresh_needed = true
 
 # PLAYER STAT UPDATES
 @rpc("any_peer", "call_local")
@@ -295,6 +429,7 @@ func net_update_player_health(player_num: int, modifier: int):
 			player2_health = temp_health
 		else:
 			player2_health = 0
+	net_tell_clients_to_refresh_stats.rpc()
 
 @rpc("any_peer", "call_local")
 func net_update_player_actions(player_num: int, modifier: int):
@@ -312,6 +447,7 @@ func net_update_player_actions(player_num: int, modifier: int):
 			player2_actions = temp_actions
 		elif temp_actions <= 0:
 			player2_actions = 0
+	net_tell_clients_to_refresh_stats.rpc()
 
 # PLAYER HAND UPDATES
 @rpc("any_peer", "call_local")
@@ -320,10 +456,13 @@ func net_remove_card_from_player_hand(player_num: int, _card: Dictionary):
 		for card in player1_hand:
 			if card["Name"] == _card["Name"]:
 				player1_hand.remove_at(player1_hand.find(card))
+				break
 	elif player_num == 2:
 		for card in player2_hand:
 			if card["Name"] == _card["Name"]:
 				player2_hand.remove_at(player2_hand.find(card))
+				break
+	net_tell_clients_to_refresh_hand.rpc()
 
 @rpc("any_peer", "call_local")
 func net_add_card_to_player_hand(player_num: int, card: Dictionary):
@@ -331,6 +470,7 @@ func net_add_card_to_player_hand(player_num: int, card: Dictionary):
 		player1_hand.append(card)
 	elif player_num == 2:
 		player2_hand.append(card)
+	net_tell_clients_to_refresh_hand.rpc()
 
 # PLAYER DISCARDS UPDATES
 @rpc("any_peer", "call_local")
@@ -346,10 +486,12 @@ func net_remove_card_from_player_discards(player_num: int, _card: Dictionary):
 
 @rpc("any_peer", "call_local")
 func net_add_card_to_player_discards(player_num: int, card: Dictionary):
+	var modified_card: Dictionary = card
+	card["Landscape Played"] = -1
 	if player_num == 1:
-		player1_discards.append(card)
+		player1_discards.append(modified_card)
 	elif player_num == 2:
-		player2_discards.append(card)
+		player2_discards.append(modified_card)
 
 # LANDSCAPE UPDATES
 @rpc("any_peer", "call_local") 
@@ -358,6 +500,7 @@ func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, ca
 		player1_played_creatures[landscape_num] = card
 	elif player_num == 2:
 		player2_played_creatures[landscape_num] = card
+	net_tell_clients_to_refresh_landscapes.rpc()
 
 @rpc("any_peer", "call_local")
 func net_update_creature_in_landscape_array(player_num: int, landscape_num: int, card_type: String, new_attack: int, new_defense: int, is_flooped: bool):
@@ -375,6 +518,7 @@ func net_update_creature_in_landscape_array(player_num: int, landscape_num: int,
 			player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
 		elif card_type == "Building":
 			player2_played_buildings[landscape_num]["Floop Status"] = is_flooped
+	net_tell_clients_to_refresh_landscapes.rpc()
 
 @rpc("any_peer", "call_local") 
 func net_add_building_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):
@@ -382,6 +526,7 @@ func net_add_building_to_landscape_array(player_num: int, landscape_num: int, ca
 		player1_played_buildings[landscape_num] = card
 	elif player_num == 2:
 		player2_played_buildings[landscape_num] = card
+	net_tell_clients_to_refresh_landscapes.rpc()
 
 @rpc("any_peer", "call_local") 
 func net_remove_creature_from_landscape_array(player_num: int, landscape_num: int):
@@ -389,6 +534,7 @@ func net_remove_creature_from_landscape_array(player_num: int, landscape_num: in
 		player1_played_creatures[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_creatures[landscape_num].clear()
+	net_tell_clients_to_refresh_landscapes.rpc()
 
 @rpc("any_peer", "call_local") 
 func net_remove_building_from_landscape_array(player_num: int, landscape_num: int):
@@ -396,10 +542,37 @@ func net_remove_building_from_landscape_array(player_num: int, landscape_num: in
 		player1_played_buildings[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_buildings[landscape_num].clear()
+	net_tell_clients_to_refresh_landscapes.rpc()
+
+@rpc("any_peer", "call_local") 
+func net_change_player_landscape(player_num: int, landscape_num: int, type: String):
+	if player_num == 1:
+		player1_landscapes[landscape_num] = type
+	elif player_num == 2:
+		player2_landscapes[landscape_num] = type
+	net_tell_clients_to_refresh_landscapes.rpc()
+
+@rpc("any_peer", "call_local") 
+func net_add_spell_to_play(player_num: int, card: Dictionary):
+	if player_num == 1:
+		player1_current_spell = card
+	elif player_num == 2:
+		player2_current_spell = card
+	net_tell_clients_to_refresh_landscapes.rpc()
+
+@rpc("any_peer", "call_local") 
+func net_remove_spell_from_play(player_num: int):
+	if player_num == 1:
+		player1_current_spell.clear()
+	elif player_num == 2:
+		player2_current_spell.clear()
+	net_tell_clients_to_refresh_landscapes.rpc()
 
 # MISC
 @rpc("any_peer", "call_local") 
 func net_update_player_selected_card(player_num: int, card: Dictionary):
+	if card.is_empty():
+		return
 	if player_num == 1:
 		player1_selected_card = card
 	elif player_num == 2:

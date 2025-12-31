@@ -1,31 +1,127 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvrtd28tihpqp"]
+[gd_scene load_steps=4 format=3 uid="uid://dvrtd28tihpqp"]
 
 [ext_resource type="Script" uid="uid://bwwu5rivclkm3" path="res://main_menu_controller.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://dkfaayfqvgojj" path="res://Assets/bg.jpg" id="2_qe12f"]
+[ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://audio.tscn" id="3_fu7sn"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_06t4h")
 
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.64870447, 0.5039069, 0.76549995, 1)
+position = Vector2(802.66675, 452)
+scale = Vector2(0.8370371, 0.837037)
+texture = ExtResource("2_qe12f")
+metadata/_edit_lock_ = true
+
 [node name="StartServer" type="Button" parent="."]
-offset_left = 518.0
-offset_top = 217.0
-offset_right = 644.0
-offset_bottom = 248.0
+offset_left = 72.0
+offset_top = 232.0
+offset_right = 260.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 24
 text = "STARTS SERVER"
 
 [node name="StartClient" type="Button" parent="."]
-offset_left = 526.0
-offset_top = 267.0
-offset_right = 641.0
-offset_bottom = 298.0
+offset_left = 72.0
+offset_top = 280.0
+offset_right = 260.0
+offset_bottom = 322.0
+theme_override_font_sizes/font_size = 24
 text = "START CLIENT 1"
 
 [node name="StartClient2" type="Button" parent="."]
-offset_left = 526.0
-offset_top = 312.0
-offset_right = 654.0
-offset_bottom = 343.0
+offset_left = 72.0
+offset_top = 328.0
+offset_right = 260.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 24
 text = "START CLIENT 2"
+
+[node name="GameName" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 797.0
+offset_bottom = 239.0
+theme_override_font_sizes/font_size = 128
+text = "CARD WARS"
+
+[node name="GameVer" type="Label" parent="."]
+offset_left = 808.0
+offset_top = 168.0
+offset_right = 855.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 24
+text = "v1.0"
+
+[node name="LoadDeck" type="Button" parent="."]
+offset_left = 72.0
+offset_top = 832.0
+offset_right = 260.0
+offset_bottom = 874.0
+theme_override_font_sizes/font_size = 24
+text = "LOAD DECK"
+
+[node name="EnterDeckCode" type="TextEdit" parent="."]
+offset_left = 272.0
+offset_top = 840.0
+offset_right = 460.0
+offset_bottom = 871.0
+
+[node name="Log" type="Node" parent="."]
+
+[node name="LogText" type="Label" parent="Log"]
+offset_left = 968.0
+offset_top = 8.0
+offset_right = 1594.0
+offset_bottom = 128.0
+horizontal_alignment = 2
+
+[node name="Timer" type="Timer" parent="Log"]
+wait_time = 5.0
+
+[node name="ChooseDeck" type="OptionButton" parent="."]
+offset_left = 72.0
+offset_top = 792.0
+offset_right = 260.0
+offset_bottom = 823.0
+item_count = 4
+popup/item_0/text = "Jake"
+popup/item_0/id = 0
+popup/item_1/text = "Marceline"
+popup/item_1/id = 1
+popup/item_2/text = "Fionna"
+popup/item_2/id = 2
+popup/item_3/text = "Princess Bubblegum"
+popup/item_3/id = 3
+
+[node name="CustomDeckLabel" type="Label" parent="."]
+offset_left = 272.0
+offset_top = 816.0
+offset_right = 463.0
+offset_bottom = 839.0
+text = "Enter Custom Deck Code"
+
+[node name="Audio" parent="." instance=ExtResource("3_fu7sn")]
+audio_type = "Main Menu"
+
+[node name="IPAddress" type="LineEdit" parent="."]
+offset_left = 1368.0
+offset_top = 16.0
+offset_right = 1512.0
+offset_bottom = 47.0
+placeholder_text = "IP ADDRESS"
+
+[node name="Port" type="LineEdit" parent="."]
+offset_left = 1520.0
+offset_top = 16.0
+offset_right = 1588.5625
+offset_bottom = 47.0
+placeholder_text = "PORT"
 
 [connection signal="pressed" from="StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="StartClient" to="." method="_on_start_client_pressed"]
 [connection signal="pressed" from="StartClient2" to="." method="_on_start_client_2_pressed"]
+[connection signal="pressed" from="LoadDeck" to="." method="_on_load_deck_pressed"]
+[connection signal="timeout" from="Log/Timer" to="." method="_on_timer_timeout"]
+[connection signal="item_selected" from="ChooseDeck" to="." method="_on_choose_deck_item_selected"]

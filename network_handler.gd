@@ -1,10 +1,14 @@
 extends Node
 
-const IP_ADDRESS: String = "localhost"
-const PORT: int = 34782
+var IP_ADDRESS: String = "localhost"
+var PORT: int = 26969
 
 var peer: ENetMultiplayerPeer
 var peers_connected: int = 0
+
+func set_network_address(ip: String, port: int):
+	IP_ADDRESS = ip
+	PORT = port
 
 func start_server() -> void:
 	peer = ENetMultiplayerPeer.new()
@@ -22,5 +26,10 @@ func _on_peer_connected(peer_id):
 		print("Client " + str(peer_id) + "connected.")
 		peers_connected += 1
 		if peers_connected == 2:
+			await get_tree().create_timer(1).timeout
 			print("Game starting...")
 			GameManager.start_game()
+
+
+func _on_get_players_stats_pressed() -> void:
+	$RichTextLabel.text = GameManager.return_all_stats()
