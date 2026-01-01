@@ -1,0 +1,6 @@
+
+After stealing a card, it returns 2 cards to the owners discard, though, it only shows as 2 for the owner not the opponenet
+
+Floop may only work 1 way
+
+Fixing cards not being removed when move to another player

@@ -186,15 +186,16 @@ offset_bottom = 406.0
 theme_override_font_sizes/font_size = 8
 text = "FULLY REMOVE CARD"
 
-[node name="SwapOwner" type="Button" parent="."]
+[node name="GiveOppCard" type="Button" parent="."]
 offset_left = 2.0
 offset_top = 350.0
 offset_right = 92.0
 offset_bottom = 370.0
 theme_override_font_sizes/font_size = 8
-text = "SWAP CARD OWNER"
+text = "GIVE OPPONENT CARD"
 
 [node name="InputTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="InputTimerLabel" type="Label" parent="."]
 offset_left = 249.0
@@ -225,6 +226,6 @@ horizontal_alignment = 2
 [connection signal="toggled" from="DeckSwitch" to="." method="_on_deck_switch_toggled"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
 [connection signal="pressed" from="RemoveCard" to="." method="_on_remove_card_pressed"]
-[connection signal="pressed" from="SwapOwner" to="." method="_on_swap_owner_pressed"]
+[connection signal="pressed" from="GiveOppCard" to="." method="_on_give_opp_card_pressed"]
 [connection signal="timeout" from="InputTimer" to="." method="_on_input_timer_timeout"]
 [connection signal="timeout" from="LogTimer" to="." method="_on_log_timer_timeout"]

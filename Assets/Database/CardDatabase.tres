@@ -1,0 +1,1106 @@
+[gd_resource type="Resource" script_class="CardDatabase" load_steps=551 format=3 uid="uid://2t2jjiihq1i8"]
+
+[ext_resource type="Texture2D" uid="uid://ddul3vv5kqxiq" path="res://Assets/Cards/10th Anniversary Backer.png" id="1_snjt4"]
+[ext_resource type="Texture2D" uid="uid://bbvr02gvupfll" path="res://Assets/Cards/Abdominal Snowman.png" id="2_rgt2c"]
+[ext_resource type="Texture2D" uid="uid://cqeynf1gex61q" path="res://Assets/Cards/Abraca Amadeus.png" id="3_fpr5k"]
+[ext_resource type="Texture2D" uid="uid://l3g5xsami7k4" path="res://Assets/Cards/Abracadaniel.png" id="4_tjae4"]
+[ext_resource type="Texture2D" uid="uid://rgamk5jos6gj" path="res://Assets/Cards/Adorabunny.png" id="5_6ukko"]
+[ext_resource type="Texture2D" uid="uid://bqb2mkuejng4f" path="res://Assets/Cards/Aeromancer.png" id="6_urexq"]
+[ext_resource type="Texture2D" uid="uid://b20pey8comyir" path="res://Assets/Cards/Albino Eyebat.png" id="7_wfvt4"]
+[ext_resource type="Texture2D" uid="uid://be2cuop1u8wth" path="res://Assets/Cards/Amaizing Avalanche.png" id="8_yp5pl"]
+[ext_resource type="Texture2D" uid="uid://u52ocw4exqik" path="res://Assets/Cards/Ancient Comet.png" id="9_eeh5y"]
+[ext_resource type="Texture2D" uid="uid://bxusqb8v2ft3i" path="res://Assets/Cards/Ancient Healer.png" id="10_ee0l4"]
+[ext_resource type="Texture2D" uid="uid://drb12fdwjkhp0" path="res://Assets/Cards/Ancient Scholar.png" id="11_2btrs"]
+[ext_resource type="Texture2D" uid="uid://brhxc1drmrvaj" path="res://Assets/Cards/Angel Heart.png" id="12_c5pdl"]
+[ext_resource type="Texture2D" uid="uid://c7k8docn4inp7" path="res://Assets/Cards/Angel of Chocolate.png" id="13_np6mw"]
+[ext_resource type="Texture2D" uid="uid://cth6qskrmpwcf" path="res://Assets/Cards/Angel of Vanilla.png" id="14_2mt2j"]
+[ext_resource type="Texture2D" uid="uid://dfp8ywp34t6fs" path="res://Assets/Cards/Apple Bully.png" id="15_rlnmd"]
+[ext_resource type="Texture2D" uid="uid://cosff0r281281" path="res://Assets/Cards/Apple Pieclops.png" id="16_p7yuc"]
+[ext_resource type="Texture2D" uid="uid://bmblp8rghirp5" path="res://Assets/Cards/Archer Dan.png" id="17_ud8w6"]
+[ext_resource type="Texture2D" uid="uid://cl6etuessvk8o" path="res://Assets/Cards/Archer Danica.png" id="18_8ssjc"]
+[ext_resource type="Texture2D" uid="uid://4h4d5tldgthp" path="res://Assets/Cards/Assistance.png" id="19_0hxru"]
+[ext_resource type="Texture2D" uid="uid://b7nalmnxwyih" path="res://Assets/Cards/Auto-Plucker.png" id="20_3v3yb"]
+[ext_resource type="Texture2D" uid="uid://b83vauhisx88o" path="res://Assets/Cards/BMO.png" id="21_h8xwe"]
+[ext_resource type="Texture2D" uid="uid://dn3enkehss3nu" path="res://Assets/Cards/Bail Out.png" id="22_qhrdl"]
+[ext_resource type="Texture2D" uid="uid://djxa8bhm44erl" path="res://Assets/Cards/Bale Out.png" id="23_tycqw"]
+[ext_resource type="Texture2D" uid="uid://bqejt8t3xbuh3" path="res://Assets/Cards/Ban-She Princess.png" id="24_3mypq"]
+[ext_resource type="Texture2D" uid="uid://ng4asss7a8lf" path="res://Assets/Cards/Ban-She Queen.png" id="25_72r2a"]
+[ext_resource type="Texture2D" uid="uid://5es8r50fqv2t" path="res://Assets/Cards/Bayou Fountain.png" id="26_l72ex"]
+[ext_resource type="Texture2D" uid="uid://bvp1ld5hls31" path="res://Assets/Cards/Beach Ball.png" id="27_fhq8w"]
+[ext_resource type="Texture2D" uid="uid://ck7iv5hqypm1w" path="res://Assets/Cards/Beach Blast.png" id="28_je8dv"]
+[ext_resource type="Texture2D" uid="uid://bn0ota3rsdkq" path="res://Assets/Cards/Beach Mummy.png" id="29_qjf6s"]
+[ext_resource type="Texture2D" uid="uid://clouhbav3dnhh" path="res://Assets/Cards/Bean Ball Bomba.png" id="30_1x43t"]
+[ext_resource type="Texture2D" uid="uid://dl6n1ira8dijn" path="res://Assets/Cards/Berserk Bakery.png" id="31_fhj63"]
+[ext_resource type="Texture2D" uid="uid://dqxcn54y8jyi6" path="res://Assets/Cards/Big Foot.png" id="32_3ntl5"]
+[ext_resource type="Texture2D" uid="uid://crxdnkgpwg0df" path="res://Assets/Cards/Billy.png" id="33_m4p0t"]
+[ext_resource type="Texture2D" uid="uid://dyim0bcnev8sp" path="res://Assets/Cards/Biomancer.png" id="34_0e4a1"]
+[ext_resource type="Texture2D" uid="uid://yx6mc5u3mksq" path="res://Assets/Cards/Black Hole Pendant.png" id="35_sp2j0"]
+[ext_resource type="Texture2D" uid="uid://db3burhyprhb2" path="res://Assets/Cards/Black Paladin.png" id="36_r5ja4"]
+[ext_resource type="Texture2D" uid="uid://cpy5mcdqxrxnw" path="res://Assets/Cards/Blonde MerWitch.png" id="37_0in2s"]
+[ext_resource type="Texture2D" uid="uid://cbgix3b81jg3k" path="res://Assets/Cards/Blood Bath.png" id="38_ysfpj"]
+[ext_resource type="Texture2D" uid="uid://dqkov733nxf5a" path="res://Assets/Cards/Blood Castle.png" id="39_stp8k"]
+[ext_resource type="Texture2D" uid="uid://bokyqlcqgsugy" path="res://Assets/Cards/Blood Fortress.png" id="40_8vulf"]
+[ext_resource type="Texture2D" uid="uid://bhj536xk8bugq" path="res://Assets/Cards/Blood Transfusion.png" id="41_0gsa6"]
+[ext_resource type="Texture2D" uid="uid://dv3r22m8i0fdg" path="res://Assets/Cards/Blue Candy.png" id="42_ct5ew"]
+[ext_resource type="Texture2D" uid="uid://b7ov7crkdvxhc" path="res://Assets/Cards/Blue Gnome.png" id="43_ppxkk"]
+[ext_resource type="Texture2D" uid="uid://01mv5nx4wggn" path="res://Assets/Cards/Blue Merlock.png" id="44_lpl1u"]
+[ext_resource type="Texture2D" uid="uid://cp18asd1i41sm" path="res://Assets/Cards/Blue Ogre.png" id="45_tj07c"]
+[ext_resource type="Texture2D" uid="uid://dtxow8ipgmetw" path="res://Assets/Cards/Blue Plains Drifter.png" id="46_2k0rq"]
+[ext_resource type="Texture2D" uid="uid://b0dtpyhlil8ys" path="res://Assets/Cards/Blue Plains.png" id="47_xy6di"]
+[ext_resource type="Texture2D" uid="uid://3yhoatji4ppg" path="res://Assets/Cards/Blue Slimey.png" id="48_14mb4"]
+[ext_resource type="Texture2D" uid="uid://b0ub5453xvwd5" path="res://Assets/Cards/Blueberry Djini.png" id="49_474bl"]
+[ext_resource type="Texture2D" uid="uid://cimrlh8snkh0s" path="res://Assets/Cards/Blueberry Pieclops.png" id="50_msdc4"]
+[ext_resource type="Texture2D" uid="uid://dj8uko5gcvnin" path="res://Assets/Cards/Boarder Collie.png" id="51_ia6ev"]
+[ext_resource type="Texture2D" uid="uid://bolbjtqqqqv8t" path="res://Assets/Cards/Bog Ban-She Angel.png" id="52_u1r30"]
+[ext_resource type="Texture2D" uid="uid://djy13fo4fv0xl" path="res://Assets/Cards/Bog Bum.png" id="53_mng0i"]
+[ext_resource type="Texture2D" uid="uid://1g1f73pg3ulx" path="res://Assets/Cards/Bog Frog Bomb.png" id="54_y0vir"]
+[ext_resource type="Texture2D" uid="uid://0ort1wpuq3hc" path="res://Assets/Cards/Bog Palace.png" id="55_81avn"]
+[ext_resource type="Texture2D" uid="uid://dom7nrf2pv4lx" path="res://Assets/Cards/Bomb Pop.png" id="56_f5nfj"]
+[ext_resource type="Texture2D" uid="uid://cnmphyumaswxf" path="res://Assets/Cards/Bone Wand.png" id="57_kpin3"]
+[ext_resource type="Texture2D" uid="uid://b2y48204hiq5a" path="res://Assets/Cards/Bongo Bounce House.png" id="58_y16g6"]
+[ext_resource type="Texture2D" uid="uid://bh271nnkgeshi" path="res://Assets/Cards/Bouncing Zebracorn.png" id="59_dseni"]
+[ext_resource type="Texture2D" uid="uid://dscxvj32f5y6w" path="res://Assets/Cards/Brain Gooey.png" id="60_yefxk"]
+[ext_resource type="Texture2D" uid="uid://dgixq2d3nu45r" path="res://Assets/Cards/Brief Power.png" id="61_rhkho"]
+[ext_resource type="Texture2D" uid="uid://80rjw3blxolr" path="res://Assets/Cards/Brigadier Banana Split.png" id="62_ay4l5"]
+[ext_resource type="Texture2D" uid="uid://dk3jv2xdlvt7h" path="res://Assets/Cards/Bums Away!.png" id="63_m55sj"]
+[ext_resource type="Texture2D" uid="uid://blmhpjidnu05a" path="res://Assets/Cards/Burly Lumberjack.png" id="64_igs7f"]
+[ext_resource type="Texture2D" uid="uid://dk46hpe0jf5xy" path="res://Assets/Cards/Business Dog.png" id="65_w4x3v"]
+[ext_resource type="Texture2D" uid="uid://c8svq8ppla00" path="res://Assets/Cards/Cabin of Many Woods.png" id="66_rjv21"]
+[ext_resource type="Texture2D" uid="uid://cdwr1irfp7q08" path="res://Assets/Cards/Cactus Thug.png" id="67_atnym"]
+[ext_resource type="Texture2D" uid="uid://coco1kf1ehtix" path="res://Assets/Cards/Cake.png" id="68_xsplv"]
+[ext_resource type="Texture2D" uid="uid://b4imnw2si6msi" path="res://Assets/Cards/Camaraderie.png" id="69_k4eqm"]
+[ext_resource type="Texture2D" uid="uid://112j0avkvi5v" path="res://Assets/Cards/Captain Taco.png" id="70_2fvv6"]
+[ext_resource type="Texture2D" uid="uid://b7xwnrcnoh1bl" path="res://Assets/Cards/Cardboard Mansion.png" id="71_ypcul"]
+[ext_resource type="Texture2D" uid="uid://kcyedeukbdlg" path="res://Assets/Cards/Carmel Camel.png" id="72_583vr"]
+[ext_resource type="Texture2D" uid="uid://be2jexfmsrtm0" path="res://Assets/Cards/Cave of Solitude.png" id="73_x5r10"]
+[ext_resource type="Texture2D" uid="uid://ngn7p4etg0k6" path="res://Assets/Cards/Celestial Castle.png" id="74_oltof"]
+[ext_resource type="Texture2D" uid="uid://mgdepgrqqhmr" path="res://Assets/Cards/Celestial Fortress.png" id="75_p8tna"]
+[ext_resource type="Texture2D" uid="uid://g64qsq2rjhwc" path="res://Assets/Cards/Cerebral Bloodstorm.png" id="76_litp1"]
+[ext_resource type="Texture2D" uid="uid://by1bcjo3ruk68" path="res://Assets/Cards/Charlie.png" id="77_tdmtm"]
+[ext_resource type="Texture2D" uid="uid://hlpiontg3hd8" path="res://Assets/Cards/Charming City.png" id="78_7vm8m"]
+[ext_resource type="Texture2D" uid="uid://b8okpqhqpvyhd" path="res://Assets/Cards/Chest Burster.png" id="79_67ykj"]
+[ext_resource type="Texture2D" uid="uid://bkv1qf2vwvpu0" path="res://Assets/Cards/Chocolate TaCody.png" id="80_pc1j2"]
+[ext_resource type="Texture2D" uid="uid://fu4qlnmr5yfq" path="res://Assets/Cards/Chronomancer.png" id="81_lg0ij"]
+[ext_resource type="Texture2D" uid="uid://bantuebr3bthb" path="res://Assets/Cards/Cinnamon Bun.png" id="82_kl446"]
+[ext_resource type="Texture2D" uid="uid://cryxkn7uy1uo0" path="res://Assets/Cards/Clone.png" id="83_mcd72"]
+[ext_resource type="Texture2D" uid="uid://dgbu0u01dpq0m" path="res://Assets/Cards/Cloud Tower.png" id="84_xhcys"]
+[ext_resource type="Texture2D" uid="uid://bvc6b8fv7rbe5" path="res://Assets/Cards/Cold Soldier.png" id="85_epodk"]
+[ext_resource type="Texture2D" uid="uid://bm3bjf2rkd15q" path="res://Assets/Cards/Collaboration.png" id="86_0thpl"]
+[ext_resource type="Texture2D" uid="uid://pja3ngusp5k5" path="res://Assets/Cards/Communication.png" id="87_0arvu"]
+[ext_resource type="Texture2D" uid="uid://c6wi0h2dltxtw" path="res://Assets/Cards/Confectionary Ring.png" id="88_kkacg"]
+[ext_resource type="Texture2D" uid="uid://lnf5nqm1xcoh" path="res://Assets/Cards/Contribution.png" id="89_cqr00"]
+[ext_resource type="Texture2D" uid="uid://yaxaokl2v073" path="res://Assets/Cards/Convey Wisdom.png" id="90_2xvxp"]
+[ext_resource type="Texture2D" uid="uid://cmcfejfl0wldw" path="res://Assets/Cards/Cool Dog.png" id="91_gchbc"]
+[ext_resource type="Texture2D" uid="uid://d3c7ab8e3aq0v" path="res://Assets/Cards/Cooperation.png" id="92_5dv54"]
+[ext_resource type="Texture2D" uid="uid://c07ox87h6jfy2" path="res://Assets/Cards/Coordination.png" id="93_t8rap"]
+[ext_resource type="Texture2D" uid="uid://bd7bkfaqeqm03" path="res://Assets/Cards/Corn Bat.png" id="94_8bfr1"]
+[ext_resource type="Texture2D" uid="uid://dt5ctuoqyqk4v" path="res://Assets/Cards/Corn Dog.png" id="95_oo3vt"]
+[ext_resource type="Texture2D" uid="uid://dlu7aa7jtgc5b" path="res://Assets/Cards/Corn Lord.png" id="96_325yf"]
+[ext_resource type="Texture2D" uid="uid://dalhdtsgy53ve" path="res://Assets/Cards/Corn Ronin.png" id="97_olkdu"]
+[ext_resource type="Texture2D" uid="uid://dsq0wk4h87h7c" path="res://Assets/Cards/Corn Scepter.png" id="98_ssw0q"]
+[ext_resource type="Texture2D" uid="uid://c85y1m0tqmpie" path="res://Assets/Cards/Cornataur.png" id="99_acypj"]
+[ext_resource type="Texture2D" uid="uid://cm60xfkb2xmja" path="res://Assets/Cards/Cornfield.png" id="100_imusn"]
+[ext_resource type="Texture2D" uid="uid://bmsyb6n1ujb2r" path="res://Assets/Cards/Corns Templar.png" id="101_0n0fp"]
+[ext_resource type="Texture2D" uid="uid://v62dm2f7qncj" path="res://Assets/Cards/Cosmic Owl.png" id="102_sfcru"]
+[ext_resource type="Texture2D" uid="uid://sx8kmq6oa1l8" path="res://Assets/Cards/Cotton Devil.png" id="103_f7el2"]
+[ext_resource type="Texture2D" uid="uid://dwpp35hsia5ga" path="res://Assets/Cards/Cotton Eyebat.png" id="104_a7l83"]
+[ext_resource type="Texture2D" uid="uid://dduh3us2p4vwf" path="res://Assets/Cards/Cottonpult.png" id="105_71ldd"]
+[ext_resource type="Texture2D" uid="uid://m3penl15fo7m" path="res://Assets/Cards/Cow.png" id="106_c20ws"]
+[ext_resource type="Texture2D" uid="uid://508vr0aum2va" path="res://Assets/Cards/Cowsper.png" id="107_incgf"]
+[ext_resource type="Texture2D" uid="uid://cuuq87cg1qu5r" path="res://Assets/Cards/Crab Skull Island.png" id="108_q45pg"]
+[ext_resource type="Texture2D" uid="uid://7qdq0l7ga3ov" path="res://Assets/Cards/Crazy Cat Lady.png" id="109_lpcrg"]
+[ext_resource type="Texture2D" uid="uid://dwr8evuruk78s" path="res://Assets/Cards/Creepy Crypt.png" id="110_5ae25"]
+[ext_resource type="Texture2D" uid="uid://dmul0mmv53u8b" path="res://Assets/Cards/Cross Pollination.png" id="111_2hmki"]
+[ext_resource type="Texture2D" uid="uid://b74q0we4fbr0o" path="res://Assets/Cards/Crust Crusher.png" id="112_vu8n0"]
+[ext_resource type="Texture2D" uid="uid://desgx0ddwy107" path="res://Assets/Cards/Crystal Palace.png" id="113_lmuqa"]
+[ext_resource type="Texture2D" uid="uid://ysjrv88efr1k" path="res://Assets/Cards/Cuddle Puddle.png" id="114_kbmob"]
+[ext_resource type="Texture2D" uid="uid://recsgwvham1x" path="res://Assets/Cards/Cute Overload.png" id="115_28kfk"]
+[ext_resource type="Texture2D" uid="uid://d2ihugg1noi5s" path="res://Assets/Cards/Cutie Koala.png" id="116_qv81g"]
+[ext_resource type="Texture2D" uid="uid://ckdhee2te4jrj" path="res://Assets/Cards/Cutie.png" id="117_4f5ln"]
+[ext_resource type="Texture2D" uid="uid://dlwlxxloxv4or" path="res://Assets/Cards/Cyclops.png" id="118_xj4wv"]
+[ext_resource type="Texture2D" uid="uid://bx53h0wuk3oar" path="res://Assets/Cards/Dark Angel.png" id="119_invti"]
+[ext_resource type="Texture2D" uid="uid://o3lvpg1egded" path="res://Assets/Cards/Dark-o-Mint.png" id="120_sy026"]
+[ext_resource type="Texture2D" uid="uid://befdmt48lso3y" path="res://Assets/Cards/Davey Bones.png" id="121_slxng"]
+[ext_resource type="Texture2D" uid="uid://1u7w1m2eysf5" path="res://Assets/Cards/Death.png" id="122_c7tvc"]
+[ext_resource type="Texture2D" uid="uid://dgnd8xltgh78x" path="res://Assets/Cards/Deforestation.png" id="123_2dxpr"]
+[ext_resource type="Texture2D" uid="uid://cv7vu5t8numai" path="res://Assets/Cards/Diamond Dan.png" id="124_1lopd"]
+[ext_resource type="Texture2D" uid="uid://c6rf0gxuol0wq" path="res://Assets/Cards/Djini Ghost.png" id="125_kvk65"]
+[ext_resource type="Texture2D" uid="uid://vgvforpo3ghg" path="res://Assets/Cards/Dogboy.png" id="126_byaoh"]
+[ext_resource type="Texture2D" uid="uid://3ov5ljgi78ab" path="res://Assets/Cards/Domed Stronghold.png" id="127_bbaym"]
+[ext_resource type="Texture2D" uid="uid://c8hlx2jx5fbys" path="res://Assets/Cards/Doubles Jake.png" id="128_4cocy"]
+[ext_resource type="Texture2D" uid="uid://dhnwa1tl2psba" path="res://Assets/Cards/Dr. Death.png" id="129_k7k78"]
+[ext_resource type="Texture2D" uid="uid://cvtepvmaj2hb6" path="res://Assets/Cards/Dr. Stuffenstein.png" id="130_brr0s"]
+[ext_resource type="Texture2D" uid="uid://b6mp1kytcemop" path="res://Assets/Cards/Dragon Claw.png" id="131_lt73v"]
+[ext_resource type="Texture2D" uid="uid://w4v3l3hjg1cx" path="res://Assets/Cards/Dragon Foot.png" id="132_om5c6"]
+[ext_resource type="Texture2D" uid="uid://b753gy8skv3du" path="res://Assets/Cards/Dragoon Parrotrooper.png" id="133_skcch"]
+[ext_resource type="Texture2D" uid="uid://cyb4h0ypyp4q0" path="res://Assets/Cards/Drained Cleric.png" id="134_ffl8x"]
+[ext_resource type="Texture2D" uid="uid://cvx0g70no3u8m" path="res://Assets/Cards/Dressage Dance Hall.png" id="135_ljv0v"]
+[ext_resource type="Texture2D" uid="uid://df655uwygb5pb" path="res://Assets/Cards/Drooling Dude.png" id="136_unguo"]
+[ext_resource type="Texture2D" uid="uid://cyqo2bctyff04" path="res://Assets/Cards/Drop Zone.png" id="137_8xwkv"]
+[ext_resource type="Texture2D" uid="uid://cmsov3lg280vt" path="res://Assets/Cards/Druid of the Cob.png" id="138_hqkut"]
+[ext_resource type="Texture2D" uid="uid://deehh3rg0n4ld" path="res://Assets/Cards/Duet.png" id="139_eglnb"]
+[ext_resource type="Texture2D" uid="uid://c2hhtjvwhiyms" path="res://Assets/Cards/Earth Mover.png" id="140_osmdw"]
+[ext_resource type="Texture2D" uid="uid://hx8virxyx3t3" path="res://Assets/Cards/Elf Hut.png" id="141_jqs06"]
+[ext_resource type="Texture2D" uid="uid://dvl07pjq5ok2a" path="res://Assets/Cards/Embarrassing Bard.png" id="142_7yysd"]
+[ext_resource type="Texture2D" uid="uid://ccx0vqxm0h2eu" path="res://Assets/Cards/Emboldened Retriever.png" id="143_1p0fi"]
+[ext_resource type="Texture2D" uid="uid://g4q8srr0e40r" path="res://Assets/Cards/Emperor Penguin.png" id="144_o3gwv"]
+[ext_resource type="Texture2D" uid="uid://cysy3kqf5ndx8" path="res://Assets/Cards/Enchanted Celebration.png" id="145_frvq2"]
+[ext_resource type="Texture2D" uid="uid://c47owl8m3vuxa" path="res://Assets/Cards/Endearing Elephant.png" id="146_wvdmm"]
+[ext_resource type="Texture2D" uid="uid://4n1tr7ugyjwt" path="res://Assets/Cards/Ethan Allfire.png" id="147_xirvx"]
+[ext_resource type="Texture2D" uid="uid://cmpwt2y4kxjvy" path="res://Assets/Cards/Evil Eye.png" id="148_866xl"]
+[ext_resource type="Texture2D" uid="uid://2u6yhytfa437" path="res://Assets/Cards/Extraordinary Spider.png" id="149_6pfwd"]
+[ext_resource type="Texture2D" uid="uid://bnkdkaswrqgv" path="res://Assets/Cards/Extreme High Five.png" id="150_kjxmf"]
+[ext_resource type="Texture2D" uid="uid://b4a3llcom7fg3" path="res://Assets/Cards/Eye Guy.png" id="151_sdna0"]
+[ext_resource type="Texture2D" uid="uid://blpyykl32gtte" path="res://Assets/Cards/Fairy Shepard.png" id="152_8ya6b"]
+[ext_resource type="Texture2D" uid="uid://dgwxd4dmy8yu8" path="res://Assets/Cards/Falling Star.png" id="153_0sa4q"]
+[ext_resource type="Texture2D" uid="uid://cntf4uxm2c4oc" path="res://Assets/Cards/Family Gathering.png" id="154_0ioc8"]
+[ext_resource type="Texture2D" uid="uid://bqml4ccusunx6" path="res://Assets/Cards/Fancy Pants Gnome.png" id="155_5pakp"]
+[ext_resource type="Texture2D" uid="uid://dqxsoyusghsf0" path="res://Assets/Cards/Fancy Spa.png" id="156_cmwje"]
+[ext_resource type="Texture2D" uid="uid://bpjn5k27rjtma" path="res://Assets/Cards/Fancy Zebracorn.png" id="157_he16i"]
+[ext_resource type="Texture2D" uid="uid://dctrvuc7hgffx" path="res://Assets/Cards/Farmhouse.png" id="158_ftpfn"]
+[ext_resource type="Texture2D" uid="uid://cgv6qsngnxmmi" path="res://Assets/Cards/Fatapillar.png" id="159_jmtlu"]
+[ext_resource type="Texture2D" uid="uid://d4j7o2lj3r4ye" path="res://Assets/Cards/Fatigued Librarian.png" id="160_5w1ga"]
+[ext_resource type="Texture2D" uid="uid://j8taci83h8rv" path="res://Assets/Cards/Feedman.png" id="161_0k1wx"]
+[ext_resource type="Texture2D" uid="uid://rhkfh5nhnjc" path="res://Assets/Cards/Fellowship.png" id="162_tc5l6"]
+[ext_resource type="Texture2D" uid="uid://dl5r5gvh8eaom" path="res://Assets/Cards/Fiddling Ferret.png" id="163_6vvpo"]
+[ext_resource type="Texture2D" uid="uid://dtn13ddkg76i2" path="res://Assets/Cards/Field Reaper.png" id="164_lihhx"]
+[ext_resource type="Texture2D" uid="uid://155aanmuoi02" path="res://Assets/Cards/Field Stalker.png" id="165_ea86y"]
+[ext_resource type="Texture2D" uid="uid://25k2kw3awe1" path="res://Assets/Cards/Field of Nightmares.png" id="166_g1ntx"]
+[ext_resource type="Texture2D" uid="uid://d0q2gb7lxemps" path="res://Assets/Cards/Finn.png" id="167_iyyl2"]
+[ext_resource type="Texture2D" uid="uid://b0j862vynfgmb" path="res://Assets/Cards/Fionna.png" id="168_fig40"]
+[ext_resource type="Texture2D" uid="uid://b0r1k6pthqx31" path="res://Assets/Cards/Firm Handshake.png" id="169_tp32x"]
+[ext_resource type="Texture2D" uid="uid://d1e4kclvvmpvn" path="res://Assets/Cards/Fisher Fish.png" id="170_l7j6b"]
+[ext_resource type="Texture2D" uid="uid://vtw47kx6ymmx" path="res://Assets/Cards/Floating Ice Palace.png" id="171_8yikh"]
+[ext_resource type="Texture2D" uid="uid://bjvnu7s58ghka" path="res://Assets/Cards/Fluffy Fox.png" id="172_4ata1"]
+[ext_resource type="Texture2D" uid="uid://fucktjny7ede" path="res://Assets/Cards/Fly Swatter.png" id="173_vuj1x"]
+[ext_resource type="Texture2D" uid="uid://yv7i5bap683c" path="res://Assets/Cards/Fountain of Tears.png" id="174_06rh7"]
+[ext_resource type="Texture2D" uid="uid://c83j7n8a6rgql" path="res://Assets/Cards/Four Star Fudge.png" id="175_eeaue"]
+[ext_resource type="Texture2D" uid="uid://dsrtthojv6nhy" path="res://Assets/Cards/Free Fall.png" id="176_d30qn"]
+[ext_resource type="Texture2D" uid="uid://rlkqparsfd76" path="res://Assets/Cards/Freeze Ray.png" id="177_oy8r6"]
+[ext_resource type="Texture2D" uid="uid://b6yxlccfnww8f" path="res://Assets/Cards/Freezing Point.png" id="178_r4d3m"]
+[ext_resource type="Texture2D" uid="uid://72y0yap5edto" path="res://Assets/Cards/Friendship Bracelet.png" id="179_pgwmm"]
+[ext_resource type="Texture2D" uid="uid://w6wb68cyg3tb" path="res://Assets/Cards/Fright Tower.png" id="180_m1lhm"]
+[ext_resource type="Texture2D" uid="uid://dmptmfkfpnscs" path="res://Assets/Cards/Frost Dragon.png" id="181_8rxuh"]
+[ext_resource type="Texture2D" uid="uid://d1iee8l1nrniq" path="res://Assets/Cards/Frosted Deanimator.png" id="182_xjeln"]
+[ext_resource type="Texture2D" uid="uid://d1fco0ydm8n02" path="res://Assets/Cards/Frosted Snowwoman.png" id="183_ruadg"]
+[ext_resource type="Texture2D" uid="uid://dv6lkjm10h783" path="res://Assets/Cards/Frosty Frolic.png" id="184_usqdu"]
+[ext_resource type="Texture2D" uid="uid://h8c5g1vgv6lx" path="res://Assets/Cards/Frozen BanaNancy.png" id="185_5eluc"]
+[ext_resource type="Texture2D" uid="uid://b6ai0t3xl2o85" path="res://Assets/Cards/Frozen Fish.png" id="186_phg1h"]
+[ext_resource type="Texture2D" uid="uid://yh3ffespd7ay" path="res://Assets/Cards/Frozen Heart.png" id="187_0tdev"]
+[ext_resource type="Texture2D" uid="uid://dyg6apmqbplk7" path="res://Assets/Cards/Frozen Lemon Aid.png" id="188_po1rt"]
+[ext_resource type="Texture2D" uid="uid://cxfyh0ady00ga" path="res://Assets/Cards/Full Metal Racket.png" id="189_den8y"]
+[ext_resource type="Texture2D" uid="uid://cn68bvlwsfvf" path="res://Assets/Cards/FumiGator.png" id="190_rxtvc"]
+[ext_resource type="Texture2D" uid="uid://dirqxnj2k88rt" path="res://Assets/Cards/Fummy.png" id="191_hx1br"]
+[ext_resource type="Texture2D" uid="uid://b1uqqy410ee3i" path="res://Assets/Cards/Funeral Home.png" id="192_l5o5u"]
+[ext_resource type="Texture2D" uid="uid://cgjsnmgew65qu" path="res://Assets/Cards/Furious Chick.png" id="193_ke8vi"]
+[ext_resource type="Texture2D" uid="uid://cc6ywdiutdrdd" path="res://Assets/Cards/Furious Furor.png" id="194_lwqya"]
+[ext_resource type="Texture2D" uid="uid://c4fgeb25aqjle" path="res://Assets/Cards/Furious Hen.png" id="195_51g4a"]
+[ext_resource type="Texture2D" uid="uid://dxi4jryi1ekf6" path="res://Assets/Cards/Furious Rooster.png" id="196_5gnfj"]
+[ext_resource type="Texture2D" uid="uid://ct7cv4htg3iu5" path="res://Assets/Cards/Future Scholar.png" id="197_wqc0n"]
+[ext_resource type="Texture2D" uid="uid://d36yarpf4hemg" path="res://Assets/Cards/Geomancer.png" id="198_uuqdt"]
+[ext_resource type="Texture2D" uid="uid://baxbvdmn84nql" path="res://Assets/Cards/Ghost Chest Burster.png" id="199_3m1wr"]
+[ext_resource type="Texture2D" uid="uid://hmm0ab2hknkr" path="res://Assets/Cards/Ghost Hag.png" id="200_atygi"]
+[ext_resource type="Texture2D" uid="uid://ce5f6wm8bu2fg" path="res://Assets/Cards/Ghost Ninja.png" id="201_nvj3y"]
+[ext_resource type="Texture2D" uid="uid://cxbdpuhqtvca4" path="res://Assets/Cards/Ghost Tree.png" id="202_g44q1"]
+[ext_resource type="Texture2D" uid="uid://bn5qon40oageq" path="res://Assets/Cards/Ghost.png" id="203_31bmf"]
+[ext_resource type="Texture2D" uid="uid://dwoiamk5li2bq" path="res://Assets/Cards/Giant Mummy Hand.png" id="204_mk0fc"]
+[ext_resource type="Texture2D" uid="uid://crsomlvbmel8v" path="res://Assets/Cards/Giddy Giraffe.png" id="205_rg0lg"]
+[ext_resource type="Texture2D" uid="uid://bw4thxv0bvq2y" path="res://Assets/Cards/Glacier Racer.png" id="206_h0528"]
+[ext_resource type="Texture2D" uid="uid://bmvgtl6s4ah3d" path="res://Assets/Cards/Glorious Gramophone.png" id="207_1rdqm"]
+[ext_resource type="Texture2D" uid="uid://b0nb3j0ggj1pm" path="res://Assets/Cards/Gnome Snot.png" id="208_e04nk"]
+[ext_resource type="Texture2D" uid="uid://n4xvvglpfm06" path="res://Assets/Cards/Goat.png" id="209_5mq38"]
+[ext_resource type="Texture2D" uid="uid://1we2mk8jm715" path="res://Assets/Cards/Gold Ninja.png" id="210_sbkam"]
+[ext_resource type="Texture2D" uid="uid://bncvmpdikitqj" path="res://Assets/Cards/Golden Axe Stump.png" id="211_grwri"]
+[ext_resource type="Texture2D" uid="uid://bi2nm7jmmkcc7" path="res://Assets/Cards/Golden Jackal.png" id="212_nkt43"]
+[ext_resource type="Texture2D" uid="uid://donxqkwhd8nl1" path="res://Assets/Cards/Granary Weevil.png" id="213_0bx1a"]
+[ext_resource type="Texture2D" uid="uid://cavcmojrygl77" path="res://Assets/Cards/Grand Mummy.png" id="214_vs8q3"]
+[ext_resource type="Texture2D" uid="uid://v3ve1dqndmtf" path="res://Assets/Cards/Grand Prix.png" id="215_w2ku5"]
+[ext_resource type="Texture2D" uid="uid://fsxmdjdnj82n" path="res://Assets/Cards/Grape Butt.png" id="216_er1ka"]
+[ext_resource type="Texture2D" uid="uid://cnf7gicpw2c6n" path="res://Assets/Cards/Grape Djini.png" id="217_lhtop"]
+[ext_resource type="Texture2D" uid="uid://hhe6r1ru8m2r" path="res://Assets/Cards/Gray Eyebat.png" id="218_rwy32"]
+[ext_resource type="Texture2D" uid="uid://ic18x4qbthar" path="res://Assets/Cards/Green Cactiball.png" id="219_bpcqi"]
+[ext_resource type="Texture2D" uid="uid://b5parl3osdowx" path="res://Assets/Cards/Green Candy.png" id="220_syp0t"]
+[ext_resource type="Texture2D" uid="uid://d1oo7xvxv2hxl" path="res://Assets/Cards/Green Gnome.png" id="221_e0pp1"]
+[ext_resource type="Texture2D" uid="uid://btwiyk32sr40s" path="res://Assets/Cards/Green Mermaid.png" id="222_skusu"]
+[ext_resource type="Texture2D" uid="uid://b4mef300xp816" path="res://Assets/Cards/Green Merman.png" id="223_cnv05"]
+[ext_resource type="Texture2D" uid="uid://duia8dgj4eq2j" path="res://Assets/Cards/Green Party Ogre.png" id="224_3cpmy"]
+[ext_resource type="Texture2D" uid="uid://c8snmyndvvanu" path="res://Assets/Cards/Green Snakey.png" id="225_7ajkg"]
+[ext_resource type="Texture2D" uid="uid://bok80m5aqvd7r" path="res://Assets/Cards/Green ZebraCorn.png" id="226_mjgo3"]
+[ext_resource type="Texture2D" uid="uid://dhd3qcgeyien1" path="res://Assets/Cards/Grizzled ZebraCorn.png" id="227_1fpwr"]
+[ext_resource type="Texture2D" uid="uid://bbmp77bjn6w32" path="res://Assets/Cards/Gunter.png" id="228_gy3tq"]
+[ext_resource type="Texture2D" uid="uid://bxl240iltht4h" path="res://Assets/Cards/Ham Fist.png" id="229_63kho"]
+[ext_resource type="Texture2D" uid="uid://5oc7tsbiqkhq" path="res://Assets/Cards/Happy Ghost Lucky.png" id="230_12lgi"]
+[ext_resource type="Texture2D" uid="uid://bdnwpif6dxw2w" path="res://Assets/Cards/Harvest Moon.png" id="231_u128j"]
+[ext_resource type="Texture2D" uid="uid://cc4jx0bx35ihw" path="res://Assets/Cards/Haybarn.png" id="232_t0sdp"]
+[ext_resource type="Texture2D" uid="uid://dsdtpdyrpr4wg" path="res://Assets/Cards/Headphone Jerk.png" id="233_afxwr"]
+[ext_resource type="Texture2D" uid="uid://dmj7jnrdhpugb" path="res://Assets/Cards/Heavenly Gazer.png" id="234_rjm66"]
+[ext_resource type="Texture2D" uid="uid://b1pb5an0klfl6" path="res://Assets/Cards/Helping Hand.png" id="235_ifsdt"]
+[ext_resource type="Texture2D" uid="uid://cxdy3m5yab6yl" path="res://Assets/Cards/Herculeye.png" id="236_wcfni"]
+[ext_resource type="Texture2D" uid="uid://b8bf638y5ijo5" path="res://Assets/Cards/Hot Eyebat.png" id="237_bsn16"]
+[ext_resource type="Texture2D" uid="uid://b4b3ufory7ko7" path="res://Assets/Cards/Hug It Out.png" id="238_p3cmx"]
+[ext_resource type="Texture2D" uid="uid://c3vh002srmqb3" path="res://Assets/Cards/Huggable Hedgehog.png" id="239_4xyqq"]
+[ext_resource type="Texture2D" uid="uid://crijqqtnlbu04" path="res://Assets/Cards/Hunkclops.png" id="240_ivyy3"]
+[ext_resource type="Texture2D" uid="uid://dxer612emlm47" path="res://Assets/Cards/Huntress Wizard.png" id="241_yqru8"]
+[ext_resource type="Texture2D" uid="uid://cjcdqkj6th23i" path="res://Assets/Cards/Husker Amulet.png" id="242_u58s1"]
+[ext_resource type="Texture2D" uid="uid://d1duq2jkjkyyu" path="res://Assets/Cards/Husker Champion.png" id="243_r8yvg"]
+[ext_resource type="Texture2D" uid="uid://bpa8yh2hk3lrl" path="res://Assets/Cards/Husker Garrison.png" id="244_cnaol"]
+[ext_resource type="Texture2D" uid="uid://cq4p6v60uex23" path="res://Assets/Cards/Husker Knight.png" id="245_buo7i"]
+[ext_resource type="Texture2D" uid="uid://dxlpk3s8yjsl8" path="res://Assets/Cards/Husker Valkyrie.png" id="246_pikbw"]
+[ext_resource type="Texture2D" uid="uid://cas4wyeomuo2i" path="res://Assets/Cards/Husker Worm.png" id="247_22v6s"]
+[ext_resource type="Texture2D" uid="uid://b1xg0sjehlheq" path="res://Assets/Cards/Husky Parrotrooper.png" id="248_qge2l"]
+[ext_resource type="Texture2D" uid="uid://5t0ogalchqve" path="res://Assets/Cards/Hydromancer.png" id="249_qxhor"]
+[ext_resource type="Texture2D" uid="uid://fllbjkv52hwn" path="res://Assets/Cards/Ice Base.png" id="250_ij2u5"]
+[ext_resource type="Texture2D" uid="uid://w3ulyujccc5r" path="res://Assets/Cards/Ice Cream Captain.png" id="251_vu3tc"]
+[ext_resource type="Texture2D" uid="uid://c1l685ibk4dkp" path="res://Assets/Cards/Ice Cream Sammy.png" id="252_2ms7n"]
+[ext_resource type="Texture2D" uid="uid://s47jy2qggg1p" path="res://Assets/Cards/Ice King.png" id="253_7udx0"]
+[ext_resource type="Texture2D" uid="uid://dvvkf72lupwfj" path="res://Assets/Cards/Ice Queen.png" id="254_igwts"]
+[ext_resource type="Texture2D" uid="uid://c5mskifqq00c6" path="res://Assets/Cards/Ice Sing.png" id="255_82vrw"]
+[ext_resource type="Texture2D" uid="uid://bbwcqo0a0j20j" path="res://Assets/Cards/Ice-olation Cell.png" id="256_qss3i"]
+[ext_resource type="Texture2D" uid="uid://c7f57ifkyhe13" path="res://Assets/Cards/Icemeister.png" id="257_ibrbl"]
+[ext_resource type="Texture2D" uid="uid://yhfln4ws380w" path="res://Assets/Cards/Icy Commando.png" id="258_5ed8v"]
+[ext_resource type="Texture2D" uid="uid://l7lb5mv2usdc" path="res://Assets/Cards/Icy Infiltrator.png" id="259_eftps"]
+[ext_resource type="Texture2D" uid="uid://bqeu4f82axh47" path="res://Assets/Cards/Icy Intruder.png" id="260_d5joj"]
+[ext_resource type="Texture2D" uid="uid://r7b2vgitqeej" path="res://Assets/Cards/IcyLands.png" id="261_gpr6n"]
+[ext_resource type="Texture2D" uid="uid://clerpkbmw86he" path="res://Assets/Cards/Igloo of Sanctuary.png" id="262_e7p1u"]
+[ext_resource type="Texture2D" uid="uid://bod0t08c5ec6y" path="res://Assets/Cards/Immortal Maize Walker.png" id="263_7i2ha"]
+[ext_resource type="Texture2D" uid="uid://cohkol7tui5hm" path="res://Assets/Cards/Impossible Possum.png" id="264_cah1j"]
+[ext_resource type="Texture2D" uid="uid://bxd2q8p53444c" path="res://Assets/Cards/Incredible Egg.png" id="265_6bjnb"]
+[ext_resource type="Texture2D" uid="uid://bpk3fyk8ckwnv" path="res://Assets/Cards/Industrial Assassin.png" id="266_hfbc3"]
+[ext_resource type="Texture2D" uid="uid://vql403pykq41" path="res://Assets/Cards/Infant Scholar.png" id="267_bsvbv"]
+[ext_resource type="Texture2D" uid="uid://i81wctcro1p1" path="res://Assets/Cards/Infinite Figure.png" id="268_dtwic"]
+[ext_resource type="Texture2D" uid="uid://ccrjrno2u460n" path="res://Assets/Cards/Infinite Haymaker.png" id="269_bsjfi"]
+[ext_resource type="Texture2D" uid="uid://clmwy0scnrl1y" path="res://Assets/Cards/Infinite Pies.png" id="270_qy1u7"]
+[ext_resource type="Texture2D" uid="uid://250r3nv3v3d4" path="res://Assets/Cards/InstiGator.png" id="271_3rsq7"]
+[ext_resource type="Texture2D" uid="uid://b5pslcq7uj1dd" path="res://Assets/Cards/InvestiGator.png" id="272_elx2k"]
+[ext_resource type="Texture2D" uid="uid://bjeb1ji1rx4w4" path="res://Assets/Cards/IrriGator.png" id="273_lwlvl"]
+[ext_resource type="Texture2D" uid="uid://byy37hgswjjrd" path="res://Assets/Cards/Jake.png" id="274_5koix"]
+[ext_resource type="Texture2D" uid="uid://c8osdlias7s4m" path="res://Assets/Cards/James Baxter.png" id="275_78fr4"]
+[ext_resource type="Texture2D" uid="uid://bvvvupibbxot0" path="res://Assets/Cards/Jinx.png" id="276_qppij"]
+[ext_resource type="Texture2D" uid="uid://cu31jyxm86mfi" path="res://Assets/Cards/Jinxed Parrotrooper.png" id="277_v7ynk"]
+[ext_resource type="Texture2D" uid="uid://dr7418wri2c34" path="res://Assets/Cards/Kernel Queen.png" id="278_v8uc5"]
+[ext_resource type="Texture2D" uid="uid://bf7mw1iyww5tp" path="res://Assets/Cards/King Baby.png" id="279_rt1vd"]
+[ext_resource type="Texture2D" uid="uid://cu5ulo2c8gfjr" path="res://Assets/Cards/Knit Kitty.png" id="280_q2b2u"]
+[ext_resource type="Texture2D" uid="uid://l6t1hu03n3ct" path="res://Assets/Cards/Kung Fu Power.png" id="281_6sn4r"]
+[ext_resource type="Texture2D" uid="uid://dv7oef1nmgeth" path="res://Assets/Cards/Lady Beetle.png" id="282_ogamy"]
+[ext_resource type="Texture2D" uid="uid://kw7i3r7lp7nt" path="res://Assets/Cards/Lady Rainicorn.png" id="283_uygj4"]
+[ext_resource type="Texture2D" uid="uid://bsfn8cbqib0xr" path="res://Assets/Cards/Last Will & Detriment.png" id="284_ykd85"]
+[ext_resource type="Texture2D" uid="uid://dk6kne6aj4xu0" path="res://Assets/Cards/Learning Center.png" id="285_4fdth"]
+[ext_resource type="Texture2D" uid="uid://bwdrwp1vc3vfq" path="res://Assets/Cards/Legion of Earlings.png" id="286_eok0w"]
+[ext_resource type="Texture2D" uid="uid://dewq8cclka2k5" path="res://Assets/Cards/Lemongrab.png" id="287_k3557"]
+[ext_resource type="Texture2D" uid="uid://bwdwv5liym5qj" path="res://Assets/Cards/Life Beater Gnome.png" id="288_j5y1s"]
+[ext_resource type="Texture2D" uid="uid://b63sjjqxqal5e" path="res://Assets/Cards/Lifeguard Lobster.png" id="289_uim4d"]
+[ext_resource type="Texture2D" uid="uid://bo4fij8rg0w0v" path="res://Assets/Cards/Lime Slimey.png" id="290_yaoih"]
+[ext_resource type="Texture2D" uid="uid://bj3og8o0kksr1" path="res://Assets/Cards/Little Freezy.png" id="291_0m6ik"]
+[ext_resource type="Texture2D" uid="uid://b8b5c17rcm53v" path="res://Assets/Cards/Log Knight.png" id="292_p82b8"]
+[ext_resource type="Texture2D" uid="uid://cle2t0swd2pdy" path="res://Assets/Cards/Log Rhythm.png" id="293_p1213"]
+[ext_resource type="Texture2D" uid="uid://ccogmd46orghh" path="res://Assets/Cards/Lonely Panda.png" id="294_s453t"]
+[ext_resource type="Texture2D" uid="uid://c03frs4ctisi" path="res://Assets/Cards/Longboard Lobster.png" id="295_3r7l4"]
+[ext_resource type="Texture2D" uid="uid://be1xogsv2xamt" path="res://Assets/Cards/Lost Golem.png" id="296_ic6w7"]
+[ext_resource type="Texture2D" uid="uid://dmhqpmmpc2y1s" path="res://Assets/Cards/Loveable Lamb.png" id="297_5neh1"]
+[ext_resource type="Texture2D" uid="uid://cyi38gj02j5u3" path="res://Assets/Cards/Lt. Mushroom.png" id="298_2yoed"]
+[ext_resource type="Texture2D" uid="uid://vdan05tw0jvb" path="res://Assets/Cards/Lucky Penny.png" id="299_ddig3"]
+[ext_resource type="Texture2D" uid="uid://cqljf4hufi5rd" path="res://Assets/Cards/Lumbercaddy.png" id="300_v4w3b"]
+[ext_resource type="Texture2D" uid="uid://glo1joi6ppts" path="res://Assets/Cards/Lumpy Space Princess.png" id="301_4uxaa"]
+[ext_resource type="Texture2D" uid="uid://cx3pcy3nsgmte" path="res://Assets/Cards/Lunchpad.png" id="302_24kye"]
+[ext_resource type="Texture2D" uid="uid://bqmvg0xa83em4" path="res://Assets/Cards/Mace Stump.png" id="303_v3sq4"]
+[ext_resource type="Texture2D" uid="uid://cp86q2glvmyhi" path="res://Assets/Cards/Magenapping.png" id="304_kabjd"]
+[ext_resource type="Texture2D" uid="uid://b5ts57kli3vn3" path="res://Assets/Cards/Magic Lamp.png" id="305_pmhx3"]
+[ext_resource type="Texture2D" uid="uid://blh2k1xx3ycym" path="res://Assets/Cards/Magic Man.png" id="306_r2aay"]
+[ext_resource type="Texture2D" uid="uid://baw3kl5bsqe4h" path="res://Assets/Cards/Magic Ring Ding.png" id="307_2ehyt"]
+[ext_resource type="Texture2D" uid="uid://d1v8lvsji3pga" path="res://Assets/Cards/Man-Witch.png" id="308_vsjih"]
+[ext_resource type="Texture2D" uid="uid://cln08ve7vkeob" path="res://Assets/Cards/Mantle Masher.png" id="309_8bi1f"]
+[ext_resource type="Texture2D" uid="uid://cwibsxe4s8f6v" path="res://Assets/Cards/Marceline.png" id="310_hotsq"]
+[ext_resource type="Texture2D" uid="uid://qqv0gp6etmnx" path="res://Assets/Cards/Master of Disguise.png" id="311_okkup"]
+[ext_resource type="Texture2D" uid="uid://cqfdchg07cigu" path="res://Assets/Cards/Matchy Matchy.png" id="312_ugslf"]
+[ext_resource type="Texture2D" uid="uid://b87nuw5rh43dx" path="res://Assets/Cards/Mausoleum.png" id="313_rqok8"]
+[ext_resource type="Texture2D" uid="uid://cj4mctjtxi4wi" path="res://Assets/Cards/Mint Chocouflage.png" id="314_87pit"]
+[ext_resource type="Texture2D" uid="uid://d0pfw1p38qhed" path="res://Assets/Cards/Mocha Launcher.png" id="315_vx8fo"]
+[ext_resource type="Texture2D" uid="uid://d2wlu4vr02w7i" path="res://Assets/Cards/Moniker.png" id="316_bq1bo"]
+[ext_resource type="Texture2D" uid="uid://b6rddf3ygj6o6" path="res://Assets/Cards/Monolith of Doom.png" id="317_d5kv8"]
+[ext_resource type="Texture2D" uid="uid://gk8teb04swvh" path="res://Assets/Cards/Mouthball.png" id="318_5ygih"]
+[ext_resource type="Texture2D" uid="uid://dom7kqb06nedw" path="res://Assets/Cards/Mr. Slicer.png" id="319_o2u00"]
+[ext_resource type="Texture2D" uid="uid://dar11jinreiww" path="res://Assets/Cards/Ms. Fluff.png" id="320_0vnkf"]
+[ext_resource type="Texture2D" uid="uid://dndrdrvedxb5t" path="res://Assets/Cards/Ms. Mummy.png" id="321_usw4l"]
+[ext_resource type="Texture2D" uid="uid://codf4r2l802my" path="res://Assets/Cards/Music Mallard.png" id="322_kutkr"]
+[ext_resource type="Texture2D" uid="uid://bmayjtb4r8mrd" path="res://Assets/Cards/Musical Chair.png" id="323_f461d"]
+[ext_resource type="Texture2D" uid="uid://3v82v6e7d8ci" path="res://Assets/Cards/NaviGator.png" id="324_lwpax"]
+[ext_resource type="Texture2D" uid="uid://critq64elbbe7" path="res://Assets/Cards/Necromancer.png" id="325_wvsnh"]
+[ext_resource type="Texture2D" uid="uid://bo83ty3uv2ykb" path="res://Assets/Cards/Neptr.png" id="326_vg78x"]
+[ext_resource type="Texture2D" uid="uid://b3v5t0vw1l2ms" path="res://Assets/Cards/Nice Ice Baby.png" id="327_7h6pi"]
+[ext_resource type="Texture2D" uid="uid://gt3xxapxdcns" path="res://Assets/Cards/Nice Windmill.png" id="328_sujph"]
+[ext_resource type="Texture2D" uid="uid://bbpyumo1fbbn4" path="res://Assets/Cards/NiceLands.png" id="329_p4nkb"]
+[ext_resource type="Texture2D" uid="uid://bdypsesxgv55f" path="res://Assets/Cards/Niceasaurus Rex.png" id="330_56ajp"]
+[ext_resource type="Texture2D" uid="uid://dnk5m5yfeo0im" path="res://Assets/Cards/Night Tower.png" id="331_dwblv"]
+[ext_resource type="Texture2D" uid="uid://dhqhsx3ve3vfv" path="res://Assets/Cards/Ogre Braces.png" id="332_b0dtc"]
+[ext_resource type="Texture2D" uid="uid://cdsq4m1lwnib2" path="res://Assets/Cards/Ogre Gas.png" id="333_788c8"]
+[ext_resource type="Texture2D" uid="uid://8tm4107n2wfv" path="res://Assets/Cards/Oil Refinery.png" id="334_ocr66"]
+[ext_resource type="Texture2D" uid="uid://cwj7f8uea7oa3" path="res://Assets/Cards/Ol' Corn Eye.png" id="335_yd185"]
+[ext_resource type="Texture2D" uid="uid://w0jkd82rnesc" path="res://Assets/Cards/Orange Slimey.png" id="336_gn653"]
+[ext_resource type="Texture2D" uid="uid://beaf1m7f0yl1j" path="res://Assets/Cards/Overstuffed Orangutan.png" id="337_h74ge"]
+[ext_resource type="Texture2D" uid="uid://b6rkrc0o7qrcr" path="res://Assets/Cards/Palace of Bone.png" id="338_gvaag"]
+[ext_resource type="Texture2D" uid="uid://ekiqplkcoqm2" path="res://Assets/Cards/Paladim.png" id="339_8mbvi"]
+[ext_resource type="Texture2D" uid="uid://cds7l8h2ubifm" path="res://Assets/Cards/Pants of Awesome.png" id="340_cwvpp"]
+[ext_resource type="Texture2D" uid="uid://cgjqco47n45t1" path="res://Assets/Cards/Papercut Tiger.png" id="341_jbick"]
+[ext_resource type="Texture2D" uid="uid://r3jox6wijysi" path="res://Assets/Cards/Parrotmilitary Outpost.png" id="342_i1vhx"]
+[ext_resource type="Texture2D" uid="uid://j77vo12653v5" path="res://Assets/Cards/Party Energy.png" id="343_fyejl"]
+[ext_resource type="Texture2D" uid="uid://cyllh8lju1h21" path="res://Assets/Cards/Party Oasis.png" id="344_1t531"]
+[ext_resource type="Texture2D" uid="uid://dgnbc1xesxajr" path="res://Assets/Cards/Party_God.png" id="345_tl8be"]
+[ext_resource type="Texture2D" uid="uid://cdsuvihcco2jg" path="res://Assets/Cards/Patched Puppy.png" id="346_sqqvp"]
+[ext_resource type="Texture2D" uid="uid://64tg5ntttjj6" path="res://Assets/Cards/Patchwork.png" id="347_471de"]
+[ext_resource type="Texture2D" uid="uid://dgay4sdgl8nf0" path="res://Assets/Cards/Patchy the Pumpkin.png" id="348_okocs"]
+[ext_resource type="Texture2D" uid="uid://c0iv6w44n5pnd" path="res://Assets/Cards/Patriot Popsicle.png" id="349_c0cho"]
+[ext_resource type="Texture2D" uid="uid://ccdxsiuijlq75" path="res://Assets/Cards/Peach Djinni.png" id="350_2v3s8"]
+[ext_resource type="Texture2D" uid="uid://yvylaul1ltty" path="res://Assets/Cards/Pentacutie.png" id="351_3ne4f"]
+[ext_resource type="Texture2D" uid="uid://c36pn8kpxhh5m" path="res://Assets/Cards/Pentaid.png" id="352_yyrau"]
+[ext_resource type="Texture2D" uid="uid://dinnsaop8sw6m" path="res://Assets/Cards/Peppermint Butler.png" id="353_e7etx"]
+[ext_resource type="Texture2D" uid="uid://6iohcoiynoc6" path="res://Assets/Cards/Phyllis.png" id="354_8xxlm"]
+[ext_resource type="Texture2D" uid="uid://qmh4e2radseh" path="res://Assets/Cards/Pickler.png" id="355_8v0cd"]
+[ext_resource type="Texture2D" uid="uid://6s2ykhlpn2ll" path="res://Assets/Cards/Pieclops.png" id="356_uat1t"]
+[ext_resource type="Texture2D" uid="uid://mjrlrve32orp" path="res://Assets/Cards/Pied Piper.png" id="357_l2kv2"]
+[ext_resource type="Texture2D" uid="uid://6yn7kddqx4f3" path="res://Assets/Cards/Piestorm.png" id="358_ix2of"]
+[ext_resource type="Texture2D" uid="uid://cwb3plb4hb03s" path="res://Assets/Cards/Pillow Fortress.png" id="359_thluw"]
+[ext_resource type="Texture2D" uid="uid://dvy2owyfk3gew" path="res://Assets/Cards/Pink Candy.png" id="360_v7p8a"]
+[ext_resource type="Texture2D" uid="uid://ckbebgbgnet0a" path="res://Assets/Cards/Pink Merwitch.png" id="361_qoyyp"]
+[ext_resource type="Texture2D" uid="uid://mncla67y24vo" path="res://Assets/Cards/Pirate Bear.png" id="362_gx0wc"]
+[ext_resource type="Texture2D" uid="uid://cqtm2j4kpi374" path="res://Assets/Cards/Polterclops.png" id="363_m1k7g"]
+[ext_resource type="Texture2D" uid="uid://b7qkcjdtpwkes" path="res://Assets/Cards/Pony.png" id="364_0i20b"]
+[ext_resource type="Texture2D" uid="uid://oqrrwkitp3lf" path="res://Assets/Cards/Popcorn Butteredfly.png" id="365_od883"]
+[ext_resource type="Texture2D" uid="uid://x85y882f2u4p" path="res://Assets/Cards/Popcorn Power.png" id="366_3ykon"]
+[ext_resource type="Texture2D" uid="uid://cnyef241vryjw" path="res://Assets/Cards/Portal of Unsummoning.png" id="367_5hpmf"]
+[ext_resource type="Texture2D" uid="uid://tdy1sfmrpuwa" path="res://Assets/Cards/Portal to Nowhere.png" id="368_4xm58"]
+[ext_resource type="Texture2D" uid="uid://dsia0k4pdg5hn" path="res://Assets/Cards/Princess Bubblegum.png" id="369_efehd"]
+[ext_resource type="Texture2D" uid="uid://fuhuowy7eufx" path="res://Assets/Cards/Prismo.png" id="370_t7yo7"]
+[ext_resource type="Texture2D" uid="uid://bkq60uhnoqqco" path="res://Assets/Cards/Psionic Architect.png" id="371_acuvq"]
+[ext_resource type="Texture2D" uid="uid://dddoyiaif5kfa" path="res://Assets/Cards/Psionic Swashbuckler.png" id="372_2usb6"]
+[ext_resource type="Texture2D" uid="uid://cq0cna856dh3t" path="res://Assets/Cards/Psychic Tempest.png" id="373_iq50l"]
+[ext_resource type="Texture2D" uid="uid://34ewdmhhxtym" path="res://Assets/Cards/Puma Paw.png" id="374_21gjr"]
+[ext_resource type="Texture2D" uid="uid://bxki1ff8wnxot" path="res://Assets/Cards/Punk Cat.png" id="375_flb5j"]
+[ext_resource type="Texture2D" uid="uid://chiigruq8rmvp" path="res://Assets/Cards/Puppy Parade.png" id="376_qdy8m"]
+[ext_resource type="Texture2D" uid="uid://d3pbp2er3xj8l" path="res://Assets/Cards/Pyramidia.png" id="377_h2b20"]
+[ext_resource type="Texture2D" uid="uid://tdfmimcjoawo" path="res://Assets/Cards/Pyromancer.png" id="378_alous"]
+[ext_resource type="Texture2D" uid="uid://ddkw44isu1gdv" path="res://Assets/Cards/Quadurai.png" id="379_mbuuw"]
+[ext_resource type="Texture2D" uid="uid://tfrslrstsitv" path="res://Assets/Cards/Quake Maker.png" id="380_ff3ia"]
+[ext_resource type="Texture2D" uid="uid://brkhs8046enp5" path="res://Assets/Cards/Quick Pick Me Up.png" id="381_avv6h"]
+[ext_resource type="Texture2D" uid="uid://ctqebhlp2hevo" path="res://Assets/Cards/Rainbow Eyebat.png" id="382_hjdf2"]
+[ext_resource type="Texture2D" uid="uid://q4akpfmh1sjr" path="res://Assets/Cards/Raise the Dead.png" id="383_g4pb8"]
+[ext_resource type="Texture2D" uid="uid://b6agmi3d670gc" path="res://Assets/Cards/Rebounding Zebracorn.png" id="384_54lyr"]
+[ext_resource type="Texture2D" uid="uid://cn82p2qc8bcvo" path="res://Assets/Cards/Reclaim Landscape.png" id="385_y5o0c"]
+[ext_resource type="Texture2D" uid="uid://cjt6eohxfvox1" path="res://Assets/Cards/Red Eyeling.png" id="386_yrvve"]
+[ext_resource type="Texture2D" uid="uid://fq1ji3v3oro1" path="res://Assets/Cards/Redirect Danger.png" id="387_28s1x"]
+[ext_resource type="Texture2D" uid="uid://yx5qcxpefxfj" path="res://Assets/Cards/Reign Deer.png" id="388_128ek"]
+[ext_resource type="Texture2D" uid="uid://bct2ea8ioax3p" path="res://Assets/Cards/Repelling Rock Crab.png" id="389_o8aif"]
+[ext_resource type="Texture2D" uid="uid://b6khdj6wrcvrf" path="res://Assets/Cards/Ricardio.png" id="390_qod13"]
+[ext_resource type="Texture2D" uid="uid://bfak07pwdlr2x" path="res://Assets/Cards/Ring of Damage.png" id="391_17gcc"]
+[ext_resource type="Texture2D" uid="uid://cq8w81w5n8whq" path="res://Assets/Cards/Ring of Fluffy.png" id="392_2sr75"]
+[ext_resource type="Texture2D" uid="uid://cotprrdipj7d0" path="res://Assets/Cards/Ring of Third Eye.png" id="393_n1vh4"]
+[ext_resource type="Texture2D" uid="uid://b0mk1plhbo4t3" path="res://Assets/Cards/River of Swords.png" id="394_x3pau"]
+[ext_resource type="Texture2D" uid="uid://lkcg432x22r8" path="res://Assets/Cards/Robomancer.png" id="395_d3gvd"]
+[ext_resource type="Texture2D" uid="uid://b1i6o3mtyom45" path="res://Assets/Cards/Rock 'n Roller.png" id="396_emmid"]
+[ext_resource type="Texture2D" uid="uid://twxsudlmfspg" path="res://Assets/Cards/Rock Out!.png" id="397_70p11"]
+[ext_resource type="Texture2D" uid="uid://cvye5t5jswmph" path="res://Assets/Cards/Rocktopus.png" id="398_o71qf"]
+[ext_resource type="Texture2D" uid="uid://c5bfr6c758jf4" path="res://Assets/Cards/Routing Rock Crab.png" id="399_2sv5r"]
+[ext_resource type="Texture2D" uid="uid://cgygwtu7pgpwq" path="res://Assets/Cards/Royal Revelry.png" id="400_bxers"]
+[ext_resource type="Texture2D" uid="uid://cn4jt2nr2chqc" path="res://Assets/Cards/Sack of Pain.png" id="401_31j1r"]
+[ext_resource type="Texture2D" uid="uid://bdlq7f1yrv3yg" path="res://Assets/Cards/Sailing Sand Crab.png" id="402_cb0my"]
+[ext_resource type="Texture2D" uid="uid://cexi1yckcioyu" path="res://Assets/Cards/Sand Angel.png" id="403_o5jk8"]
+[ext_resource type="Texture2D" uid="uid://dwaflbwh2jsp3" path="res://Assets/Cards/Sand Castle.png" id="404_tmxcm"]
+[ext_resource type="Texture2D" uid="uid://dvehdrqti6nrr" path="res://Assets/Cards/Sand Eyebat.png" id="405_bgn6b"]
+[ext_resource type="Texture2D" uid="uid://c5sj5654e2n6y" path="res://Assets/Cards/Sand Jackal.png" id="406_p4fjy"]
+[ext_resource type="Texture2D" uid="uid://bmp51ujkgakn8" path="res://Assets/Cards/Sand Knights.png" id="407_lluii"]
+[ext_resource type="Texture2D" uid="uid://brxttyd5irrsl" path="res://Assets/Cards/Sand Pyramid.png" id="408_yshsq"]
+[ext_resource type="Texture2D" uid="uid://bdajb2jaxe553" path="res://Assets/Cards/Sand Sphinx.png" id="409_a6fja"]
+[ext_resource type="Texture2D" uid="uid://s6c5xc356c7l" path="res://Assets/Cards/SandWitch.png" id="410_y12g0"]
+[ext_resource type="Texture2D" uid="uid://cpnfwj6v4idax" path="res://Assets/Cards/Sandasaurus Rex.png" id="411_8t7vw"]
+[ext_resource type="Texture2D" uid="uid://dw7i17u23tke4" path="res://Assets/Cards/Sandhorn Devil.png" id="412_qfkl3"]
+[ext_resource type="Texture2D" uid="uid://rve1o22dyt1m" path="res://Assets/Cards/Sandmagus.png" id="413_x0k3e"]
+[ext_resource type="Texture2D" uid="uid://t31a7krikxfj" path="res://Assets/Cards/Sandsnake.png" id="414_nym08"]
+[ext_resource type="Texture2D" uid="uid://bpq8fugpwee3p" path="res://Assets/Cards/SandyLands.png" id="415_rqjua"]
+[ext_resource type="Texture2D" uid="uid://cwqv2mviib2qy" path="res://Assets/Cards/Schoolhouse.png" id="416_g36e4"]
+[ext_resource type="Texture2D" uid="uid://bqhidbv3mnwgq" path="res://Assets/Cards/Scorching Serve.png" id="417_v1fwr"]
+[ext_resource type="Texture2D" uid="uid://hvsg1pqkpyjc" path="res://Assets/Cards/Scroll of Bad Breath.png" id="418_lrbaf"]
+[ext_resource type="Texture2D" uid="uid://fsqt3kqmel68" path="res://Assets/Cards/Scroll of Fresh Breath.png" id="419_rw83o"]
+[ext_resource type="Texture2D" uid="uid://lrbkyhaiuf0h" path="res://Assets/Cards/Sea Hag.png" id="420_78b3p"]
+[ext_resource type="Texture2D" uid="uid://s67xjgu1e3it" path="res://Assets/Cards/Sewn Sloth.png" id="421_o18hc"]
+[ext_resource type="Texture2D" uid="uid://b57a34o0sk1sm" path="res://Assets/Cards/Shadowy Pyramid.png" id="422_j2e56"]
+[ext_resource type="Texture2D" uid="uid://cwab67aosf1w" path="res://Assets/Cards/Shark.png" id="423_8hskl"]
+[ext_resource type="Texture2D" uid="uid://b7u16show5tsp" path="res://Assets/Cards/Sheep.png" id="424_8s56i"]
+[ext_resource type="Texture2D" uid="uid://blfvsk3ko806a" path="res://Assets/Cards/Shielded ZebraCorn.png" id="425_3y5rk"]
+[ext_resource type="Texture2D" uid="uid://llag1i8qtugh" path="res://Assets/Cards/Shifty Sand Crab.png" id="426_2nrqb"]
+[ext_resource type="Texture2D" uid="uid://3hfnh3qldb2w" path="res://Assets/Cards/Silo of Freedom.png" id="427_o83ju"]
+[ext_resource type="Texture2D" uid="uid://b54784ib7v3wj" path="res://Assets/Cards/Silo of Justice.png" id="428_jpqkg"]
+[ext_resource type="Texture2D" uid="uid://favbovq2y5tg" path="res://Assets/Cards/Silo of Truth.png" id="429_lw3k0"]
+[ext_resource type="Texture2D" uid="uid://dkjnhp8n7m85n" path="res://Assets/Cards/Singing Sword.png" id="430_4oo8c"]
+[ext_resource type="Texture2D" uid="uid://dfgcbse1fkn0t" path="res://Assets/Cards/Sinkhole.png" id="431_8b8od"]
+[ext_resource type="Texture2D" uid="uid://bn30i04d3yr2b" path="res://Assets/Cards/Ska-pion.png" id="432_xy5ds"]
+[ext_resource type="Texture2D" uid="uid://dt1ewxydyar4s" path="res://Assets/Cards/Skeletal Hand.png" id="433_hbn7l"]
+[ext_resource type="Texture2D" uid="uid://ckkpjfc2as22f" path="res://Assets/Cards/Slashy Sand Crab.png" id="434_8i8e2"]
+[ext_resource type="Texture2D" uid="uid://d0n6f2tkco7bn" path="res://Assets/Cards/Slay Rider.png" id="435_ur3hx"]
+[ext_resource type="Texture2D" uid="uid://cu8k4p12qr5kc" path="res://Assets/Cards/Slushie Salvo.png" id="436_eofl0"]
+[ext_resource type="Texture2D" uid="uid://66st1yumlamf" path="res://Assets/Cards/Smoldering Elder.png" id="437_2qhue"]
+[ext_resource type="Texture2D" uid="uid://sjkmcmyi8nxs" path="res://Assets/Cards/Smooth Eli.png" id="438_qfpy3"]
+[ext_resource type="Texture2D" uid="uid://ljeb627iw4sn" path="res://Assets/Cards/Snake Eye Ring.png" id="439_76u2o"]
+[ext_resource type="Texture2D" uid="uid://usx083rlit82" path="res://Assets/Cards/Snake Eyes.png" id="440_jn366"]
+[ext_resource type="Texture2D" uid="uid://bqim028e50mef" path="res://Assets/Cards/Snakemint.png" id="441_7q25o"]
+[ext_resource type="Texture2D" uid="uid://c270k3mmwxho8" path="res://Assets/Cards/Snow Angel.png" id="442_gw5pb"]
+[ext_resource type="Texture2D" uid="uid://be6chbmh3cd7g" path="res://Assets/Cards/Snow Baller.png" id="443_c6ffq"]
+[ext_resource type="Texture2D" uid="uid://cte7spfsdreed" path="res://Assets/Cards/Snow Bank.png" id="444_ggyaq"]
+[ext_resource type="Texture2D" uid="uid://dtn5yylnqwlxl" path="res://Assets/Cards/Snow Bunny.png" id="445_oq781"]
+[ext_resource type="Texture2D" uid="uid://bpbmwljyk6xft" path="res://Assets/Cards/Snow Business.png" id="446_c0nlb"]
+[ext_resource type="Texture2D" uid="uid://donmml3hohwen" path="res://Assets/Cards/Snow Dog.png" id="447_wg020"]
+[ext_resource type="Texture2D" uid="uid://br4a0rv5jrnof" path="res://Assets/Cards/Snow Training Camp.png" id="448_x47fi"]
+[ext_resource type="Texture2D" uid="uid://o2jp3y57ajym" path="res://Assets/Cards/Snow Way.png" id="449_t2hw6"]
+[ext_resource type="Texture2D" uid="uid://darsl3pqo5q8f" path="res://Assets/Cards/Snowblower.png" id="450_v8ko2"]
+[ext_resource type="Texture2D" uid="uid://pte4nrbnv7ui" path="res://Assets/Cards/Snowvalanche.png" id="451_5patn"]
+[ext_resource type="Texture2D" uid="uid://duvesxmk3gi4c" path="res://Assets/Cards/Socks of Fortitude.png" id="452_qqv60"]
+[ext_resource type="Texture2D" uid="uid://3fv54p1a60y8" path="res://Assets/Cards/Softie Recruit.png" id="453_rftb0"]
+[ext_resource type="Texture2D" uid="uid://bjyxefcjdgxk7" path="res://Assets/Cards/Solidarity.png" id="454_86vf2"]
+[ext_resource type="Texture2D" uid="uid://boojh22v0mx6q" path="res://Assets/Cards/Spazzy Cola.png" id="455_0csjq"]
+[ext_resource type="Texture2D" uid="uid://bqole5t4m5bo7" path="res://Assets/Cards/Spell Warp.png" id="456_u8huf"]
+[ext_resource type="Texture2D" uid="uid://ebkd5f5nqrpf" path="res://Assets/Cards/Spike Icicle.png" id="457_uj68i"]
+[ext_resource type="Texture2D" uid="uid://bab50tcrwcow4" path="res://Assets/Cards/Spiked ZebraCorn.png" id="458_etnf0"]
+[ext_resource type="Texture2D" uid="uid://5n6a7j1xjc7x" path="res://Assets/Cards/Spirit Tower.png" id="459_ntes2"]
+[ext_resource type="Texture2D" uid="uid://xbac0jrenf6i" path="res://Assets/Cards/Sprucy Lucy.png" id="460_01sw1"]
+[ext_resource type="Texture2D" uid="uid://3j30mcsc0kh2" path="res://Assets/Cards/Squatting Bald Man.png" id="461_5mwb7"]
+[ext_resource type="Texture2D" uid="uid://b2efasedi4oha" path="res://Assets/Cards/Staff of Frailty.png" id="462_v8h85"]
+[ext_resource type="Texture2D" uid="uid://dfytch64mvbxu" path="res://Assets/Cards/Static Parrotrooper.png" id="463_3exwu"]
+[ext_resource type="Texture2D" uid="uid://c7vyagqk7w8x3" path="res://Assets/Cards/Steakchop.png" id="464_ptg5g"]
+[ext_resource type="Texture2D" uid="uid://b38jhvg18sai7" path="res://Assets/Cards/Stitched Squirrel.png" id="465_bvnfm"]
+[ext_resource type="Texture2D" uid="uid://cetkqq5se208a" path="res://Assets/Cards/Strawberry Slimey.png" id="466_5lj6o"]
+[ext_resource type="Texture2D" uid="uid://b2x2l8aynemta" path="res://Assets/Cards/Strength Crystal.png" id="467_trtkp"]
+[ext_resource type="Texture2D" uid="uid://40l6pg68xti4" path="res://Assets/Cards/Struzann Djinn.png" id="468_olv7r"]
+[ext_resource type="Texture2D" uid="uid://vpdrtjw5o30o" path="res://Assets/Cards/Stuffed.png" id="469_0cxp5"]
+[ext_resource type="Texture2D" uid="uid://bgqpxc34woyxm" path="res://Assets/Cards/SubjuGator.png" id="470_ks4q8"]
+[ext_resource type="Texture2D" uid="uid://d2al11wpe6o8w" path="res://Assets/Cards/Subliminal Strength.png" id="471_2nbrm"]
+[ext_resource type="Texture2D" uid="uid://b4546tlbd47te" path="res://Assets/Cards/Sun King.png" id="472_8f8pj"]
+[ext_resource type="Texture2D" uid="uid://cmpj52teditgt" path="res://Assets/Cards/Sundae School.png" id="473_eqb7x"]
+[ext_resource type="Texture2D" uid="uid://cbqxgn8qu5ws0" path="res://Assets/Cards/Susan Strong.png" id="474_2dh2f"]
+[ext_resource type="Texture2D" uid="uid://dm6k1mgkpml8w" path="res://Assets/Cards/Swamp Horn.png" id="475_su2yy"]
+[ext_resource type="Texture2D" uid="uid://dw1ugd8xmftv1" path="res://Assets/Cards/Sword Bouquet.png" id="476_0lob7"]
+[ext_resource type="Texture2D" uid="uid://dmcu5rvq5m0lq" path="res://Assets/Cards/Synchronization.png" id="477_b2xim"]
+[ext_resource type="Texture2D" uid="uid://bopdipfjldc4n" path="res://Assets/Cards/TNTimmy.png" id="478_i518c"]
+[ext_resource type="Texture2D" uid="uid://bcaepx1ahle3h" path="res://Assets/Cards/TailGator.png" id="479_oit57"]
+[ext_resource type="Texture2D" uid="uid://de4dx4xtnl1dn" path="res://Assets/Cards/Tandem Bike.png" id="480_41bhi"]
+[ext_resource type="Texture2D" uid="uid://b5kawo3x4irb0" path="res://Assets/Cards/Tapped Out.png" id="481_ub6ei"]
+[ext_resource type="Texture2D" uid="uid://uqa42sl5s38y" path="res://Assets/Cards/Tax Reduction.png" id="482_urgst"]
+[ext_resource type="Texture2D" uid="uid://jqbiv4k2vif0" path="res://Assets/Cards/Teeth Leaf.png" id="483_3x180"]
+[ext_resource type="Texture2D" uid="uid://co680o44y4yiu" path="res://Assets/Cards/Teleport.png" id="484_o1ldt"]
+[ext_resource type="Texture2D" uid="uid://daf4857gwewq3" path="res://Assets/Cards/Temple of the Sun.png" id="485_dvvc0"]
+[ext_resource type="Texture2D" uid="uid://bgn1b0ihng3rf" path="res://Assets/Cards/Terrible Tower.png" id="486_ewhwd"]
+[ext_resource type="Texture2D" uid="uid://cq88sba5fww0e" path="res://Assets/Cards/The Barrel.png" id="487_lnv5v"]
+[ext_resource type="Texture2D" uid="uid://sua8q2857i0x" path="res://Assets/Cards/The Big Hen House.png" id="488_ak0pa"]
+[ext_resource type="Texture2D" uid="uid://bgqg1xhlm0vih" path="res://Assets/Cards/The Cooler.png" id="489_mmqah"]
+[ext_resource type="Texture2D" uid="uid://c78jxhq2a8ihc" path="res://Assets/Cards/The Cooper.png" id="490_qk3ti"]
+[ext_resource type="Texture2D" uid="uid://deo7ngv241w4g" path="res://Assets/Cards/The Dog.png" id="491_255fu"]
+[ext_resource type="Texture2D" uid="uid://d1v2281y5pm5n" path="res://Assets/Cards/The Lich.png" id="492_122o3"]
+[ext_resource type="Texture2D" uid="uid://okqfyae2m4wt" path="res://Assets/Cards/The Mariachi.png" id="493_5aqw5"]
+[ext_resource type="Texture2D" uid="uid://dtyku0oeurx8" path="res://Assets/Cards/The Pig - Kickstarter.png" id="494_drrsm"]
+[ext_resource type="Texture2D" uid="uid://dilu24rtkw47s" path="res://Assets/Cards/The Pig Promo.png" id="495_3bwx0"]
+[ext_resource type="Texture2D" uid="uid://dh6jnskc42egr" path="res://Assets/Cards/The Pig.png" id="496_mq4g7"]
+[ext_resource type="Texture2D" uid="uid://bloxns5oww1j" path="res://Assets/Cards/The Sludger.png" id="497_sivw1"]
+[ext_resource type="Texture2D" uid="uid://bexig7if0rjlx" path="res://Assets/Cards/Timmy Magic Eyes.png" id="498_udh0o"]
+[ext_resource type="Texture2D" uid="uid://ccv7gm4d6mklp" path="res://Assets/Cards/Tiny Elephant.png" id="499_1ks14"]
+[ext_resource type="Texture2D" uid="uid://dmj1y1k1mm107" path="res://Assets/Cards/Tired Wombat.png" id="500_83o2i"]
+[ext_resource type="Texture2D" uid="uid://d0gwralwk5p20" path="res://Assets/Cards/Toilet of Doom.png" id="501_v3iaf"]
+[ext_resource type="Texture2D" uid="uid://bobm8c1ujci88" path="res://Assets/Cards/Tome of Ankhs.png" id="502_os2qc"]
+[ext_resource type="Texture2D" uid="uid://v4bvdgdyk5b3" path="res://Assets/Cards/Tools of the Trade.png" id="503_6ngd5"]
+[ext_resource type="Texture2D" uid="uid://unv6a5uu3rdc" path="res://Assets/Cards/Tornado Wall Of Fire.png" id="504_sqd33"]
+[ext_resource type="Texture2D" uid="uid://dmk76ukdhpw7n" path="res://Assets/Cards/Tough Lumberjill.png" id="505_yerbg"]
+[ext_resource type="Texture2D" uid="uid://cp7piejefuaei" path="res://Assets/Cards/Trained ZebraCorn Husker.png" id="506_ohlp5"]
+[ext_resource type="Texture2D" uid="uid://dgf3agqjc1uua" path="res://Assets/Cards/Travelin' Farmer.png" id="507_fqmik"]
+[ext_resource type="Texture2D" uid="uid://2vt2d124wl78" path="res://Assets/Cards/Travelin' Skeleton.png" id="508_hhnb7"]
+[ext_resource type="Texture2D" uid="uid://bujheh23yp5m" path="res://Assets/Cards/Travelin' Wizard.png" id="509_hfm01"]
+[ext_resource type="Texture2D" uid="uid://bgox7csgr5teb" path="res://Assets/Cards/Tree Trunks.png" id="510_mwy4d"]
+[ext_resource type="Texture2D" uid="uid://5ln32d88adjd" path="res://Assets/Cards/Tree of Undeath.png" id="511_slwy5"]
+[ext_resource type="Texture2D" uid="uid://casq88sae2d6" path="res://Assets/Cards/Twinsies.png" id="512_wsh5a"]
+[ext_resource type="Texture2D" uid="uid://cg3voyoaep8fr" path="res://Assets/Cards/Ultra Dog.png" id="513_h7gsm"]
+[ext_resource type="Texture2D" uid="uid://cuivp2e81dp1w" path="res://Assets/Cards/Unempty Coffin.png" id="514_3460x"]
+[ext_resource type="Texture2D" uid="uid://cgu2gcnxuufhf" path="res://Assets/Cards/Uni-Knight.png" id="515_pvxcq"]
+[ext_resource type="Texture2D" uid="uid://dhanb64pmstlu" path="res://Assets/Cards/Unicyclops.png" id="516_yqqfd"]
+[ext_resource type="Texture2D" uid="uid://es0uaqk0nowi" path="res://Assets/Cards/Useless Swamp.png" id="517_7yatl"]
+[ext_resource type="Texture2D" uid="uid://ccf6e7fsbwoyq" path="res://Assets/Cards/Vampire Lord.png" id="518_i3cfx"]
+[ext_resource type="Texture2D" uid="uid://bn1nqnfn04jm7" path="res://Assets/Cards/Void Thimble.png" id="519_kf83u"]
+[ext_resource type="Texture2D" uid="uid://wf102nrrc13k" path="res://Assets/Cards/Volcano.png" id="520_28x34"]
+[ext_resource type="Texture2D" uid="uid://cq8cx8wovdexe" path="res://Assets/Cards/Wake Up Call.png" id="521_21oag"]
+[ext_resource type="Texture2D" uid="uid://c2gxgohunepep" path="res://Assets/Cards/Wall of Chocolate.png" id="522_rnp2w"]
+[ext_resource type="Texture2D" uid="uid://d0wmxyo4jyn75" path="res://Assets/Cards/Wall of Ears.png" id="523_0gops"]
+[ext_resource type="Texture2D" uid="uid://dksy0gtj6v86a" path="res://Assets/Cards/Wall of Sand.png" id="524_3pg5j"]
+[ext_resource type="Texture2D" uid="uid://bigihp7pmtpq0" path="res://Assets/Cards/Wandering Bald Man.png" id="525_ejucy"]
+[ext_resource type="Texture2D" uid="uid://d4bi5ef71t63p" path="res://Assets/Cards/Water Logged.png" id="526_rqp1e"]
+[ext_resource type="Texture2D" uid="uid://ckj15kidwjby7" path="res://Assets/Cards/Weakened Warrior.png" id="527_orkgc"]
+[ext_resource type="Texture2D" uid="uid://ctegvxxx081nx" path="res://Assets/Cards/Weary Trading Post.png" id="528_ln62r"]
+[ext_resource type="Texture2D" uid="uid://338g38fagf2l" path="res://Assets/Cards/Well-Dressed Wolf.png" id="529_i0vml"]
+[ext_resource type="Texture2D" uid="uid://cbm8d64oafw42" path="res://Assets/Cards/Whims of Fate.png" id="530_rgkp7"]
+[ext_resource type="Texture2D" uid="uid://c2yp8uonojgib" path="res://Assets/Cards/Windmill of Health.png" id="531_5cu5c"]
+[ext_resource type="Texture2D" uid="uid://d24kcjso7qaa0" path="res://Assets/Cards/Witch Slap.png" id="532_sod0m"]
+[ext_resource type="Texture2D" uid="uid://btqp7w65kdmjl" path="res://Assets/Cards/Witch Way.png" id="533_k2bmo"]
+[ext_resource type="Texture2D" uid="uid://bgw01divm1aw2" path="res://Assets/Cards/Woad Blood.png" id="534_uwrv8"]
+[ext_resource type="Texture2D" uid="uid://biob0bl640d8v" path="res://Assets/Cards/Woad Mobile Home.png" id="535_md0jt"]
+[ext_resource type="Texture2D" uid="uid://dvb8xn2ayf1x4" path="res://Assets/Cards/Woad Talisman.png" id="536_xfloa"]
+[ext_resource type="Texture2D" uid="uid://4rbms77xc4en" path="res://Assets/Cards/Woadic Chief.png" id="537_0wp7h"]
+[ext_resource type="Texture2D" uid="uid://c0ygr1ku8rv3a" path="res://Assets/Cards/Woadic Enchantress.png" id="538_b6kns"]
+[ext_resource type="Texture2D" uid="uid://o2xd00bk3uh1" path="res://Assets/Cards/Woadic Marauder.png" id="539_g7krj"]
+[ext_resource type="Texture2D" uid="uid://d4e6jjlang4q8" path="res://Assets/Cards/Woadic Matriarch.png" id="540_ysocf"]
+[ext_resource type="Texture2D" uid="uid://cfjr4yrgyforp" path="res://Assets/Cards/Woadic Ring Leader.png" id="541_64uf8"]
+[ext_resource type="Texture2D" uid="uid://bx11os0rg7n5a" path="res://Assets/Cards/Woadic Weirdo.png" id="542_ajitv"]
+[ext_resource type="Texture2D" uid="uid://b3phich5spgat" path="res://Assets/Cards/X-Large Spirit Soldier.png" id="543_pmffh"]
+[ext_resource type="Texture2D" uid="uid://cjyrmhks4ib4j" path="res://Assets/Cards/Yellow Gnome.png" id="544_27n70"]
+[ext_resource type="Texture2D" uid="uid://75bbfq5jpcxr" path="res://Assets/Cards/Yellow Lighthouse.png" id="545_mivtg"]
+[ext_resource type="Texture2D" uid="uid://b8yua1uio7o0y" path="res://Assets/Cards/Yellow Slimey.png" id="546_2tynl"]
+[ext_resource type="Texture2D" uid="uid://br6ehicpt3yc5" path="res://Assets/Cards/Young ZebraCorn Husker.png" id="547_gmfiv"]
+[ext_resource type="Texture2D" uid="uid://d2fg5e0tfswio" path="res://Assets/Cards/ZaZo's Magic Seeds.png" id="548_nxs0b"]
+[ext_resource type="Script" uid="uid://deiilvf1a7scr" path="res://Assets/Database/card_database.gd" id="549_421mn"]
+[ext_resource type="Texture2D" uid="uid://dwsaq0cohj80x" path="res://Assets/Cards/card_back.png" id="549_rgt2c"]
+
+[resource]
+script = ExtResource("549_421mn")
+cards = Dictionary[String, Texture2D]({
+"10th Anniversary Backer": ExtResource("1_snjt4"),
+"Abdominal Snowman": ExtResource("2_rgt2c"),
+"Abraca Amadeus": ExtResource("3_fpr5k"),
+"Abracadaniel": ExtResource("4_tjae4"),
+"Adorabunny": ExtResource("5_6ukko"),
+"Aeromancer": ExtResource("6_urexq"),
+"Albino Eyebat": ExtResource("7_wfvt4"),
+"Amaizing Avalanche": ExtResource("8_yp5pl"),
+"Ancient Comet": ExtResource("9_eeh5y"),
+"Ancient Healer": ExtResource("10_ee0l4"),
+"Ancient Scholar": ExtResource("11_2btrs"),
+"Angel Heart": ExtResource("12_c5pdl"),
+"Angel of Chocolate": ExtResource("13_np6mw"),
+"Angel of Vanilla": ExtResource("14_2mt2j"),
+"Apple Bully": ExtResource("15_rlnmd"),
+"Apple Pieclops": ExtResource("16_p7yuc"),
+"Archer Dan": ExtResource("17_ud8w6"),
+"Archer Danica": ExtResource("18_8ssjc"),
+"Assistance": ExtResource("19_0hxru"),
+"Auto-Plucker": ExtResource("20_3v3yb"),
+"BMO": ExtResource("21_h8xwe"),
+"Bail Out": ExtResource("22_qhrdl"),
+"Bale Out": ExtResource("23_tycqw"),
+"Ban-She Princess": ExtResource("24_3mypq"),
+"Ban-She Queen": ExtResource("25_72r2a"),
+"Bayou Fountain": ExtResource("26_l72ex"),
+"Beach Ball": ExtResource("27_fhq8w"),
+"Beach Blast": ExtResource("28_je8dv"),
+"Beach Mummy": ExtResource("29_qjf6s"),
+"Bean Ball Bomba": ExtResource("30_1x43t"),
+"Berserk Bakery": ExtResource("31_fhj63"),
+"Big Foot": ExtResource("32_3ntl5"),
+"Billy": ExtResource("33_m4p0t"),
+"Biomancer": ExtResource("34_0e4a1"),
+"Black Hole Pendant": ExtResource("35_sp2j0"),
+"Black Paladin": ExtResource("36_r5ja4"),
+"Blonde MerWitch": ExtResource("37_0in2s"),
+"Blood Bath": ExtResource("38_ysfpj"),
+"Blood Castle": ExtResource("39_stp8k"),
+"Blood Fortress": ExtResource("40_8vulf"),
+"Blood Transfusion": ExtResource("41_0gsa6"),
+"Blue Candy": ExtResource("42_ct5ew"),
+"Blue Gnome": ExtResource("43_ppxkk"),
+"Blue Merlock": ExtResource("44_lpl1u"),
+"Blue Ogre": ExtResource("45_tj07c"),
+"Blue Plains": ExtResource("47_xy6di"),
+"Blue Plains Drifter": ExtResource("46_2k0rq"),
+"Blue Slimey": ExtResource("48_14mb4"),
+"Blueberry Djini": ExtResource("49_474bl"),
+"Blueberry Pieclops": ExtResource("50_msdc4"),
+"Boarder Collie": ExtResource("51_ia6ev"),
+"Bog Ban-She Angel": ExtResource("52_u1r30"),
+"Bog Bum": ExtResource("53_mng0i"),
+"Bog Frog Bomb": ExtResource("54_y0vir"),
+"Bog Palace": ExtResource("55_81avn"),
+"Bomb Pop": ExtResource("56_f5nfj"),
+"Bone Wand": ExtResource("57_kpin3"),
+"Bongo Bounce House": ExtResource("58_y16g6"),
+"Bouncing Zebracorn": ExtResource("59_dseni"),
+"Brain Gooey": ExtResource("60_yefxk"),
+"Brief Power": ExtResource("61_rhkho"),
+"Brigadier Banana Split": ExtResource("62_ay4l5"),
+"Bums Away!": ExtResource("63_m55sj"),
+"Burly Lumberjack": ExtResource("64_igs7f"),
+"Business Dog": ExtResource("65_w4x3v"),
+"Cabin of Many Woods": ExtResource("66_rjv21"),
+"Cactus Thug": ExtResource("67_atnym"),
+"Cake": ExtResource("68_xsplv"),
+"Camaraderie": ExtResource("69_k4eqm"),
+"Captain Taco": ExtResource("70_2fvv6"),
+"Cardboard Mansion": ExtResource("71_ypcul"),
+"Carmel Camel": ExtResource("72_583vr"),
+"Cave of Solitude": ExtResource("73_x5r10"),
+"Celestial Castle": ExtResource("74_oltof"),
+"Celestial Fortress": ExtResource("75_p8tna"),
+"Cerebral Bloodstorm": ExtResource("76_litp1"),
+"Charlie": ExtResource("77_tdmtm"),
+"Charming City": ExtResource("78_7vm8m"),
+"Chest Burster": ExtResource("79_67ykj"),
+"Chocolate TaCody": ExtResource("80_pc1j2"),
+"Chronomancer": ExtResource("81_lg0ij"),
+"Cinnamon Bun": ExtResource("82_kl446"),
+"Clone": ExtResource("83_mcd72"),
+"Cloud Tower": ExtResource("84_xhcys"),
+"Cold Soldier": ExtResource("85_epodk"),
+"Collaboration": ExtResource("86_0thpl"),
+"Communication": ExtResource("87_0arvu"),
+"Confectionary Ring": ExtResource("88_kkacg"),
+"Contribution": ExtResource("89_cqr00"),
+"Convey Wisdom": ExtResource("90_2xvxp"),
+"Cool Dog": ExtResource("91_gchbc"),
+"Cooperation": ExtResource("92_5dv54"),
+"Coordination": ExtResource("93_t8rap"),
+"Corn Bat": ExtResource("94_8bfr1"),
+"Corn Dog": ExtResource("95_oo3vt"),
+"Corn Lord": ExtResource("96_325yf"),
+"Corn Ronin": ExtResource("97_olkdu"),
+"Corn Scepter": ExtResource("98_ssw0q"),
+"Cornataur": ExtResource("99_acypj"),
+"Cornfield": ExtResource("100_imusn"),
+"Corns Templar": ExtResource("101_0n0fp"),
+"Cosmic Owl": ExtResource("102_sfcru"),
+"Cotton Devil": ExtResource("103_f7el2"),
+"Cotton Eyebat": ExtResource("104_a7l83"),
+"Cottonpult": ExtResource("105_71ldd"),
+"Cow": ExtResource("106_c20ws"),
+"Cowsper": ExtResource("107_incgf"),
+"Crab Skull Island": ExtResource("108_q45pg"),
+"Crazy Cat Lady": ExtResource("109_lpcrg"),
+"Creepy Crypt": ExtResource("110_5ae25"),
+"Cross Pollination": ExtResource("111_2hmki"),
+"Crust Crusher": ExtResource("112_vu8n0"),
+"Crystal Palace": ExtResource("113_lmuqa"),
+"Cuddle Puddle": ExtResource("114_kbmob"),
+"Cute Overload": ExtResource("115_28kfk"),
+"Cutie": ExtResource("117_4f5ln"),
+"Cutie Koala": ExtResource("116_qv81g"),
+"Cyclops": ExtResource("118_xj4wv"),
+"Dark Angel": ExtResource("119_invti"),
+"Dark-o-Mint": ExtResource("120_sy026"),
+"Davey Bones": ExtResource("121_slxng"),
+"Death": ExtResource("122_c7tvc"),
+"Deforestation": ExtResource("123_2dxpr"),
+"Diamond Dan": ExtResource("124_1lopd"),
+"Djini Ghost": ExtResource("125_kvk65"),
+"Dogboy": ExtResource("126_byaoh"),
+"Domed Stronghold": ExtResource("127_bbaym"),
+"Doubles Jake": ExtResource("128_4cocy"),
+"Dr. Death": ExtResource("129_k7k78"),
+"Dr. Stuffenstein": ExtResource("130_brr0s"),
+"Dragon Claw": ExtResource("131_lt73v"),
+"Dragon Foot": ExtResource("132_om5c6"),
+"Dragoon Parrotrooper": ExtResource("133_skcch"),
+"Drained Cleric": ExtResource("134_ffl8x"),
+"Dressage Dance Hall": ExtResource("135_ljv0v"),
+"Drooling Dude": ExtResource("136_unguo"),
+"Drop Zone": ExtResource("137_8xwkv"),
+"Druid of the Cob": ExtResource("138_hqkut"),
+"Duet": ExtResource("139_eglnb"),
+"Earth Mover": ExtResource("140_osmdw"),
+"Elf Hut": ExtResource("141_jqs06"),
+"Embarrassing Bard": ExtResource("142_7yysd"),
+"Emboldened Retriever": ExtResource("143_1p0fi"),
+"Emperor Penguin": ExtResource("144_o3gwv"),
+"Enchanted Celebration": ExtResource("145_frvq2"),
+"Endearing Elephant": ExtResource("146_wvdmm"),
+"Ethan Allfire": ExtResource("147_xirvx"),
+"Evil Eye": ExtResource("148_866xl"),
+"Extraordinary Spider": ExtResource("149_6pfwd"),
+"Extreme High Five": ExtResource("150_kjxmf"),
+"Eye Guy": ExtResource("151_sdna0"),
+"Fairy Shepard": ExtResource("152_8ya6b"),
+"Falling Star": ExtResource("153_0sa4q"),
+"Family Gathering": ExtResource("154_0ioc8"),
+"Fancy Pants Gnome": ExtResource("155_5pakp"),
+"Fancy Spa": ExtResource("156_cmwje"),
+"Fancy Zebracorn": ExtResource("157_he16i"),
+"Farmhouse": ExtResource("158_ftpfn"),
+"Fatapillar": ExtResource("159_jmtlu"),
+"Fatigued Librarian": ExtResource("160_5w1ga"),
+"Feedman": ExtResource("161_0k1wx"),
+"Fellowship": ExtResource("162_tc5l6"),
+"Fiddling Ferret": ExtResource("163_6vvpo"),
+"Field Reaper": ExtResource("164_lihhx"),
+"Field Stalker": ExtResource("165_ea86y"),
+"Field of Nightmares": ExtResource("166_g1ntx"),
+"Finn": ExtResource("167_iyyl2"),
+"Fionna": ExtResource("168_fig40"),
+"Firm Handshake": ExtResource("169_tp32x"),
+"Fisher Fish": ExtResource("170_l7j6b"),
+"Floating Ice Palace": ExtResource("171_8yikh"),
+"Fluffy Fox": ExtResource("172_4ata1"),
+"Fly Swatter": ExtResource("173_vuj1x"),
+"Fountain of Tears": ExtResource("174_06rh7"),
+"Four Star Fudge": ExtResource("175_eeaue"),
+"Free Fall": ExtResource("176_d30qn"),
+"Freeze Ray": ExtResource("177_oy8r6"),
+"Freezing Point": ExtResource("178_r4d3m"),
+"Friendship Bracelet": ExtResource("179_pgwmm"),
+"Fright Tower": ExtResource("180_m1lhm"),
+"Frost Dragon": ExtResource("181_8rxuh"),
+"Frosted Deanimator": ExtResource("182_xjeln"),
+"Frosted Snowwoman": ExtResource("183_ruadg"),
+"Frosty Frolic": ExtResource("184_usqdu"),
+"Frozen BanaNancy": ExtResource("185_5eluc"),
+"Frozen Fish": ExtResource("186_phg1h"),
+"Frozen Heart": ExtResource("187_0tdev"),
+"Frozen Lemon Aid": ExtResource("188_po1rt"),
+"Full Metal Racket": ExtResource("189_den8y"),
+"FumiGator": ExtResource("190_rxtvc"),
+"Fummy": ExtResource("191_hx1br"),
+"Funeral Home": ExtResource("192_l5o5u"),
+"Furious Chick": ExtResource("193_ke8vi"),
+"Furious Furor": ExtResource("194_lwqya"),
+"Furious Hen": ExtResource("195_51g4a"),
+"Furious Rooster": ExtResource("196_5gnfj"),
+"Future Scholar": ExtResource("197_wqc0n"),
+"Geomancer": ExtResource("198_uuqdt"),
+"Ghost": ExtResource("203_31bmf"),
+"Ghost Chest Burster": ExtResource("199_3m1wr"),
+"Ghost Hag": ExtResource("200_atygi"),
+"Ghost Ninja": ExtResource("201_nvj3y"),
+"Ghost Tree": ExtResource("202_g44q1"),
+"Giant Mummy Hand": ExtResource("204_mk0fc"),
+"Giddy Giraffe": ExtResource("205_rg0lg"),
+"Glacier Racer": ExtResource("206_h0528"),
+"Glorious Gramophone": ExtResource("207_1rdqm"),
+"Gnome Snot": ExtResource("208_e04nk"),
+"Goat": ExtResource("209_5mq38"),
+"Gold Ninja": ExtResource("210_sbkam"),
+"Golden Axe Stump": ExtResource("211_grwri"),
+"Golden Jackal": ExtResource("212_nkt43"),
+"Granary Weevil": ExtResource("213_0bx1a"),
+"Grand Mummy": ExtResource("214_vs8q3"),
+"Grand Prix": ExtResource("215_w2ku5"),
+"Grape Butt": ExtResource("216_er1ka"),
+"Grape Djini": ExtResource("217_lhtop"),
+"Gray Eyebat": ExtResource("218_rwy32"),
+"Green Cactiball": ExtResource("219_bpcqi"),
+"Green Candy": ExtResource("220_syp0t"),
+"Green Gnome": ExtResource("221_e0pp1"),
+"Green Mermaid": ExtResource("222_skusu"),
+"Green Merman": ExtResource("223_cnv05"),
+"Green Party Ogre": ExtResource("224_3cpmy"),
+"Green Snakey": ExtResource("225_7ajkg"),
+"Green ZebraCorn": ExtResource("226_mjgo3"),
+"Grizzled ZebraCorn": ExtResource("227_1fpwr"),
+"Gunter": ExtResource("228_gy3tq"),
+"Ham Fist": ExtResource("229_63kho"),
+"Happy Ghost Lucky": ExtResource("230_12lgi"),
+"Harvest Moon": ExtResource("231_u128j"),
+"Haybarn": ExtResource("232_t0sdp"),
+"Headphone Jerk": ExtResource("233_afxwr"),
+"Heavenly Gazer": ExtResource("234_rjm66"),
+"Helping Hand": ExtResource("235_ifsdt"),
+"Herculeye": ExtResource("236_wcfni"),
+"Hot Eyebat": ExtResource("237_bsn16"),
+"Hug It Out": ExtResource("238_p3cmx"),
+"Huggable Hedgehog": ExtResource("239_4xyqq"),
+"Hunkclops": ExtResource("240_ivyy3"),
+"Huntress Wizard": ExtResource("241_yqru8"),
+"Husker Amulet": ExtResource("242_u58s1"),
+"Husker Champion": ExtResource("243_r8yvg"),
+"Husker Garrison": ExtResource("244_cnaol"),
+"Husker Knight": ExtResource("245_buo7i"),
+"Husker Valkyrie": ExtResource("246_pikbw"),
+"Husker Worm": ExtResource("247_22v6s"),
+"Husky Parrotrooper": ExtResource("248_qge2l"),
+"Hydromancer": ExtResource("249_qxhor"),
+"Ice Base": ExtResource("250_ij2u5"),
+"Ice Cream Captain": ExtResource("251_vu3tc"),
+"Ice Cream Sammy": ExtResource("252_2ms7n"),
+"Ice King": ExtResource("253_7udx0"),
+"Ice Queen": ExtResource("254_igwts"),
+"Ice Sing": ExtResource("255_82vrw"),
+"Ice-olation Cell": ExtResource("256_qss3i"),
+"Icemeister": ExtResource("257_ibrbl"),
+"Icy Commando": ExtResource("258_5ed8v"),
+"Icy Infiltrator": ExtResource("259_eftps"),
+"Icy Intruder": ExtResource("260_d5joj"),
+"IcyLands": ExtResource("261_gpr6n"),
+"Igloo of Sanctuary": ExtResource("262_e7p1u"),
+"Immortal Maize Walker": ExtResource("263_7i2ha"),
+"Impossible Possum": ExtResource("264_cah1j"),
+"Incredible Egg": ExtResource("265_6bjnb"),
+"Industrial Assassin": ExtResource("266_hfbc3"),
+"Infant Scholar": ExtResource("267_bsvbv"),
+"Infinite Figure": ExtResource("268_dtwic"),
+"Infinite Haymaker": ExtResource("269_bsjfi"),
+"Infinite Pies": ExtResource("270_qy1u7"),
+"InstiGator": ExtResource("271_3rsq7"),
+"InvestiGator": ExtResource("272_elx2k"),
+"IrriGator": ExtResource("273_lwlvl"),
+"Jake": ExtResource("274_5koix"),
+"James Baxter": ExtResource("275_78fr4"),
+"Jinx": ExtResource("276_qppij"),
+"Jinxed Parrotrooper": ExtResource("277_v7ynk"),
+"Kernel Queen": ExtResource("278_v8uc5"),
+"King Baby": ExtResource("279_rt1vd"),
+"Knit Kitty": ExtResource("280_q2b2u"),
+"Kung Fu Power": ExtResource("281_6sn4r"),
+"Lady Beetle": ExtResource("282_ogamy"),
+"Lady Rainicorn": ExtResource("283_uygj4"),
+"Last Will & Detriment": ExtResource("284_ykd85"),
+"Learning Center": ExtResource("285_4fdth"),
+"Legion of Earlings": ExtResource("286_eok0w"),
+"Lemongrab": ExtResource("287_k3557"),
+"Life Beater Gnome": ExtResource("288_j5y1s"),
+"Lifeguard Lobster": ExtResource("289_uim4d"),
+"Lime Slimey": ExtResource("290_yaoih"),
+"Little Freezy": ExtResource("291_0m6ik"),
+"Log Knight": ExtResource("292_p82b8"),
+"Log Rhythm": ExtResource("293_p1213"),
+"Lonely Panda": ExtResource("294_s453t"),
+"Longboard Lobster": ExtResource("295_3r7l4"),
+"Lost Golem": ExtResource("296_ic6w7"),
+"Loveable Lamb": ExtResource("297_5neh1"),
+"Lt. Mushroom": ExtResource("298_2yoed"),
+"Lucky Penny": ExtResource("299_ddig3"),
+"Lumbercaddy": ExtResource("300_v4w3b"),
+"Lumpy Space Princess": ExtResource("301_4uxaa"),
+"Lunchpad": ExtResource("302_24kye"),
+"Mace Stump": ExtResource("303_v3sq4"),
+"Magenapping": ExtResource("304_kabjd"),
+"Magic Lamp": ExtResource("305_pmhx3"),
+"Magic Man": ExtResource("306_r2aay"),
+"Magic Ring Ding": ExtResource("307_2ehyt"),
+"Man-Witch": ExtResource("308_vsjih"),
+"Mantle Masher": ExtResource("309_8bi1f"),
+"Marceline": ExtResource("310_hotsq"),
+"Master of Disguise": ExtResource("311_okkup"),
+"Matchy Matchy": ExtResource("312_ugslf"),
+"Mausoleum": ExtResource("313_rqok8"),
+"Mint Chocouflage": ExtResource("314_87pit"),
+"Mocha Launcher": ExtResource("315_vx8fo"),
+"Moniker": ExtResource("316_bq1bo"),
+"Monolith of Doom": ExtResource("317_d5kv8"),
+"Mouthball": ExtResource("318_5ygih"),
+"Mr. Slicer": ExtResource("319_o2u00"),
+"Ms. Fluff": ExtResource("320_0vnkf"),
+"Ms. Mummy": ExtResource("321_usw4l"),
+"Music Mallard": ExtResource("322_kutkr"),
+"Musical Chair": ExtResource("323_f461d"),
+"NaviGator": ExtResource("324_lwpax"),
+"Necromancer": ExtResource("325_wvsnh"),
+"Neptr": ExtResource("326_vg78x"),
+"Nice Ice Baby": ExtResource("327_7h6pi"),
+"Nice Windmill": ExtResource("328_sujph"),
+"NiceLands": ExtResource("329_p4nkb"),
+"Niceasaurus Rex": ExtResource("330_56ajp"),
+"Night Tower": ExtResource("331_dwblv"),
+"Ogre Braces": ExtResource("332_b0dtc"),
+"Ogre Gas": ExtResource("333_788c8"),
+"Oil Refinery": ExtResource("334_ocr66"),
+"Ol' Corn Eye": ExtResource("335_yd185"),
+"Orange Slimey": ExtResource("336_gn653"),
+"Overstuffed Orangutan": ExtResource("337_h74ge"),
+"Palace of Bone": ExtResource("338_gvaag"),
+"Paladim": ExtResource("339_8mbvi"),
+"Pants of Awesome": ExtResource("340_cwvpp"),
+"Papercut Tiger": ExtResource("341_jbick"),
+"Parrotmilitary Outpost": ExtResource("342_i1vhx"),
+"Party Energy": ExtResource("343_fyejl"),
+"Party Oasis": ExtResource("344_1t531"),
+"Party_God": ExtResource("345_tl8be"),
+"Patched Puppy": ExtResource("346_sqqvp"),
+"Patchwork": ExtResource("347_471de"),
+"Patchy the Pumpkin": ExtResource("348_okocs"),
+"Patriot Popsicle": ExtResource("349_c0cho"),
+"Peach Djinni": ExtResource("350_2v3s8"),
+"Pentacutie": ExtResource("351_3ne4f"),
+"Pentaid": ExtResource("352_yyrau"),
+"Peppermint Butler": ExtResource("353_e7etx"),
+"Phyllis": ExtResource("354_8xxlm"),
+"Pickler": ExtResource("355_8v0cd"),
+"Pieclops": ExtResource("356_uat1t"),
+"Pied Piper": ExtResource("357_l2kv2"),
+"Piestorm": ExtResource("358_ix2of"),
+"Pillow Fortress": ExtResource("359_thluw"),
+"Pink Candy": ExtResource("360_v7p8a"),
+"Pink Merwitch": ExtResource("361_qoyyp"),
+"Pirate Bear": ExtResource("362_gx0wc"),
+"Polterclops": ExtResource("363_m1k7g"),
+"Pony": ExtResource("364_0i20b"),
+"Popcorn Butteredfly": ExtResource("365_od883"),
+"Popcorn Power": ExtResource("366_3ykon"),
+"Portal of Unsummoning": ExtResource("367_5hpmf"),
+"Portal to Nowhere": ExtResource("368_4xm58"),
+"Princess Bubblegum": ExtResource("369_efehd"),
+"Prismo": ExtResource("370_t7yo7"),
+"Psionic Architect": ExtResource("371_acuvq"),
+"Psionic Swashbuckler": ExtResource("372_2usb6"),
+"Psychic Tempest": ExtResource("373_iq50l"),
+"Puma Paw": ExtResource("374_21gjr"),
+"Punk Cat": ExtResource("375_flb5j"),
+"Puppy Parade": ExtResource("376_qdy8m"),
+"Pyramidia": ExtResource("377_h2b20"),
+"Pyromancer": ExtResource("378_alous"),
+"Quadurai": ExtResource("379_mbuuw"),
+"Quake Maker": ExtResource("380_ff3ia"),
+"Quick Pick Me Up": ExtResource("381_avv6h"),
+"Rainbow Eyebat": ExtResource("382_hjdf2"),
+"Raise the Dead": ExtResource("383_g4pb8"),
+"Rebounding Zebracorn": ExtResource("384_54lyr"),
+"Reclaim Landscape": ExtResource("385_y5o0c"),
+"Red Eyeling": ExtResource("386_yrvve"),
+"Redirect Danger": ExtResource("387_28s1x"),
+"Reign Deer": ExtResource("388_128ek"),
+"Repelling Rock Crab": ExtResource("389_o8aif"),
+"Ricardio": ExtResource("390_qod13"),
+"Ring of Damage": ExtResource("391_17gcc"),
+"Ring of Fluffy": ExtResource("392_2sr75"),
+"Ring of Third Eye": ExtResource("393_n1vh4"),
+"River of Swords": ExtResource("394_x3pau"),
+"Robomancer": ExtResource("395_d3gvd"),
+"Rock 'n Roller": ExtResource("396_emmid"),
+"Rock Out!": ExtResource("397_70p11"),
+"Rocktopus": ExtResource("398_o71qf"),
+"Routing Rock Crab": ExtResource("399_2sv5r"),
+"Royal Revelry": ExtResource("400_bxers"),
+"Sack of Pain": ExtResource("401_31j1r"),
+"Sailing Sand Crab": ExtResource("402_cb0my"),
+"Sand Angel": ExtResource("403_o5jk8"),
+"Sand Castle": ExtResource("404_tmxcm"),
+"Sand Eyebat": ExtResource("405_bgn6b"),
+"Sand Jackal": ExtResource("406_p4fjy"),
+"Sand Knights": ExtResource("407_lluii"),
+"Sand Pyramid": ExtResource("408_yshsq"),
+"Sand Sphinx": ExtResource("409_a6fja"),
+"SandWitch": ExtResource("410_y12g0"),
+"Sandasaurus Rex": ExtResource("411_8t7vw"),
+"Sandhorn Devil": ExtResource("412_qfkl3"),
+"Sandmagus": ExtResource("413_x0k3e"),
+"Sandsnake": ExtResource("414_nym08"),
+"SandyLands": ExtResource("415_rqjua"),
+"Schoolhouse": ExtResource("416_g36e4"),
+"Scorching Serve": ExtResource("417_v1fwr"),
+"Scroll of Bad Breath": ExtResource("418_lrbaf"),
+"Scroll of Fresh Breath": ExtResource("419_rw83o"),
+"Sea Hag": ExtResource("420_78b3p"),
+"Sewn Sloth": ExtResource("421_o18hc"),
+"Shadowy Pyramid": ExtResource("422_j2e56"),
+"Shark": ExtResource("423_8hskl"),
+"Sheep": ExtResource("424_8s56i"),
+"Shielded ZebraCorn": ExtResource("425_3y5rk"),
+"Shifty Sand Crab": ExtResource("426_2nrqb"),
+"Silo of Freedom": ExtResource("427_o83ju"),
+"Silo of Justice": ExtResource("428_jpqkg"),
+"Silo of Truth": ExtResource("429_lw3k0"),
+"Singing Sword": ExtResource("430_4oo8c"),
+"Sinkhole": ExtResource("431_8b8od"),
+"Ska-pion": ExtResource("432_xy5ds"),
+"Skeletal Hand": ExtResource("433_hbn7l"),
+"Slashy Sand Crab": ExtResource("434_8i8e2"),
+"Slay Rider": ExtResource("435_ur3hx"),
+"Slushie Salvo": ExtResource("436_eofl0"),
+"Smoldering Elder": ExtResource("437_2qhue"),
+"Smooth Eli": ExtResource("438_qfpy3"),
+"Snake Eye Ring": ExtResource("439_76u2o"),
+"Snake Eyes": ExtResource("440_jn366"),
+"Snakemint": ExtResource("441_7q25o"),
+"Snow Angel": ExtResource("442_gw5pb"),
+"Snow Baller": ExtResource("443_c6ffq"),
+"Snow Bank": ExtResource("444_ggyaq"),
+"Snow Bunny": ExtResource("445_oq781"),
+"Snow Business": ExtResource("446_c0nlb"),
+"Snow Dog": ExtResource("447_wg020"),
+"Snow Training Camp": ExtResource("448_x47fi"),
+"Snow Way": ExtResource("449_t2hw6"),
+"Snowblower": ExtResource("450_v8ko2"),
+"Snowvalanche": ExtResource("451_5patn"),
+"Socks of Fortitude": ExtResource("452_qqv60"),
+"Softie Recruit": ExtResource("453_rftb0"),
+"Solidarity": ExtResource("454_86vf2"),
+"Spazzy Cola": ExtResource("455_0csjq"),
+"Spell Warp": ExtResource("456_u8huf"),
+"Spike Icicle": ExtResource("457_uj68i"),
+"Spiked ZebraCorn": ExtResource("458_etnf0"),
+"Spirit Tower": ExtResource("459_ntes2"),
+"Sprucy Lucy": ExtResource("460_01sw1"),
+"Squatting Bald Man": ExtResource("461_5mwb7"),
+"Staff of Frailty": ExtResource("462_v8h85"),
+"Static Parrotrooper": ExtResource("463_3exwu"),
+"Steakchop": ExtResource("464_ptg5g"),
+"Stitched Squirrel": ExtResource("465_bvnfm"),
+"Strawberry Slimey": ExtResource("466_5lj6o"),
+"Strength Crystal": ExtResource("467_trtkp"),
+"Struzann Djinn": ExtResource("468_olv7r"),
+"Stuffed": ExtResource("469_0cxp5"),
+"SubjuGator": ExtResource("470_ks4q8"),
+"Subliminal Strength": ExtResource("471_2nbrm"),
+"Sun King": ExtResource("472_8f8pj"),
+"Sundae School": ExtResource("473_eqb7x"),
+"Susan Strong": ExtResource("474_2dh2f"),
+"Swamp Horn": ExtResource("475_su2yy"),
+"Sword Bouquet": ExtResource("476_0lob7"),
+"Synchronization": ExtResource("477_b2xim"),
+"TNTimmy": ExtResource("478_i518c"),
+"TailGator": ExtResource("479_oit57"),
+"Tandem Bike": ExtResource("480_41bhi"),
+"Tapped Out": ExtResource("481_ub6ei"),
+"Tax Reduction": ExtResource("482_urgst"),
+"Teeth Leaf": ExtResource("483_3x180"),
+"Teleport": ExtResource("484_o1ldt"),
+"Temple of the Sun": ExtResource("485_dvvc0"),
+"Terrible Tower": ExtResource("486_ewhwd"),
+"The Barrel": ExtResource("487_lnv5v"),
+"The Big Hen House": ExtResource("488_ak0pa"),
+"The Cooler": ExtResource("489_mmqah"),
+"The Cooper": ExtResource("490_qk3ti"),
+"The Dog": ExtResource("491_255fu"),
+"The Lich": ExtResource("492_122o3"),
+"The Mariachi": ExtResource("493_5aqw5"),
+"The Pig": ExtResource("496_mq4g7"),
+"The Pig - Kickstarter": ExtResource("494_drrsm"),
+"The Pig Promo": ExtResource("495_3bwx0"),
+"The Sludger": ExtResource("497_sivw1"),
+"Timmy Magic Eyes": ExtResource("498_udh0o"),
+"Tiny Elephant": ExtResource("499_1ks14"),
+"Tired Wombat": ExtResource("500_83o2i"),
+"Toilet of Doom": ExtResource("501_v3iaf"),
+"Tome of Ankhs": ExtResource("502_os2qc"),
+"Tools of the Trade": ExtResource("503_6ngd5"),
+"Tornado Wall Of Fire": ExtResource("504_sqd33"),
+"Tough Lumberjill": ExtResource("505_yerbg"),
+"Trained ZebraCorn Husker": ExtResource("506_ohlp5"),
+"Travelin' Farmer": ExtResource("507_fqmik"),
+"Travelin' Skeleton": ExtResource("508_hhnb7"),
+"Travelin' Wizard": ExtResource("509_hfm01"),
+"Tree Trunks": ExtResource("510_mwy4d"),
+"Tree of Undeath": ExtResource("511_slwy5"),
+"Twinsies": ExtResource("512_wsh5a"),
+"Ultra Dog": ExtResource("513_h7gsm"),
+"Unempty Coffin": ExtResource("514_3460x"),
+"Uni-Knight": ExtResource("515_pvxcq"),
+"Unicyclops": ExtResource("516_yqqfd"),
+"Useless Swamp": ExtResource("517_7yatl"),
+"Vampire Lord": ExtResource("518_i3cfx"),
+"Void Thimble": ExtResource("519_kf83u"),
+"Volcano": ExtResource("520_28x34"),
+"Wake Up Call": ExtResource("521_21oag"),
+"Wall of Chocolate": ExtResource("522_rnp2w"),
+"Wall of Ears": ExtResource("523_0gops"),
+"Wall of Sand": ExtResource("524_3pg5j"),
+"Wandering Bald Man": ExtResource("525_ejucy"),
+"Water Logged": ExtResource("526_rqp1e"),
+"Weakened Warrior": ExtResource("527_orkgc"),
+"Weary Trading Post": ExtResource("528_ln62r"),
+"Well-Dressed Wolf": ExtResource("529_i0vml"),
+"Whims of Fate": ExtResource("530_rgkp7"),
+"Windmill of Health": ExtResource("531_5cu5c"),
+"Witch Slap": ExtResource("532_sod0m"),
+"Witch Way": ExtResource("533_k2bmo"),
+"Woad Blood": ExtResource("534_uwrv8"),
+"Woad Mobile Home": ExtResource("535_md0jt"),
+"Woad Talisman": ExtResource("536_xfloa"),
+"Woadic Chief": ExtResource("537_0wp7h"),
+"Woadic Enchantress": ExtResource("538_b6kns"),
+"Woadic Marauder": ExtResource("539_g7krj"),
+"Woadic Matriarch": ExtResource("540_ysocf"),
+"Woadic Ring Leader": ExtResource("541_64uf8"),
+"Woadic Weirdo": ExtResource("542_ajitv"),
+"X-Large Spirit Soldier": ExtResource("543_pmffh"),
+"Yellow Gnome": ExtResource("544_27n70"),
+"Yellow Lighthouse": ExtResource("545_mivtg"),
+"Yellow Slimey": ExtResource("546_2tynl"),
+"Young ZebraCorn Husker": ExtResource("547_gmfiv"),
+"ZaZo's Magic Seeds": ExtResource("548_nxs0b"),
+"card_back": ExtResource("549_rgt2c")
+})

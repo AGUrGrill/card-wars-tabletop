@@ -9,6 +9,7 @@ const TEMP_IMG = preload("uid://bkuqpel75myiu")
 @onready var card: Area2D = $"."
 @onready var attack_label: Label = $Attack/AttackLabel
 @onready var defense_label: Label = $Defense/DefenseLabel
+@onready var steal: Button = $Steal
 @onready var landscape = $".." # Can be hand or landscape so leave vague
 
 
@@ -30,12 +31,12 @@ var card_owner: int
 func _ready() -> void:
 	remove_card_data()
 
-func change_card_data(landscape: String, type: String, _name: String, desc: String, cost: int, attack: int, defense: int, _is_flooped: bool, _owner: int):
+func change_card_data(_landscape: String, type: String, _name: String, desc: String, cost: int, attack: int, defense: int, _is_flooped: bool):
 	if card_name != "tempname": # If card was already played and now replaced, send to discards
 		return
 	
 	update_card_image(_name)
-	card_landscape = landscape
+	card_landscape = _landscape
 	card_type = type
 	if type == "Creature":
 		hide_buttons(false)
@@ -52,7 +53,7 @@ func change_card_data(landscape: String, type: String, _name: String, desc: Stri
 	card_defense = defense
 	card_base_defense = defense
 	defense_label.text = str(card_defense)
-	card_owner = _owner
+	card_owner = get_card_player_num()
 	if _is_flooped:
 		floop_card(true, false)
 		print("Flooping")
@@ -87,10 +88,12 @@ func hide_buttons(should_hide: bool):
 		attack_node.visible = false
 		defense_node.visible = false
 		floop_button.visible = false
+		steal.visible = false
 	else:
 		attack_node.visible = true
 		defense_node.visible = true
 		floop_button.visible = true
+		steal.visible = true
 
 func hide_card(should_hide: bool):
 	hide_buttons(should_hide)
@@ -106,7 +109,10 @@ func hide_image():
 
 # CARD FUNCTIONS
 func update_card_image(_name: String):
-	var tex = GameManager.db.cards.get(_name)
+	var tex: Texture2D = GameManager.db.cards.get(_name)
+	if tex == null:
+		print("error printing " + _name)
+		return
 	var img: Image = tex.get_image()
 	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
@@ -238,7 +244,15 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			if $"../..".can_select == false:
 				return
 			landscape.player.update_selected_card_image(card_name)
-		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), {})
 		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
+		GameManager.net_tell_clients_to_refresh_landscapes.rpc()
 		print("Selected " + card_name + " for " + str(get_card_player_num()))
-		
+
+
+func _on_steal_pressed() -> void:
+	if card_owner == 1:
+		GameManager.net_remove_creature_from_landscape_array.rpc(1, get_card_landscape_num())
+		GameManager.net_add_card_to_player_hand.rpc(2, get_card_data(true))
+	elif card_owner == 2:
+		GameManager.net_remove_creature_from_landscape_array.rpc(2, get_card_landscape_num())
+		GameManager.net_add_card_to_player_hand.rpc(1, get_card_data(true))

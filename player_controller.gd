@@ -275,6 +275,13 @@ func remove_card_logic():
 	#print("Removed " + selected_card["Name"] + " from P" + str(player_num))
 	player.update_selected_card_image("fart")
 
+func give_opp_card_logic():
+	if player_num == 1:
+		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.player1_selected_card)
+	elif player_num == 2:
+		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.player2_selected_card)
+	remove_card_logic()
+
 func change_to_discard_layout():
 	draw_card.text = "GRAB CARD"
 	discard_card.disabled = true
@@ -360,9 +367,9 @@ func update_player_hand_display():
 			if key == "Ability":
 				card_ability = card["Ability"]
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false, player_num)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false, player_num)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
 
@@ -400,11 +407,12 @@ func update_player_discards_display():
 		if card_broken_temp_fix:
 			continue
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false, player_num)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false, player_num)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
 	print(discards_hand)
 
+@rpc("any_peer", "call_local")
 func update_player_landscapes():
 	landscape_1_creature.remove_card_data()
 	landscape_2_creature.remove_card_data()
@@ -444,34 +452,35 @@ func update_player_landscapes():
 	# CREATURES
 	if not creatures[0].is_empty():
 		landscape_1_creature.is_in_hand = false
-		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"], player_num)
+		print(creatures[0])
+		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"])
 	if not creatures[1].is_empty():
 		landscape_2_creature.is_in_hand = false
-		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Defense"], creatures[1]["Floop Status"], player_num)
+		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Defense"], creatures[1]["Floop Status"])
 	if not creatures[2].is_empty():
 		landscape_3_creature.is_in_hand = false
-		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Defense"], creatures[2]["Floop Status"], player_num)
+		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Defense"], creatures[2]["Floop Status"])
 	if not creatures[3].is_empty():
 		landscape_4_creature.is_in_hand = false
-		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"], player_num)
+		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"])
 	
 	# BUILDINGS
 	if not buildings[0].is_empty():
 		landscape_1_building.is_in_hand = false
-		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Defense"], buildings[0]["Floop Status"], player_num)
+		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Defense"], buildings[0]["Floop Status"])
 	if not buildings[1].is_empty():
 		landscape_2_building.is_in_hand = false
-		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Defense"], buildings[1]["Floop Status"], player_num)
+		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Defense"], buildings[1]["Floop Status"])
 	if not buildings[2].is_empty():
 		landscape_3_building.is_in_hand = false
-		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Defense"], buildings[2]["Floop Status"], player_num)
+		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Defense"], buildings[2]["Floop Status"])
 	if not buildings[3].is_empty():
 		landscape_4_building.is_in_hand = false
-		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Defense"], buildings[3]["Floop Status"], player_num)
+		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Defense"], buildings[3]["Floop Status"])
 	
 	# SPELL
 	if not spell.is_empty():
-		spell_area_card.change_card_data(spell["Landscape"], spell["Card Type"], spell["Name"], spell["Ability"], spell["Cost"], spell["Attack"], spell["Defense"], spell["Floop Status"], player_num)
+		spell_area_card.change_card_data(spell["Landscape"], spell["Card Type"], spell["Name"], spell["Ability"], spell["Cost"], spell["Attack"], spell["Defense"], spell["Floop Status"])
 
 # UPDATE BUTTON CHANGES
 func _on_hp_down_pressed() -> void:
@@ -553,30 +562,14 @@ func _on_remove_card_pressed() -> void:
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
-func _on_swap_owner_pressed() -> void:
-	if not can_select:
-		return
-	if player_num == 1:
-		if not GameManager.player2_selected_card.is_empty():
-			var modified_card: Dictionary = GameManager.player2_selected_card
-			modified_card["Owner"] = 1
-			GameManager.net_update_player_selected_card.rpc(1, modified_card)
-			GameManager.net_update_player_selected_card.rpc(2, {})
-	elif player_num == 2:
-		if not GameManager.player1_selected_card.is_empty():
-			var modified_card: Dictionary = GameManager.player1_selected_card
-			modified_card["Owner"] = 2
-			GameManager.net_update_player_selected_card.rpc(2, modified_card)
-			GameManager.net_update_player_selected_card.rpc(1, {})
-	make_log_message("Swapped card owner.")
-	audio.confirm_sfx.play()
-	start_selection_buffer()
-
-
 func _on_input_timer_timeout() -> void:
 	input_timer_label.text = "0"
 	can_select = true
 
-
 func _on_log_timer_timeout() -> void:
 	log_label.text = ""
+
+func _on_give_opp_card_pressed() -> void:
+	give_opp_card_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()

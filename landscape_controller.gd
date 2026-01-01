@@ -28,39 +28,70 @@ func add_card_to_landscape():
 	# PLAYING CARD ON SELF
 	if player.player_num == 1 and multiplayer.get_unique_id() == GameManager.player1_id:
 		selected_card = GameManager.player1_selected_card
+		if selected_card == null:
+			return
+		for key in selected_card:
+			if key == "Card Type":
+				if selected_card["Card Type"] == "Creature":
+					place_creature_logic(1, selected_card, false)
+				elif selected_card["Card Type"] == "Building":
+					place_building_logic(1, selected_card)
+				elif selected_card["Card Type"] == "Spell":
+					place_spell_logic(1, selected_card)
+			elif key == "Landscape Played":
+				if selected_card["Landscape Played"] == 99:
+					GameManager.net_remove_card_from_player_hand.rpc(1, selected_card)
 		GameManager.net_update_player_selected_card.rpc(1, {})
-		if selected_card["Card Type"] == "Creature":
-			place_creature_logic(1, selected_card, false)
-		elif selected_card["Card Type"] == "Building":
-			place_building_logic(1, selected_card)
-		elif selected_card["Card Type"] == "Spell":
-			place_spell_logic(1, selected_card)
 	# PLAYING CARD ON OPPONENT - only creature
 	elif player.player_num == 1 and multiplayer.get_unique_id() == GameManager.player2_id:
 		selected_card = GameManager.player2_selected_card
+		if selected_card == null:
+			return
+		for key in selected_card:
+			if key == "Card Type":
+				if selected_card["Card Type"] == "Creature":
+					place_creature_logic(1, selected_card, true)
+			elif key == "Landscape Played":
+				if selected_card["Landscape Played"] == 99:
+					GameManager.net_remove_card_from_player_hand.rpc(2, selected_card)
 		GameManager.net_update_player_selected_card.rpc(2, {})
-		if selected_card["Card Type"] == "Creature":
-			place_creature_logic(1, selected_card,true)
 	# PLAYING CARD ON SELF
 	elif player.player_num == 2 and multiplayer.get_unique_id() == GameManager.player2_id:
 		selected_card = GameManager.player2_selected_card
+		if selected_card == null:
+			return
+		for key in selected_card:
+			if key == "Card Type":
+				if selected_card["Card Type"] == "Creature":
+					place_creature_logic(2, selected_card, false)
+				elif selected_card["Card Type"] == "Building":
+					place_building_logic(2, selected_card)
+				elif selected_card["Card Type"] == "Spell":
+					place_spell_logic(2, selected_card)
+			elif key == "Landscape Played":
+				if selected_card["Landscape Played"] == 99:
+					GameManager.net_remove_card_from_player_hand.rpc(2, selected_card)
 		GameManager.net_update_player_selected_card.rpc(2, {})
-		if selected_card["Card Type"] == "Creature":
-			place_creature_logic(2, selected_card, false)
-		elif selected_card["Card Type"] == "Building":
-			place_building_logic(2, selected_card)
-		elif selected_card["Card Type"] == "Spell":
-			place_spell_logic(2, selected_card)
 	# PLAYING CARD ON OPPONENT- only creature
 	elif player.player_num == 2 and multiplayer.get_unique_id() == GameManager.player1_id:
 		selected_card = GameManager.player1_selected_card
+		if selected_card == null:
+			return
+		for key in selected_card:
+			if key == "Card Type":
+				if selected_card["Card Type"] == "Creature":
+					place_creature_logic(2, selected_card, true)
+			elif key == "Landscape Played":
+				if selected_card["Landscape Played"] == 99:
+					GameManager.net_remove_card_from_player_hand.rpc(1, selected_card)
 		GameManager.net_update_player_selected_card.rpc(1, {})
-		if selected_card["Card Type"] == "Creature":
-			place_creature_logic(2, selected_card, false)
-		
 
 func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on_opponent: bool):
+	var potential_landscape_nums: Array[int] = [0,1,2,3]
 	if player_num == 1 and not playing_on_opponent:
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player1_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 		elif not GameManager.player1_played_creatures[landscape_num].is_empty():
@@ -69,9 +100,15 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 			GameManager.net_add_card_to_player_discards.rpc(1, placed_card)
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 	elif player_num == 1 and playing_on_opponent:
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player1_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 	elif player_num == 2 and not playing_on_opponent:
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
 		if GameManager.player2_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 		elif not GameManager.player2_played_creatures[landscape_num].is_empty():
@@ -80,6 +117,9 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 			GameManager.net_add_card_to_player_discards.rpc(2, placed_card)
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 	elif player_num == 2 and playing_on_opponent:
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
 		if GameManager.player2_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 
@@ -186,9 +226,11 @@ func remove_card_if_came_from_landscape(player_num: int, selected_card: Dictiona
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_pressed():
 		print("Clicked " + str(name))
-		add_card_to_landscape()
-		player.update_selected_card_image("fart")
-		player.audio.confirm_sfx.play()
+		if player.can_select:
+			player.start_selection_buffer()
+			add_card_to_landscape()
+			player.update_selected_card_image("fart")
+			player.audio.confirm_sfx.play()
 
 func _on_change_landscape_item_selected(index: int) -> void:
 	GameManager.net_change_player_landscape.rpc(player.player_num, landscape_num, change_landscape.get_item_text(index))

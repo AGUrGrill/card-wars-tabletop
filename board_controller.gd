@@ -41,8 +41,8 @@ func _process(delta: float) -> void:
 		player2.update_player_stat_display()
 		GameManager.stat_refresh_needed = false
 	if GameManager.landscape_refresh_needed:
-		player1.update_player_landscapes()
-		player2.update_player_landscapes()
+		player1.update_player_landscapes.rpc()
+		player2.update_player_landscapes.rpc()
 		GameManager.landscape_refresh_needed = false
 	if GameManager.hero_refresh_needed:
 		player1.update_hero_image()

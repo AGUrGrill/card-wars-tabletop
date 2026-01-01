@@ -47,7 +47,6 @@ var stat_refresh_needed: bool = false
 var landscape_refresh_needed: bool = false
 var hero_refresh_needed: bool = false
 
-
 func start_game():
 	if multiplayer.is_server():
 		#server_distribute_player_ids.rpc(player1_id, player2_id)
@@ -487,7 +486,7 @@ func net_remove_card_from_player_discards(player_num: int, _card: Dictionary):
 @rpc("any_peer", "call_local")
 func net_add_card_to_player_discards(player_num: int, card: Dictionary):
 	var modified_card: Dictionary = card
-	card["Landscape Played"] = -1
+	#card["Landscape Played"] = -1
 	if player_num == 1:
 		player1_discards.append(modified_card)
 	elif player_num == 2:
@@ -571,8 +570,8 @@ func net_remove_spell_from_play(player_num: int):
 # MISC
 @rpc("any_peer", "call_local") 
 func net_update_player_selected_card(player_num: int, card: Dictionary):
-	if card.is_empty():
-		return
+	if not card.is_empty():
+		print("selected " + card["Name"])
 	if player_num == 1:
 		player1_selected_card = card
 	elif player_num == 2:
