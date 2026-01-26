@@ -1,6 +1,11 @@
 
-After stealing a card, it returns 2 cards to the owners discard, though, it only shows as 2 for the owner not the opponenet
+?After stealing a card, it returns 2 cards to the owners discard, though, it only shows as 2 for the owner not the opponenet
 
-Floop may only work 1 way
+way to insert card on top of draw pile
 
-Fixing cards not being removed when move to another player
+Issue Cards:
+Deforstation - specific card in deck
+Ghost Chest Buster - card at bottom of deck
+Heaveanly Gazer - card at top of deck
+
+Change deck to preshuffle and send preshuffled deck, move card to top or bottom of deck, display deck, shuffle deck

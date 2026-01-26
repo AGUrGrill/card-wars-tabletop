@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjnoi5mfcfn1f"]
 
 [ext_resource type="Script" uid="uid://dx8tbqfm6kjyi" path="res://landscape_controller.gd" id="1_asa4r"]
-[ext_resource type="Texture2D" uid="uid://b0dtpyhlil8ys" path="res://Assets/Cards/Blue Plains.png" id="1_j1j1h"]
 [ext_resource type="Texture2D" uid="uid://2dfcdce5dsbx" path="res://Assets/spell_bg.png" id="2_6vom0"]
+[ext_resource type="Texture2D" uid="uid://b0dtpyhlil8ys" path="res://Assets/Cards/Blue Plains.png" id="2_425dq"]
 [ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://card.tscn" id="2_asa4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asa4r"]
@@ -17,7 +17,7 @@ script = ExtResource("1_asa4r")
 [node name="LandscapeImage" type="Sprite2D" parent="."]
 position = Vector2(-0.5000019, 0)
 scale = Vector2(0.20714286, 0.20854022)
-texture = ExtResource("1_j1j1h")
+texture = ExtResource("2_425dq")
 
 [node name="SpellImage" type="Sprite2D" parent="."]
 position = Vector2(0.49999785, -10.999995)

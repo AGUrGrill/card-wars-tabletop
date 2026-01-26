@@ -13,7 +13,7 @@ var deck: Array[String]
 var default_deck_choice: String
 var deck_choosen: bool = false
 
-var in_testing_mode: bool = true
+var in_testing_mode: bool = false
 
 func send_log_msg(message: String):
 	log_text.text = message
@@ -60,7 +60,7 @@ func _on_start_client_pressed() -> void:
 	GameManager.player1_hero = hero
 	for card_name in deck:
 		GameManager.player1_deck.append(GameManager.draw_by_name(card_name))
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(3).timeout
 	#GameManager.client_give_player_id.rpc(1, multiplayer.get_unique_id())
 	GameManager.player1_id = multiplayer.get_unique_id()
 	GameManager.recieve_player_deck.rpc(1, GameManager.player1_deck)
@@ -82,7 +82,7 @@ func _on_start_client_2_pressed() -> void:
 	GameManager.player2_hero = hero
 	for card_name in deck:
 		GameManager.player2_deck.append(GameManager.draw_by_name(card_name))
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(3).timeout
 	#GameManager.client_give_player_id.rpc(2, multiplayer.get_unique_id())
 	GameManager.player2_id = multiplayer.get_unique_id()
 	GameManager.recieve_player_deck.rpc(2, GameManager.player2_deck)

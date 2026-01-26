@@ -39,16 +39,18 @@ var disabled: bool = true
 @onready var audio: Node = $Audio
 var can_select: bool = true
 
-# need to fix where cards discard
-
 func _ready() -> void:
 	hand.set_meta("player_num", player_num)
 	if player_num == 1 and not multiplayer.get_unique_id() == GameManager.player1_id:
 		audio.audio_type = "Disabled"
+		disable_inputs(true, true)
 	elif player_num == 2 and not multiplayer.get_unique_id() == GameManager.player2_id:
 		audio.audio_type = "Disabled"
+		disable_inputs(true, true)
+	else:
+		disable_inputs(false, true)
 	disabled = true
-	disable_inputs(false, true)
+	
 
 func _process(delta: float) -> void:
 	determine_display_visibility()
@@ -452,7 +454,6 @@ func update_player_landscapes():
 	# CREATURES
 	if not creatures[0].is_empty():
 		landscape_1_creature.is_in_hand = false
-		print(creatures[0])
 		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"])
 	if not creatures[1].is_empty():
 		landscape_2_creature.is_in_hand = false
@@ -463,7 +464,7 @@ func update_player_landscapes():
 	if not creatures[3].is_empty():
 		landscape_4_creature.is_in_hand = false
 		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"])
-	
+	print(creatures)
 	# BUILDINGS
 	if not buildings[0].is_empty():
 		landscape_1_building.is_in_hand = false

@@ -56,7 +56,8 @@ func change_card_data(_landscape: String, type: String, _name: String, desc: Str
 	card_owner = get_card_player_num()
 	if _is_flooped:
 		floop_card(true, false)
-		print("Flooping")
+	elif not _is_flooped:
+		floop_card(false, false)
 	hide_card(false)
 	if is_in_hand:
 		hide_buttons(true)
@@ -204,7 +205,10 @@ func get_card_player_num() -> int:
 func get_card_landscape_num() -> int:
 	var landscape_num: int
 	if landscape.get_class() == "HBoxContainer": # If hand get player num via metadata
-		landscape_num = 99
+		if $"../..".in_discard_mode:
+			landscape_num = -1
+		else:
+			landscape_num = 99
 	else:
 		landscape_num = landscape.landscape_num
 	return landscape_num
@@ -243,7 +247,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		else:
 			if $"../..".can_select == false:
 				return
-			landscape.player.update_selected_card_image(card_name)
+			$"../..".player.update_selected_card_image(card_name)
 		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
 		GameManager.net_tell_clients_to_refresh_landscapes.rpc()
 		print("Selected " + card_name + " for " + str(get_card_player_num()))

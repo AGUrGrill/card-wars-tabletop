@@ -95,14 +95,13 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 		if GameManager.player1_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 		elif not GameManager.player1_played_creatures[landscape_num].is_empty():
-			var placed_card: Dictionary = GameManager.player1_played_creatures[landscape_num]
+			GameManager.net_add_card_to_player_discards.rpc(1, GameManager.player1_played_creatures[landscape_num])
 			GameManager.net_remove_creature_from_landscape_array.rpc(1, landscape_num)
-			GameManager.net_add_card_to_player_discards.rpc(1, placed_card)
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 	elif player_num == 1 and playing_on_opponent:
 		for num in potential_landscape_nums:
 			if selected_card["Landscape Played"] == num:
-				GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
+				GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
 		if GameManager.player1_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 	elif player_num == 2 and not playing_on_opponent:
@@ -112,14 +111,13 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 		if GameManager.player2_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 		elif not GameManager.player2_played_creatures[landscape_num].is_empty():
-			var placed_card: Dictionary = GameManager.player2_played_creatures[landscape_num]
+			GameManager.net_add_card_to_player_discards.rpc(2, GameManager.player2_played_creatures[landscape_num])
 			GameManager.net_remove_creature_from_landscape_array.rpc(2, landscape_num)
-			GameManager.net_add_card_to_player_discards.rpc(2, placed_card)
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 	elif player_num == 2 and playing_on_opponent:
 		for num in potential_landscape_nums:
 			if selected_card["Landscape Played"] == num:
-				GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
+				GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player2_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 
@@ -194,8 +192,16 @@ func old_add_card_to_landscape():
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
 	
 func update_landscape_image(_name: String):
-	var tex = GameManager.db.cards.get(_name)
-	landscape_image.texture = tex
+	if _name == "Facedown":
+		_name = "card_back"
+	var tex: Texture2D = GameManager.db.cards.get(_name)
+	if tex == null:
+		print("error printing " + _name)
+		return
+	var img: Image = tex.get_image()
+	img.resize(700, 1007, Image.INTERPOLATE_LANCZOS)
+	var texture: ImageTexture = ImageTexture.create_from_image(img)
+	landscape_image.texture = texture
 
 func discard_card_if_in_play(player_num: int):
 	var current_card: Dictionary

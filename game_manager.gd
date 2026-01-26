@@ -57,7 +57,7 @@ func start_game():
 			for i in range(5):
 				net_add_card_to_player_hand.rpc(1, draw_card(1))
 				net_add_card_to_player_hand.rpc(2, draw_card(2))
-		server_update_turn_info_for_clients(p1_turn, p2_turn, round_num)
+		server_update_turn_info_for_clients.rpc(p1_turn, p2_turn, round_num)
 		net_tell_clients_to_refresh_hand.rpc()
 		net_tell_clients_to_refresh_landscapes.rpc()
 		net_tell_clients_to_refresh_stats.rpc()
@@ -151,11 +151,55 @@ func check_end_game():
 		if player1_health <= 0:
 			print("Player 2 Wins!")
 			game_ended = true
-			net_declare_game_end.rpc(false)
+			net_declare_game_end.rpc(true)
 		elif player2_health <= 0:
 			print("Player 1 Wins!")
 			game_ended = true
-			net_declare_game_end.rpc(true)
+			net_declare_game_end.rpc(false)
+
+func terminate_game():
+	if not multiplayer.is_server():
+		return
+		
+	for peer_id in multiplayer.get_peers():
+		NetworkHandler.peer.disconnect_peer(peer_id, false)
+	
+	player1_id = 0
+	player2_id = 0
+	# PLAYER DATA
+	player1_hero = ""
+	player1_deck.clear()
+	player1_health = DEFAULT_HP
+	player1_actions = DEFAULT_ACTIONS
+	player1_hand.clear()
+	player1_discards.clear()
+	player1_played_creatures = [{}, {}, {}, {}]
+	player1_played_buildings = [{}, {}, {}, {}]
+	player1_landscapes = ["", "", "", ""]
+	player1_current_spell.clear()
+	player1_selected_card.clear()
+
+	player2_hero =""
+	player2_deck.clear()
+	player2_health = DEFAULT_HP
+	player2_actions= DEFAULT_ACTIONS
+	player2_hand.clear()
+	player2_discards.clear()
+	player2_played_creatures = [{}, {}, {}, {}]
+	player2_played_buildings = [{}, {}, {}, {}]
+	player2_landscapes = ["", "", "", ""]
+	player2_current_spell.clear()
+	player2_selected_card.clear()
+	round_num = 0
+	game_ended = false
+	who_won = false # P1 = false, P2 = true
+	p1_turn = true
+	p2_turn = false
+
+	hand_refresh_needed = false
+	stat_refresh_needed = false
+	landscape_refresh_needed = false
+	hero_refresh_needed = false
 
 @rpc("authority", "call_remote")
 func net_declare_game_end(was_p2_winner: bool):
@@ -485,8 +529,20 @@ func net_remove_card_from_player_discards(player_num: int, _card: Dictionary):
 
 @rpc("any_peer", "call_local")
 func net_add_card_to_player_discards(player_num: int, card: Dictionary):
-	var modified_card: Dictionary = card
-	#card["Landscape Played"] = -1
+	var modified_card: Dictionary
+	modified_card = {
+		"Name": card["Name"],
+		"Card Type": card["Card Type"],
+		"Landscape": card["Landscape"],
+		"Ability": card["Ability"],
+		"Cost": card["Cost"],
+		"Attack": card["Attack"],
+		"Defense": card["Defense"],
+		"Floop Status": card["Floop Status"],
+		"Landscape Played": -1,
+		"Owner": card["Owner"]
+	}
+	print(modified_card)
 	if player_num == 1:
 		player1_discards.append(modified_card)
 	elif player_num == 2:
