@@ -1,11 +1,22 @@
-
+BUGS
+allow clicking on whole card
+X when restarting game, reset win value
+when other player (p2) puts card on landscape player (p1) controls it dissapears
+make sure its set up to accept when you are out of ur deck?
 ?After stealing a card, it returns 2 cards to the owners discard, though, it only shows as 2 for the owner not the opponenet
+after clicked view deck, trying to view discards takes 2 clicks
 
+FEATURES
+auto landscape placing
+fanservice-Ethan
+[ DECK IS NOW SHUFFLED, CARDS GRABLE, AND VIEWABLE | still need to be able to only grab bottom, only shuffle a certain amount etc]
+change deck to be pregenerated in random order to allow for card bottom, top and scry cards to work, and search deck 
+(Change deck to preshuffle and send preshuffled deck, move card to top or bottom of deck, display deck, shuffle deck)
 way to insert card on top of draw pile
 
 Issue Cards:
 Deforstation - specific card in deck
 Ghost Chest Buster - card at bottom of deck
 Heaveanly Gazer - card at top of deck
-
-Change deck to preshuffle and send preshuffled deck, move card to top or bottom of deck, display deck, shuffle deck
+Happy Ghost - look at top of deck
+(any scry card)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dycs2rc7imye2"]
+[gd_scene format=3 uid="uid://dycs2rc7imye2"]
 
 [ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://card_controller.gd" id="1_e484p"]
 [ext_resource type="Texture2D" uid="uid://bkuqpel75myiu" path="res://Assets/Evil_Eye.png" id="1_q5obu"]
@@ -8,34 +8,169 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1i5pp"]
 size = Vector2(140, 210)
 
-[node name="Card" type="Area2D"]
+[sub_resource type="Animation" id="Animation_e484p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Image:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1i5pp"]
+resource_name = "glow"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.6955032, 0.6955031, 0.6955031, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pjytt"]
+resource_name = "heal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.6804763, 1, 0.65291387, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b4rk6"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.6887288, 0.63938314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6lcat"]
+resource_name = "remove"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CorpseImage:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.19999999, 0.29999998, 0.43333334, 0.56666666, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5707963267948966, 3.141592653589793, 4.71238898038469, 6.283185307179586]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CorpseImage:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.19999999, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fpac0"]
+resource_name = "rumble"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.01745329251994329, 0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1i5pp"]
+_data = {
+&"RESET": SubResource("Animation_e484p"),
+&"glow": SubResource("Animation_1i5pp"),
+&"heal": SubResource("Animation_pjytt"),
+&"hurt": SubResource("Animation_b4rk6"),
+&"remove": SubResource("Animation_6lcat"),
+&"rumble": SubResource("Animation_fpac0")
+}
+
+[node name="Card" type="Area2D" unique_id=2143805399]
 z_index = 9
 scale = Vector2(0.7, 0.7)
 collision_priority = 9.0
 priority = 9
 script = ExtResource("1_e484p")
 
-[node name="Image" type="Sprite2D" parent="."]
+[node name="Image" type="Sprite2D" parent="." unique_id=1415465677]
 texture = ExtResource("1_q5obu")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CorpseImage" type="Sprite2D" parent="." unique_id=808037271]
+visible = false
+texture = ExtResource("1_q5obu")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694732175]
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_1i5pp")
 metadata/_edit_lock_ = true
 
-[node name="Attack" type="Control" parent="."]
+[node name="Attack" type="Control" parent="." unique_id=770650257]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 109.935
 offset_right = 109.935
 
-[node name="AttackIcon" type="Sprite2D" parent="Attack"]
+[node name="AttackIcon" type="Sprite2D" parent="Attack" unique_id=70507550]
 position = Vector2(-162.07785, 6.4285717)
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("2_e484p")
 
-[node name="AttackUP" type="Button" parent="Attack"]
+[node name="AttackUP" type="Button" parent="Attack" unique_id=1765787481]
 layout_mode = 0
 offset_left = -181.36357
 offset_top = 105.285706
@@ -43,7 +178,7 @@ offset_right = -163.36357
 offset_bottom = 136.28572
 text = "+"
 
-[node name="AttackLabel" type="Label" parent="Attack"]
+[node name="AttackLabel" type="Label" parent="Attack" unique_id=1948700894]
 layout_mode = 0
 offset_left = -177.07785
 offset_top = -5.571429
@@ -52,7 +187,7 @@ offset_bottom = 21.428572
 text = "1"
 horizontal_alignment = 1
 
-[node name="AttackDOWN" type="Button" parent="Attack"]
+[node name="AttackDOWN" type="Button" parent="Attack" unique_id=1357021314]
 layout_mode = 0
 offset_left = -162.36357
 offset_top = 105.285706
@@ -60,16 +195,16 @@ offset_right = -144.36357
 offset_bottom = 136.28572
 text = "-"
 
-[node name="Defense" type="Control" parent="."]
+[node name="Defense" type="Control" parent="." unique_id=1308192102]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="DefenseIcon" type="Sprite2D" parent="Defense"]
+[node name="DefenseIcon" type="Sprite2D" parent="Defense" unique_id=1122370324]
 position = Vector2(52.142838, 5.8285675)
 scale = Vector2(0.015, 0.015)
 texture = ExtResource("3_fpac0")
 
-[node name="DefenseUP" type="Button" parent="Defense"]
+[node name="DefenseUP" type="Button" parent="Defense" unique_id=2116602438]
 layout_mode = 0
 offset_left = 38.57143
 offset_top = 106.11427
@@ -77,7 +212,7 @@ offset_right = 56.57143
 offset_bottom = 137.11427
 text = "+"
 
-[node name="DefenseLabel" type="Label" parent="Defense"]
+[node name="DefenseLabel" type="Label" parent="Defense" unique_id=2068458523]
 layout_mode = 0
 offset_left = 37.142857
 offset_top = -6.1716537
@@ -86,7 +221,7 @@ offset_bottom = 20.828346
 text = "1"
 horizontal_alignment = 1
 
-[node name="DefenseDOWN" type="Button" parent="Defense"]
+[node name="DefenseDOWN" type="Button" parent="Defense" unique_id=751584064]
 layout_mode = 0
 offset_left = 57.57143
 offset_top = 106.11427
@@ -94,20 +229,37 @@ offset_right = 75.57143
 offset_bottom = 137.11427
 text = "-"
 
-[node name="FloopButton" type="Button" parent="."]
+[node name="FloopButton" type="Button" parent="." unique_id=1885237076]
 offset_left = -30.0
 offset_top = 106.0
 offset_right = 31.0
 offset_bottom = 137.0
 text = "FLOOP"
 
-[node name="Steal" type="Button" parent="."]
+[node name="Steal" type="Button" parent="." unique_id=221891964]
 offset_left = 38.571426
 offset_top = -105.71429
 offset_right = 70.57143
 offset_bottom = -85.71429
 theme_override_font_sizes/font_size = 8
 text = "STEAL"
+
+[node name="Flip" type="Button" parent="." unique_id=22890008]
+offset_left = -38.571426
+offset_top = -85.71429
+offset_right = -6.5714264
+offset_bottom = -65.71429
+rotation = 3.1415927
+theme_override_font_sizes/font_size = 8
+text = "FLIP"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1283603300]
+libraries/ = SubResource("AnimationLibrary_1i5pp")
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1404208869]
+wait_time = 0.7
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
@@ -118,3 +270,6 @@ text = "STEAL"
 [connection signal="pressed" from="Defense/DefenseDOWN" to="." method="_on_defense_down_pressed"]
 [connection signal="pressed" from="FloopButton" to="." method="_on_floop_button_pressed"]
 [connection signal="pressed" from="Steal" to="." method="_on_steal_pressed"]
+[connection signal="pressed" from="Flip" to="." method="_on_flip_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

@@ -13,7 +13,7 @@ var deck: Array[String]
 var default_deck_choice: String
 var deck_choosen: bool = false
 
-var in_testing_mode: bool = false
+var in_testing_mode: bool = true
 
 func send_log_msg(message: String):
 	log_text.text = message
@@ -110,7 +110,38 @@ func _on_timer_timeout() -> void:
 func _on_choose_deck_item_selected(index: int) -> void:
 	var choosen_deck: String = choose_deck.get_item_text(index)
 	match choosen_deck:
-		"Jake":
+		"☆ Magic Man":
+			default_deck_choice = "Hero
+Magic Man
+
+Landscapes
+4 - Cornfield
+
+Creatures
+3 - Corn Ronin
+3 - Corn Lord
+3 - Cornataur
+3 - Ethan Allfire
+3 - Field Reaper
+3 - Field Stalker
+3 - Husker Knight
+3 - Husker Champion
+3 - Wall of Ears
+3 - Husker Valkyrie
+
+Spells
+3 - Beach Ball
+2 - Bale Out
+3 - Field of Nightmares
+2 - Unempty Coffin
+
+Buildings
+3 - Husker Garrison
+2 - Blood Fortress
+3 - Celestial Castle
+2 - Yellow Lighthouse
+"
+		"☆☆ Jake":
 			default_deck_choice = "Hero
 Jake
 
@@ -118,67 +149,32 @@ Landscapes
 4 - Cornfield
 
 Creatures
+3 - Earth Mover
+3 - Husker Worm
+3 - Quake Maker
+3 - The Pig
+3 - Big Foot
+3 - Feedman
 3 - Field Reaper
 3 - Field Stalker
-3 - Travelin' Farmer
-3 - Husker Worm
 3 - Husker Champion
-3 - Ethan Allfire
-3 - Popcorn Butteredfly
-3 - Big Foot
-3 - Earth Mover
-3 - Mantle Masher
-3 - Quake Maker
-1 - The Pig
+3 - Husker Valkyrie
+2 - Patchy the Pumpkin
 
 Spells
-3 - Field of Nightmares
-3 - Bale Out
-3 - Clone
-3 - Rock Out!
-
-Buildings
-3 - Yellow Lighthouse
-3 - Husker Garrison
-3 - Celestial Castle"
-		"Marceline":
-			default_deck_choice = "Hero
-Marceline
-
-Landscapes
-1 - Cornfield
-1 - NiceLands
-2 - Useless Swamp
-
-Creatures
-3 - Man-Witch
-3 - Red Eyeling
-3 - Log Knight
-3 - Field Stalker
-3 - Unicyclops
-3 - Black Paladin
-3 - Dark-o-Mint
-3 - Bog Bum
-3 - Lt. Mushroom
-3 - Teeth Leaf
-3 - Furious Rooster
-3 - Furious Chick
-3 - Furious Hen
-
-Spells
-3 - Clone
+3 - Reclaim Landscape
+2 - Rock Out!
+2 - Volcano
 3 - Beach Ball
-3 - Unempty Coffin
-2 - Whims of Fate
+2 - Field of Nightmares
 
 Buildings
-2 - Cardboard Mansion
-3 - Funeral Home
-2 - Night Tower
-2 - Shadowy Pyramid
-2 - Mausoleum
+3 - Husker Garrison
+3 - Celestial Castle
+2 - Yellow Lighthouse
+2 - Haybarn
 "
-		"Fionna":
+		"☆☆ Fionna":
 			default_deck_choice = "Hero
 Fionna
 
@@ -187,71 +183,142 @@ Landscapes
 
 Creatures
 3 - Ancient Scholar
-2 - Big Foot
-2 - Cool Dog
-2 - Crazy Cat Lady
-2 - Drooling Dude
+3 - Crazy Cat Lady
 2 - Emboldened Retriever
-2 - Fiddling Ferret
-2 - Furious Chick
-2 - Heavenly Gazer
-3 - Happy Ghost Lucky
+3 - Fiddling Ferret
+3 - Heavenly Gazer
 3 - Infant Scholar
-2 - Jinxed Parrotrooper
-2 - Nice Ice Baby
-2 - Static Parrotrooper
-1 - The Pig
+3 - Tiny Elephant
 2 - TNTimmy
-2 - Vampire Lord
-2 - X-Large Spirit Soldier
-2 - Tiny Elephant
+3 - Vampire Lord
+3 - Static Parrotrooper
+3 - X-Large Spirit Soldier
+2 - Drooling Dude
+3 - Furious Chick
 
 Spells
 3 - Beach Ball
-2 - Drop Zone
-2 - Friendship Bracelet
-2 - Gnome Snot
-2 - River of Swords
 2 - Unempty Coffin
+3 - Gnome Snot
+2 - Friendship Bracelet
 
 Buildings
-2 - Learning Center
+3 - Learning Center
 3 - Celestial Castle
 3 - Blood Fortress
+1 - Celestial Fortress
 "
-		"Princess Bubblegum":
+		"☆☆ Prismo":
 			default_deck_choice = "Hero
-Princess Bubblegum
+Prismo
 
 Landscapes
-4 - NiceLands
+1 - Blue Plains
+1 - NiceLands
+1 - Cornfield
+1 - SandyLands
 
 Creatures
-3 - Adorabunny
-2 - Stitched Squirrel
-3 - Huggable Hedgehog
-3 - Giddy Giraffe
-3 - Grizzled ZebraCorn
-2 - Burly Lumberjack
-3 - Popcorn Butteredfly
-2 - Log Knight
-3 - Husker Champion
-3 - Husker Valkyrie
-3 - Knit Kitty
-3 - Static Parrotrooper
+3 - Ancient Scholar
+3 - Beach Mummy
+3 - Fancy Zebracorn
+2 - Field Stalker
+2 - Fummy
+3 - Gold Ninja
+3 - Heavenly Gazer
+3 - Lime Slimey
 3 - Niceasaurus Rex
+3 - Sand Knights
+2 - Sandhorn Devil
+2 - SandWitch
+3 - Rebounding Zebracorn
+3 - Strawberry Slimey
+3 - Yellow Slimey
 
 Spells
-2 - Hug It Out
 3 - Beach Ball
-3 - Clone
-2 - Ring of Fluffy
-2 - Stuffed
-2 - Harvest Moon
+2 - Bail Out
+3 - Field of Nightmares
+2 - Gnome Snot
+2 - Scorching Serve
 
 Buildings
-3 - Celestial Castle
-3 - Bean Ball Bomba
+3 - Sand Castle
 2 - Yellow Lighthouse
-3 - Cabin of Many Woods
+3 - Celestial Castle
+2 - Blood Fortress
+"
+		"☆☆☆ The Lich":
+			default_deck_choice = "Hero
+The Lich
+
+Landscapes
+2 - Cornfield
+2 - Useless Swamp
+
+Creatures
+3 - Man-Witch
+3 - Helping Hand
+3 - Log Knight
+3 - Black Paladin
+3 - Bog Bum
+3 - Fly Swatter
+2 - Field Reaper
+3 - Gray Eyebat
+3 - Lt. Mushroom
+3 - Teeth Leaf
+3 - Unicyclops
+3 - Red Eyeling
+3 - Immortal Maize Walker
+2 - Field Stalker
+
+Spells
+3 - Ancient Comet
+3 - Unempty Coffin
+3 - Whims of Fate
+3 - Beach Ball
+
+Buildings
+3 - Monolith of Doom
+3 - Funeral Home
+2 - Shadowy Pyramid
+2 - Yellow Lighthouse
+2 - Cardboard Mansion
+2 - Night Tower
+"
+		"☆☆☆ James Baxter":
+			default_deck_choice = "Hero
+James Baxter
+
+Landscapes
+1 - Blue Plains
+2 - SandyLands
+1 - Useless Swamp
+
+Creatures
+3 - Orange Slimey
+3 - Fisher Fish
+3 - Golden Axe Stump
+3 - Blue Slimey
+2 - Fummy
+3 - Gray Eyebat
+3 - Heavenly Gazer
+3 - Lime Slimey
+3 - Red Eyeling
+3 - SandWitch
+3 - Sand Knights
+3 - Static Parrotrooper
+
+Spells
+3 - Quick Pick Me Up
+3 - Drop Zone
+3 - Snake Eye Ring
+3 - Beach Ball
+
+Buildings
+3 - Sand Sphinx
+2 - Bongo Bounce House
+3 - Celestial Castle
+3 - Shadowy Pyramid
+
 "

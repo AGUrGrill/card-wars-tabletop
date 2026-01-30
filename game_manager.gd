@@ -1,5 +1,6 @@
 extends Node
 
+#region Variables
 const CARD_LIST = "res://card_list.json"
 var db: CardDatabase = preload("res://Assets/Database/CardDatabase.tres")
 const MAX_CARDS = 568 # 717 is newest, 568 is released
@@ -47,16 +48,21 @@ var stat_refresh_needed: bool = false
 var landscape_refresh_needed: bool = false
 var hero_refresh_needed: bool = false
 
+#endregion
+#region Game Logic
+
 func start_game():
 	if multiplayer.is_server():
 		#server_distribute_player_ids.rpc(player1_id, player2_id)
-		server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
+		player1_deck.shuffle()
+		player2_deck.shuffle()
 		p1_turn = true
 		p2_turn = false
 		if multiplayer.is_server():
 			for i in range(5):
 				net_add_card_to_player_hand.rpc(1, draw_card(1))
 				net_add_card_to_player_hand.rpc(2, draw_card(2))
+		server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
 		server_update_turn_info_for_clients.rpc(p1_turn, p2_turn, round_num)
 		net_tell_clients_to_refresh_hand.rpc()
 		net_tell_clients_to_refresh_landscapes.rpc()
@@ -218,6 +224,8 @@ func server_update_turn_info_for_clients(is_p1_turn: bool, is_p2_turn: bool, _ro
 		p2_turn = true
 		p1_turn = false
 	round_num = _round_num
+#endregion
+#region Get Data
 
 # RETRIEVE CARD DATA
 func load_json_file(file_path: String) -> Dictionary:
@@ -294,6 +302,8 @@ func client_give_player_id(player_num: int, id: int):
 func server_distribute_player_ids(p1_id: int, p2_id: int):
 	player1_id = p1_id
 	player2_id = p2_id
+#endregion
+#region Updates
 
 # DRAW FUNCTIONS
 func draw_card(player_num: int):
@@ -303,16 +313,38 @@ func draw_card(player_num: int):
 			if player1_deck.is_empty():
 				print("Out of cards in p1 deck.")
 				return
-			card_data = player1_deck[randi() % player1_deck.size()]
-			player1_deck.remove_at(player1_deck.find(card_data))
+			card_data = player1_deck.pop_back()
+			#player1_deck.remove_at(player1_deck.find(card_data))
 		elif player_num == 2:
 			if player2_deck.is_empty():
 				print("Out of cards in p2 deck.")
 				return
-			card_data = player2_deck[randi() % player2_deck.size()]
-			player2_deck.remove_at(player2_deck.find(card_data))
+			card_data = player2_deck.pop_back()
+			#player2_deck.remove_at(player2_deck.find(card_data))
 		print(card_data)
 		return card_data
+
+# Could be removed, made on accident
+func draw_player_card_by_name(player_num: int, name: String):
+	var card_data
+	if player_num == 1:
+		if player1_deck.is_empty():
+			print("Out of cards in p1 deck.")
+			return
+		for card in player1_deck:
+			if card["Name"] == name:
+				card_data = player1_deck.pop_at(player1_deck.find(card))
+				print(card_data)
+				return card_data
+	elif player_num == 2:
+		if player2_deck.is_empty():
+			print("Out of cards in p2 deck.")
+			return
+		for card in player2_deck:
+			if card["Name"] == name:
+				card_data = player2_deck.pop_at(player2_deck.find(card))
+				print(card_data)
+				return card_data
 
 func draw_by_name(name: String):
 	var json_data = GameManager.load_json_file(GameManager.CARD_LIST)
@@ -330,6 +362,13 @@ func draw_by_name(name: String):
 		return card_data
 
 # MISC
+func shuffle_deck(player_num: int):
+	if player_num == 1:
+		player1_deck.shuffle()
+	elif player_num == 1:
+		player2_deck.shuffle()
+	server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
+
 func can_card_can_be_played(player_num: int, card: Dictionary) -> bool:
 	if player_num == 1:
 		if GameManager.player1_actions - int(card["Cost"]) < 0:
@@ -548,6 +587,20 @@ func net_add_card_to_player_discards(player_num: int, card: Dictionary):
 	elif player_num == 2:
 		player2_discards.append(modified_card)
 
+# PLAYER DECK UPDATES
+@rpc("any_peer", "call_local")
+func net_remove_card_from_player_deck(player_num: int, _card: Dictionary):
+	if player_num == 1:
+		if player1_deck.is_empty():
+			print("Out of cards in p1 deck.")
+			return
+		player1_deck.remove_at(player1_deck.find(_card))
+	elif player_num == 2:
+		if player2_deck.is_empty():
+			print("Out of cards in p2 deck.")
+			return
+		player2_deck.remove_at(player2_deck.find(_card))
+
 # LANDSCAPE UPDATES
 @rpc("any_peer", "call_local") 
 func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):
@@ -632,3 +685,4 @@ func net_update_player_selected_card(player_num: int, card: Dictionary):
 		player1_selected_card = card
 	elif player_num == 2:
 		player2_selected_card = card
+#endregion

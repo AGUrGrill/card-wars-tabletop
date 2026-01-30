@@ -3,6 +3,7 @@ extends Area2D
 const TEMP_IMG = preload("uid://bkuqpel75myiu")
 
 @onready var card_image: Sprite2D = $Image
+@onready var corpse_image: Sprite2D = $CorpseImage
 @onready var attack_node: Control = $Attack
 @onready var defense_node: Control = $Defense
 @onready var floop_button: Button = $FloopButton
@@ -10,7 +11,10 @@ const TEMP_IMG = preload("uid://bkuqpel75myiu")
 @onready var attack_label: Label = $Attack/AttackLabel
 @onready var defense_label: Label = $Defense/DefenseLabel
 @onready var steal: Button = $Steal
+@onready var flip: Button = $Flip
 @onready var landscape = $".." # Can be hand or landscape so leave vague
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var death_timer: Timer = $DeathTimer
 
 
 # CARD DATA
@@ -21,8 +25,6 @@ var card_description: String = ""
 var card_cost: int = 0
 var card_attack: int = 0
 var card_defense: int = 0
-var card_base_attack: int = 0
-var card_base_defense: int = 0
 var is_flooped: bool = false
 var is_in_hand: bool = true
 var is_dead: bool = false
@@ -35,6 +37,7 @@ func change_card_data(_landscape: String, type: String, _name: String, desc: Str
 	if card_name != "tempname": # If card was already played and now replaced, send to discards
 		return
 	
+	hide_card(false)
 	update_card_image(_name)
 	card_landscape = _landscape
 	card_type = type
@@ -48,25 +51,25 @@ func change_card_data(_landscape: String, type: String, _name: String, desc: Str
 	card_description = desc
 	card_cost = cost
 	card_attack = attack
-	card_base_attack = attack
 	attack_label.text = str(card_attack)
 	card_defense = defense
-	card_base_defense = defense
 	defense_label.text = str(card_defense)
 	card_owner = get_card_player_num()
 	if _is_flooped:
 		floop_card(true, false)
 	elif not _is_flooped:
 		floop_card(false, false)
-	hide_card(false)
 	if is_in_hand:
 		hide_buttons(true)
 	if card_defense <= 0 and not is_in_hand and card_type == "Creature":
 		remove_card()
 
 func remove_card():
-	GameManager.net_add_card_to_player_discards.rpc(1, get_card_data(true))
-	GameManager.net_remove_creature_from_landscape_array.rpc(get_card_player_num(), get_card_landscape_num())
+	# To make sure both sides arent removing a card and causing double discards
+	if (get_card_player_num() == 1 and multiplayer.get_unique_id() == GameManager.player1_id) or (get_card_player_num() == 2 and multiplayer.get_unique_id() == GameManager.player2_id):
+		GameManager.net_add_card_to_player_discards.rpc(get_card_player_num(), get_card_data(true))
+		GameManager.net_remove_creature_from_landscape_array.rpc(get_card_player_num(), get_card_landscape_num())
+	play_remove()
 
 func remove_card_data():
 	card_image.texture = null
@@ -77,7 +80,8 @@ func remove_card_data():
 	card_cost = 0
 	card_attack = 0
 	card_defense = 0
-	hide_card(true)
+	if death_timer.time_left <= 0:
+		hide_card(true)
 
 func update_played_card_info_to_server():
 	GameManager.net_update_creature_in_landscape_array.rpc(get_card_player_num(), get_card_landscape_num(), card_type, card_attack, card_defense, is_flooped)
@@ -90,11 +94,13 @@ func hide_buttons(should_hide: bool):
 		defense_node.visible = false
 		floop_button.visible = false
 		steal.visible = false
+		flip.visible = false
 	else:
 		attack_node.visible = true
 		defense_node.visible = true
 		floop_button.visible = true
 		steal.visible = true
+		flip.visible = true
 
 func hide_card(should_hide: bool):
 	hide_buttons(should_hide)
@@ -118,6 +124,7 @@ func update_card_image(_name: String):
 	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	card_image.texture = texture
+	corpse_image.texture = texture
 
 func old_update_card_image(_name: String):
 	var img_path: String = ""
@@ -167,6 +174,9 @@ func floop_card(should_floop: bool, update_to_server: bool):
 func get_card_data(is_base: bool) -> Dictionary:
 	var card_data: Dictionary
 	if is_base: 
+		var card_base_data: Dictionary = GameManager.get_specific_card_data_from_list(card_name)
+		var card_base_attack: int = int(card_base_data["Attack"])
+		var card_base_defense: int = int(card_base_data["Defense"])
 		card_data = {
 			"Name": card_name,
 			"Card Type": card_type,
@@ -213,30 +223,60 @@ func get_card_landscape_num() -> int:
 		landscape_num = landscape.landscape_num
 	return landscape_num
 
+# ANIMATIONS
+func play_rumble():
+	animation_player.play("rumble")
+
+func play_glow():
+	animation_player.play("glow")
+
+func play_hurt():
+	animation_player.play("hurt")
+
+func play_heal():
+	animation_player.play("heal")
+
+func play_remove():
+	card_image.visible = false
+	hide_buttons(true)
+	corpse_image.visible = true
+	death_timer.start()
+	animation_player.play("remove")
+
+func reset_anim():
+	animation_player.play("RESET")
+
 # BUTTONS
 func _on_attack_up_pressed() -> void:
 	update_card_attack(1)
+	play_rumble()
 
 func _on_attack_down_pressed() -> void:
 	update_card_attack(-1)
+	play_rumble()
 
 func _on_defense_up_pressed() -> void:
 	update_card_defense(1)
+	play_rumble()
 
 func _on_defense_down_pressed() -> void:
 	update_card_defense(-1)
+	play_rumble()
 
 func _on_floop_button_pressed() -> void:
 	if is_flooped:
 		floop_card(false, true)
 	else:
 		floop_card(true, true)
+	play_rumble()
 
 # Focus Card
 func _on_mouse_entered() -> void:
+	play_glow()
 	card.z_index = 99
 
 func _on_mouse_exited() -> void:
+	reset_anim()
 	card.z_index = 9
 
 # Select Card
@@ -252,7 +292,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		GameManager.net_tell_clients_to_refresh_landscapes.rpc()
 		print("Selected " + card_name + " for " + str(get_card_player_num()))
 
-
 func _on_steal_pressed() -> void:
 	if card_owner == 1:
 		GameManager.net_remove_creature_from_landscape_array.rpc(1, get_card_landscape_num())
@@ -260,3 +299,15 @@ func _on_steal_pressed() -> void:
 	elif card_owner == 2:
 		GameManager.net_remove_creature_from_landscape_array.rpc(2, get_card_landscape_num())
 		GameManager.net_add_card_to_player_hand.rpc(1, get_card_data(true))
+
+func _on_flip_pressed() -> void:
+	card.rotation_degrees += 180
+
+func _on_death_timer_timeout() -> void:
+	card_image.visible = true
+	hide_buttons(false)
+	corpse_image.visible = false
+	hide_card(true)
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	reset_anim()

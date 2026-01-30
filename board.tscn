@@ -1,31 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfr8mh116oi0f"]
+[gd_scene format=3 uid="uid://bfr8mh116oi0f"]
 
 [ext_resource type="Script" uid="uid://b6dl48d375f1o" path="res://board_controller.gd" id="1_psm7c"]
 [ext_resource type="Texture2D" uid="uid://cmdybqwtote2a" path="res://Assets/icy.webp" id="2_psm7c"]
 
-[node name="Board" type="Node2D"]
+[node name="Board" type="Node2D" unique_id=134048645]
 script = ExtResource("1_psm7c")
 
-[node name="Icy" type="Sprite2D" parent="."]
+[node name="Icy" type="Sprite2D" parent="." unique_id=768705134]
 modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
 position = Vector2(802.00006, 450)
 scale = Vector2(1.2722223, 1.2722223)
 texture = ExtResource("2_psm7c")
 
-[node name="Player1Container" type="Control" parent="."]
+[node name="Player1Container" type="Control" parent="." unique_id=1759444824]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 329.2002
-offset_top = 447.9745
+offset_top = 443.97452
 offset_right = 1619.2002
-offset_bottom = 1009.9745
+offset_bottom = 1005.9745
 grow_horizontal = 2
 scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 
-[node name="ZoomButton" type="Button" parent="Player1Container"]
+[node name="ZoomButton" type="Button" parent="Player1Container" unique_id=1694270464]
 layout_mode = 0
 offset_left = 897.24963
 offset_top = 11.28186
@@ -34,23 +34,23 @@ offset_bottom = 42.28186
 toggle_mode = true
 text = "ZOOM"
 
-[node name="Player2Container" type="Control" parent="."]
+[node name="Player2Container" type="Control" parent="." unique_id=122309465]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1272.2003
-offset_top = 452.97452
+offset_top = 456.9745
 offset_right = 2563.7007
-offset_bottom = 1016.6925
+offset_bottom = 1020.6925
 rotation = 3.1415927
 scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 
-[node name="ID" type="Label" parent="."]
+[node name="ID" type="Label" parent="." unique_id=163955622]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "ID: "
 
-[node name="MainCamera" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="." unique_id=1322162237]
 position = Vector2(800, 450)
 
 [connection signal="toggled" from="Player1Container/ZoomButton" to="." method="_on_zoom_button_toggled"]

@@ -1,29 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://chmuw5t70mtnp"]
+[gd_scene format=3 uid="uid://chmuw5t70mtnp"]
 
 [ext_resource type="Script" uid="uid://bm3mt0edneprk" path="res://end_screen.gd" id="1_pmjk2"]
 [ext_resource type="Texture2D" uid="uid://bpao4ntuurwnr" path="res://Assets/kingdom.webp" id="2_d75mr"]
 [ext_resource type="Texture2D" uid="uid://vt80ydya0cok" path="res://Assets/dead_world.webp" id="3_be1gp"]
 [ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://audio.tscn" id="4_kaxt3"]
 
-[node name="EndScreen" type="Node2D"]
+[node name="EndScreen" type="Node2D" unique_id=1251060959]
 script = ExtResource("1_pmjk2")
 
-[node name="WinImage" type="Sprite2D" parent="."]
+[node name="WinImage" type="Sprite2D" parent="." unique_id=1189197123]
 visible = false
 position = Vector2(800, 460.99997)
 scale = Vector2(1.2776315, 1.2776315)
 texture = ExtResource("2_d75mr")
 
-[node name="LoseImage" type="Sprite2D" parent="."]
+[node name="LoseImage" type="Sprite2D" parent="." unique_id=847637608]
 visible = false
 position = Vector2(803, 454)
 scale = Vector2(0.8823709, 0.8823708)
 texture = ExtResource("3_be1gp")
 
-[node name="Audio" parent="." instance=ExtResource("4_kaxt3")]
+[node name="Audio" parent="." unique_id=2108573241 instance=ExtResource("4_kaxt3")]
 audio_type = "End Screen"
 
-[node name="ResultLabel" type="Label" parent="."]
+[node name="ResultLabel" type="Label" parent="." unique_id=84484462]
 offset_left = 544.0
 offset_top = 309.0
 offset_right = 1120.0
@@ -31,7 +31,7 @@ offset_bottom = 484.0
 theme_override_font_sizes/font_size = 128
 text = "YOU bleh"
 
-[node name="ReturnMenu" type="Button" parent="."]
+[node name="ReturnMenu" type="Button" parent="." unique_id=677531235]
 offset_left = 657.0
 offset_top = 744.0
 offset_right = 1060.0

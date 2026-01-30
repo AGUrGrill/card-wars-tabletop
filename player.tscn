@@ -1,18 +1,123 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmvkn00sedqin"]
+[gd_scene format=3 uid="uid://cmvkn00sedqin"]
 
 [ext_resource type="Script" uid="uid://dw7u3fak148is" path="res://player_controller.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cjnoi5mfcfn1f" path="res://landscape.tscn" id="2_sweqy"]
 [ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://audio.tscn" id="3_i3pqv"]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="Animation" id="Animation_i3pqv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dw050"]
+resource_name = "RESET_MODULATED"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.03333334),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.47843137, 0.47843137, 0.47843137, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+resource_name = "heal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.008333325, 0.20833333, 0.5083333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.6804763, 1, 0.65291387, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2hs0m"]
+resource_name = "heal_when_modulated"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.47843137, 0.47843137, 0.47843137, 1), Color(0.6804763, 1, 0.65291387, 1), Color(0.47843137, 0.47843137, 0.47843137, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.6887288, 0.63938314, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1jxqw"]
+resource_name = "hurt_when_modulated"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.47843137, 0.47843137, 0.47843137, 1), Color(1, 0.6887288, 0.63938314, 1), Color(0.47843137, 0.47843137, 0.47843137, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hs0m"]
+_data = {
+&"RESET": SubResource("Animation_i3pqv"),
+&"RESET_MODULATED": SubResource("Animation_dw050"),
+&"heal": SubResource("Animation_hqtel"),
+&"heal_when_modulated": SubResource("Animation_2hs0m"),
+&"hurt": SubResource("Animation_sweqy"),
+&"hurt_when_modulated": SubResource("Animation_1jxqw")
+}
+
+[node name="Player" type="Node2D" unique_id=1090482387]
 script = ExtResource("1_4flbx")
 metadata/_edit_lock_ = true
 
-[node name="StatPanel" type="Panel" parent="."]
+[node name="StatPanel" type="Panel" parent="." unique_id=285193996]
 offset_right = 96.0
 offset_bottom = 186.0
 
-[node name="PlayerLabel" type="Label" parent="StatPanel"]
+[node name="PlayerLabel" type="Label" parent="StatPanel" unique_id=131894417]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -20,7 +125,7 @@ offset_right = 64.0
 offset_bottom = 24.0
 text = "PLAYER:"
 
-[node name="HPLabel" type="Label" parent="StatPanel"]
+[node name="HPLabel" type="Label" parent="StatPanel" unique_id=814487981]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 25.0
@@ -28,7 +133,7 @@ offset_right = 43.0
 offset_bottom = 48.0
 text = "HP:"
 
-[node name="HPDown" type="Button" parent="StatPanel/HPLabel"]
+[node name="HPDown" type="Button" parent="StatPanel/HPLabel" unique_id=1311959489]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 24.0
@@ -36,14 +141,14 @@ offset_right = 38.0
 offset_bottom = 55.0
 text = "-"
 
-[node name="HPUp" type="Button" parent="StatPanel/HPLabel"]
+[node name="HPUp" type="Button" parent="StatPanel/HPLabel" unique_id=1351131283]
 layout_mode = 0
 offset_top = 24.0
 offset_right = 18.0
 offset_bottom = 55.0
 text = "+"
 
-[node name="ActionsLabel" type="Label" parent="StatPanel"]
+[node name="ActionsLabel" type="Label" parent="StatPanel" unique_id=1599438052]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 84.0
@@ -51,7 +156,7 @@ offset_right = 76.0
 offset_bottom = 107.0
 text = "ACTIONS:"
 
-[node name="ActionsDown" type="Button" parent="StatPanel/ActionsLabel"]
+[node name="ActionsDown" type="Button" parent="StatPanel/ActionsLabel" unique_id=1179005859]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 24.0
@@ -59,14 +164,14 @@ offset_right = 38.0
 offset_bottom = 55.0
 text = "-"
 
-[node name="ActionsUp" type="Button" parent="StatPanel/ActionsLabel"]
+[node name="ActionsUp" type="Button" parent="StatPanel/ActionsLabel" unique_id=120837732]
 layout_mode = 0
 offset_top = 24.0
 offset_right = 18.0
 offset_bottom = 55.0
 text = "+"
 
-[node name="OpponentLabel" type="Label" parent="StatPanel"]
+[node name="OpponentLabel" type="Label" parent="StatPanel" unique_id=1970668702]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 139.0
@@ -75,7 +180,7 @@ offset_bottom = 162.0
 theme_override_colors/font_color = Color(1, 0.494251, 0.42709014, 1)
 text = "OPPONENT"
 
-[node name="OpponentHPLabel" type="Label" parent="StatPanel"]
+[node name="OpponentHPLabel" type="Label" parent="StatPanel" unique_id=752774587]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 159.0
@@ -83,21 +188,29 @@ offset_right = 90.0
 offset_bottom = 182.0
 text = "HP: "
 
-[node name="DrawCard" type="Button" parent="."]
+[node name="MainSwitch" type="Button" parent="." unique_id=1965120681]
+offset_left = 134.0
+offset_top = 11.0
+offset_right = 262.0
+offset_bottom = 42.0
+toggle_mode = true
+text = "VIEW DISCARDS"
+
+[node name="MainButton" type="Button" parent="." unique_id=320735129]
 offset_left = 145.0
 offset_top = 58.0
 offset_right = 248.0
 offset_bottom = 89.0
 text = "DRAW CARD"
 
-[node name="DiscardCard" type="Button" parent="."]
+[node name="SubButton" type="Button" parent="." unique_id=1538702457]
 offset_left = 139.0
 offset_top = 105.0
 offset_right = 262.0
 offset_bottom = 136.0
 text = "DISCARD CARD"
 
-[node name="Hand" type="HBoxContainer" parent="."]
+[node name="Hand" type="HBoxContainer" parent="." unique_id=1596166206]
 offset_left = 89.0
 offset_top = 501.0
 offset_right = 1200.0
@@ -105,72 +218,65 @@ offset_bottom = 601.0
 alignment = 1
 metadata/player_num = 0
 
-[node name="SpellArea" parent="." instance=ExtResource("2_sweqy")]
+[node name="SpellArea" parent="." unique_id=491291059 instance=ExtResource("2_sweqy")]
 position = Vector2(1022, 209)
 landscape_num = 69
 designated_card_type = "Spell"
 
-[node name="Landscape1" parent="." instance=ExtResource("2_sweqy")]
+[node name="Landscape1" parent="." unique_id=11911818 instance=ExtResource("2_sweqy")]
 position = Vector2(369, 109)
 
-[node name="Landscape2" parent="." instance=ExtResource("2_sweqy")]
+[node name="Landscape2" parent="." unique_id=1764227193 instance=ExtResource("2_sweqy")]
 position = Vector2(516, 109)
 landscape_num = 1
 
-[node name="Landscape3" parent="." instance=ExtResource("2_sweqy")]
+[node name="Landscape3" parent="." unique_id=1887419849 instance=ExtResource("2_sweqy")]
 position = Vector2(663, 109)
 landscape_num = 2
 
-[node name="Landscape4" parent="." instance=ExtResource("2_sweqy")]
+[node name="Landscape4" parent="." unique_id=1835834039 instance=ExtResource("2_sweqy")]
 position = Vector2(810, 109)
 landscape_num = 3
 
-[node name="Building1" parent="." instance=ExtResource("2_sweqy")]
+[node name="Building1" parent="." unique_id=631541862 instance=ExtResource("2_sweqy")]
 position = Vector2(369, 320)
 designated_card_type = "Building"
 
-[node name="Building2" parent="." instance=ExtResource("2_sweqy")]
+[node name="Building2" parent="." unique_id=1392230754 instance=ExtResource("2_sweqy")]
 position = Vector2(516, 320)
 landscape_num = 1
 designated_card_type = "Building"
 
-[node name="Building3" parent="." instance=ExtResource("2_sweqy")]
+[node name="Building3" parent="." unique_id=1210950211 instance=ExtResource("2_sweqy")]
 position = Vector2(663, 320)
 landscape_num = 2
 designated_card_type = "Building"
 
-[node name="Building4" parent="." instance=ExtResource("2_sweqy")]
+[node name="Building4" parent="." unique_id=1679307906 instance=ExtResource("2_sweqy")]
 position = Vector2(810, 320)
 landscape_num = 3
 designated_card_type = "Building"
 
-[node name="DeckSwitch" type="CheckButton" parent="."]
-offset_left = 105.0
-offset_top = 9.0
-offset_right = 284.0
-offset_bottom = 40.0
-text = "HAND/DISCARDS"
-
-[node name="EndTurn" type="Button" parent="."]
+[node name="EndTurn" type="Button" parent="." unique_id=1802754405]
 offset_left = 2.0
 offset_top = 193.0
 offset_right = 92.0
 offset_bottom = 224.0
 text = "END TURN"
 
-[node name="HeroImage" type="Sprite2D" parent="."]
+[node name="HeroImage" type="Sprite2D" parent="." unique_id=596994513]
 position = Vector2(1261, 204)
 scale = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
-[node name="Audio" parent="." instance=ExtResource("3_i3pqv")]
+[node name="Audio" parent="." unique_id=1591672413 instance=ExtResource("3_i3pqv")]
 audio_type = "Player"
 
-[node name="SelectedCard" type="Sprite2D" parent="."]
+[node name="SelectedCard" type="Sprite2D" parent="." unique_id=1892070561]
 position = Vector2(-243.00002, 243.00002)
 scale = Vector2(1.7, 1.7)
 
-[node name="RemoveLabel" type="Label" parent="."]
+[node name="RemoveLabel" type="Label" parent="." unique_id=1900751190]
 offset_left = 2.0
 offset_top = 372.0
 offset_right = 109.0
@@ -178,7 +284,7 @@ offset_bottom = 395.0
 theme_override_font_sizes/font_size = 8
 text = "Removes Card from Game"
 
-[node name="RemoveCard" type="Button" parent="."]
+[node name="RemoveCard" type="Button" parent="." unique_id=1085138111]
 offset_left = 2.0
 offset_top = 386.0
 offset_right = 92.0
@@ -186,28 +292,36 @@ offset_bottom = 406.0
 theme_override_font_sizes/font_size = 8
 text = "FULLY REMOVE CARD"
 
-[node name="GiveOppCard" type="Button" parent="."]
+[node name="GiveOppCard" type="Button" parent="." unique_id=1287199612]
 offset_left = 2.0
 offset_top = 350.0
-offset_right = 92.0
+offset_right = 98.0
 offset_bottom = 370.0
 theme_override_font_sizes/font_size = 8
 text = "GIVE OPPONENT CARD"
 
-[node name="InputTimer" type="Timer" parent="."]
+[node name="DeckSwitch" type="Button" parent="." unique_id=983974013]
+offset_left = 2.0
+offset_top = 324.0
+offset_right = 53.0
+offset_bottom = 344.0
+theme_override_font_sizes/font_size = 8
+text = "VIEW DECK"
+
+[node name="InputTimer" type="Timer" parent="." unique_id=1768162417]
 wait_time = 0.5
 
-[node name="InputTimerLabel" type="Label" parent="."]
+[node name="InputTimerLabel" type="Label" parent="." unique_id=172184736]
 offset_left = 249.0
 offset_top = 400.0
 offset_right = 289.0
 offset_bottom = 423.0
 text = "0.1"
 
-[node name="LogTimer" type="Timer" parent="."]
+[node name="LogTimer" type="Timer" parent="." unique_id=1395131991]
 wait_time = 4.0
 
-[node name="LogLabel" type="Label" parent="."]
+[node name="LogLabel" type="Label" parent="." unique_id=2133081909]
 offset_left = 902.0
 offset_top = 3.0
 offset_right = 1294.0
@@ -216,16 +330,21 @@ theme_override_font_sizes/font_size = 12
 text = "Placed X Creature"
 horizontal_alignment = 2
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=132630662]
+libraries/ = SubResource("AnimationLibrary_2hs0m")
+
 [connection signal="pressed" from="StatPanel/HPLabel/HPDown" to="." method="_on_hp_down_pressed"]
 [connection signal="pressed" from="StatPanel/HPLabel/HPUp" to="." method="_on_hp_up_pressed"]
 [connection signal="pressed" from="StatPanel/ActionsLabel/ActionsDown" to="." method="_on_actions_down_pressed"]
 [connection signal="pressed" from="StatPanel/ActionsLabel/ActionsUp" to="." method="_on_actions_up_pressed"]
-[connection signal="pressed" from="DrawCard" to="." method="_on_draw_card_pressed"]
-[connection signal="pressed" from="DiscardCard" to="." method="_on_discard_card_pressed"]
+[connection signal="toggled" from="MainSwitch" to="." method="_on_main_switch_toggled"]
+[connection signal="pressed" from="MainButton" to="." method="_on_main_button_pressed"]
+[connection signal="pressed" from="SubButton" to="." method="_on_sub_button_pressed"]
 [connection signal="mouse_entered" from="Hand" to="." method="_on_hand_mouse_entered"]
-[connection signal="toggled" from="DeckSwitch" to="." method="_on_deck_switch_toggled"]
 [connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
 [connection signal="pressed" from="RemoveCard" to="." method="_on_remove_card_pressed"]
 [connection signal="pressed" from="GiveOppCard" to="." method="_on_give_opp_card_pressed"]
+[connection signal="pressed" from="DeckSwitch" to="." method="_on_deck_switch_pressed"]
 [connection signal="timeout" from="InputTimer" to="." method="_on_input_timer_timeout"]
 [connection signal="timeout" from="LogTimer" to="." method="_on_log_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

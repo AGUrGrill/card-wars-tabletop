@@ -1,6 +1,7 @@
 extends Node
 
 @export var audio_type: String
+@export var disabled: bool
 @onready var sfx: AudioStreamPlayer2D = $SFX
 @onready var bgm: AudioStreamPlayer2D = $BGM
 @onready var win: AudioStreamPlayer2D = $Win
@@ -16,6 +17,9 @@ var sfx_looping: bool = false
 var playing_game_end_audio: bool = false
 
 func _ready() -> void:
+	if disabled:
+		panel.visible = false
+		return
 	if audio_type == "Main Menu":
 		sfx.stream = load("res://Assets/Sounds/bird_in_forest.mp3")
 		sfx_looping = true

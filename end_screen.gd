@@ -6,6 +6,7 @@ extends Node2D
 @onready var audio: Node = $Audio
 
 func _ready() -> void:
+	NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
 	if multiplayer.get_unique_id() == GameManager.player1_id:
 		if GameManager.who_won == false:
 			win_image.visible = true
@@ -25,7 +26,7 @@ func _ready() -> void:
 
 
 func _on_return_menu_pressed() -> void:
-	NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
 	audio.confirm_sfx.play()
-	#await get_tree().create_timer(0.5).timeout
-	#get_tree().change_scene_to_file("res://main_menu.tscn")
+	GameManager.game_ended = false
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://main_menu.tscn")
