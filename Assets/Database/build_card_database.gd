@@ -7,10 +7,6 @@ func _run():
 	var db := CardDatabase.new()
 	var dir := DirAccess.open(CARD_PATH)
 
-	if dir == null:
-		printerr("Cannot open card directory")
-		return
-
 	for file in dir.get_files():
 		if file.get_extension() in ["png", "jpg", "webp"]:
 			var key := file.get_basename()

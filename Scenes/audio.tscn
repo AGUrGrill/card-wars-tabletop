@@ -1,29 +1,29 @@
 [gd_scene format=3 uid="uid://cm5r3w4ic0uso"]
 
-[ext_resource type="Script" uid="uid://c85o0a0nukgug" path="res://audio_controller.gd" id="1_74vr2"]
-[ext_resource type="AudioStream" uid="uid://bgt1eg2jnt8si" path="res://Assets/Sounds/bird_in_forest.mp3" id="2_x5nyw"]
-[ext_resource type="AudioStream" uid="uid://dwwbphih1wsu8" path="res://Assets/Sounds/island_song.mp3" id="3_0svpk"]
-[ext_resource type="AudioStream" uid="uid://b1maiudlhvin1" path="res://Assets/Sounds/pop.mp3" id="4_5olcg"]
-[ext_resource type="Texture2D" uid="uid://bt16oonbc3buy" path="res://Assets/sound-icon.png" id="5_pgqns"]
-[ext_resource type="Texture2D" uid="uid://b6qgrocamhyy0" path="res://Assets/music_mute_icon.png" id="6_cqcg1"]
-[ext_resource type="AudioStream" uid="uid://cyi2r4d1ll2fq" path="res://Assets/Sounds/congrats_pb.mp3" id="7_0svpk"]
-[ext_resource type="AudioStream" uid="uid://dx3kglvyby8ra" path="res://Assets/Sounds/darkness_lich.mp3" id="8_5olcg"]
+[ext_resource type="Script" uid="uid://c85o0a0nukgug" path="res://Scripts/audio_controller.gd" id="1_etkin"]
+[ext_resource type="AudioStream" uid="uid://bgt1eg2jnt8si" path="res://Assets/Sounds/bird_in_forest.mp3" id="2_fkw8n"]
+[ext_resource type="AudioStream" uid="uid://dwwbphih1wsu8" path="res://Assets/Sounds/island_song.mp3" id="3_e0u3b"]
+[ext_resource type="AudioStream" uid="uid://b1maiudlhvin1" path="res://Assets/Sounds/pop.mp3" id="4_tyt1w"]
+[ext_resource type="Texture2D" uid="uid://bt16oonbc3buy" path="res://Assets/sound-icon.png" id="5_38mwv"]
+[ext_resource type="Texture2D" uid="uid://b6qgrocamhyy0" path="res://Assets/music_mute_icon.png" id="6_7stf1"]
+[ext_resource type="AudioStream" uid="uid://cyi2r4d1ll2fq" path="res://Assets/Sounds/congrats_pb.mp3" id="7_6ioja"]
+[ext_resource type="AudioStream" uid="uid://dx3kglvyby8ra" path="res://Assets/Sounds/darkness_lich.mp3" id="8_qfbpw"]
 
 [node name="Audio" type="Node" unique_id=1384660115]
-script = ExtResource("1_74vr2")
+script = ExtResource("1_etkin")
 audio_type = "Board"
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1673962364]
-stream = ExtResource("2_x5nyw")
+stream = ExtResource("2_fkw8n")
 volume_db = -10.0
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=931954021]
-stream = ExtResource("3_0svpk")
+stream = ExtResource("3_e0u3b")
 volume_db = -8.157
 parameters/looping = true
 
 [node name="ConfirmSFX" type="AudioStreamPlayer2D" parent="." unique_id=846362015]
-stream = ExtResource("4_5olcg")
+stream = ExtResource("4_tyt1w")
 
 [node name="Panel" type="Panel" parent="." unique_id=2111160353]
 offset_left = 1465.0
@@ -39,7 +39,7 @@ offset_top = 12.0
 offset_right = 591.0
 offset_bottom = 524.0
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("5_pgqns")
+texture_normal = ExtResource("5_38mwv")
 
 [node name="EnableBGM" type="TextureButton" parent="Panel" unique_id=2082177491]
 modulate = Color(0, 0, 0, 1)
@@ -49,13 +49,13 @@ offset_top = 12.0
 offset_right = 519.0
 offset_bottom = 524.0
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("6_cqcg1")
+texture_normal = ExtResource("6_7stf1")
 
 [node name="Win" type="AudioStreamPlayer2D" parent="." unique_id=168421775]
-stream = ExtResource("7_0svpk")
+stream = ExtResource("7_6ioja")
 
 [node name="Lose" type="AudioStreamPlayer2D" parent="." unique_id=1609509244]
-stream = ExtResource("8_5olcg")
+stream = ExtResource("8_qfbpw")
 
 [connection signal="finished" from="SFX" to="." method="_on_sfx_finished"]
 [connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

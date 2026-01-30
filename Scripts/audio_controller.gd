@@ -27,7 +27,7 @@ func _ready() -> void:
 		bgm.stream = load("res://Assets/Sounds/island_song.mp3")
 	elif audio_type == "Player":
 		sfx.stream = load("res://Assets/Sounds/confirm.mp3")
-		bgm.stream = load("res://Assets/Sounds/island_song_ukelele.mp3")
+		bgm.stream = load("res://Assets/Sounds/island_song.mp3")
 	elif audio_type == "Disabled":
 		panel.visible = false
 	elif audio_type == "End Screen":

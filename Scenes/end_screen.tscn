@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://chmuw5t70mtnp"]
 
-[ext_resource type="Script" uid="uid://bm3mt0edneprk" path="res://end_screen.gd" id="1_pmjk2"]
+[ext_resource type="Script" uid="uid://bm3mt0edneprk" path="res://Scripts/end_screen.gd" id="1_pmjk2"]
 [ext_resource type="Texture2D" uid="uid://bpao4ntuurwnr" path="res://Assets/kingdom.webp" id="2_d75mr"]
 [ext_resource type="Texture2D" uid="uid://vt80ydya0cok" path="res://Assets/dead_world.webp" id="3_be1gp"]
-[ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://audio.tscn" id="4_kaxt3"]
+[ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="4_kaxt3"]
 
 [node name="EndScreen" type="Node2D" unique_id=1251060959]
 script = ExtResource("1_pmjk2")

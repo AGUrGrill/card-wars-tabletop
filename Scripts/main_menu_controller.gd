@@ -45,7 +45,7 @@ func _on_start_server_pressed() -> void:
 		NetworkHandler.set_network_address(ip_address.text, int(port.text))
 	NetworkHandler.start_server()
 	confirm_sfx.play()
-	get_tree().change_scene_to_file("res://server.tscn")
+	get_tree().change_scene_to_file("res://Scenes/server.tscn")
 
 func _on_start_client_pressed() -> void:
 	if not deck_choosen:
@@ -67,7 +67,7 @@ func _on_start_client_pressed() -> void:
 	GameManager.recieve_player_hero.rpc(1, hero)
 	confirm_sfx.play()
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://board.tscn")
+	get_tree().change_scene_to_file("res://Scenes/board.tscn")
 
 func _on_start_client_2_pressed() -> void:
 	if not deck_choosen:
@@ -89,7 +89,7 @@ func _on_start_client_2_pressed() -> void:
 	GameManager.recieve_player_hero.rpc(2, hero)
 	confirm_sfx.play()
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://board.tscn")
+	get_tree().change_scene_to_file("res://Scenes/board.tscn")
 
 func _on_load_deck_pressed() -> void:
 	deck.clear()

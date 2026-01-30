@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dycs2rc7imye2"]
 
-[ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://card_controller.gd" id="1_e484p"]
-[ext_resource type="Texture2D" uid="uid://bkuqpel75myiu" path="res://Assets/Evil_Eye.png" id="1_q5obu"]
-[ext_resource type="Texture2D" uid="uid://8btsowtxmc67" path="res://Assets/atk_token.png" id="2_e484p"]
-[ext_resource type="Texture2D" uid="uid://regtbfytaw8b" path="res://Assets/def_token.png" id="3_fpac0"]
+[ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://Scripts/card_controller.gd" id="1_eumee"]
+[ext_resource type="Texture2D" uid="uid://bkuqpel75myiu" path="res://Assets/Evil_Eye.png" id="2_e6po8"]
+[ext_resource type="Texture2D" uid="uid://8btsowtxmc67" path="res://Assets/atk_token.png" id="3_bnspj"]
+[ext_resource type="Texture2D" uid="uid://regtbfytaw8b" path="res://Assets/def_token.png" id="4_xnv4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1i5pp"]
 size = Vector2(140, 210)
@@ -143,15 +143,15 @@ z_index = 9
 scale = Vector2(0.7, 0.7)
 collision_priority = 9.0
 priority = 9
-script = ExtResource("1_e484p")
+script = ExtResource("1_eumee")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=1415465677]
-texture = ExtResource("1_q5obu")
+texture = ExtResource("2_e6po8")
 metadata/_edit_lock_ = true
 
 [node name="CorpseImage" type="Sprite2D" parent="." unique_id=808037271]
 visible = false
-texture = ExtResource("1_q5obu")
+texture = ExtResource("2_e6po8")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694732175]
@@ -168,7 +168,7 @@ offset_right = 109.935
 [node name="AttackIcon" type="Sprite2D" parent="Attack" unique_id=70507550]
 position = Vector2(-162.07785, 6.4285717)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("2_e484p")
+texture = ExtResource("3_bnspj")
 
 [node name="AttackUP" type="Button" parent="Attack" unique_id=1765787481]
 layout_mode = 0
@@ -202,7 +202,7 @@ anchors_preset = 0
 [node name="DefenseIcon" type="Sprite2D" parent="Defense" unique_id=1122370324]
 position = Vector2(52.142838, 5.8285675)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("3_fpac0")
+texture = ExtResource("4_xnv4g")
 
 [node name="DefenseUP" type="Button" parent="Defense" unique_id=2116602438]
 layout_mode = 0

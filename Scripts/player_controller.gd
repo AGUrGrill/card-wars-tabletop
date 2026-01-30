@@ -70,7 +70,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	determine_display_visibility()
 	if GameManager.game_ended:
-		get_tree().change_scene_to_file("res://end_screen.tscn")
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 	if not can_select:
 		input_timer_label.text = str(snappedf(input_timer.time_left, 0.01))
 

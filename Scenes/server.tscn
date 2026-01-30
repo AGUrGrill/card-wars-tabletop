@@ -1,17 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cum1uxiye4l4f"]
+[gd_scene format=3 uid="uid://cum1uxiye4l4f"]
 
-[ext_resource type="Script" uid="uid://dxrhuvpqfnxjy" path="res://network_handler.gd" id="1_h8t3n"]
+[ext_resource type="Script" uid="uid://dxrhuvpqfnxjy" path="res://Scripts/network_handler.gd" id="1_ogqfs"]
 
-[node name="Server" type="Control"]
+[node name="Server" type="Control" unique_id=426539637]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_h8t3n")
+script = ExtResource("1_ogqfs")
 
-[node name="GetPlayersStats" type="Button" parent="."]
+[node name="GetPlayersStats" type="Button" parent="." unique_id=1210402194]
 layout_mode = 0
 offset_left = 578.0
 offset_top = 776.0
@@ -20,7 +20,7 @@ offset_bottom = 851.0
 theme_override_font_sizes/font_size = 48
 text = "GET ALL STATS"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=445429117]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 4.0

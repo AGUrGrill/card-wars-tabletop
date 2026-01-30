@@ -29,4 +29,4 @@ func _on_return_menu_pressed() -> void:
 	audio.confirm_sfx.play()
 	GameManager.game_ended = false
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

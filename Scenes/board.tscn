@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://bfr8mh116oi0f"]
 
-[ext_resource type="Script" uid="uid://b6dl48d375f1o" path="res://board_controller.gd" id="1_psm7c"]
-[ext_resource type="Texture2D" uid="uid://cmdybqwtote2a" path="res://Assets/icy.webp" id="2_psm7c"]
+[ext_resource type="Script" uid="uid://b6dl48d375f1o" path="res://Scripts/board_controller.gd" id="1_2wvcj"]
+[ext_resource type="Texture2D" uid="uid://cmdybqwtote2a" path="res://Assets/icy.webp" id="2_uh3b8"]
 
 [node name="Board" type="Node2D" unique_id=134048645]
-script = ExtResource("1_psm7c")
+script = ExtResource("1_2wvcj")
 
 [node name="Icy" type="Sprite2D" parent="." unique_id=768705134]
 modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
 position = Vector2(802.00006, 450)
 scale = Vector2(1.2722223, 1.2722223)
-texture = ExtResource("2_psm7c")
+texture = ExtResource("2_uh3b8")
 
 [node name="Player1Container" type="Control" parent="." unique_id=1759444824]
 layout_mode = 3

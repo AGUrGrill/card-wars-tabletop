@@ -21,8 +21,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-NetworkHandler="*res://network_handler.gd"
-GameManager="*res://game_manager.tscn"
+NetworkHandler="*res://Scripts/network_handler.gd"
+GameManager="*res://Scenes/game_manager.tscn"
 
 [display]
 

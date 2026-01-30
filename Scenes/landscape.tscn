@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjnoi5mfcfn1f"]
+[gd_scene format=3 uid="uid://cjnoi5mfcfn1f"]
 
-[ext_resource type="Script" uid="uid://dx8tbqfm6kjyi" path="res://landscape_controller.gd" id="1_asa4r"]
+[ext_resource type="Script" uid="uid://dx8tbqfm6kjyi" path="res://Scripts/landscape_controller.gd" id="1_asa4r"]
 [ext_resource type="Texture2D" uid="uid://2dfcdce5dsbx" path="res://Assets/spell_bg.png" id="2_6vom0"]
 [ext_resource type="Texture2D" uid="uid://b0dtpyhlil8ys" path="res://Assets/Cards/Blue Plains.png" id="2_425dq"]
-[ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://card.tscn" id="2_asa4r"]
+[ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://Scenes/card.tscn" id="2_asa4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asa4r"]
 size = Vector2(146, 27)
@@ -11,31 +11,31 @@ size = Vector2(146, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vom0"]
 size = Vector2(25, 157)
 
-[node name="Landscape" type="Area2D"]
+[node name="Landscape" type="Area2D" unique_id=1977995708]
 script = ExtResource("1_asa4r")
 
-[node name="LandscapeImage" type="Sprite2D" parent="."]
+[node name="LandscapeImage" type="Sprite2D" parent="." unique_id=1770092604]
 position = Vector2(-0.5000019, 0)
 scale = Vector2(0.20714286, 0.20854022)
 texture = ExtResource("2_425dq")
 
-[node name="SpellImage" type="Sprite2D" parent="."]
+[node name="SpellImage" type="Sprite2D" parent="." unique_id=293061645]
 position = Vector2(0.49999785, -10.999995)
 scale = Vector2(0.77931035, 0.7255814)
 texture = ExtResource("2_6vom0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1161315435]
 position = Vector2(0, -91.5)
 shape = SubResource("RectangleShape2D_asa4r")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=115214977]
 position = Vector2(0, 92)
 shape = SubResource("RectangleShape2D_asa4r")
 
-[node name="Card" parent="." instance=ExtResource("2_asa4r")]
+[node name="Card" parent="." unique_id=1856722721 instance=ExtResource("2_asa4r")]
 position = Vector2(1.5258789e-05, -9.999999)
 
-[node name="ChangeLandscape" type="OptionButton" parent="."]
+[node name="ChangeLandscape" type="OptionButton" parent="." unique_id=123426803]
 offset_left = -46.0
 offset_top = -105.0
 offset_right = 46.0
@@ -57,11 +57,11 @@ popup/item_5/id = 5
 popup/item_6/text = "SandyLands"
 popup/item_6/id = 6
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1457041570]
 position = Vector2(-60.5, 1)
 shape = SubResource("RectangleShape2D_6vom0")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=2033028261]
 position = Vector2(60, 0.5)
 shape = SubResource("RectangleShape2D_6vom0")
 
