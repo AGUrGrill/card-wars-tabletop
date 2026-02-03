@@ -9,11 +9,26 @@ extends Node2D
 @onready var port: LineEdit = $Port
 
 var hero: String
+var landscapes: Array[String]
 var deck: Array[String]
 var default_deck_choice: String
 var deck_choosen: bool = false
 
 var in_testing_mode: bool = true
+var game_starting: bool = false
+
+func _ready() -> void:
+	GameManager.local_client_player_num = 0
+
+func _process(delta: float) -> void:
+	if game_starting:
+		return
+	if GameManager.local_client_player_num == 1:
+		game_starting = true
+		start_as_p1()
+	elif GameManager.local_client_player_num == 2:
+		game_starting = true
+		start_as_p2()
 
 func send_log_msg(message: String):
 	log_text.text = message
@@ -21,24 +36,59 @@ func send_log_msg(message: String):
 
 func parse_deck_info(deck_data: String):
 	var formatted_info: PackedStringArray = deck_data.split("\n", false)
+	var gathering_landscape_info: bool = false
 	var gathering_card_info: bool = false
 	var prev_line: String
 	for line in formatted_info:
 		if prev_line == "Hero":
 			hero = line
+		if line == "Landscapes":
+			gathering_landscape_info = true
+			continue
 		if line == "Creatures":
+			gathering_landscape_info = false
 			gathering_card_info = true
 			continue
 		elif line == "Spells":
 			continue
 		elif line == "Buildings":
 			continue
+		if gathering_landscape_info:
+			for idx in range(int(line[0])):
+				landscapes.append(line.substr(4, line.length()))
 		if gathering_card_info:
 			for idx in range(int(line[0])):
 				deck.append(line.substr(4, line.length()))
 		prev_line = line
 	
 	deck_choosen = true
+
+func start_as_p1():
+	GameManager.player1_hero = hero
+	for card_name in deck:
+		GameManager.player1_deck.append(GameManager.draw_by_name(card_name))
+	await get_tree().create_timer(3).timeout
+	#GameManager.client_give_player_id.rpc(1, multiplayer.get_unique_id())
+	GameManager.player1_id = multiplayer.get_unique_id()
+	GameManager.recieve_player_landscapes.rpc(1, landscapes)
+	GameManager.recieve_player_deck.rpc(1, GameManager.player1_deck)
+	GameManager.recieve_player_hero.rpc(1, hero)
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/board.tscn")
+
+func start_as_p2():
+	GameManager.player2_hero = hero
+	for card_name in deck:
+		GameManager.player2_deck.append(GameManager.draw_by_name(card_name))
+	await get_tree().create_timer(3).timeout
+	#GameManager.client_give_player_id.rpc(2, multiplayer.get_unique_id())
+	GameManager.player2_id = multiplayer.get_unique_id()
+	GameManager.recieve_player_landscapes.rpc(2, landscapes)
+	GameManager.recieve_player_deck.rpc(2, GameManager.player2_deck)
+	GameManager.recieve_player_hero.rpc(2, hero)
+	confirm_sfx.play()
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/board.tscn")
 
 func _on_start_server_pressed() -> void:
 	if not in_testing_mode:
@@ -57,39 +107,7 @@ func _on_start_client_pressed() -> void:
 			return
 		NetworkHandler.set_network_address(ip_address.text, int(port.text))
 	NetworkHandler.start_client()
-	GameManager.player1_hero = hero
-	for card_name in deck:
-		GameManager.player1_deck.append(GameManager.draw_by_name(card_name))
-	await get_tree().create_timer(3).timeout
-	#GameManager.client_give_player_id.rpc(1, multiplayer.get_unique_id())
-	GameManager.player1_id = multiplayer.get_unique_id()
-	GameManager.recieve_player_deck.rpc(1, GameManager.player1_deck)
-	GameManager.recieve_player_hero.rpc(1, hero)
 	confirm_sfx.play()
-	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/board.tscn")
-
-func _on_start_client_2_pressed() -> void:
-	if not deck_choosen:
-		send_log_msg("Please select a deck.")
-		return
-	if not in_testing_mode:
-		if ip_address.text.is_empty() or port.text.is_empty():
-			send_log_msg("Please provide an IP Address and Port Number.")
-			return
-		NetworkHandler.set_network_address(ip_address.text, int(port.text))
-	NetworkHandler.start_client()
-	GameManager.player2_hero = hero
-	for card_name in deck:
-		GameManager.player2_deck.append(GameManager.draw_by_name(card_name))
-	await get_tree().create_timer(3).timeout
-	#GameManager.client_give_player_id.rpc(2, multiplayer.get_unique_id())
-	GameManager.player2_id = multiplayer.get_unique_id()
-	GameManager.recieve_player_deck.rpc(2, GameManager.player2_deck)
-	GameManager.recieve_player_hero.rpc(2, hero)
-	confirm_sfx.play()
-	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/board.tscn")
 
 func _on_load_deck_pressed() -> void:
 	deck.clear()
@@ -130,7 +148,7 @@ Creatures
 3 - Husker Valkyrie
 
 Spells
-3 - Beach Ball
+2 - Beach Ball
 2 - Bale Out
 3 - Field of Nightmares
 2 - Unempty Coffin
@@ -165,7 +183,7 @@ Spells
 3 - Reclaim Landscape
 2 - Rock Out!
 2 - Volcano
-3 - Beach Ball
+2 - Beach Ball
 2 - Field of Nightmares
 
 Buildings
@@ -197,7 +215,7 @@ Creatures
 3 - Furious Chick
 
 Spells
-3 - Beach Ball
+2 - Beach Ball
 2 - Unempty Coffin
 3 - Gnome Snot
 2 - Friendship Bracelet
@@ -236,7 +254,7 @@ Creatures
 3 - Yellow Slimey
 
 Spells
-3 - Beach Ball
+2 - Beach Ball
 2 - Bail Out
 3 - Field of Nightmares
 2 - Gnome Snot
@@ -276,7 +294,7 @@ Spells
 3 - Ancient Comet
 3 - Unempty Coffin
 3 - Whims of Fate
-3 - Beach Ball
+2 - Beach Ball
 
 Buildings
 3 - Monolith of Doom
@@ -313,7 +331,7 @@ Spells
 3 - Quick Pick Me Up
 3 - Drop Zone
 3 - Snake Eye Ring
-3 - Beach Ball
+2 - Beach Ball
 
 Buildings
 3 - Sand Sphinx
@@ -322,3 +340,45 @@ Buildings
 3 - Shadowy Pyramid
 
 "
+		"☆☆☆ Moniker":
+			default_deck_choice = "Hero
+Moniker
+
+Landscapes
+2 - Blue Plains
+2 - Cornfield
+
+Creatures
+3 - Ancient Scholar
+2 - Archer Dan
+2 - Embarrassing Bard
+3 - Heavenly Gazer
+3 - Psionic Architect
+3 - Struzann Djinn
+2 - The Dog
+3 - Fiddling Ferret
+3 - Mr. Slicer
+2 - Kernel Queen
+3 - Druid of the Cob
+3 - Djini Ghost
+2 - Log Knight
+
+Spells
+2 - Strength Crystal
+3 - Furious Furor
+2 - Deforestation
+2 - Puma Paw
+2 - Ring of Damage
+2 - Beach Ball
+
+Buildings
+3 - Celestial Castle
+2 - Blood Castle
+3 - Cabin of Many Woods
+2 - Yellow Lighthouse
+"
+
+func _on_player_stat_menu_pressed() -> void:
+	confirm_sfx.play()
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/stat_screen.tscn")

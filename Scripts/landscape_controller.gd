@@ -22,6 +22,9 @@ func _ready() -> void:
 		change_landscape.disabled = true
 	else:
 		remove_child(spell_image)
+	
+	get_viewport().set_physics_object_picking_sort(true)
+	get_viewport().set_physics_object_picking_first_only(true)
 
 func add_card_to_landscape():
 	var selected_card: Dictionary
@@ -30,16 +33,17 @@ func add_card_to_landscape():
 		selected_card = GameManager.player1_selected_card
 		if selected_card == null:
 			return
+		var card_played: bool = false
 		for key in selected_card:
 			if key == "Card Type":
-				if selected_card["Card Type"] == "Creature":
-					place_creature_logic(1, selected_card, false)
-				elif selected_card["Card Type"] == "Building":
-					place_building_logic(1, selected_card)
-				elif selected_card["Card Type"] == "Spell":
-					place_spell_logic(1, selected_card)
+				if selected_card["Card Type"] == "Creature" and designated_card_type == "Creature":
+					card_played = place_creature_logic(1, selected_card, false)
+				elif selected_card["Card Type"] == "Building" and designated_card_type == "Building":
+					card_played = place_building_logic(1, selected_card)
+				elif selected_card["Card Type"] == "Spell" and designated_card_type == "Spell":
+					card_played = place_spell_logic(1, selected_card)
 			elif key == "Landscape Played":
-				if selected_card["Landscape Played"] == 99:
+				if selected_card["Landscape Played"] == 99 and card_played:
 					GameManager.net_remove_card_from_player_hand.rpc(1, selected_card)
 		GameManager.net_update_player_selected_card.rpc(1, {})
 	# PLAYING CARD ON OPPONENT - only creature
@@ -47,12 +51,15 @@ func add_card_to_landscape():
 		selected_card = GameManager.player2_selected_card
 		if selected_card == null:
 			return
+		var creature_played: bool
 		for key in selected_card:
 			if key == "Card Type":
-				if selected_card["Card Type"] == "Creature":
-					place_creature_logic(1, selected_card, true)
+				if selected_card["Card Type"] == "Creature" and designated_card_type == "Creature":
+					creature_played = place_creature_logic(1, selected_card, true)
+				elif selected_card["Card Type"] == "Building" or selected_card["Card Type"] == "Spell":
+					break
 			elif key == "Landscape Played":
-				if selected_card["Landscape Played"] == 99:
+				if selected_card["Landscape Played"] == 99 and creature_played:
 					GameManager.net_remove_card_from_player_hand.rpc(2, selected_card)
 		GameManager.net_update_player_selected_card.rpc(2, {})
 	# PLAYING CARD ON SELF
@@ -60,16 +67,17 @@ func add_card_to_landscape():
 		selected_card = GameManager.player2_selected_card
 		if selected_card == null:
 			return
+		var card_played: bool = false
 		for key in selected_card:
 			if key == "Card Type":
-				if selected_card["Card Type"] == "Creature":
-					place_creature_logic(2, selected_card, false)
-				elif selected_card["Card Type"] == "Building":
-					place_building_logic(2, selected_card)
-				elif selected_card["Card Type"] == "Spell":
-					place_spell_logic(2, selected_card)
+				if selected_card["Card Type"] == "Creature" and designated_card_type == "Creature":
+					card_played = place_creature_logic(2, selected_card, false)
+				elif selected_card["Card Type"] == "Building" and designated_card_type == "Building":
+					card_played = place_building_logic(2, selected_card)
+				elif selected_card["Card Type"] == "Spell" and designated_card_type == "Spell":
+					card_played = place_spell_logic(2, selected_card)
 			elif key == "Landscape Played":
-				if selected_card["Landscape Played"] == 99:
+				if selected_card["Landscape Played"] == 99 and card_played:
 					GameManager.net_remove_card_from_player_hand.rpc(2, selected_card)
 		GameManager.net_update_player_selected_card.rpc(2, {})
 	# PLAYING CARD ON OPPONENT- only creature
@@ -77,16 +85,19 @@ func add_card_to_landscape():
 		selected_card = GameManager.player1_selected_card
 		if selected_card == null:
 			return
+		var creature_played: bool
 		for key in selected_card:
 			if key == "Card Type":
-				if selected_card["Card Type"] == "Creature":
-					place_creature_logic(2, selected_card, true)
+				if selected_card["Card Type"] == "Creature" and designated_card_type == "Creature":
+					creature_played = place_creature_logic(2, selected_card, true)
+				elif selected_card["Card Type"] == "Building" or selected_card["Card Type"] == "Spell":
+					break
 			elif key == "Landscape Played":
-				if selected_card["Landscape Played"] == 99:
+				if selected_card["Landscape Played"] == 99 and creature_played:
 					GameManager.net_remove_card_from_player_hand.rpc(1, selected_card)
 		GameManager.net_update_player_selected_card.rpc(1, {})
 
-func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on_opponent: bool):
+func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on_opponent: bool) -> bool:
 	var potential_landscape_nums: Array[int] = [0,1,2,3]
 	if player_num == 1 and not playing_on_opponent:
 		for num in potential_landscape_nums:
@@ -98,12 +109,16 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 			GameManager.net_add_card_to_player_discards.rpc(1, GameManager.player1_played_creatures[landscape_num])
 			GameManager.net_remove_creature_from_landscape_array.rpc(1, landscape_num)
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
+		return true
 	elif player_num == 1 and playing_on_opponent:
-		for num in potential_landscape_nums:
-			if selected_card["Landscape Played"] == num:
-				GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
+		#for num in potential_landscape_nums:
+		#	if selected_card["Landscape Played"] == num:
+		#		GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
 		if GameManager.player1_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
+			return true
+		else:
+			return false
 	elif player_num == 2 and not playing_on_opponent:
 		for num in potential_landscape_nums:
 			if selected_card["Landscape Played"] == num:
@@ -114,48 +129,70 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 			GameManager.net_add_card_to_player_discards.rpc(2, GameManager.player2_played_creatures[landscape_num])
 			GameManager.net_remove_creature_from_landscape_array.rpc(2, landscape_num)
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
+		return true
 	elif player_num == 2 and playing_on_opponent:
-		for num in potential_landscape_nums:
-			if selected_card["Landscape Played"] == num:
-				GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
+		#for num in potential_landscape_nums:
+		#	if selected_card["Landscape Played"] == num:
+		#		GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player2_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
+			return true
+		else:
+			return false
+	return false
 
-func place_building_logic(player_num: int, selected_card: Dictionary):
+func place_building_logic(player_num: int, selected_card: Dictionary) -> bool:
+	var potential_landscape_nums: Array[int] = [0,1,2,3]
 	if player_num == 1:
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_building_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player1_played_buildings[landscape_num].is_empty():
 			GameManager.net_add_building_to_landscape_array.rpc(1, landscape_num, selected_card)
+			return true
 		elif not GameManager.player1_played_buildings[landscape_num].is_empty():
 			var placed_card: Dictionary = GameManager.player1_played_buildings[landscape_num]
 			GameManager.net_remove_building_from_landscape_array.rpc(1, landscape_num)
 			GameManager.net_add_card_to_player_discards.rpc(1, placed_card)
 			GameManager.net_add_building_to_landscape_array.rpc(1, landscape_num, selected_card)
+			return true
 	elif player_num == 2:
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_building_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player2_played_buildings[landscape_num].is_empty():
 			GameManager.net_add_building_to_landscape_array.rpc(2, landscape_num, selected_card)
+			return true
 		elif not GameManager.player2_played_buildings[landscape_num].is_empty():
 			var placed_card: Dictionary = GameManager.player2_played_buildings[landscape_num]
 			GameManager.net_remove_building_from_landscape_array.rpc(2, landscape_num)
 			GameManager.net_add_card_to_player_discards.rpc(2, placed_card)
 			GameManager.net_add_building_to_landscape_array.rpc(2, landscape_num, selected_card)
+			return true
+	return false
 
-func place_spell_logic(player_num: int, selected_card: Dictionary):
+func place_spell_logic(player_num: int, selected_card: Dictionary) -> bool:
 	if player_num == 1:
 		if GameManager.player1_current_spell.is_empty():
 			GameManager.net_add_spell_to_play.rpc(1, selected_card)
+			return true
 		elif not GameManager.player1_current_spell.is_empty():
 			var placed_card: Dictionary = GameManager.player1_current_spell
 			GameManager.net_remove_spell_from_play.rpc(1, selected_card)
 			GameManager.net_add_card_to_player_discards.rpc(1, placed_card)
 			GameManager.net_add_spell_to_play.rpc(1, selected_card)
+			return true
 	elif player_num == 2:
 		if GameManager.player2_current_spell.is_empty():
 			GameManager.net_add_spell_to_play.rpc(2, selected_card)
+			return true
 		elif not GameManager.player2_current_spell.is_empty():
 			var placed_card: Dictionary = GameManager.player2_current_spell
 			GameManager.net_remove_spell_from_play.rpc(2, selected_card)
 			GameManager.net_add_card_to_player_discards.rpc(2, placed_card)
 			GameManager.net_add_spell_to_play.rpc(2, selected_card)
+			return true
+	return false
 
 func old_add_card_to_landscape():
 	if not player.can_select:

@@ -21,12 +21,12 @@ func start_client() -> void:
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(IP_ADDRESS, PORT)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.multiplayer_peer.peer_disconnected.connect(client_on_peer_disconnect)
 
 func _on_peer_connected(peer_id):
 	if multiplayer.is_server():
 		print("Client " + str(peer_id) + " connected.")
 		peers_connected += 1
+		GameManager.tell_client_which_player_num_they_are.rpc(peers_connected)
 		if peers_connected == 2:
 			await get_tree().create_timer(5).timeout
 			print("Game starting...")
@@ -41,9 +41,6 @@ func _on_peer_disconnected(peer_id):
 		print("Client " + str(peer_id) + " dicconnected.")
 		if peers_connected == 0:
 			GameManager.terminate_game()
-
-func client_on_peer_disconnect():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_get_players_stats_pressed() -> void:
 	$RichTextLabel.text = GameManager.return_all_stats()

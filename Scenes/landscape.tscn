@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://Scenes/card.tscn" id="2_asa4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asa4r"]
-size = Vector2(146, 27)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vom0"]
-size = Vector2(25, 157)
+size = Vector2(146, 210)
 
 [node name="Landscape" type="Area2D" unique_id=1977995708]
 script = ExtResource("1_asa4r")
@@ -25,11 +22,6 @@ scale = Vector2(0.77931035, 0.7255814)
 texture = ExtResource("2_6vom0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1161315435]
-position = Vector2(0, -91.5)
-shape = SubResource("RectangleShape2D_asa4r")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=115214977]
-position = Vector2(0, 92)
 shape = SubResource("RectangleShape2D_asa4r")
 
 [node name="Card" parent="." unique_id=1856722721 instance=ExtResource("2_asa4r")]
@@ -56,14 +48,6 @@ popup/item_5/text = "IcyLands"
 popup/item_5/id = 5
 popup/item_6/text = "SandyLands"
 popup/item_6/id = 6
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1457041570]
-position = Vector2(-60.5, 1)
-shape = SubResource("RectangleShape2D_6vom0")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=2033028261]
-position = Vector2(60, 0.5)
-shape = SubResource("RectangleShape2D_6vom0")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="item_selected" from="ChangeLandscape" to="." method="_on_change_landscape_item_selected"]

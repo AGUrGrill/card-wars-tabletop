@@ -53,4 +53,12 @@ text = "ID: "
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1322162237]
 position = Vector2(800, 450)
 
+[node name="ReturnToMenu" type="Button" parent="." unique_id=1951625229]
+offset_left = 1402.0
+offset_top = 3.0
+offset_right = 1598.0
+offset_bottom = 34.0
+text = "RETURN TO MAIN MENU"
+
 [connection signal="toggled" from="Player1Container/ZoomButton" to="." method="_on_zoom_button_toggled"]
+[connection signal="pressed" from="ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

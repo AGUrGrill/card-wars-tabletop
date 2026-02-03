@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cywccvfbiq0d6"]
+
+[ext_resource type="Script" uid="uid://byfwm4famc2dc" path="res://Scenes/stat_screen.gd" id="1_2tryx"]
+[ext_resource type="Texture2D" uid="uid://dwja77jwphior" path="res://Assets/stat_bg.jpg" id="2_7c3am"]
+[ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="3_we2a5"]
+
+[node name="StatScreen" type="Node2D" unique_id=1703827396]
+script = ExtResource("1_2tryx")
+
+[node name="StatBg" type="Sprite2D" parent="." unique_id=1602039306]
+modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
+position = Vector2(779, 461)
+scale = Vector2(0.40583882, 0.40583882)
+texture = ExtResource("2_7c3am")
+metadata/_edit_lock_ = true
+
+[node name="WinsLabel" type="Label" parent="." unique_id=1164412479]
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 877.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 64
+text = "WINS"
+
+[node name="WinAmt" type="Label" parent="WinsLabel" unique_id=214567022]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 96.0
+offset_right = 111.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 48
+text = "10"
+
+[node name="LosesLabel" type="Label" parent="." unique_id=1234751629]
+offset_left = 683.0
+offset_top = 208.0
+offset_right = 909.0
+offset_bottom = 296.0
+theme_override_font_sizes/font_size = 64
+text = "LOSSES"
+
+[node name="LossAmt" type="Label" parent="LosesLabel" unique_id=1960855652]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 96.0
+offset_right = 141.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 48
+text = "10"
+
+[node name="ReturnToMenu" type="Button" parent="." unique_id=1643918287]
+offset_left = 624.0
+offset_top = 816.0
+offset_right = 1008.0
+offset_bottom = 869.0
+theme_override_font_sizes/font_size = 32
+text = "RETURN TO MAIN MENU"
+
+[node name="Audio" parent="." unique_id=1384660115 instance=ExtResource("3_we2a5")]
+audio_type = "Main Menu"
+
+[connection signal="pressed" from="ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

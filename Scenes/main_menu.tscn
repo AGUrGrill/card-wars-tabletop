@@ -16,27 +16,20 @@ metadata/_edit_lock_ = true
 
 [node name="StartServer" type="Button" parent="." unique_id=1876640724]
 offset_left = 72.0
-offset_top = 232.0
+offset_top = 296.0
 offset_right = 260.0
-offset_bottom = 274.0
+offset_bottom = 338.0
 theme_override_font_sizes/font_size = 24
-text = "STARTS SERVER"
+text = "START SERVER"
 
 [node name="StartClient" type="Button" parent="." unique_id=2004198776]
 offset_left = 72.0
-offset_top = 280.0
+offset_top = 226.0
 offset_right = 260.0
-offset_bottom = 322.0
+offset_bottom = 268.0
+scale = Vector2(1.2, 1.2)
 theme_override_font_sizes/font_size = 24
-text = "START CLIENT 1"
-
-[node name="StartClient2" type="Button" parent="." unique_id=299807707]
-offset_left = 72.0
-offset_top = 328.0
-offset_right = 260.0
-offset_bottom = 370.0
-theme_override_font_sizes/font_size = 24
-text = "START CLIENT 2"
+text = "START CLIENT"
 
 [node name="GameName" type="Label" parent="." unique_id=1465012354]
 offset_left = 64.0
@@ -111,21 +104,28 @@ audio_type = "Main Menu"
 
 [node name="IPAddress" type="LineEdit" parent="." unique_id=294402506]
 offset_left = 1368.0
-offset_top = 16.0
+offset_top = 32.0
 offset_right = 1512.0
-offset_bottom = 47.0
+offset_bottom = 63.0
 placeholder_text = "IP ADDRESS"
 
 [node name="Port" type="LineEdit" parent="." unique_id=947913166]
 offset_left = 1520.0
-offset_top = 16.0
+offset_top = 32.0
 offset_right = 1588.5625
-offset_bottom = 47.0
+offset_bottom = 63.0
 placeholder_text = "PORT"
+
+[node name="PlayerStatMenu" type="Button" parent="." unique_id=1698313679]
+offset_left = 73.0
+offset_top = 356.0
+offset_right = 190.0
+offset_bottom = 387.0
+text = "PLAYER STATS"
 
 [connection signal="pressed" from="StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="StartClient" to="." method="_on_start_client_pressed"]
-[connection signal="pressed" from="StartClient2" to="." method="_on_start_client_2_pressed"]
 [connection signal="pressed" from="LoadDeck" to="." method="_on_load_deck_pressed"]
 [connection signal="timeout" from="Log/Timer" to="." method="_on_timer_timeout"]
 [connection signal="item_selected" from="ChooseDeck" to="." method="_on_choose_deck_item_selected"]
+[connection signal="pressed" from="PlayerStatMenu" to="." method="_on_player_stat_menu_pressed"]

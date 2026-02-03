@@ -5,7 +5,7 @@ var player1
 var player2
 @onready var zoom_button: Button = $Player1Container/ZoomButton
 @onready var main_camera: Camera2D = $MainCamera
-const PLAYER = preload("uid://cmvkn00sedqin")
+const PLAYER = preload("res://Scenes/player.tscn")
 var connected: bool = false
 var player_num: int
 @onready var id: Label = $ID
@@ -30,6 +30,9 @@ func _ready() -> void:
 		player2.is_player_board = true
 		player_1_container.add_child(player2)
 	id.text = "ID: " + str(multiplayer.get_unique_id())
+	
+	get_viewport().set_physics_object_picking_sort(true)
+	get_viewport().set_physics_object_picking_first_only(true)
 
 func _process(delta: float) -> void:
 	if GameManager.hand_refresh_needed:
@@ -54,3 +57,10 @@ func _on_zoom_button_toggled(toggled_on: bool) -> void:
 		main_camera.zoom = Vector2(1.5, 1.5)
 	else:
 		main_camera.zoom = Vector2(1, 1)
+
+
+func _on_return_to_menu_pressed() -> void:
+	NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
+	GameManager.game_ended = false
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

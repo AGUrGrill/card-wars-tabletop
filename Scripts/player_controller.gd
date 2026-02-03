@@ -1,15 +1,15 @@
 extends Node2D
 
-@onready var hp_label: Label = $StatPanel/HPLabel
-@onready var actions_label: Label = $StatPanel/ActionsLabel
-@onready var player_label: Label = $StatPanel/PlayerLabel
-@onready var opponent_hp_label: Label = $StatPanel/OpponentHPLabel
+const CARD = preload("uid://dycs2rc7imye2")
 
+# MAIN NODE
 @onready var player: Node2D = $"."
-@onready var main_switch: Button = $MainSwitch
-@onready var main_button: Button = $MainButton
-@onready var sub_button: Button = $SubButton
-@onready var end_turn: Button = $EndTurn
+# MAIN BUTTONS
+@onready var main_switch: Button = $MainButtons/MainSwitch
+@onready var main_button: Button = $MainButtons/MainButton
+@onready var sub_button: Button = $MainButtons/SubButton
+@onready var end_turn: Button = $MainButtons/EndTurn
+# CARD AREAS
 @onready var landscape_1_creature: Area2D = $Landscape1/Card
 @onready var landscape_2_creature: Area2D = $Landscape2/Card
 @onready var landscape_3_creature: Area2D = $Landscape3/Card
@@ -18,35 +18,51 @@ extends Node2D
 @onready var landscape_2_building: Area2D = $Building2/Card
 @onready var landscape_3_building: Area2D = $Building3/Card
 @onready var landscape_4_building: Area2D = $Building4/Card
-@onready var selected_card: Sprite2D = $SelectedCard
 @onready var spell_area_card: Area2D = $SpellArea/Card
+# STATS
+@onready var hp_label: Label = $StatPanel/HPLabel
+@onready var actions_label: Label = $StatPanel/ActionsLabel
+@onready var player_label: Label = $StatPanel/PlayerLabel
+@onready var opponent_hp_label: Label = $StatPanel/OpponentHPLabel
 @onready var actions_down: Button = $StatPanel/ActionsLabel/ActionsDown
 @onready var actions_up: Button = $StatPanel/ActionsLabel/ActionsUp
 @onready var hp_up: Button = $StatPanel/HPLabel/HPUp
 @onready var hp_down: Button = $StatPanel/HPLabel/HPDown
 @onready var stat_panel: Panel = $StatPanel
+# HAND
 @onready var hand: HBoxContainer = $Hand
-const CARD = preload("uid://dycs2rc7imye2")
+# IMAGES
 @onready var hero_image: Sprite2D = $HeroImage
-@onready var input_timer: Timer = $InputTimer
-@onready var input_timer_label: Label = $InputTimerLabel
-@onready var log_label: Label = $LogLabel
-@onready var log_timer: Timer = $LogTimer
-@onready var remove_label: Label = $RemoveLabel
-@onready var remove_card: Button = $RemoveCard
-@onready var give_opp_card: Button = $GiveOppCard
+@onready var selected_card: Sprite2D = $SelectedCard
+# TIMERS
+@onready var input_timer: Timer = $Timers/InputTimer
+@onready var input_timer_label: Label = $Timers/InputTimerLabel
+# LOG
+@onready var log_label: Label = $Log/LogLabel
+@onready var log_timer: Timer = $Log/LogTimer
+# ANIMATION
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var deck_switch: Button = $DeckSwitch
+# AUDIO
+@onready var audio: Node = $Audio
+# ADDITIONAL OPTIONS
+@onready var additional_options_panel: Panel = $AdditionalOptions/AdditionalOptionsPanel
+# deck
+@onready var deck_options: Node2D = $AdditionalOptions/AdditionalOptionsPanel/DeckOptions
+@onready var scry_num: LineEdit = $AdditionalOptions/AdditionalOptionsPanel/DeckOptions/ScryNum
+# additional
+@onready var additional_options: Node2D = $AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions
+@onready var deck_options_button: Button = $AdditionalOptions/DeckOptionsButton
+@onready var additional_options_button: Button = $AdditionalOptions/AdditionalOptionsButton
 
+# VARIABLES
 @export var player_num: int
 var is_player_board: bool
-var in_discard_mode: bool
-var in_deck_mode: bool
 var disabled: bool = true
-@onready var audio: Node = $Audio
 var can_select: bool = true
 var prev_hp: int = GameManager.DEFAULT_HP
 var modulated: bool = false
+var in_deck_mode: bool
+var in_discard_mode: bool
 
 func _ready() -> void:
 	hand.set_meta("player_num", player_num)
@@ -96,13 +112,12 @@ func hide_buttons(should_hide: bool):
 	sub_button.visible = false
 	main_switch.visible = false
 	end_turn.visible = false
-	remove_label.visible = false
-	remove_card.visible = false
-	give_opp_card.visible = false
 	input_timer_label.visible = false
 	log_label.visible = false
 	audio.disabled = true
-	deck_switch.visible = false
+	additional_options_panel.visible = false
+	deck_options_button.visible = false
+	additional_options_button.visible = false
 
 func disable_inputs(should_disable: bool, should_modulate: bool):
 	if should_disable:
@@ -261,7 +276,45 @@ func draw_card_logic():
 		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_card(2))
 	make_log_message("Card drawn.")
 
-func grab_card_logic():
+func draw_bottom_card_logic():
+	if player_num == 1:
+		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.draw_bottom_card(1))
+	if player_num == 2:
+		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_bottom_card(2))
+	make_log_message("Card drawn.")
+
+func grab_card_from_play_logic():
+	var potential_landscape_nums: Array[int] = [0,1,2,3,69]
+	var selected_card: Dictionary
+	if player_num == 1:
+		selected_card = GameManager.player1_selected_card
+	elif player_num == 2:
+		selected_card = GameManager.player2_selected_card
+	if selected_card.is_empty():
+		return
+	
+	var valid_landscape_type: bool = false
+	for num in potential_landscape_nums:
+		if selected_card["Landscape Played"] == num:
+			valid_landscape_type = true
+	
+	if valid_landscape_type:
+		GameManager.net_add_card_to_player_hand.rpc(player_num, selected_card)
+		if selected_card["Card Type"] == "Creature":
+			GameManager.net_remove_creature_from_landscape_array.rpc(player_num, selected_card["Landscape Played"])
+		elif selected_card["Card Type"] == "Building":
+			GameManager.net_remove_building_from_landscape_array.rpc(player_num, selected_card["Landscape Played"])
+		elif selected_card["Card Type"] == "Spell":
+			GameManager.net_remove_spell_from_play.rpc(player_num)
+		GameManager.net_update_player_selected_card.rpc(player_num, {})
+		player.update_selected_card_image("fart")
+		make_log_message("Grabbed " + selected_card["Name"] + ".")
+	else:
+		player.update_selected_card_image("fart")
+		make_log_message("Invalid selection.")
+		return
+
+func grab_card_from_discards_logic():
 	var selected_card: Dictionary
 	if player_num == 1:
 		selected_card = GameManager.player1_selected_card
@@ -274,6 +327,8 @@ func grab_card_logic():
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
 	player.update_selected_card_image("fart")
 	make_log_message("Grabbed " + selected_card["Name"] + ".")
+	update_player_hand_display()
+	make_log_message("Switched to hand display.")
 
 func grab_card_from_deck_logic():
 	var selected_card: Dictionary
@@ -286,8 +341,10 @@ func grab_card_from_deck_logic():
 	GameManager.net_add_card_to_player_hand.rpc(player_num, selected_card)
 	GameManager.net_remove_card_from_player_deck.rpc(player_num, selected_card)
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
+	player.update_selected_card_image("fart")
 	make_log_message("Grabbed " + selected_card["Name"] + ".")
-	
+	update_player_hand_display()
+	make_log_message("Switched to hand display.")
 
 func remove_card_logic():
 	var selected_card: Dictionary
@@ -351,22 +408,41 @@ func shuffle_deck_logic():
 	GameManager.shuffle_deck(player_num)
 	make_log_message("Deck shuffled!")
 
+func add_card_to_top_deck_logic():
+	if player_num == 1:
+		GameManager.add_card_to_top_of_deck(1, GameManager.player1_selected_card)
+		GameManager.net_remove_card_from_player_hand.rpc(1, GameManager.player1_selected_card)
+	elif player_num == 2:
+		GameManager.add_card_to_top_of_deck(2, GameManager.player2_selected_card)
+		GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
+
+func add_card_to_bottom_deck_logic():
+	if player_num == 1:
+		GameManager.add_card_to_bottom_of_deck.rpc(1, GameManager.player1_selected_card)
+		GameManager.net_remove_card_from_player_hand.rpc(1, GameManager.player1_selected_card)
+	elif player_num == 2:
+		GameManager.add_card_to_bottom_of_deck.rpc(2, GameManager.player2_selected_card)
+		GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
+
 # LAYOUTS
 func change_to_discard_layout():
-	main_button.text = "GRAB CARD"
+	in_deck_mode = false
+	in_discard_mode = true
 	main_switch.text = "VIEW HAND"
+	main_button.text = "GRAB CARD"
 	sub_button.disabled = true
 	sub_button.visible = false
-	in_discard_mode = true
-	in_deck_mode = false
 	if player_num == 1 and multiplayer.get_unique_id() == GameManager.player1_id:
 		print(GameManager.player1_deck)
 	elif player_num == 2 and multiplayer.get_unique_id() == GameManager.player2_id:
 		print(GameManager.player2_deck)
 
 func change_to_draw_layout():
-	main_button.text = "DRAW CARD"
+	in_deck_mode = false
+	in_discard_mode = false
 	main_switch.text = "VIEW DISCARDS"
+	main_button.text = "DRAW CARD"
+	sub_button.text = "DISCARD CARD"
 	# To make sure it does not enable for the other player sometimes (TRY TO FIX ORIGINAL ISSUE OF DISCARD CARD BUTTON APPEARING) this is a bandaid
 	if player_num == 1 and multiplayer.get_unique_id() == GameManager.player1_id:
 		sub_button.disabled = false
@@ -374,20 +450,26 @@ func change_to_draw_layout():
 	elif player_num == 2 and multiplayer.get_unique_id() == GameManager.player2_id:
 		sub_button.disabled = false
 		sub_button.visible = true
-	in_discard_mode = false
-	in_deck_mode = false
-
+	
 func change_to_deck_layout():
-	main_button.text = "GRAB CARD"
+	in_deck_mode = true
+	in_discard_mode = false
 	main_switch.text = "VIEW HAND"
-	sub_button.text = "RESHUFFLE"
-	sub_button.disabled = false
-	sub_button.visible = true
+	main_button.text = "GRAB CARD"
+	sub_button.disabled = true
+	sub_button.visible = false
 	if player_num == 1 and multiplayer.get_unique_id() == GameManager.player1_id:
 		print(GameManager.player1_deck)
 	elif player_num == 2 and multiplayer.get_unique_id() == GameManager.player2_id:
 		print(GameManager.player2_deck)
-	in_deck_mode = true
+
+func enable_deck_options():
+	additional_options.visible = false
+	deck_options.visible = true
+
+func enable_additional_options():
+	deck_options.visible = false
+	additional_options.visible = true
 
 # OTHER
 func get_real_player_num():
@@ -401,7 +483,8 @@ func start_selection_buffer():
 	input_timer.start()
 
 func make_log_message(message: String):
-	log_label.text = message
+	if log_timer.time_left > 0:
+		log_label.text = log_label.text + "\n" + message
 	log_timer.start()
 
 # UPDATES
@@ -450,6 +533,7 @@ func update_player_hand_display():
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
 		new_card.position.x = increment * idx
+		new_card.z_index = idx
 		idx += 1
 		
 		var card_ability: String = ""
@@ -485,6 +569,7 @@ func update_player_discards_display():
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
 		new_card.position.x = increment * idx
+		new_card.z_index = idx
 		idx += 1
 		
 		var card_ability: String = ""
@@ -518,13 +603,14 @@ func update_player_deck_display():
 	
 	var max_length: float = hand.size.x
 	var increment: float = max_length / main_hand.size()
-	
 	var idx: int = 0
+	
 	for card in main_hand:
 		var new_card = CARD.instantiate()
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
 		new_card.position.x = increment * idx
+		new_card.z_index = idx
 		idx += 1
 		
 		var card_ability: String = ""
@@ -537,6 +623,46 @@ func update_player_deck_display():
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
+	make_log_message("Switched to deck display.")
+
+func update_scry_player_deck_display(amount: int):
+	change_to_deck_layout()
+	for card in hand.get_children():
+		hand.remove_child(card)
+	
+	var main_hand: Array
+	if player_num == 1:
+		main_hand = GameManager.player1_deck
+	elif player_num == 2:
+		main_hand = GameManager.player2_deck
+	if main_hand.is_empty():
+		return
+	print("Player " + str(player_num) + "'s Deck:\n" + str(multiplayer.get_unique_id()))
+	
+	var max_length: float = hand.size.x
+	var increment: float = max_length / main_hand.size()
+	var idx: int = -1
+	
+	for card in main_hand:
+		idx += 1
+		if idx < main_hand.size() - amount:
+			continue
+		var new_card = CARD.instantiate()
+		new_card.is_in_hand = true
+		hand.add_child(new_card)
+		new_card.position.x = increment * idx
+		
+		var card_ability: String = ""
+		for key in card:
+			if key == "Ability":
+				card_ability = card["Ability"]
+		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
+		else:
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
+		if not is_player_board:
+			new_card.hide_image()
+	make_log_message("Switched to deck display.")
 
 @rpc("any_peer", "call_local")
 func update_player_landscapes():
@@ -671,25 +797,6 @@ func _on_end_turn_pressed() -> void:
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
-func _on_remove_card_pressed() -> void:
-	if not can_select:
-		return
-	remove_card_logic()
-	make_log_message("Removed card.")
-	audio.confirm_sfx.play()
-	start_selection_buffer()
-
-func _on_give_opp_card_pressed() -> void:
-	give_opp_card_logic()
-	audio.confirm_sfx.play()
-	start_selection_buffer()
-
-func _on_deck_switch_pressed() -> void:
-	update_player_deck_display()
-	make_log_message("Switched to deck display.")
-	audio.confirm_sfx.play()
-	start_selection_buffer()
-
 # TIMERS
 func _on_input_timer_timeout() -> void:
 	input_timer_label.text = "0"
@@ -698,15 +805,14 @@ func _on_input_timer_timeout() -> void:
 func _on_log_timer_timeout() -> void:
 	log_label.text = ""
 
-# MAIN BUTTONS
+# BUTTONS
 func _on_main_button_pressed() -> void:
 	if not can_select:
 		return
-	if in_discard_mode:
-		if in_deck_mode:
-			grab_card_from_deck_logic()
-		else:
-			grab_card_logic()
+	if in_deck_mode:
+		grab_card_from_deck_logic()
+	elif in_discard_mode:
+		grab_card_from_discards_logic()
 	else:
 		draw_card_logic()
 	make_log_message("Card drawn.")
@@ -716,10 +822,7 @@ func _on_main_button_pressed() -> void:
 func _on_sub_button_pressed() -> void:
 	if not can_select:
 		return
-	if in_deck_mode:
-		shuffle_deck_logic()
-	else:
-		discard_card_logic()
+	discard_card_logic()
 	make_log_message("Discarded card.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
@@ -727,15 +830,91 @@ func _on_sub_button_pressed() -> void:
 func _on_main_switch_toggled(toggled_on: bool) -> void:
 	if not can_select:
 		return
-	# Fix for when deck mode turns on discard mode
-	if toggled_on and in_deck_mode:
-		toggled_on = false
-		in_deck_mode = false
 	if toggled_on:
 		update_player_discards_display()
 		make_log_message("Switched to discard display.")
 	else:
 		update_player_hand_display()
 		make_log_message("Switched to hand display.")
+
+func _on_additional_options_pressed() -> void:
+	if not can_select:
+		return
+	enable_additional_options()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_deck_options_pressed() -> void:
+	if not can_select:
+		return
+	enable_deck_options()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+# Deck
+func _on_deck_view_pressed() -> void:
+	if not can_select:
+		return
+	update_player_deck_display()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_deck_view_top_x_cards_pressed() -> void:
+	if not can_select:
+		return
+	if scry_num.text.is_valid_int():
+		update_scry_player_deck_display(int(scry_num.text))
+	else:
+		make_log_message("Invalid scry number!")
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_deck_shuffle_pressed() -> void:
+	if not can_select:
+		return
+	shuffle_deck_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_deck_draw_bottom_pressed() -> void:
+	if not can_select:
+		return
+	draw_bottom_card_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_deck_add_top_pressed() -> void:
+	if not can_select:
+		return
+	add_card_to_top_deck_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_deck_add_bottom_pressed() -> void:
+	if not can_select:
+		return
+	add_card_to_bottom_deck_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+# Additional
+func _on_delete_from_game_pressed() -> void:
+	if not can_select:
+		return
+	remove_card_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_give_to_opp_pressed() -> void:
+	if not can_select:
+		return
+	give_opp_card_logic()
+	audio.confirm_sfx.play()
+	start_selection_buffer()
+
+func _on_add_card_to_hand_pressed() -> void:
+	if not can_select:
+		return
+	grab_card_from_play_logic()
 	audio.confirm_sfx.play()
 	start_selection_buffer()

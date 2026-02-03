@@ -113,9 +113,44 @@ _data = {
 script = ExtResource("1_4flbx")
 metadata/_edit_lock_ = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=132630662]
+libraries/ = SubResource("AnimationLibrary_2hs0m")
+
+[node name="Audio" parent="." unique_id=1591672413 instance=ExtResource("3_i3pqv")]
+audio_type = "Player"
+
+[node name="Timers" type="Node2D" parent="." unique_id=605837408]
+metadata/_edit_lock_ = true
+
+[node name="InputTimer" type="Timer" parent="Timers" unique_id=1768162417]
+wait_time = 0.5
+
+[node name="InputTimerLabel" type="Label" parent="Timers" unique_id=172184736]
+offset_left = 249.0
+offset_top = 400.0
+offset_right = 289.0
+offset_bottom = 423.0
+text = "0.1"
+
+[node name="Log" type="Node2D" parent="." unique_id=352994619]
+metadata/_edit_lock_ = true
+
+[node name="LogTimer" type="Timer" parent="Log" unique_id=1395131991]
+wait_time = 4.0
+
+[node name="LogLabel" type="Label" parent="Log" unique_id=2133081909]
+offset_left = 904.0
+offset_top = -48.0
+offset_right = 1296.0
+offset_bottom = -25.0
+theme_override_font_sizes/font_size = 12
+text = "Placed X Creature"
+horizontal_alignment = 2
+
 [node name="StatPanel" type="Panel" parent="." unique_id=285193996]
 offset_right = 96.0
 offset_bottom = 186.0
+metadata/_edit_lock_ = true
 
 [node name="PlayerLabel" type="Label" parent="StatPanel" unique_id=131894417]
 layout_mode = 0
@@ -188,35 +223,37 @@ offset_right = 90.0
 offset_bottom = 182.0
 text = "HP: "
 
-[node name="MainSwitch" type="Button" parent="." unique_id=1965120681]
-offset_left = 134.0
-offset_top = 11.0
-offset_right = 262.0
-offset_bottom = 42.0
+[node name="MainButtons" type="Node2D" parent="." unique_id=1618728035]
+metadata/_edit_lock_ = true
+
+[node name="MainSwitch" type="Button" parent="MainButtons" unique_id=1965120681]
+offset_left = 100.0
+offset_top = 1.0
+offset_right = 290.0
+offset_bottom = 32.0
 toggle_mode = true
 text = "VIEW DISCARDS"
 
-[node name="MainButton" type="Button" parent="." unique_id=320735129]
-offset_left = 145.0
-offset_top = 58.0
-offset_right = 248.0
-offset_bottom = 89.0
+[node name="MainButton" type="Button" parent="MainButtons" unique_id=320735129]
+offset_left = 101.0
+offset_top = 39.0
+offset_right = 289.0
+offset_bottom = 70.0
 text = "DRAW CARD"
 
-[node name="SubButton" type="Button" parent="." unique_id=1538702457]
-offset_left = 139.0
-offset_top = 105.0
-offset_right = 262.0
-offset_bottom = 136.0
+[node name="SubButton" type="Button" parent="MainButtons" unique_id=1538702457]
+offset_left = 100.0
+offset_top = 80.0
+offset_right = 288.0
+offset_bottom = 111.0
 text = "DISCARD CARD"
 
-[node name="Hand" type="HBoxContainer" parent="." unique_id=1596166206]
-offset_left = 89.0
-offset_top = 501.0
-offset_right = 1200.0
-offset_bottom = 601.0
-alignment = 1
-metadata/player_num = 0
+[node name="EndTurn" type="Button" parent="MainButtons" unique_id=1802754405]
+offset_left = 1.0
+offset_top = 191.0
+offset_right = 91.0
+offset_bottom = 222.0
+text = "END TURN"
 
 [node name="SpellArea" parent="." unique_id=491291059 instance=ExtResource("2_sweqy")]
 position = Vector2(1022, 209)
@@ -257,94 +294,157 @@ position = Vector2(810, 320)
 landscape_num = 3
 designated_card_type = "Building"
 
-[node name="EndTurn" type="Button" parent="." unique_id=1802754405]
-offset_left = 2.0
-offset_top = 193.0
-offset_right = 92.0
-offset_bottom = 224.0
-text = "END TURN"
+[node name="Hand" type="HBoxContainer" parent="." unique_id=1596166206]
+offset_left = 89.0
+offset_top = 501.0
+offset_right = 1200.0
+offset_bottom = 601.0
+alignment = 1
+metadata/player_num = 0
+metadata/_edit_lock_ = true
 
 [node name="HeroImage" type="Sprite2D" parent="." unique_id=596994513]
 position = Vector2(1261, 204)
 scale = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
-[node name="Audio" parent="." unique_id=1591672413 instance=ExtResource("3_i3pqv")]
-audio_type = "Player"
-
 [node name="SelectedCard" type="Sprite2D" parent="." unique_id=1892070561]
 position = Vector2(-243.00002, 243.00002)
 scale = Vector2(1.7, 1.7)
+metadata/_edit_lock_ = true
 
-[node name="RemoveLabel" type="Label" parent="." unique_id=1900751190]
+[node name="AdditionalOptions" type="Node2D" parent="." unique_id=559088615]
+
+[node name="AdditionalOptionsPanel" type="Panel" parent="AdditionalOptions" unique_id=819601441]
 offset_left = 2.0
-offset_top = 372.0
-offset_right = 109.0
-offset_bottom = 395.0
-theme_override_font_sizes/font_size = 8
-text = "Removes Card from Game"
-
-[node name="RemoveCard" type="Button" parent="." unique_id=1085138111]
-offset_left = 2.0
-offset_top = 386.0
-offset_right = 92.0
-offset_bottom = 406.0
-theme_override_font_sizes/font_size = 8
-text = "FULLY REMOVE CARD"
-
-[node name="GiveOppCard" type="Button" parent="." unique_id=1287199612]
-offset_left = 2.0
-offset_top = 350.0
-offset_right = 98.0
-offset_bottom = 370.0
-theme_override_font_sizes/font_size = 8
-text = "GIVE OPPONENT CARD"
-
-[node name="DeckSwitch" type="Button" parent="." unique_id=983974013]
-offset_left = 2.0
-offset_top = 324.0
-offset_right = 53.0
-offset_bottom = 344.0
-theme_override_font_sizes/font_size = 8
-text = "VIEW DECK"
-
-[node name="InputTimer" type="Timer" parent="." unique_id=1768162417]
-wait_time = 0.5
-
-[node name="InputTimerLabel" type="Label" parent="." unique_id=172184736]
-offset_left = 249.0
-offset_top = 400.0
+offset_top = 228.0
 offset_right = 289.0
-offset_bottom = 423.0
-text = "0.1"
+offset_bottom = 372.0
 
-[node name="LogTimer" type="Timer" parent="." unique_id=1395131991]
-wait_time = 4.0
+[node name="DeckOptions" type="Node2D" parent="AdditionalOptions/AdditionalOptionsPanel" unique_id=732174448]
+visible = false
 
-[node name="LogLabel" type="Label" parent="." unique_id=2133081909]
-offset_left = 902.0
-offset_top = 3.0
-offset_right = 1294.0
-offset_bottom = 26.0
+[node name="DeckView" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=1287199612]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 92.0
+offset_bottom = 35.0
+text = "View Deck"
+
+[node name="ScryNum" type="LineEdit" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=1672802008]
+offset_left = 223.0
+offset_top = 9.0
+offset_right = 276.375
+offset_bottom = 34.0
 theme_override_font_sizes/font_size = 12
-text = "Placed X Creature"
-horizontal_alignment = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=132630662]
-libraries/ = SubResource("AnimationLibrary_2hs0m")
+[node name="DeckViewTopXCards" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=641353939]
+offset_left = 106.0
+offset_top = 9.0
+offset_right = 214.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 12
+text = "View Top X Cards"
 
+[node name="DeckShuffle" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=1846927250]
+offset_left = 6.0
+offset_top = 45.0
+offset_right = 55.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 12
+text = "Shuffle"
+
+[node name="DeckDrawBottom" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=22215365]
+offset_left = 6.0
+offset_top = 78.0
+offset_right = 92.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 12
+text = "Draw Bottom
+"
+
+[node name="DeckAddTop" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=206862621]
+offset_left = 175.0
+offset_top = 45.0
+offset_right = 277.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 12
+text = "Add Card to Top
+"
+
+[node name="DeckAddBottom" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=1748310263]
+offset_left = 153.0
+offset_top = 76.0
+offset_right = 277.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 12
+text = "Add Card to Bottom
+"
+
+[node name="AdditionalOptions" type="Node2D" parent="AdditionalOptions/AdditionalOptionsPanel" unique_id=679968445]
+visible = false
+
+[node name="DeleteFromGame" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1841362543]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 150.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 12
+text = "Delete Card from Game"
+
+[node name="GiveToOpp" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1259868774]
+offset_left = 5.0
+offset_top = 34.0
+offset_right = 146.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 12
+text = "Give Card to Opponent"
+
+[node name="Add Card to Hand" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1613549218]
+offset_left = 5.0
+offset_top = 67.0
+offset_right = 146.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 12
+text = "Add Card to Hand
+"
+
+[node name="DeckOptionsButton" type="Button" parent="AdditionalOptions" unique_id=983974013]
+offset_left = 8.0
+offset_top = 376.0
+offset_right = 103.0
+offset_bottom = 401.0
+theme_override_font_sizes/font_size = 12
+text = "DECK OPTIONS"
+
+[node name="AdditionalOptionsButton" type="Button" parent="AdditionalOptions" unique_id=1085138111]
+offset_left = 144.0
+offset_top = 376.0
+offset_right = 281.0
+offset_bottom = 401.0
+theme_override_font_sizes/font_size = 12
+text = "ADDITIONAL OPTIONS"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timers/InputTimer" to="." method="_on_input_timer_timeout"]
+[connection signal="timeout" from="Log/LogTimer" to="." method="_on_log_timer_timeout"]
 [connection signal="pressed" from="StatPanel/HPLabel/HPDown" to="." method="_on_hp_down_pressed"]
 [connection signal="pressed" from="StatPanel/HPLabel/HPUp" to="." method="_on_hp_up_pressed"]
 [connection signal="pressed" from="StatPanel/ActionsLabel/ActionsDown" to="." method="_on_actions_down_pressed"]
 [connection signal="pressed" from="StatPanel/ActionsLabel/ActionsUp" to="." method="_on_actions_up_pressed"]
-[connection signal="toggled" from="MainSwitch" to="." method="_on_main_switch_toggled"]
-[connection signal="pressed" from="MainButton" to="." method="_on_main_button_pressed"]
-[connection signal="pressed" from="SubButton" to="." method="_on_sub_button_pressed"]
+[connection signal="toggled" from="MainButtons/MainSwitch" to="." method="_on_main_switch_toggled"]
+[connection signal="pressed" from="MainButtons/MainButton" to="." method="_on_main_button_pressed"]
+[connection signal="pressed" from="MainButtons/SubButton" to="." method="_on_sub_button_pressed"]
+[connection signal="pressed" from="MainButtons/EndTurn" to="." method="_on_end_turn_pressed"]
 [connection signal="mouse_entered" from="Hand" to="." method="_on_hand_mouse_entered"]
-[connection signal="pressed" from="EndTurn" to="." method="_on_end_turn_pressed"]
-[connection signal="pressed" from="RemoveCard" to="." method="_on_remove_card_pressed"]
-[connection signal="pressed" from="GiveOppCard" to="." method="_on_give_opp_card_pressed"]
-[connection signal="pressed" from="DeckSwitch" to="." method="_on_deck_switch_pressed"]
-[connection signal="timeout" from="InputTimer" to="." method="_on_input_timer_timeout"]
-[connection signal="timeout" from="LogTimer" to="." method="_on_log_timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/DeckOptions/DeckView" to="." method="_on_deck_view_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/DeckOptions/DeckViewTopXCards" to="." method="_on_deck_view_top_x_cards_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/DeckOptions/DeckShuffle" to="." method="_on_deck_shuffle_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/DeckOptions/DeckDrawBottom" to="." method="_on_deck_draw_bottom_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/DeckOptions/DeckAddTop" to="." method="_on_deck_add_top_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/DeckOptions/DeckAddBottom" to="." method="_on_deck_add_bottom_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/DeleteFromGame" to="." method="_on_delete_from_game_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/GiveToOpp" to="." method="_on_give_to_opp_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/Add Card to Hand" to="." method="_on_add_card_to_hand_pressed"]
+[connection signal="pressed" from="AdditionalOptions/DeckOptionsButton" to="." method="_on_deck_options_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsButton" to="." method="_on_additional_options_pressed"]

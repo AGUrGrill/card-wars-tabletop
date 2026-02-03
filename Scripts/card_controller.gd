@@ -273,21 +273,22 @@ func _on_floop_button_pressed() -> void:
 # Focus Card
 func _on_mouse_entered() -> void:
 	play_glow()
-	card.z_index = 99
+	var player = $"../.."
+	player.update_selected_card_image(card_name)
 
 func _on_mouse_exited() -> void:
 	reset_anim()
-	card.z_index = 9
 
 # Select Card
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	var player = $"../.."
 	if event.is_pressed():
 		if get_card_landscape_num() == 99:
-			$"../..".update_selected_card_image(card_name)
+			player.update_selected_card_image(card_name)
 		else:
-			if $"../..".can_select == false:
+			if player.can_select == false:
 				return
-			$"../..".player.update_selected_card_image(card_name)
+			player.player.update_selected_card_image(card_name)
 		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
 		GameManager.net_tell_clients_to_refresh_landscapes.rpc()
 		print("Selected " + card_name + " for " + str(get_card_player_num()))
