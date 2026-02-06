@@ -1,0 +1,206 @@
+[gd_scene format=3 uid="uid://b03vyrfwmqudy"]
+
+[ext_resource type="Script" uid="uid://d0psks8jg7kr6" path="res://Scripts/deck_creation.gd" id="1_ticia"]
+[ext_resource type="Texture2D" uid="uid://dwja77jwphior" path="res://Assets/stat_bg.jpg" id="2_qq3kh"]
+[ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="3_28v0k"]
+[ext_resource type="PackedScene" uid="uid://bi3p2s6v01fo1" path="res://Scenes/log.tscn" id="4_qq3kh"]
+
+[node name="DeckCreator" type="Node2D" unique_id=105013471]
+script = ExtResource("1_ticia")
+
+[node name="StatBg" type="Sprite2D" parent="." unique_id=1148496306]
+modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
+position = Vector2(779, 461)
+scale = Vector2(0.40583882, 0.40583882)
+texture = ExtResource("2_qq3kh")
+metadata/_edit_lock_ = true
+
+[node name="TypeCard" type="OptionButton" parent="." unique_id=751222636]
+offset_left = 1392.0
+offset_top = 8.0
+offset_right = 1592.0
+offset_bottom = 39.0
+selected = 0
+item_count = 6
+popup/item_0/text = "All Card Types"
+popup/item_0/id = 0
+popup/item_1/text = "Creature"
+popup/item_1/id = 1
+popup/item_2/text = "Spell"
+popup/item_2/id = 2
+popup/item_3/text = "Building"
+popup/item_3/id = 3
+popup/item_4/text = "Hero"
+popup/item_4/id = 4
+popup/item_5/text = "Landscape"
+popup/item_5/id = 5
+
+[node name="SearchName" type="LineEdit" parent="." unique_id=7587147]
+offset_left = 1392.0
+offset_top = 48.0
+offset_right = 1592.0
+offset_bottom = 79.0
+placeholder_text = "Name"
+
+[node name="SearchAbility" type="LineEdit" parent="." unique_id=2134507257]
+offset_left = 1392.0
+offset_top = 88.0
+offset_right = 1592.0
+offset_bottom = 119.0
+placeholder_text = "Ability"
+
+[node name="SearchCost" type="LineEdit" parent="." unique_id=254570693]
+offset_left = 1392.0
+offset_top = 128.0
+offset_right = 1592.0
+offset_bottom = 159.0
+placeholder_text = "Cost"
+
+[node name="SearchAttack" type="LineEdit" parent="." unique_id=1566353687]
+offset_left = 1392.0
+offset_top = 168.0
+offset_right = 1592.0
+offset_bottom = 199.0
+placeholder_text = "Attack"
+
+[node name="SearchDefense" type="LineEdit" parent="." unique_id=1287357277]
+offset_left = 1392.0
+offset_top = 208.0
+offset_right = 1592.0
+offset_bottom = 239.0
+placeholder_text = "Defense"
+
+[node name="TypeLandscape" type="OptionButton" parent="." unique_id=1424682289]
+offset_left = 1392.0
+offset_top = 248.0
+offset_right = 1592.0
+offset_bottom = 279.0
+selected = 0
+item_count = 8
+popup/item_0/text = "All Landscape Types"
+popup/item_0/id = 0
+popup/item_1/text = "Blue Plains"
+popup/item_1/id = 1
+popup/item_2/text = "Cornfield"
+popup/item_2/id = 2
+popup/item_3/text = "Useless Swamp"
+popup/item_3/id = 3
+popup/item_4/text = "SandyLands"
+popup/item_4/id = 4
+popup/item_5/text = "NiceLands"
+popup/item_5/id = 5
+popup/item_6/text = "IcyLands"
+popup/item_6/id = 6
+popup/item_7/text = "Rainbow"
+popup/item_7/id = 7
+
+[node name="ReturnToMenu" type="Button" parent="." unique_id=1760691060]
+offset_left = 1392.0
+offset_top = 856.0
+offset_right = 1588.0
+offset_bottom = 887.0
+text = "RETURN TO MAIN MENU"
+
+[node name="DeckName" type="LineEdit" parent="." unique_id=1806339756]
+offset_left = 1392.0
+offset_top = 768.0
+offset_right = 1592.0
+offset_bottom = 799.0
+placeholder_text = "Deck Name"
+max_length = 20
+
+[node name="SaveDeck" type="Button" parent="." unique_id=1646078367]
+offset_left = 1448.0
+offset_top = 808.0
+offset_right = 1540.0
+offset_bottom = 839.0
+text = "SAVE DECK"
+
+[node name="SearchCards" type="ScrollContainer" parent="." unique_id=89468502]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 648.0
+offset_right = 1384.0
+offset_bottom = 887.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardDisplayPanel" type="HBoxContainer" parent="SearchCards" unique_id=640481820]
+layout_mode = 2
+
+[node name="ChoosenCards" type="ScrollContainer" parent="." unique_id=717773926]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 399.0
+offset_right = 1384.0
+offset_bottom = 638.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardDisplayPanel" type="HBoxContainer" parent="ChoosenCards" unique_id=1370374921]
+layout_mode = 2
+
+[node name="ChoosenLandscapes" type="ScrollContainer" parent="." unique_id=1684090480]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 400.5
+offset_top = 137.0
+offset_right = 1376.5
+offset_bottom = 376.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardDisplayPanel" type="HBoxContainer" parent="ChoosenLandscapes" unique_id=515709719]
+layout_mode = 2
+
+[node name="HeroImage" type="Sprite2D" parent="." unique_id=1111811536]
+position = Vector2(174.25, 222.01894)
+scale = Vector2(1.5, 1.5)
+
+[node name="Audio" parent="." unique_id=1384660115 instance=ExtResource("3_28v0k")]
+disabled = true
+
+[node name="Log" parent="." unique_id=109585823 instance=ExtResource("4_qq3kh")]
+position = Vector2(16, 8)
+is_left_sided = true
+starting_message = "Loading cards, please wait..."
+font_size = 16
+timer_setting = 2.0
+
+[node name="DeckRulesTitle" type="Label" parent="." unique_id=835722828]
+offset_left = 1392.0
+offset_top = 296.0
+offset_right = 1592.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 24
+text = "DECK RULES"
+
+[node name="DeckRules" type="Label" parent="." unique_id=243013401]
+offset_left = 1392.0
+offset_top = 307.0
+offset_right = 1600.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 14
+text = "
+- 1 Hero
+- 4 Landscapes
+- At least 40 cards
+- You must have the creatures cost worth of landscapes to add the creature.
+
+EX: 2 Cost Cornfield = 2 Cornfield Landscapes REQUIRED"
+autowrap_mode = 3
+
+[connection signal="item_selected" from="TypeCard" to="." method="_on_type_card_item_selected"]
+[connection signal="text_submitted" from="SearchName" to="." method="_on_search_name_text_submitted"]
+[connection signal="text_submitted" from="SearchAbility" to="." method="_on_search_ability_text_submitted"]
+[connection signal="text_submitted" from="SearchCost" to="." method="_on_search_cost_text_submitted"]
+[connection signal="text_submitted" from="SearchAttack" to="." method="_on_search_attack_text_submitted"]
+[connection signal="text_submitted" from="SearchDefense" to="." method="_on_search_defense_text_submitted"]
+[connection signal="item_selected" from="TypeLandscape" to="." method="_on_type_landscape_item_selected"]
+[connection signal="pressed" from="ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
+[connection signal="pressed" from="SaveDeck" to="." method="_on_save_deck_pressed"]

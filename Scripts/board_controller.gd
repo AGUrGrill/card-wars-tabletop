@@ -43,14 +43,30 @@ func _process(delta: float) -> void:
 		player1.update_player_stat_display()
 		player2.update_player_stat_display()
 		GameManager.stat_refresh_needed = false
-	if GameManager.landscape_refresh_needed:
-		player1.update_player_landscapes.rpc()
-		player2.update_player_landscapes.rpc()
-		GameManager.landscape_refresh_needed = false
+	if GameManager.landscape1_refresh_needed:
+		player1.update_player_landscape.rpc(0)
+		player2.update_player_landscape.rpc(0)
+		GameManager.landscape1_refresh_needed = false
+	if GameManager.landscape2_refresh_needed:
+		player1.update_player_landscape.rpc(1)
+		player2.update_player_landscape.rpc(1)
+		GameManager.landscape2_refresh_needed = false
+	if GameManager.landscape3_refresh_needed:
+		player1.update_player_landscape.rpc(2)
+		player2.update_player_landscape.rpc(2)
+		GameManager.landscape3_refresh_needed = false
+	if GameManager.landscape4_refresh_needed:
+		player1.update_player_landscape.rpc(3)
+		player2.update_player_landscape.rpc(3)
+		GameManager.landscape4_refresh_needed = false
+	if GameManager.landscape69_refresh_needed:
+		player1.update_player_landscape.rpc(69)
+		player2.update_player_landscape.rpc(69)
+		GameManager.landscape69_refresh_needed = false
 	if GameManager.hero_refresh_needed:
 		player1.update_hero_image()
 		player2.update_hero_image()
-		GameManager.landscape_refresh_needed = false
+		GameManager.hero_refresh_needed = false
 
 func _on_zoom_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -58,9 +74,9 @@ func _on_zoom_button_toggled(toggled_on: bool) -> void:
 	else:
 		main_camera.zoom = Vector2(1, 1)
 
-
 func _on_return_to_menu_pressed() -> void:
-	NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
+	multiplayer.multiplayer_peer.disconnect_peer(1)
+	#NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
 	GameManager.game_ended = false
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

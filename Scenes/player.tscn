@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dw7u3fak148is" path="res://Scripts/player_controller.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://cjnoi5mfcfn1f" path="res://Scenes/landscape.tscn" id="2_sweqy"]
+[ext_resource type="PackedScene" uid="uid://bi3p2s6v01fo1" path="res://Scenes/log.tscn" id="3_fkybt"]
 [ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://gwxn5obxqwcy" path="res://Assets/frozen_token.png" id="4_vgqql"]
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
 length = 0.001
@@ -119,6 +121,9 @@ libraries/ = SubResource("AnimationLibrary_2hs0m")
 [node name="Audio" parent="." unique_id=1591672413 instance=ExtResource("3_i3pqv")]
 audio_type = "Player"
 
+[node name="Log" parent="." unique_id=1880376055 instance=ExtResource("3_fkybt")]
+position = Vector2(1261, 0)
+
 [node name="Timers" type="Node2D" parent="." unique_id=605837408]
 metadata/_edit_lock_ = true
 
@@ -131,21 +136,6 @@ offset_top = 400.0
 offset_right = 289.0
 offset_bottom = 423.0
 text = "0.1"
-
-[node name="Log" type="Node2D" parent="." unique_id=352994619]
-metadata/_edit_lock_ = true
-
-[node name="LogTimer" type="Timer" parent="Log" unique_id=1395131991]
-wait_time = 4.0
-
-[node name="LogLabel" type="Label" parent="Log" unique_id=2133081909]
-offset_left = 904.0
-offset_top = -48.0
-offset_right = 1296.0
-offset_bottom = -25.0
-theme_override_font_sizes/font_size = 12
-text = "Placed X Creature"
-horizontal_alignment = 2
 
 [node name="StatPanel" type="Panel" parent="." unique_id=285193996]
 offset_right = 96.0
@@ -296,9 +286,9 @@ designated_card_type = "Building"
 
 [node name="Hand" type="HBoxContainer" parent="." unique_id=1596166206]
 offset_left = 89.0
-offset_top = 501.0
+offset_top = 487.0
 offset_right = 1200.0
-offset_bottom = 601.0
+offset_bottom = 587.0
 alignment = 1
 metadata/player_num = 0
 metadata/_edit_lock_ = true
@@ -312,6 +302,36 @@ metadata/_edit_lock_ = true
 position = Vector2(-243.00002, 243.00002)
 scale = Vector2(1.7, 1.7)
 metadata/_edit_lock_ = true
+
+[node name="FrozenToken" type="Sprite2D" parent="." unique_id=339529098]
+visible = false
+z_index = 50
+position = Vector2(1544, 99)
+scale = Vector2(0.19951178, 0.19951178)
+texture = ExtResource("4_vgqql")
+
+[node name="Label" type="Label" parent="FrozenToken" unique_id=224669402]
+offset_left = -303.72894
+offset_top = -238.64424
+offset_right = 313.27106
+offset_bottom = 213.35576
+theme_override_font_sizes/font_size = 64
+text = "You may not play
+Creatures onto this
+Landscape. Remove
+by discarding a card
+during your turn."
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="FrozenToken" unique_id=68913457]
+offset_left = -215.52625
+offset_top = -496.21118
+offset_right = 214.47375
+offset_bottom = -408.21118
+theme_override_font_sizes/font_size = 64
+text = "FREEZE RULES"
 
 [node name="AdditionalOptions" type="Node2D" parent="." unique_id=559088615]
 
@@ -427,7 +447,6 @@ text = "ADDITIONAL OPTIONS"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timers/InputTimer" to="." method="_on_input_timer_timeout"]
-[connection signal="timeout" from="Log/LogTimer" to="." method="_on_log_timer_timeout"]
 [connection signal="pressed" from="StatPanel/HPLabel/HPDown" to="." method="_on_hp_down_pressed"]
 [connection signal="pressed" from="StatPanel/HPLabel/HPUp" to="." method="_on_hp_up_pressed"]
 [connection signal="pressed" from="StatPanel/ActionsLabel/ActionsDown" to="." method="_on_actions_down_pressed"]

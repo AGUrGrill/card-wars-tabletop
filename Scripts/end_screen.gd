@@ -15,7 +15,8 @@ func _on_return_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func end_game_logic():
-	NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
+	multiplayer.multiplayer_peer.disconnect_peer(1)
+	#NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
 	var player_data = load_from_file()
 	var wins: int = 0
 	var losses: int = 0

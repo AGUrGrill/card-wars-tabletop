@@ -1,0 +1,44 @@
+Hero
+Gunter
+
+Landscapes
+2 - Useless Swamp
+1 - IcyLands
+1 - Blue Plains
+
+Creatures
+3 - Ancient Scholar
+3 - Black Paladin
+3 - Boarder Collie
+2 - Cold Soldier
+3 - Djini Ghost
+3 - Frozen BanaNancy
+3 - Frozen Fish
+2 - Gray Eyebat
+3 - Icy Commando
+2 - Icy Infiltrator
+2 - IrriGator
+3 - Man-Witch
+2 - Nice Ice Baby
+3 - Orange Slimey
+3 - Red Eyeling
+3 - Smoldering Elder
+3 - Snow Angel
+3 - Softie Recruit
+2 - Teeth Leaf
+3 - Unicyclops
+3 - X-Large Spirit Soldier
+
+Spells
+2 - Beach Ball
+3 - Bomb Pop
+3 - Freezing Point
+3 - Gnome Snot
+2 - Raise the Dead
+3 - Snow Way
+
+Buildings
+3 - Crystal Palace
+3 - Funeral Home
+3 - Shadowy Pyramid
+3 - Celestial Castle

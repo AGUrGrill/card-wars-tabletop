@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardDatabase" load_steps=551 format=3 uid="uid://2t2jjiihq1i8"]
+[gd_resource type="Resource" script_class="CardDatabase" format=3 uid="uid://2t2jjiihq1i8"]
 
 [ext_resource type="Texture2D" uid="uid://ddul3vv5kqxiq" path="res://Assets/Cards/10th Anniversary Backer.png" id="1_snjt4"]
 [ext_resource type="Texture2D" uid="uid://bbvr02gvupfll" path="res://Assets/Cards/Abdominal Snowman.png" id="2_rgt2c"]

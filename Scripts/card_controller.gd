@@ -249,26 +249,21 @@ func reset_anim():
 # BUTTONS
 func _on_attack_up_pressed() -> void:
 	update_card_attack(1)
-	play_rumble()
 
 func _on_attack_down_pressed() -> void:
 	update_card_attack(-1)
-	play_rumble()
 
 func _on_defense_up_pressed() -> void:
 	update_card_defense(1)
-	play_rumble()
 
 func _on_defense_down_pressed() -> void:
 	update_card_defense(-1)
-	play_rumble()
 
 func _on_floop_button_pressed() -> void:
 	if is_flooped:
 		floop_card(false, true)
 	else:
 		floop_card(true, true)
-	play_rumble()
 
 # Focus Card
 func _on_mouse_entered() -> void:
@@ -290,7 +285,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				return
 			player.player.update_selected_card_image(card_name)
 		GameManager.net_update_player_selected_card.rpc(get_card_player_num(), get_card_data(false))
-		GameManager.net_tell_clients_to_refresh_landscapes.rpc()
+		GameManager.net_tell_clients_to_refresh_landscape.rpc(get_card_landscape_num())
 		print("Selected " + card_name + " for " + str(get_card_player_num()))
 
 func _on_steal_pressed() -> void:

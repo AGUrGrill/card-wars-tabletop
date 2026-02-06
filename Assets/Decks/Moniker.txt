@@ -1,0 +1,35 @@
+Hero
+Moniker
+
+Landscapes
+2 - Blue Plains
+2 - Cornfield
+
+Creatures
+3 - Ancient Scholar
+2 - Archer Dan
+2 - Embarrassing Bard
+3 - Heavenly Gazer
+3 - Psionic Architect
+3 - Struzann Djinn
+2 - The Dog
+3 - Fiddling Ferret
+3 - Mr. Slicer
+2 - Kernel Queen
+3 - Druid of the Cob
+3 - Djini Ghost
+2 - Log Knight
+
+Spells
+2 - Strength Crystal
+3 - Furious Furor
+2 - Deforestation
+2 - Puma Paw
+2 - Ring of Damage
+2 - Beach Ball
+
+Buildings
+3 - Celestial Castle
+2 - Blood Castle
+3 - Cabin of Many Woods
+2 - Yellow Lighthouse

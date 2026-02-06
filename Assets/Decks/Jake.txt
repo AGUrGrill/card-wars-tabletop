@@ -1,0 +1,31 @@
+Hero
+Jake
+
+Landscapes
+4 - Cornfield
+
+Creatures
+3 - Earth Mover
+3 - Husker Worm
+3 - Quake Maker
+3 - The Pig
+3 - Big Foot
+3 - Feedman
+3 - Field Reaper
+3 - Field Stalker
+3 - Husker Champion
+3 - Husker Valkyrie
+2 - Patchy the Pumpkin
+
+Spells
+3 - Reclaim Landscape
+2 - Rock Out!
+2 - Volcano
+2 - Beach Ball
+2 - Field of Nightmares
+
+Buildings
+3 - Husker Garrison
+3 - Celestial Castle
+2 - Yellow Lighthouse
+2 - Haybarn

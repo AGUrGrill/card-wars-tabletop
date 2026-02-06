@@ -23,6 +23,7 @@ var player1_deck: Array[Dictionary]
 @export var player1_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
 @export var player1_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
 var player1_landscapes: Array[String] = ["", "", "", ""]
+var player1_landscape_frozen_status: Array[bool] = [false, false, false, false]
 var player1_current_spell: Dictionary
 var player1_selected_card: Dictionary
 
@@ -35,6 +36,7 @@ var player2_deck: Array[Dictionary]
 @export var player2_played_creatures: Array[Dictionary] = [{}, {}, {}, {}]
 @export var player2_played_buildings: Array[Dictionary] = [{}, {}, {}, {}]
 var player2_landscapes: Array[String] = ["", "", "", ""]
+var player2_landscape_frozen_status: Array[bool] = [false, false, false, false]
 var player2_current_spell: Dictionary
 var player2_selected_card: Dictionary
 
@@ -47,7 +49,11 @@ var p2_turn: bool = false
 
 var hand_refresh_needed: bool = false
 var stat_refresh_needed: bool = false
-var landscape_refresh_needed: bool = false
+var landscape1_refresh_needed: bool = false
+var landscape2_refresh_needed: bool = false
+var landscape3_refresh_needed: bool = false
+var landscape4_refresh_needed: bool = false
+var landscape69_refresh_needed: bool = false
 var hero_refresh_needed: bool = false
 
 #endregion
@@ -66,7 +72,8 @@ func start_game():
 		server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
 		server_update_turn_info_for_clients.rpc(p1_turn, p2_turn, round_num)
 		net_tell_clients_to_refresh_hand.rpc()
-		net_tell_clients_to_refresh_landscapes.rpc()
+		for idx in range(4):
+			net_tell_clients_to_refresh_landscape.rpc(idx)
 		net_tell_clients_to_refresh_stats.rpc()
 		net_tell_clients_to_refresh_hero.rpc()
 		print(player1_landscapes)
@@ -145,7 +152,8 @@ func attack_phase():
 						net_update_creature_in_landscape_array.rpc(1, opponent_landscape_num, player1_played_creatures[opponent_landscape_num]["Card Type"], player1_played_creatures[opponent_landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[opponent_landscape_num]["Floop Status"])
 						net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[landscape_num]["Floop Status"])
 						print(str(landscape_num) + " fought " + str(opponent_landscape_num))
-		net_tell_clients_to_refresh_landscapes.rpc()
+		for idx in range(4):
+			net_tell_clients_to_refresh_landscape.rpc(idx)
 		net_tell_clients_to_refresh_stats.rpc()
 		end_turn()
 
@@ -215,7 +223,11 @@ func terminate_game():
 
 	hand_refresh_needed = false
 	stat_refresh_needed = false
-	landscape_refresh_needed = false
+	landscape1_refresh_needed = false
+	landscape2_refresh_needed = false
+	landscape3_refresh_needed = false
+	landscape4_refresh_needed = false
+	landscape69_refresh_needed = false
 	hero_refresh_needed = false
 
 @rpc("authority", "call_remote")
@@ -543,8 +555,17 @@ func net_tell_clients_to_refresh_stats():
 	stat_refresh_needed = true
 
 @rpc("any_peer", "call_local")
-func net_tell_clients_to_refresh_landscapes():
-	landscape_refresh_needed = true
+func net_tell_clients_to_refresh_landscape(landscape_num: int):
+	if landscape_num == 0:
+		landscape1_refresh_needed = true
+	elif landscape_num == 1:
+		landscape2_refresh_needed = true
+	elif landscape_num == 2:
+		landscape3_refresh_needed = true
+	elif landscape_num == 3:
+		landscape4_refresh_needed = true
+	elif landscape_num == 69:
+		landscape69_refresh_needed = true
 
 @rpc("any_peer", "call_local")
 func net_tell_clients_to_refresh_hero():
@@ -668,7 +689,7 @@ func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, ca
 		player1_played_creatures[landscape_num] = card
 	elif player_num == 2:
 		player2_played_creatures[landscape_num] = card
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
 
 @rpc("any_peer", "call_local")
 func net_update_creature_in_landscape_array(player_num: int, landscape_num: int, card_type: String, new_attack: int, new_defense: int, is_flooped: bool):
@@ -686,7 +707,7 @@ func net_update_creature_in_landscape_array(player_num: int, landscape_num: int,
 			player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
 		elif card_type == "Building":
 			player2_played_buildings[landscape_num]["Floop Status"] = is_flooped
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
 
 @rpc("any_peer", "call_local") 
 func net_add_building_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):
@@ -694,7 +715,7 @@ func net_add_building_to_landscape_array(player_num: int, landscape_num: int, ca
 		player1_played_buildings[landscape_num] = card
 	elif player_num == 2:
 		player2_played_buildings[landscape_num] = card
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
 
 @rpc("any_peer", "call_local") 
 func net_remove_creature_from_landscape_array(player_num: int, landscape_num: int):
@@ -702,7 +723,7 @@ func net_remove_creature_from_landscape_array(player_num: int, landscape_num: in
 		player1_played_creatures[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_creatures[landscape_num].clear()
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
 
 @rpc("any_peer", "call_local") 
 func net_remove_building_from_landscape_array(player_num: int, landscape_num: int):
@@ -710,7 +731,7 @@ func net_remove_building_from_landscape_array(player_num: int, landscape_num: in
 		player1_played_buildings[landscape_num].clear()
 	elif player_num == 2:
 		player2_played_buildings[landscape_num].clear()
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
 
 @rpc("any_peer", "call_local") 
 func net_change_player_landscape(player_num: int, landscape_num: int, type: String):
@@ -718,7 +739,15 @@ func net_change_player_landscape(player_num: int, landscape_num: int, type: Stri
 		player1_landscapes[landscape_num] = type
 	elif player_num == 2:
 		player2_landscapes[landscape_num] = type
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
+
+@rpc("any_peer", "call_local") 
+func net_change_player_landscape_frozen_status(player_num: int, landscape_num: int, is_frozen: bool):
+	if player_num == 1:
+		player1_landscape_frozen_status[landscape_num] = is_frozen
+	elif player_num == 2:
+		player2_landscape_frozen_status[landscape_num] = is_frozen
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
 
 @rpc("any_peer", "call_local") 
 func net_add_spell_to_play(player_num: int, card: Dictionary):
@@ -726,7 +755,7 @@ func net_add_spell_to_play(player_num: int, card: Dictionary):
 		player1_current_spell = card
 	elif player_num == 2:
 		player2_current_spell = card
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(69)
 
 @rpc("any_peer", "call_local") 
 func net_remove_spell_from_play(player_num: int):
@@ -734,7 +763,7 @@ func net_remove_spell_from_play(player_num: int):
 		player1_current_spell.clear()
 	elif player_num == 2:
 		player2_current_spell.clear()
-	net_tell_clients_to_refresh_landscapes.rpc()
+	net_tell_clients_to_refresh_landscape.rpc(69)
 
 # MISC
 @rpc("any_peer", "call_local") 

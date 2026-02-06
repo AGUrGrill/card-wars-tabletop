@@ -1,0 +1,29 @@
+Hero
+Magic Man
+
+Landscapes
+4 - Cornfield
+
+Creatures
+3 - Corn Ronin
+3 - Corn Lord
+3 - Cornataur
+3 - Ethan Allfire
+3 - Field Reaper
+3 - Field Stalker
+3 - Husker Knight
+3 - Husker Champion
+3 - Wall of Ears
+3 - Husker Valkyrie
+
+Spells
+2 - Beach Ball
+2 - Bale Out
+3 - Field of Nightmares
+2 - Unempty Coffin
+
+Buildings
+3 - Husker Garrison
+2 - Blood Fortress
+3 - Celestial Castle
+2 - Yellow Lighthouse

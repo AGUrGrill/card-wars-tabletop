@@ -1,0 +1,36 @@
+Hero
+The Lich
+
+Landscapes
+2 - Cornfield
+2 - Useless Swamp
+
+Creatures
+3 - Man-Witch
+3 - Helping Hand
+3 - Log Knight
+3 - Black Paladin
+3 - Bog Bum
+3 - Fly Swatter
+2 - Field Reaper
+3 - Gray Eyebat
+3 - Lt. Mushroom
+3 - Teeth Leaf
+3 - Unicyclops
+3 - Red Eyeling
+3 - Immortal Maize Walker
+2 - Field Stalker
+
+Spells
+3 - Ancient Comet
+3 - Unempty Coffin
+3 - Whims of Fate
+2 - Beach Ball
+
+Buildings
+3 - Monolith of Doom
+3 - Funeral Home
+2 - Shadowy Pyramid
+2 - Yellow Lighthouse
+2 - Cardboard Mansion
+2 - Night Tower

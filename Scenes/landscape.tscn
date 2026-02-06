@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://2dfcdce5dsbx" path="res://Assets/spell_bg.png" id="2_6vom0"]
 [ext_resource type="Texture2D" uid="uid://b0dtpyhlil8ys" path="res://Assets/Cards/Blue Plains.png" id="2_425dq"]
 [ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://Scenes/card.tscn" id="2_asa4r"]
+[ext_resource type="Texture2D" uid="uid://gwxn5obxqwcy" path="res://Assets/frozen_token.png" id="5_maq3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_asa4r"]
 size = Vector2(146, 210)
@@ -27,6 +28,23 @@ shape = SubResource("RectangleShape2D_asa4r")
 [node name="Card" parent="." unique_id=1856722721 instance=ExtResource("2_asa4r")]
 position = Vector2(1.5258789e-05, -9.999999)
 
+[node name="FrozenToken" type="Sprite2D" parent="." unique_id=590554008]
+visible = false
+z_index = 50
+position = Vector2(0, -41)
+scale = Vector2(0.099023424, 0.099023424)
+texture = ExtResource("5_maq3g")
+
+[node name="Label" type="Label" parent="FrozenToken" unique_id=1855355177]
+offset_left = -383.7476
+offset_top = -141.38069
+offset_right = 391.2524
+offset_bottom = 131.61931
+theme_override_font_sizes/font_size = 182
+text = "FROZEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ChangeLandscape" type="OptionButton" parent="." unique_id=123426803]
 offset_left = -46.0
 offset_top = -105.0
@@ -49,5 +67,18 @@ popup/item_5/id = 5
 popup/item_6/text = "SandyLands"
 popup/item_6/id = 6
 
+[node name="FreezeLandscape" type="Button" parent="." unique_id=2014346284]
+visible = false
+offset_left = 47.0
+offset_top = -105.0
+offset_right = 73.0
+offset_bottom = -89.0
+theme_override_font_sizes/font_size = 5
+disabled = true
+toggle_mode = true
+text = "FREEZE"
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="item_selected" from="ChangeLandscape" to="." method="_on_change_landscape_item_selected"]
+[connection signal="pressed" from="FreezeLandscape" to="." method="_on_freeze_landscape_pressed"]
+[connection signal="toggled" from="FreezeLandscape" to="." method="_on_freeze_landscape_toggled"]

@@ -3,6 +3,7 @@ X when restarting game, reset win value
 make sure its set up to accept when you are out of ur deck?
 after clicked view deck, trying to view discards takes 2 clicks
 animations laggy over internet
+streamline updates to be more specific for lag (change updates to happen to specific cards, more code by less lag)
 
 FEATURES
 fanservice-Ethan

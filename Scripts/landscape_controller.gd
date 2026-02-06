@@ -5,10 +5,14 @@ extends Area2D
 @onready var landscape_image: Sprite2D = $LandscapeImage
 @onready var spell_image: Sprite2D = $SpellImage
 @onready var change_landscape: OptionButton = $ChangeLandscape
+@onready var frozen_token: Sprite2D = $FrozenToken
+@onready var freeze_landscape: Button = $FreezeLandscape
 
 @export var landscape_type: String
 @export var landscape_num: int = 0
 @export var designated_card_type: String = "Creature"
+
+var frozen_enabled: bool = false
 
 func _ready() -> void:
 	if designated_card_type == "Building":
@@ -25,6 +29,18 @@ func _ready() -> void:
 	
 	get_viewport().set_physics_object_picking_sort(true)
 	get_viewport().set_physics_object_picking_first_only(true)
+
+# Moving this to landscape image update for ease of use
+func check_if_frozen_exists():
+	var ignore_frozen: bool = true
+	for idx in range(4):
+		if GameManager.player1_landscapes[idx] == "IcyLands":
+			ignore_frozen = false
+		elif GameManager.player2_landscapes[idx] == "IcyLands":
+			ignore_frozen = false
+	if not ignore_frozen:
+		freeze_landscape.visible = true
+		freeze_landscape.disabled = false
 
 func add_card_to_landscape():
 	var selected_card: Dictionary
@@ -194,40 +210,6 @@ func place_spell_logic(player_num: int, selected_card: Dictionary) -> bool:
 			return true
 	return false
 
-func old_add_card_to_landscape():
-	if not player.can_select:
-		return
-	player.start_selection_buffer()
-	var player_num: int = player.player_num
-	var selected_card: Dictionary
-	if player_num == 1:
-		selected_card = GameManager.player1_selected_card
-	elif player_num == 2:
-		selected_card = GameManager.player2_selected_card
-	if selected_card.is_empty() or selected_card == null or selected_card == {  }:
-		return
-	var is_valid: bool = false
-	for key in selected_card:
-		if key == "Card Type":
-			is_valid = true
-	if not is_valid:
-		return
-	print(selected_card)
-	if landscape_num != 69:
-		remove_card_if_came_from_landscape(player_num, selected_card)
-		discard_card_if_in_play(player_num)
-	print(selected_card)
-	if selected_card["Card Type"] == "Creature":
-		GameManager.net_add_creature_to_landscape_array.rpc(player_num, landscape_num, selected_card)
-	elif selected_card["Card Type"] == "Building":
-		GameManager.net_add_building_to_landscape_array.rpc(player_num, landscape_num, selected_card)
-	elif selected_card["Card Type"] == "Spell":
-		discard_spell_if_in_play(player_num)
-		GameManager.net_add_spell_to_play.rpc(player_num, selected_card)
-	if selected_card["Landscape Played"] == 99:
-		GameManager.net_remove_card_from_player_hand.rpc(player_num, selected_card)
-	GameManager.net_update_player_selected_card.rpc(player_num, {})
-	
 func update_landscape_image(_name: String):
 	if _name == "Facedown":
 		_name = "card_back"
@@ -239,6 +221,7 @@ func update_landscape_image(_name: String):
 	img.resize(700, 1007, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	landscape_image.texture = texture
+	check_if_frozen_exists()
 
 func discard_card_if_in_play(player_num: int):
 	var current_card: Dictionary
@@ -265,6 +248,13 @@ func remove_card_if_came_from_landscape(player_num: int, selected_card: Dictiona
 		elif selected_card["Card Type"] == "Building":
 			GameManager.net_remove_building_from_landscape_array.rpc(player_num, selected_card["Landscape Played"])
 
+func toggle_frozen_token(enabled: bool):
+	if enabled:
+		frozen_token.visible = true
+		frozen_enabled = true
+	else:
+		frozen_token.visible = false
+
 # On Landscape Clicked
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_pressed():
@@ -277,3 +267,6 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 func _on_change_landscape_item_selected(index: int) -> void:
 	GameManager.net_change_player_landscape.rpc(player.player_num, landscape_num, change_landscape.get_item_text(index))
+
+func _on_freeze_landscape_toggled(toggled_on: bool) -> void:
+	GameManager.net_change_player_landscape_frozen_status.rpc(player.player_num, landscape_num, toggled_on)

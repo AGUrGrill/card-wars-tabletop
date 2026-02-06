@@ -1,0 +1,33 @@
+Hero
+James Baxter
+
+Landscapes
+1 - Blue Plains
+2 - SandyLands
+1 - Useless Swamp
+
+Creatures
+3 - Orange Slimey
+3 - Fisher Fish
+3 - Golden Axe Stump
+3 - Blue Slimey
+2 - Fummy
+3 - Gray Eyebat
+3 - Heavenly Gazer
+3 - Lime Slimey
+3 - Red Eyeling
+3 - SandWitch
+3 - Sand Knights
+3 - Static Parrotrooper
+
+Spells
+3 - Quick Pick Me Up
+3 - Drop Zone
+3 - Snake Eye Ring
+2 - Beach Ball
+
+Buildings
+3 - Sand Sphinx
+2 - Bongo Bounce House
+3 - Celestial Castle
+3 - Shadowy Pyramid

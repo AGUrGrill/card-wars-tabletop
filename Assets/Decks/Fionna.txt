@@ -1,0 +1,32 @@
+Hero
+Fionna
+
+Landscapes
+4 - Blue Plains
+
+Creatures
+3 - Ancient Scholar
+3 - Crazy Cat Lady
+2 - Emboldened Retriever
+3 - Fiddling Ferret
+3 - Heavenly Gazer
+3 - Infant Scholar
+3 - Tiny Elephant
+2 - TNTimmy
+3 - Vampire Lord
+3 - Static Parrotrooper
+3 - X-Large Spirit Soldier
+2 - Drooling Dude
+3 - Furious Chick
+
+Spells
+2 - Beach Ball
+2 - Unempty Coffin
+3 - Gnome Snot
+2 - Friendship Bracelet
+
+Buildings
+3 - Learning Center
+3 - Celestial Castle
+3 - Blood Fortress
+1 - Celestial Fortress

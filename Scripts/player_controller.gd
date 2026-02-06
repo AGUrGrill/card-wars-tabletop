@@ -1,5 +1,6 @@
 extends Node2D
 
+#region Variables
 const CARD = preload("uid://dycs2rc7imye2")
 
 # MAIN NODE
@@ -38,8 +39,7 @@ const CARD = preload("uid://dycs2rc7imye2")
 @onready var input_timer: Timer = $Timers/InputTimer
 @onready var input_timer_label: Label = $Timers/InputTimerLabel
 # LOG
-@onready var log_label: Label = $Log/LogLabel
-@onready var log_timer: Timer = $Log/LogTimer
+@onready var log: Node = $Log
 # ANIMATION
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 # AUDIO
@@ -53,6 +53,7 @@ const CARD = preload("uid://dycs2rc7imye2")
 @onready var additional_options: Node2D = $AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions
 @onready var deck_options_button: Button = $AdditionalOptions/DeckOptionsButton
 @onready var additional_options_button: Button = $AdditionalOptions/AdditionalOptionsButton
+@onready var frozen_token: Sprite2D = $FrozenToken
 
 # VARIABLES
 @export var player_num: int
@@ -63,6 +64,7 @@ var prev_hp: int = GameManager.DEFAULT_HP
 var modulated: bool = false
 var in_deck_mode: bool
 var in_discard_mode: bool
+#endregion
 
 func _ready() -> void:
 	hand.set_meta("player_num", player_num)
@@ -80,8 +82,22 @@ func _ready() -> void:
 		selected_card.rotation_degrees = 180
 	else:
 		disable_inputs(false, true)
+	
 	disabled = true
-	make_log_message("Game Start!")
+	log.make_log_message("Game Start!")
+
+# Moving this to hero image update for ease of use
+func check_if_frozen_exists():
+	var ignore_frozen: bool = true
+	for idx in range(4):
+		print(idx)
+		print(GameManager.player1_landscapes[idx])
+		if GameManager.player1_landscapes[idx] == "IcyLands":
+			ignore_frozen = false
+		elif GameManager.player2_landscapes[idx] == "IcyLands":
+			ignore_frozen = false
+	if not ignore_frozen:
+		frozen_token.visible = true
 
 func _process(delta: float) -> void:
 	determine_display_visibility()
@@ -113,7 +129,7 @@ func hide_buttons(should_hide: bool):
 	main_switch.visible = false
 	end_turn.visible = false
 	input_timer_label.visible = false
-	log_label.visible = false
+	log.visible = false
 	audio.disabled = true
 	additional_options_panel.visible = false
 	deck_options_button.visible = false
@@ -155,6 +171,7 @@ func update_hero_image():
 	
 	var tex = GameManager.db.cards.get(_name)
 	hero_image.texture = tex
+	check_if_frozen_exists()
 
 func update_selected_card_image(_name: String):
 	if _name == "fart":
@@ -267,21 +284,21 @@ func discard_card_logic():
 		else:
 			GameManager.net_remove_spell_from_play.rpc(player_num)
 		GameManager.net_add_card_to_player_discards.rpc(player_num, selected_card)
-	make_log_message("Discarded " + selected_card["Name"] + ".")
+	log.make_log_message("Discarded " + selected_card["Name"] + ".")
 
 func draw_card_logic():
 	if player_num == 1:
 		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.draw_card(1))
 	if player_num == 2:
 		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_card(2))
-	make_log_message("Card drawn.")
+	log.make_log_message("Card drawn.")
 
 func draw_bottom_card_logic():
 	if player_num == 1:
 		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.draw_bottom_card(1))
 	if player_num == 2:
 		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_bottom_card(2))
-	make_log_message("Card drawn.")
+	log.make_log_message("Card drawn.")
 
 func grab_card_from_play_logic():
 	var potential_landscape_nums: Array[int] = [0,1,2,3,69]
@@ -308,10 +325,10 @@ func grab_card_from_play_logic():
 			GameManager.net_remove_spell_from_play.rpc(player_num)
 		GameManager.net_update_player_selected_card.rpc(player_num, {})
 		player.update_selected_card_image("fart")
-		make_log_message("Grabbed " + selected_card["Name"] + ".")
+		log.make_log_message("Grabbed " + selected_card["Name"] + ".")
 	else:
 		player.update_selected_card_image("fart")
-		make_log_message("Invalid selection.")
+		log.make_log_message("Invalid selection.")
 		return
 
 func grab_card_from_discards_logic():
@@ -326,9 +343,9 @@ func grab_card_from_discards_logic():
 	GameManager.net_remove_card_from_player_discards.rpc(player_num, selected_card)
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
 	player.update_selected_card_image("fart")
-	make_log_message("Grabbed " + selected_card["Name"] + ".")
+	log.make_log_message("Grabbed " + selected_card["Name"] + ".")
 	update_player_hand_display()
-	make_log_message("Switched to hand display.")
+	log.make_log_message("Switched to hand display.")
 
 func grab_card_from_deck_logic():
 	var selected_card: Dictionary
@@ -342,9 +359,9 @@ func grab_card_from_deck_logic():
 	GameManager.net_remove_card_from_player_deck.rpc(player_num, selected_card)
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
 	player.update_selected_card_image("fart")
-	make_log_message("Grabbed " + selected_card["Name"] + ".")
+	log.make_log_message("Grabbed " + selected_card["Name"] + ".")
 	update_player_hand_display()
-	make_log_message("Switched to hand display.")
+	log.make_log_message("Switched to hand display.")
 
 func remove_card_logic():
 	var selected_card: Dictionary
@@ -393,20 +410,20 @@ func remove_card_logic():
 			GameManager.net_remove_spell_from_play.rpc(player_num)
 	#print("Removed " + selected_card["Name"] + " from P" + str(player_num))
 	player.update_selected_card_image("fart")
-	make_log_message("Removed " + selected_card["Name"] + ".")
+	log.make_log_message("Removed " + selected_card["Name"] + ".")
 
 func give_opp_card_logic():
 	if player_num == 1:
 		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.player1_selected_card)
-		make_log_message("Gave opponent " + GameManager.player1_selected_card["Name"] + ".")
+		log.make_log_message("Gave opponent " + GameManager.player1_selected_card["Name"] + ".")
 	elif player_num == 2:
 		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.player2_selected_card)
-		make_log_message("Gave opponent " + GameManager.player2_selected_card["Name"] + ".")
+		log.make_log_message("Gave opponent " + GameManager.player2_selected_card["Name"] + ".")
 	remove_card_logic()
 
 func shuffle_deck_logic():
 	GameManager.shuffle_deck(player_num)
-	make_log_message("Deck shuffled!")
+	log.make_log_message("Deck shuffled!")
 
 func add_card_to_top_deck_logic():
 	if player_num == 1:
@@ -481,11 +498,6 @@ func get_real_player_num():
 func start_selection_buffer():
 	can_select = false
 	input_timer.start()
-
-func make_log_message(message: String):
-	if log_timer.time_left > 0:
-		log_label.text = log_label.text + "\n" + message
-	log_timer.start()
 
 # UPDATES
 func update_player_stat_display():
@@ -585,7 +597,6 @@ func update_player_discards_display():
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
 		else:
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
-	print(discards_hand)
 
 func update_player_deck_display():
 	change_to_deck_layout()
@@ -623,7 +634,7 @@ func update_player_deck_display():
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
-	make_log_message("Switched to deck display.")
+	log.make_log_message("Switched to deck display.")
 
 func update_scry_player_deck_display(amount: int):
 	change_to_deck_layout()
@@ -662,75 +673,90 @@ func update_scry_player_deck_display(amount: int):
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
-	make_log_message("Switched to deck display.")
+	log.make_log_message("Switched to deck display.")
 
 @rpc("any_peer", "call_local")
-func update_player_landscapes():
-	landscape_1_creature.remove_card_data()
-	landscape_2_creature.remove_card_data()
-	landscape_3_creature.remove_card_data()
-	landscape_4_creature.remove_card_data()
-	landscape_1_building.remove_card_data()
-	landscape_2_building.remove_card_data()
-	landscape_3_building.remove_card_data()
-	landscape_4_building.remove_card_data()
-	spell_area_card.remove_card_data()
+func update_player_landscape(landscape_num: int):
+	if landscape_num == 0:
+		landscape_1_creature.remove_card_data()
+		landscape_1_building.remove_card_data()
+	elif landscape_num == 1:
+		landscape_2_creature.remove_card_data()
+		landscape_2_building.remove_card_data()
+	elif landscape_num == 2:
+		landscape_3_creature.remove_card_data()
+		landscape_3_building.remove_card_data()
+	elif landscape_num == 3:
+		landscape_4_creature.remove_card_data()
+		landscape_4_building.remove_card_data()
+	elif landscape_num == 69:
+		spell_area_card.remove_card_data()
 	
 	var creatures: Array[Dictionary]
 	var buildings: Array[Dictionary]
 	var spell: Dictionary
 	var landscapes: Array[String]
+	var landscape_frozen_status: Array[bool]
+	
 	if player_num == 1:
 		creatures = GameManager.player1_played_creatures
 		buildings = GameManager.player1_played_buildings
 		spell = GameManager.player1_current_spell
 		landscapes = GameManager.player1_landscapes
-	if player_num == 2:
+		landscape_frozen_status = GameManager.player1_landscape_frozen_status
+	elif player_num == 2:
 		creatures = GameManager.player2_played_creatures
 		buildings = GameManager.player2_played_buildings
 		spell = GameManager.player2_current_spell
 		landscapes = GameManager.player2_landscapes
+		landscape_frozen_status = GameManager.player2_landscape_frozen_status
 	
 	# LANDSCAPES
-	if not landscapes[0].is_empty():
+	if not landscapes[0].is_empty() and landscape_num == 0:
 		$Landscape1.update_landscape_image(landscapes[0])
-	if not landscapes[1].is_empty():
+	if not landscapes[1].is_empty() and landscape_num == 1:
 		$Landscape2.update_landscape_image(landscapes[1])
-	if not landscapes[2].is_empty():
+	if not landscapes[2].is_empty() and landscape_num == 2:
 		$Landscape3.update_landscape_image(landscapes[2])
-	if not landscapes[3].is_empty():
+	if not landscapes[3].is_empty() and landscape_num == 3:
 		$Landscape4.update_landscape_image(landscapes[3])
 	
+	# LANDSCAPE FROZEN STATUS
+	if not $Landscape1.frozen_enabled:
+		$Landscape1.toggle_frozen_token(landscape_frozen_status[0])
+		$Landscape2.toggle_frozen_token(landscape_frozen_status[1])
+		$Landscape3.toggle_frozen_token(landscape_frozen_status[2])
+		$Landscape4.toggle_frozen_token(landscape_frozen_status[3])
+	
 	# CREATURES
-	if not creatures[0].is_empty():
+	if not creatures[0].is_empty() and landscape_num == 0:
 		landscape_1_creature.is_in_hand = false
 		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"])
-	if not creatures[1].is_empty():
+	if not creatures[1].is_empty() and landscape_num == 1:
 		landscape_2_creature.is_in_hand = false
 		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Defense"], creatures[1]["Floop Status"])
-	if not creatures[2].is_empty():
+	if not creatures[2].is_empty() and landscape_num == 2:
 		landscape_3_creature.is_in_hand = false
 		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Defense"], creatures[2]["Floop Status"])
-	if not creatures[3].is_empty():
+	if not creatures[3].is_empty() and landscape_num == 3:
 		landscape_4_creature.is_in_hand = false
 		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"])
-	print(creatures)
 	# BUILDINGS
-	if not buildings[0].is_empty():
+	if not buildings[0].is_empty() and landscape_num == 0:
 		landscape_1_building.is_in_hand = false
 		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Defense"], buildings[0]["Floop Status"])
-	if not buildings[1].is_empty():
+	if not buildings[1].is_empty() and landscape_num == 1:
 		landscape_2_building.is_in_hand = false
 		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Defense"], buildings[1]["Floop Status"])
-	if not buildings[2].is_empty():
+	if not buildings[2].is_empty() and landscape_num == 2:
 		landscape_3_building.is_in_hand = false
 		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Defense"], buildings[2]["Floop Status"])
-	if not buildings[3].is_empty():
+	if not buildings[3].is_empty() and landscape_num == 3:
 		landscape_4_building.is_in_hand = false
 		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Defense"], buildings[3]["Floop Status"])
 	
 	# SPELL
-	if not spell.is_empty():
+	if not spell.is_empty() and landscape_num == 69:
 		spell_area_card.change_card_data(spell["Landscape"], spell["Card Type"], spell["Name"], spell["Ability"], spell["Cost"], spell["Attack"], spell["Defense"], spell["Floop Status"])
 
 # ANIMATIONS
@@ -760,7 +786,7 @@ func _on_hp_down_pressed() -> void:
 	if not can_select:
 		return
 	GameManager.net_update_player_health.rpc(player_num, -1)
-	make_log_message("Decreased hp.")
+	log.make_log_message("Decreased hp.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -768,7 +794,7 @@ func _on_hp_up_pressed() -> void:
 	if not can_select:
 		return
 	GameManager.net_update_player_health.rpc(player_num, 1)
-	make_log_message("Increased hp.")
+	log.make_log_message("Increased hp.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -776,7 +802,7 @@ func _on_actions_down_pressed() -> void:
 	if not can_select:
 		return
 	GameManager.net_update_player_actions.rpc(player_num, -1)
-	make_log_message("Decreased actions.")
+	log.make_log_message("Decreased actions.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -784,7 +810,7 @@ func _on_actions_up_pressed() -> void:
 	if not can_select:
 		return
 	GameManager.net_update_player_actions.rpc(player_num, 1)
-	make_log_message("Increased actions.")
+	log.make_log_message("Increased actions.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -793,7 +819,7 @@ func _on_end_turn_pressed() -> void:
 	if not can_select:
 		return
 	GameManager.client_start_attack_phase.rpc()
-	make_log_message("Ended turn.")
+	log.make_log_message("Ended turn.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -801,9 +827,6 @@ func _on_end_turn_pressed() -> void:
 func _on_input_timer_timeout() -> void:
 	input_timer_label.text = "0"
 	can_select = true
-
-func _on_log_timer_timeout() -> void:
-	log_label.text = ""
 
 # BUTTONS
 func _on_main_button_pressed() -> void:
@@ -815,7 +838,7 @@ func _on_main_button_pressed() -> void:
 		grab_card_from_discards_logic()
 	else:
 		draw_card_logic()
-	make_log_message("Card drawn.")
+	log.make_log_message("Card drawn.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -823,7 +846,7 @@ func _on_sub_button_pressed() -> void:
 	if not can_select:
 		return
 	discard_card_logic()
-	make_log_message("Discarded card.")
+	log.make_log_message("Discarded card.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -832,10 +855,10 @@ func _on_main_switch_toggled(toggled_on: bool) -> void:
 		return
 	if toggled_on:
 		update_player_discards_display()
-		make_log_message("Switched to discard display.")
+		log.make_log_message("Switched to discard display.")
 	else:
 		update_player_hand_display()
-		make_log_message("Switched to hand display.")
+		log.make_log_message("Switched to hand display.")
 
 func _on_additional_options_pressed() -> void:
 	if not can_select:
@@ -865,7 +888,7 @@ func _on_deck_view_top_x_cards_pressed() -> void:
 	if scry_num.text.is_valid_int():
 		update_scry_player_deck_display(int(scry_num.text))
 	else:
-		make_log_message("Invalid scry number!")
+		log.make_log_message("Invalid scry number!")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 

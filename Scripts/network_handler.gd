@@ -33,11 +33,12 @@ func _on_peer_connected(peer_id):
 			GameManager.start_game()
 		elif peers_connected > 2:
 			print("Client " + peer_id + " attempted connection... Denying access.")
-			multiplayer.multiplayer_peer.close()
+			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
 
 func _on_peer_disconnected(peer_id):
 	if multiplayer.is_server():
 		peers_connected -= 1
+		multiplayer.multiplayer_peer.disconnect_peer(peer_id)
 		print("Client " + str(peer_id) + " dicconnected.")
 		if peers_connected == 0:
 			GameManager.terminate_game()

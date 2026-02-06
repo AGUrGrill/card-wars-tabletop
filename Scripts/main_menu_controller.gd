@@ -19,6 +19,8 @@ var game_starting: bool = false
 
 func _ready() -> void:
 	GameManager.local_client_player_num = 0
+	get_all_decks("res://Assets/Decks/")
+	get_all_decks("user://Decks/")
 
 func _process(delta: float) -> void:
 	if game_starting:
@@ -29,6 +31,20 @@ func _process(delta: float) -> void:
 	elif GameManager.local_client_player_num == 2:
 		game_starting = true
 		start_as_p2()
+
+func get_all_decks(path):
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if path.contains("user://"):
+				choose_deck.add_item(file_name.trim_suffix(".dat"))
+			else:
+				choose_deck.add_item(file_name.trim_suffix(".txt"))
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
 
 func send_log_msg(message: String):
 	log_text.text = message
@@ -127,258 +143,24 @@ func _on_timer_timeout() -> void:
 
 func _on_choose_deck_item_selected(index: int) -> void:
 	var choosen_deck: String = choose_deck.get_item_text(index)
-	match choosen_deck:
-		"☆ Magic Man":
-			default_deck_choice = "Hero
-Magic Man
+	default_deck_choice = load_from_file(choosen_deck)
 
-Landscapes
-4 - Cornfield
-
-Creatures
-3 - Corn Ronin
-3 - Corn Lord
-3 - Cornataur
-3 - Ethan Allfire
-3 - Field Reaper
-3 - Field Stalker
-3 - Husker Knight
-3 - Husker Champion
-3 - Wall of Ears
-3 - Husker Valkyrie
-
-Spells
-2 - Beach Ball
-2 - Bale Out
-3 - Field of Nightmares
-2 - Unempty Coffin
-
-Buildings
-3 - Husker Garrison
-2 - Blood Fortress
-3 - Celestial Castle
-2 - Yellow Lighthouse
-"
-		"☆☆ Jake":
-			default_deck_choice = "Hero
-Jake
-
-Landscapes
-4 - Cornfield
-
-Creatures
-3 - Earth Mover
-3 - Husker Worm
-3 - Quake Maker
-3 - The Pig
-3 - Big Foot
-3 - Feedman
-3 - Field Reaper
-3 - Field Stalker
-3 - Husker Champion
-3 - Husker Valkyrie
-2 - Patchy the Pumpkin
-
-Spells
-3 - Reclaim Landscape
-2 - Rock Out!
-2 - Volcano
-2 - Beach Ball
-2 - Field of Nightmares
-
-Buildings
-3 - Husker Garrison
-3 - Celestial Castle
-2 - Yellow Lighthouse
-2 - Haybarn
-"
-		"☆☆ Fionna":
-			default_deck_choice = "Hero
-Fionna
-
-Landscapes
-4 - Blue Plains
-
-Creatures
-3 - Ancient Scholar
-3 - Crazy Cat Lady
-2 - Emboldened Retriever
-3 - Fiddling Ferret
-3 - Heavenly Gazer
-3 - Infant Scholar
-3 - Tiny Elephant
-2 - TNTimmy
-3 - Vampire Lord
-3 - Static Parrotrooper
-3 - X-Large Spirit Soldier
-2 - Drooling Dude
-3 - Furious Chick
-
-Spells
-2 - Beach Ball
-2 - Unempty Coffin
-3 - Gnome Snot
-2 - Friendship Bracelet
-
-Buildings
-3 - Learning Center
-3 - Celestial Castle
-3 - Blood Fortress
-1 - Celestial Fortress
-"
-		"☆☆ Prismo":
-			default_deck_choice = "Hero
-Prismo
-
-Landscapes
-1 - Blue Plains
-1 - NiceLands
-1 - Cornfield
-1 - SandyLands
-
-Creatures
-3 - Ancient Scholar
-3 - Beach Mummy
-3 - Fancy Zebracorn
-2 - Field Stalker
-2 - Fummy
-3 - Gold Ninja
-3 - Heavenly Gazer
-3 - Lime Slimey
-3 - Niceasaurus Rex
-3 - Sand Knights
-2 - Sandhorn Devil
-2 - SandWitch
-3 - Rebounding Zebracorn
-3 - Strawberry Slimey
-3 - Yellow Slimey
-
-Spells
-2 - Beach Ball
-2 - Bail Out
-3 - Field of Nightmares
-2 - Gnome Snot
-2 - Scorching Serve
-
-Buildings
-3 - Sand Castle
-2 - Yellow Lighthouse
-3 - Celestial Castle
-2 - Blood Fortress
-"
-		"☆☆☆ The Lich":
-			default_deck_choice = "Hero
-The Lich
-
-Landscapes
-2 - Cornfield
-2 - Useless Swamp
-
-Creatures
-3 - Man-Witch
-3 - Helping Hand
-3 - Log Knight
-3 - Black Paladin
-3 - Bog Bum
-3 - Fly Swatter
-2 - Field Reaper
-3 - Gray Eyebat
-3 - Lt. Mushroom
-3 - Teeth Leaf
-3 - Unicyclops
-3 - Red Eyeling
-3 - Immortal Maize Walker
-2 - Field Stalker
-
-Spells
-3 - Ancient Comet
-3 - Unempty Coffin
-3 - Whims of Fate
-2 - Beach Ball
-
-Buildings
-3 - Monolith of Doom
-3 - Funeral Home
-2 - Shadowy Pyramid
-2 - Yellow Lighthouse
-2 - Cardboard Mansion
-2 - Night Tower
-"
-		"☆☆☆ James Baxter":
-			default_deck_choice = "Hero
-James Baxter
-
-Landscapes
-1 - Blue Plains
-2 - SandyLands
-1 - Useless Swamp
-
-Creatures
-3 - Orange Slimey
-3 - Fisher Fish
-3 - Golden Axe Stump
-3 - Blue Slimey
-2 - Fummy
-3 - Gray Eyebat
-3 - Heavenly Gazer
-3 - Lime Slimey
-3 - Red Eyeling
-3 - SandWitch
-3 - Sand Knights
-3 - Static Parrotrooper
-
-Spells
-3 - Quick Pick Me Up
-3 - Drop Zone
-3 - Snake Eye Ring
-2 - Beach Ball
-
-Buildings
-3 - Sand Sphinx
-2 - Bongo Bounce House
-3 - Celestial Castle
-3 - Shadowy Pyramid
-
-"
-		"☆☆☆ Moniker":
-			default_deck_choice = "Hero
-Moniker
-
-Landscapes
-2 - Blue Plains
-2 - Cornfield
-
-Creatures
-3 - Ancient Scholar
-2 - Archer Dan
-2 - Embarrassing Bard
-3 - Heavenly Gazer
-3 - Psionic Architect
-3 - Struzann Djinn
-2 - The Dog
-3 - Fiddling Ferret
-3 - Mr. Slicer
-2 - Kernel Queen
-3 - Druid of the Cob
-3 - Djini Ghost
-2 - Log Knight
-
-Spells
-2 - Strength Crystal
-3 - Furious Furor
-2 - Deforestation
-2 - Puma Paw
-2 - Ring of Damage
-2 - Beach Ball
-
-Buildings
-3 - Celestial Castle
-2 - Blood Castle
-3 - Cabin of Many Woods
-2 - Yellow Lighthouse
-"
+func load_from_file(_name: String):
+	var file = FileAccess.open("res://Assets/Decks/" + _name + ".txt", FileAccess.READ)
+	if file == null:
+		file = FileAccess.open("user://Decks/" + _name + ".dat", FileAccess.READ)
+		if file == null:
+			print("Error getting file data.")
+			return ""
+	var content = file.get_as_text()
+	return content
 
 func _on_player_stat_menu_pressed() -> void:
 	confirm_sfx.play()
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://Scenes/stat_screen.tscn")
+
+func _on_create_deck_pressed() -> void:
+	confirm_sfx.play()
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/deck_creation.tscn")

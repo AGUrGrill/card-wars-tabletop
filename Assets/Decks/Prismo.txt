@@ -1,0 +1,38 @@
+Hero
+Prismo
+
+Landscapes
+1 - Blue Plains
+1 - NiceLands
+1 - Cornfield
+1 - SandyLands
+
+Creatures
+3 - Ancient Scholar
+3 - Beach Mummy
+3 - Fancy Zebracorn
+2 - Field Stalker
+2 - Fummy
+3 - Gold Ninja
+3 - Heavenly Gazer
+3 - Lime Slimey
+3 - Niceasaurus Rex
+3 - Sand Knights
+2 - Sandhorn Devil
+2 - SandWitch
+3 - Rebounding Zebracorn
+3 - Strawberry Slimey
+3 - Yellow Slimey
+
+Spells
+2 - Beach Ball
+2 - Bail Out
+3 - Field of Nightmares
+2 - Gnome Snot
+2 - Scorching Serve
+
+Buildings
+3 - Sand Castle
+2 - Yellow Lighthouse
+3 - Celestial Castle
+2 - Blood Fortress
