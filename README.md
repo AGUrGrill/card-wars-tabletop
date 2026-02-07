@@ -22,6 +22,7 @@ FOR STARTING SERVER (requires port fowarding)
 <img width="1594" height="895" alt="stats_screen" src="https://github.com/user-attachments/assets/74fa4e50-dd47-49e6-8274-79b37b8bcc4f" />
 
 -+- DISCLAIMER -+- 
+
 I DO NOT OWN ANY AUDIO OR IMAGES DISPLAYED, THIS IS PURLEY FOR FUN AND PERSONAL USE.
 Also, there are alot of obscure missing features that will be patched but are WIP
 and NO I will not be updating cards for the most recent 2026 drop anytime soon!!
