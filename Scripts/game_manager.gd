@@ -182,13 +182,7 @@ func check_end_game():
 			game_ended = true
 			net_declare_game_end.rpc(false)
 
-func terminate_game():
-	if not multiplayer.is_server():
-		return
-		
-	for peer_id in multiplayer.get_peers():
-		NetworkHandler.peer.disconnect_peer(peer_id, false)
-	
+func reset_game():
 	player1_id = 0
 	player2_id = 0
 	# PLAYER DATA
@@ -201,6 +195,7 @@ func terminate_game():
 	player1_played_creatures = [{}, {}, {}, {}]
 	player1_played_buildings = [{}, {}, {}, {}]
 	player1_landscapes = ["", "", "", ""]
+	player1_landscape_frozen_status = [false, false, false, false]
 	player1_current_spell.clear()
 	player1_selected_card.clear()
 
@@ -213,6 +208,7 @@ func terminate_game():
 	player2_played_creatures = [{}, {}, {}, {}]
 	player2_played_buildings = [{}, {}, {}, {}]
 	player2_landscapes = ["", "", "", ""]
+	player2_landscape_frozen_status = [false, false, false, false]
 	player2_current_spell.clear()
 	player2_selected_card.clear()
 	round_num = 0
@@ -229,6 +225,8 @@ func terminate_game():
 	landscape4_refresh_needed = false
 	landscape69_refresh_needed = false
 	hero_refresh_needed = false
+	
+	local_client_player_num = 0
 
 @rpc("authority", "call_remote")
 func net_declare_game_end(was_p2_winner: bool):

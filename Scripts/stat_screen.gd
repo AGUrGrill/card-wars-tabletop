@@ -3,13 +3,15 @@ extends Node2D
 @onready var audio: Node = $Audio
 @onready var win_amt: Label = $WinsLabel/WinAmt
 @onready var loss_amt: Label = $LosesLabel/LossAmt
+@onready var score_amt: Label = $ScoreLabel/ScoreAmt
 
 func _ready() -> void:
 	var player_data = load_from_file()
 	var wins: int = 0
 	var losses: int = 0
+	var score: int = 0
 	if player_data.is_empty():
-		player_data = "Wins\n"+str(wins)+"\nLosses\n"+str(losses)
+		player_data = "Wins\n"+str(wins)+"\nLosses\n"+str(losses)+"\nScore\n"+str(score)
 	var formatted_info: PackedStringArray = player_data.split("\n", false)
 	var prev_line: String
 	for line in formatted_info:
@@ -17,9 +19,12 @@ func _ready() -> void:
 			wins = int(line)
 		elif prev_line == "Losses":
 			losses = int(line)
+		elif prev_line == "Score":
+			score = int(line)
 		prev_line = line
 	win_amt.text = str(wins)
 	loss_amt.text = str(losses)
+	score_amt.text = str(score)
 
 func _on_return_to_menu_pressed() -> void:
 	audio.confirm_sfx.play()

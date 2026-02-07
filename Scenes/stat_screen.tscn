@@ -15,38 +15,58 @@ texture = ExtResource("2_7c3am")
 metadata/_edit_lock_ = true
 
 [node name="WinsLabel" type="Label" parent="." unique_id=1164412479]
-offset_left = 712.0
+offset_left = 683.0
 offset_top = 32.0
-offset_right = 877.0
+offset_right = 912.0
 offset_bottom = 120.0
 theme_override_font_sizes/font_size = 64
 text = "WINS"
+horizontal_alignment = 1
 
 [node name="WinAmt" type="Label" parent="WinsLabel" unique_id=214567022]
 layout_mode = 0
-offset_left = 56.0
 offset_top = 96.0
-offset_right = 111.0
+offset_right = 221.0
 offset_bottom = 163.0
 theme_override_font_sizes/font_size = 48
 text = "10"
+horizontal_alignment = 1
 
 [node name="LosesLabel" type="Label" parent="." unique_id=1234751629]
 offset_left = 683.0
 offset_top = 208.0
-offset_right = 909.0
+offset_right = 912.0
 offset_bottom = 296.0
 theme_override_font_sizes/font_size = 64
 text = "LOSSES"
+horizontal_alignment = 1
 
 [node name="LossAmt" type="Label" parent="LosesLabel" unique_id=1960855652]
 layout_mode = 0
-offset_left = 86.0
 offset_top = 96.0
-offset_right = 141.0
+offset_right = 229.0
 offset_bottom = 163.0
 theme_override_font_sizes/font_size = 48
 text = "10"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=834608432]
+offset_left = 683.0
+offset_top = 392.0
+offset_right = 909.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 64
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="ScoreAmt" type="Label" parent="ScoreLabel" unique_id=1425489667]
+layout_mode = 0
+offset_top = 96.0
+offset_right = 229.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 48
+text = "10"
+horizontal_alignment = 1
 
 [node name="ReturnToMenu" type="Button" parent="." unique_id=1643918287]
 offset_left = 624.0

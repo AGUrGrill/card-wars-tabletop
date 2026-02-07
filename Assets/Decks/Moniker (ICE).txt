@@ -1,0 +1,32 @@
+Hero
+Moniker
+
+Landscapes
+2 - IcyLands
+2 - Blue Plains
+
+Creatures
+3 - Ancient Scholar
+3 - Fiddling Ferret
+3 - Djini Ghost
+3 - Boarder Collie
+3 - Psionic Architect
+3 - Struzann Djinn
+3 - Snow Angel
+3 - Slay Rider
+3 - Frozen Fish
+2 - Icy Infiltrator
+3 - Ice Cream Sammy
+
+Spells
+3 - Bomb Pop
+3 - Freezing Point
+3 - Strength Crystal
+3 - Snow Way
+2 - Beach Ball
+2 - Freeze Ray
+
+Buildings
+3 - Pyramidia
+3 - Floating Ice Palace
+3 - Celestial Castle

@@ -24,7 +24,7 @@ func start_client() -> void:
 
 func _on_peer_connected(peer_id):
 	if multiplayer.is_server():
-		print("Client " + str(peer_id) + " connected.")
+		print("Client " + str(peer_id) + " connected. (" + str(peers_connected+1) + ")")
 		peers_connected += 1
 		GameManager.tell_client_which_player_num_they_are.rpc(peers_connected)
 		if peers_connected == 2:
@@ -32,16 +32,21 @@ func _on_peer_connected(peer_id):
 			print("Game starting...")
 			GameManager.start_game()
 		elif peers_connected > 2:
-			print("Client " + peer_id + " attempted connection... Denying access.")
+			print("Client " + str(peer_id) + " attempted connection... Denying access.")
 			multiplayer.multiplayer_peer.disconnect_peer(peer_id)
 
 func _on_peer_disconnected(peer_id):
 	if multiplayer.is_server():
-		peers_connected -= 1
-		multiplayer.multiplayer_peer.disconnect_peer(peer_id)
-		print("Client " + str(peer_id) + " dicconnected.")
-		if peers_connected == 0:
-			GameManager.terminate_game()
+		print("Client " + str(peer_id) + " disconnected.")
+		
+		if peers_connected > 2:
+			peers_connected -= 1
+			return
+		
+		peers_connected = 0
+		for peer in multiplayer.get_peers():
+			multiplayer.multiplayer_peer.disconnect_peer(peer)
+		GameManager.reset_game()
 
 func _on_get_players_stats_pressed() -> void:
 	$RichTextLabel.text = GameManager.return_all_stats()

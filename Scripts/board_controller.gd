@@ -75,7 +75,7 @@ func _on_zoom_button_toggled(toggled_on: bool) -> void:
 		main_camera.zoom = Vector2(1, 1)
 
 func _on_return_to_menu_pressed() -> void:
-	multiplayer.multiplayer_peer.disconnect_peer(1)
+	multiplayer.multiplayer_peer.close()
 	#NetworkHandler.peer.disconnect_peer(multiplayer.get_unique_id())
 	GameManager.game_ended = false
 	await get_tree().create_timer(1).timeout

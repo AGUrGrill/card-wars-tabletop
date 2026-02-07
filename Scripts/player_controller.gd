@@ -179,6 +179,9 @@ func update_selected_card_image(_name: String):
 		return
 	
 	var tex = GameManager.db.cards.get(_name)
+	if tex == null:
+		selected_card.texture = null
+		return
 	var img: Image = tex.get_image()
 	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
@@ -427,11 +430,25 @@ func shuffle_deck_logic():
 
 func add_card_to_top_deck_logic():
 	if player_num == 1:
-		GameManager.add_card_to_top_of_deck(1, GameManager.player1_selected_card)
-		GameManager.net_remove_card_from_player_hand.rpc(1, GameManager.player1_selected_card)
+		var can_remove: bool = false
+		for card in GameManager.player1_hand:
+			if card["Name"] == GameManager.player1_selected_card["Name"]:
+				can_remove = true
+		if can_remove:
+			GameManager.add_card_to_top_of_deck.rpc(1, GameManager.player1_selected_card)
+			GameManager.net_remove_card_from_player_hand.rpc(1, GameManager.player1_selected_card)
+		else:
+			log.make_log_message("Please return card to hand before adding to top of deck.")
 	elif player_num == 2:
-		GameManager.add_card_to_top_of_deck(2, GameManager.player2_selected_card)
-		GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
+		var can_remove: bool = false
+		for card in GameManager.player2_hand:
+			if card["Name"] == GameManager.player2_selected_card["Name"]:
+				can_remove = true
+		if can_remove:
+			GameManager.add_card_to_top_of_deck.rpc(2, GameManager.player2_selected_card)
+			GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
+		else:
+			log.make_log_message("Please return card to hand before adding to top of deck.")
 
 func add_card_to_bottom_deck_logic():
 	if player_num == 1:
@@ -722,11 +739,10 @@ func update_player_landscape(landscape_num: int):
 		$Landscape4.update_landscape_image(landscapes[3])
 	
 	# LANDSCAPE FROZEN STATUS
-	if not $Landscape1.frozen_enabled:
-		$Landscape1.toggle_frozen_token(landscape_frozen_status[0])
-		$Landscape2.toggle_frozen_token(landscape_frozen_status[1])
-		$Landscape3.toggle_frozen_token(landscape_frozen_status[2])
-		$Landscape4.toggle_frozen_token(landscape_frozen_status[3])
+	$Landscape1.toggle_frozen_token(landscape_frozen_status[0])
+	$Landscape2.toggle_frozen_token(landscape_frozen_status[1])
+	$Landscape3.toggle_frozen_token(landscape_frozen_status[2])
+	$Landscape4.toggle_frozen_token(landscape_frozen_status[3])
 	
 	# CREATURES
 	if not creatures[0].is_empty() and landscape_num == 0:

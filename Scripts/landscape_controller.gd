@@ -41,6 +41,7 @@ func check_if_frozen_exists():
 	if not ignore_frozen:
 		freeze_landscape.visible = true
 		freeze_landscape.disabled = false
+		frozen_enabled = true
 
 func add_card_to_landscape():
 	var selected_card: Dictionary
@@ -251,7 +252,6 @@ func remove_card_if_came_from_landscape(player_num: int, selected_card: Dictiona
 func toggle_frozen_token(enabled: bool):
 	if enabled:
 		frozen_token.visible = true
-		frozen_enabled = true
 	else:
 		frozen_token.visible = false
 
@@ -270,3 +270,4 @@ func _on_change_landscape_item_selected(index: int) -> void:
 
 func _on_freeze_landscape_toggled(toggled_on: bool) -> void:
 	GameManager.net_change_player_landscape_frozen_status.rpc(player.player_num, landscape_num, toggled_on)
+	toggle_frozen_token(toggled_on)

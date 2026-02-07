@@ -29,6 +29,7 @@ var is_flooped: bool = false
 var is_in_hand: bool = true
 var is_dead: bool = false
 var card_owner: int
+var selection_banned: bool = false
 
 func _ready() -> void:
 	remove_card_data()
@@ -113,6 +114,7 @@ func hide_card(should_hide: bool):
 
 func hide_image():
 	update_card_image("card_back")
+	selection_banned = true
 
 # CARD FUNCTIONS
 func update_card_image(_name: String):
@@ -267,6 +269,8 @@ func _on_floop_button_pressed() -> void:
 
 # Focus Card
 func _on_mouse_entered() -> void:
+	if selection_banned:
+		return
 	play_glow()
 	var player = $"../.."
 	player.update_selected_card_image(card_name)
@@ -276,6 +280,8 @@ func _on_mouse_exited() -> void:
 
 # Select Card
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if selection_banned:
+		return
 	var player = $"../.."
 	if event.is_pressed():
 		if get_card_landscape_num() == 99:

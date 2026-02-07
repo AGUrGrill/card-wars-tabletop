@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwwu5rivclkm3" path="res://Scripts/main_menu_controller.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://dkfaayfqvgojj" path="res://Assets/bg.jpg" id="2_qe12f"]
+[ext_resource type="PackedScene" uid="uid://bi3p2s6v01fo1" path="res://Scenes/log.tscn" id="3_ce3w2"]
 [ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="3_fu7sn"]
 
 [node name="MainMenu" type="Node2D" unique_id=973207809]
@@ -10,7 +11,6 @@ script = ExtResource("1_06t4h")
 [node name="Bg" type="Sprite2D" parent="." unique_id=2074564388]
 modulate = Color(0.64870447, 0.5039069, 0.76549995, 1)
 position = Vector2(802.66675, 452)
-scale = Vector2(0.8370371, 0.837037)
 texture = ExtResource("2_qe12f")
 metadata/_edit_lock_ = true
 
@@ -61,46 +61,32 @@ offset_top = 840.0
 offset_right = 460.0
 offset_bottom = 871.0
 
-[node name="Log" type="Node" parent="." unique_id=1723010452]
-
-[node name="LogText" type="Label" parent="Log" unique_id=587163073]
-offset_left = 968.0
-offset_top = 8.0
-offset_right = 1594.0
-offset_bottom = 128.0
-horizontal_alignment = 2
-
-[node name="Timer" type="Timer" parent="Log" unique_id=283002704]
-wait_time = 5.0
-
 [node name="ChooseDeck" type="OptionButton" parent="." unique_id=2005986791]
 offset_left = 72.0
 offset_top = 792.0
 offset_right = 260.0
 offset_bottom = 823.0
+allow_reselect = true
 
 [node name="CustomDeckLabel" type="Label" parent="." unique_id=918203604]
-offset_left = 272.0
+offset_left = 270.0
 offset_top = 816.0
-offset_right = 463.0
+offset_right = 461.0
 offset_bottom = 839.0
 text = "Enter Custom Deck Code"
 
-[node name="Audio" parent="." unique_id=1362242447 instance=ExtResource("3_fu7sn")]
-audio_type = "Main Menu"
-
 [node name="IPAddress" type="LineEdit" parent="." unique_id=294402506]
-offset_left = 1368.0
-offset_top = 32.0
-offset_right = 1512.0
-offset_bottom = 63.0
+offset_left = 1377.0
+offset_top = 10.0
+offset_right = 1521.0
+offset_bottom = 41.0
 placeholder_text = "IP ADDRESS"
 
 [node name="Port" type="LineEdit" parent="." unique_id=947913166]
-offset_left = 1520.0
-offset_top = 32.0
-offset_right = 1588.5625
-offset_bottom = 63.0
+offset_left = 1529.0
+offset_top = 10.0
+offset_right = 1597.5625
+offset_bottom = 41.0
 placeholder_text = "PORT"
 
 [node name="PlayerStatMenu" type="Button" parent="." unique_id=1698313679]
@@ -112,15 +98,26 @@ text = "PLAYER STATS"
 
 [node name="CreateDeck" type="Button" parent="." unique_id=2064193469]
 offset_left = 472.0
-offset_top = 840.0
+offset_top = 839.0
 offset_right = 589.0
-offset_bottom = 871.0
+offset_bottom = 870.0
 text = "CREATE DECK"
+
+[node name="Log" parent="." unique_id=2122409897 instance=ExtResource("3_ce3w2")]
+position = Vector2(1199, 50)
+font_size = 16
+
+[node name="Audio" parent="." unique_id=1362242447 instance=ExtResource("3_fu7sn")]
+audio_type = "Main Menu"
+
+[node name="ServerWaitTimer" type="Timer" parent="." unique_id=1560757498]
+wait_time = 10.0
+one_shot = true
 
 [connection signal="pressed" from="StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="StartClient" to="." method="_on_start_client_pressed"]
 [connection signal="pressed" from="LoadDeck" to="." method="_on_load_deck_pressed"]
-[connection signal="timeout" from="Log/Timer" to="." method="_on_timer_timeout"]
 [connection signal="item_selected" from="ChooseDeck" to="." method="_on_choose_deck_item_selected"]
 [connection signal="pressed" from="PlayerStatMenu" to="." method="_on_player_stat_menu_pressed"]
 [connection signal="pressed" from="CreateDeck" to="." method="_on_create_deck_pressed"]
+[connection signal="timeout" from="ServerWaitTimer" to="." method="_on_server_wait_timer_timeout"]
