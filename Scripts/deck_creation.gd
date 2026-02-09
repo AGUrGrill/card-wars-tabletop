@@ -116,6 +116,9 @@ func get_card_image(_name: String) -> ImageTexture:
 	return texture
 
 func add_creature(_name: String, card_type: String):
+	if creatures.count(_name) >= 3:
+		log.make_log_message("Maximum number of " + _name + " added. (3)")
+		return
 	creatures.append(_name)
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_cards.add_child(new_card)
@@ -126,6 +129,9 @@ func add_creature(_name: String, card_type: String):
 	new_card.card_type = card_type
 
 func add_building(_name: String, card_type: String):
+	if buildings.count(_name) >= 3:
+		log.make_log_message("Maximum number of " + _name + " added. (3)")
+		return
 	buildings.append(_name)
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_cards.add_child(new_card)
@@ -136,6 +142,9 @@ func add_building(_name: String, card_type: String):
 	new_card.card_type = card_type
 
 func add_spell(_name: String, card_type: String):
+	if spells.count(_name) >= 3:
+		log.make_log_message("Maximum number of " + _name + " added. (3)")
+		return
 	spells.append(_name)
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_cards.add_child(new_card)
@@ -162,9 +171,9 @@ func add_hero(_name: String):
 	hero_image.texture = get_card_image(_name)
 
 func remove_creature(_name: String):
-	creatures.remove_at(creatures.find(_name))
+	creatures.pop_at(creatures.find(_name))
+	
 	for child in choosen_cards.get_children():
-		print(child)
 		if child.name.contains(_name):
 			choosen_cards.remove_child(child)
 			return
@@ -254,10 +263,13 @@ func deck_valid():
 		log.make_log_message("Please add 4 landscapes.")
 		return false
 	if creatures.is_empty():
-		creatures.append("")
+		log.make_log_message("Please add at least 1 creature.")
+		return false
 	if buildings.is_empty():
+		log.make_log_message("No buildings found, continuing anyways.")
 		buildings.append("")
 	if spells.is_empty():
+		log.make_log_message("No spells found, continuing anyways.")
 		spells.append("")
 	
 	return true
