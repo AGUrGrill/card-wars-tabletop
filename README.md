@@ -13,7 +13,9 @@ FOR STARTING SERVER (requires port fowarding)
 2. Select 'Start Server'.
 
 -+- GAMEPLAY -+-
-<img width="1599" height="894" alt="gameplay" src="https://github.com/user-attachments/assets/dd8bee95-5c24-4749-996e-2fb5cd593264" />
+<img width="2518" height="1357" alt="gameplay2" src="https://github.com/user-attachments/assets/aadf7b11-b5fd-4f4c-b826-0978b2e7a003" />
+<img width="2515" height="1347" alt="gameplay3" src="https://github.com/user-attachments/assets/aac75c15-9527-4a27-986c-32d85fbd9f88" />
+
 
 -+- DECK CREATOR -+-
 <img width="1592" height="891" alt="deck_creator" src="https://github.com/user-attachments/assets/ea0c3aaf-c5b0-4c58-b237-b2f318ff3e4b" />
