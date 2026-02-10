@@ -48,12 +48,15 @@ func add_premade_decks():
 	if not DirAccess.open("user://Decks/").file_exists("Moniker.dat"):
 		var file4 = FileAccess.open("user://Decks/Moniker.dat", FileAccess.WRITE)
 		file4.store_string(moniker)
-	if not DirAccess.open("user://Decks/").file_exists("The_Lich.dat"):
-		var file5 = FileAccess.open("user://Decks/The_Lich.dat", FileAccess.WRITE)
+	if not DirAccess.open("user://Decks/").file_exists("The Lich.dat"):
+		var file5 = FileAccess.open("user://Decks/The Lich.dat", FileAccess.WRITE)
 		file5.store_string(the_lich)
 	if not DirAccess.open("user://Decks/").file_exists("Gunter.dat"):
 		var file6 = FileAccess.open("user://Decks/Gunter.dat", FileAccess.WRITE)
 		file6.store_string(gunter)
+	if not DirAccess.open("user://Decks/").file_exists("Finn.dat"):
+		var file6 = FileAccess.open("user://Decks/Finn.dat", FileAccess.WRITE)
+		file6.store_string(finn)
 
 func get_all_decks(path):
 	var dir = DirAccess.open(path)
@@ -412,3 +415,38 @@ Buildings
 3 - Funeral Home
 3 - Shadowy Pyramid
 3 - Celestial Castle"
+
+var finn: String = "Hero
+Finn
+
+Landscapes
+3 - Blue Plains
+1 - SandyLands
+
+Creatures
+3 - Ancient Scholar
+3 - Struzann Djinn
+3 - Cool Dog
+3 - X-Large Spirit Soldier
+3 - Infant Scholar
+3 - Furious Chick
+3 - Static Parrotrooper
+3 - Psionic Architect
+3 - Sand Knights
+3 - SandWitch
+3 - Jinxed Parrotrooper
+
+
+Spells
+3 - Puma Paw
+3 - Gnome Snot
+2 - Beach Ball
+2 - Unempty Coffin
+3 - Blood Transfusion
+
+
+Buildings
+3 - Schoolhouse
+3 - Learning Center
+3 - Celestial Castle
+"

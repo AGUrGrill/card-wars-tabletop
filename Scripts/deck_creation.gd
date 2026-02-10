@@ -77,12 +77,24 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 			defense_filter = true
 		
 		var has_ability: bool = false
+		var has_landscape: bool = false
+		var has_cost: bool = false
+		var has_attack: bool = false
+		var has_defense: bool = false
 		for key in card_data:
 			if key == "Ability":
 				has_ability = true
+			elif key == "Landscape":
+				has_landscape = true
+			elif key == "Cost":
+				has_cost = true
+			elif key == "Attack":
+				has_attack = true
+			elif key == "Defense":
+				has_defense = true
 		
-		if name_filter and not card_data["Name"].contains(_name):
-			#print(card_data["Name"] + " does not contain " + _name)
+		if name_filter and not card_data["Name"].to_lower().contains(_name.to_lower()):
+			print(card_data["Name"] + " does not contain " + _name)
 			continue
 		if card_type_filter and card_data["Card Type"] != card_type:
 			print(card_data["Card Type"] + " is not " + card_type)
@@ -93,18 +105,30 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 			if not card_data["Ability"].to_lower().contains(card_ability.to_lower()):
 				print(card_data["Ability"] + " is not " + card_ability)
 				continue
-		if landscape_type_filter and card_data["Landscape"] != landscape_type:
-			print(card_data["Landscape"] + " is not " + landscape_type)
-			continue
-		if cost_filter and card_data["Cost"] != cost:
-			print(card_data["Cost"] + " is not " + cost)
-			continue
-		if attack_filter and card_data["Attack"] != attack:
-			print(card_data["Attack"] + " is not " + attack)
-			continue
-		if defense_filter and card_data["Defense"] != defense:
-			print(card_data["Defense"] + " is not " + defense)
-			continue
+		if landscape_type_filter:
+			if not has_landscape:
+				continue
+			if card_data["Landscape"] != landscape_type:
+				print(card_data["Landscape"] + " is not " + landscape_type)
+				continue
+		if cost_filter:
+			if not has_cost:
+				continue
+			if card_data["Cost"] != cost:
+				print(card_data["Cost"] + " is not " + cost)
+				continue
+		if attack_filter:
+			if not has_attack:
+				continue
+			if card_data["Attack"] != attack:
+				print(card_data["Attack"] + " is not " + attack)
+				continue
+		if defense_filter:
+			if not has_defense:
+				continue
+			if card_data["Defense"] != defense:
+				print(card_data["Defense"] + " is not " + defense)
+				continue
 		
 		var new_card = TEMPLATE_CARD.instantiate()
 		search_cards.add_child(new_card)
@@ -291,8 +315,8 @@ func _on_return_to_menu_pressed() -> void:
 
 func _on_save_deck_pressed() -> void:
 	audio.confirm_sfx.play()
-	#if not deck_valid():
-	#	return
+	if not deck_valid():
+		return
 	var formatted_content: String
 	formatted_content = "Hero
 " + hero + "
@@ -309,8 +333,7 @@ Spells
 Buildings
 " + get_formatted_buildings() + "
 "
-	#save_to_file(formatted_content, deck_name.text)
-	print(formatted_content)
+	save_to_file(formatted_content, deck_name.text)
 
 func save_to_file(content: String, deck_name: String):
 	var dir = DirAccess.open("user://")
