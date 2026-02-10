@@ -1,12 +1,10 @@
 BUGS
-X when restarting game, reset win value
 make sure its set up to accept when you are out of ur deck?
 after clicked view deck, trying to view discards takes 2 clicks
-animations laggy over internet
-can see enemies cards
-check add card to top deck
+freeze requires double place
 
 FEATURES
 fanservice-Ethan
+griddy and hedge card effects
 
 Issue Cards:

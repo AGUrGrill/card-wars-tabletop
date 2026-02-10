@@ -195,6 +195,14 @@ text = "
 EX: 2 Cost Cornfield = 2 Cornfield Landscapes REQUIRED"
 autowrap_mode = 3
 
+[node name="CurrentDeckBuildNums" type="Label" parent="." unique_id=882961696]
+offset_left = 432.0
+offset_top = 8.0
+offset_right = 1377.0
+offset_bottom = 39.0
+text = "Cards: 0 | Creatures: 0 | Spells: 0 | Buildings: 0"
+horizontal_alignment = 2
+
 [connection signal="item_selected" from="TypeCard" to="." method="_on_type_card_item_selected"]
 [connection signal="text_submitted" from="SearchName" to="." method="_on_search_name_text_submitted"]
 [connection signal="text_submitted" from="SearchAbility" to="." method="_on_search_ability_text_submitted"]

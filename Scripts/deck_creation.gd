@@ -15,6 +15,7 @@ extends Node2D
 @onready var choosen_cards: HBoxContainer = $ChoosenCards/CardDisplayPanel
 @onready var choosen_landscapes: HBoxContainer = $ChoosenLandscapes/CardDisplayPanel
 @onready var hero_image: Sprite2D = $HeroImage
+@onready var current_deck_build_nums: Label = $CurrentDeckBuildNums
 
 var hero: String
 var landscapes: Array[String]
@@ -28,6 +29,10 @@ func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	get_cards("", "", "", "", "", "", "")
 	log.make_log_message("")
+
+func update_deck_nums():
+	var total_cards: int = creatures.size() + spells.size() + buildings.size()
+	current_deck_build_nums.text = "Cards: " + str(total_cards) + " | Creatures: " + str(creatures.size()) + " | Spells: " + str(spells.size()) + " | Buildings: " + str(buildings.size())
 
 func get_cards(_name: String, card_type: String, card_ability: String, landscape_type: String, cost: String, attack: String, defense: String):
 	for child in search_cards.get_children():
@@ -104,7 +109,7 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 		var new_card = TEMPLATE_CARD.instantiate()
 		search_cards.add_child(new_card)
 		new_card.texture = get_card_image(card_data["Name"])
-		new_card.name = card_data["Name"]
+		new_card.card_name = card_data["Name"]
 		new_card.card_type = card_data["Card Type"]
 		new_card.scale = Vector2(1, 1)
 
@@ -123,10 +128,11 @@ func add_creature(_name: String, card_type: String):
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_cards.add_child(new_card)
 	new_card.texture = get_card_image(_name)
-	new_card.name = _name
+	new_card.card_name = _name
 	new_card.scale = Vector2(1, 1)
 	new_card.is_choosen = true
 	new_card.card_type = card_type
+	update_deck_nums()
 
 func add_building(_name: String, card_type: String):
 	if buildings.count(_name) >= 3:
@@ -136,10 +142,11 @@ func add_building(_name: String, card_type: String):
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_cards.add_child(new_card)
 	new_card.texture = get_card_image(_name)
-	new_card.name = _name
+	new_card.card_name = _name
 	new_card.scale = Vector2(1, 1)
 	new_card.is_choosen = true
 	new_card.card_type = card_type
+	update_deck_nums()
 
 func add_spell(_name: String, card_type: String):
 	if spells.count(_name) >= 3:
@@ -149,10 +156,11 @@ func add_spell(_name: String, card_type: String):
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_cards.add_child(new_card)
 	new_card.texture = get_card_image(_name)
-	new_card.name = _name
+	new_card.card_name = _name
 	new_card.scale = Vector2(1, 1)
 	new_card.is_choosen = true
 	new_card.card_type = card_type
+	update_deck_nums()
 
 func add_landscape(_name: String, card_type: String):
 	if landscapes.size() >= 4:
@@ -161,7 +169,7 @@ func add_landscape(_name: String, card_type: String):
 	var new_card = TEMPLATE_CARD.instantiate()
 	choosen_landscapes.add_child(new_card)
 	new_card.texture = get_card_image(_name)
-	new_card.name = _name
+	new_card.card_name = _name
 	new_card.scale = Vector2(1, 1)
 	new_card.is_choosen = true
 	new_card.card_type = card_type
@@ -172,30 +180,32 @@ func add_hero(_name: String):
 
 func remove_creature(_name: String):
 	creatures.pop_at(creatures.find(_name))
-	
 	for child in choosen_cards.get_children():
-		if child.name.contains(_name):
+		if child.card_name.contains(_name):
 			choosen_cards.remove_child(child)
 			return
+	update_deck_nums()
 
 func remove_building(_name: String):
-	buildings.remove_at(buildings.find(_name))
+	buildings.pop_at(buildings.find(_name))
 	for child in choosen_cards.get_children():
-		if child.name.contains(_name):
+		if child.card_name.contains(_name):
 			choosen_cards.remove_child(child)
 			return
+	update_deck_nums()
 
 func remove_spell(_name: String):
-	spells.remove_at(spells.find(_name))
+	spells.pop_at(spells.find(_name))
 	for child in choosen_cards.get_children():
-		if child.name.contains(_name):
+		if child.card_name.contains(_name):
 			choosen_cards.remove_child(child)
 			return
+	update_deck_nums()
 
 func remove_landscape(_name: String):
-	landscapes.remove_at(landscapes.find(_name))
+	landscapes.pop_at(landscapes.find(_name))
 	for child in choosen_landscapes.get_children():
-		if child.name.contains(_name):
+		if child.card_name.contains(_name):
 			choosen_landscapes.remove_child(child)
 			return
 
@@ -281,8 +291,8 @@ func _on_return_to_menu_pressed() -> void:
 
 func _on_save_deck_pressed() -> void:
 	audio.confirm_sfx.play()
-	if not deck_valid():
-		return
+	#if not deck_valid():
+	#	return
 	var formatted_content: String
 	formatted_content = "Hero
 " + hero + "
@@ -299,7 +309,8 @@ Spells
 Buildings
 " + get_formatted_buildings() + "
 "
-	save_to_file(formatted_content, deck_name.text)
+	#save_to_file(formatted_content, deck_name.text)
+	print(formatted_content)
 
 func save_to_file(content: String, deck_name: String):
 	var dir = DirAccess.open("user://")

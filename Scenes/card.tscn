@@ -147,11 +147,13 @@ priority = 9
 script = ExtResource("1_eumee")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=1415465677]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_e6po8")
 metadata/_edit_lock_ = true
 
 [node name="CorpseImage" type="Sprite2D" parent="." unique_id=808037271]
 visible = false
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_e6po8")
 metadata/_edit_lock_ = true
 

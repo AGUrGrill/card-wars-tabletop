@@ -15,6 +15,7 @@ const TEMP_IMG = preload("uid://bkuqpel75myiu")
 @onready var landscape = $".." # Can be hand or landscape so leave vague
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var death_timer: Timer = $DeathTimer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
 # CARD DATA
@@ -123,7 +124,8 @@ func update_card_image(_name: String):
 		print("error printing " + _name)
 		return
 	var img: Image = tex.get_image()
-	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
+	#img.resize(150, 210, Image.INTERPOLATE_LAN)
+	img.resize(300, 420, Image.INTERPOLATE_TRILINEAR)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	card_image.texture = texture
 	corpse_image.texture = texture
@@ -277,6 +279,8 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	reset_anim()
+	#var player = $"../.."
+	#player.update_selected_card_image("fart")
 
 # Select Card
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

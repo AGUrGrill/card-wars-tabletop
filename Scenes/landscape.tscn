@@ -14,7 +14,7 @@ script = ExtResource("1_asa4r")
 
 [node name="LandscapeImage" type="Sprite2D" parent="." unique_id=1770092604]
 position = Vector2(-0.5000019, 0)
-scale = Vector2(0.20714286, 0.20854022)
+scale = Vector2(0.207, 0.209)
 texture = ExtResource("2_425dq")
 
 [node name="SpellImage" type="Sprite2D" parent="." unique_id=293061645]

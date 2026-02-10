@@ -38,10 +38,12 @@ const CARD = preload("uid://dycs2rc7imye2")
 # TIMERS
 @onready var input_timer: Timer = $Timers/InputTimer
 @onready var input_timer_label: Label = $Timers/InputTimerLabel
+@onready var card_selection_timer: Timer = $CardSelectionTimer
 # LOG
 @onready var log: Node = $Log
 # ANIMATION
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $MainPlayer
+@onready var hand_player: AnimationPlayer = $HandPlayer
 # AUDIO
 @onready var audio: Node = $Audio
 # ADDITIONAL OPTIONS
@@ -114,7 +116,21 @@ func determine_display_visibility():
 		elif not GameManager.p1_turn and not disabled:
 			disable_inputs(false, true)
 			disabled = true
+	elif player_num == 1 and multiplayer.get_unique_id() != GameManager.player1_id:
+		if GameManager.p1_turn and disabled:
+			disable_inputs(false, false)
+			disabled = false
+		elif not GameManager.p1_turn and not disabled:
+			disable_inputs(false, true)
+			disabled = true
 	if player_num == 2 and multiplayer.get_unique_id() == GameManager.player2_id:
+		if GameManager.p2_turn and disabled:
+			disable_inputs(false, false)
+			disabled = false
+		elif not GameManager.p2_turn and not disabled:
+			disable_inputs(false, true)
+			disabled = true
+	elif player_num == 2 and multiplayer.get_unique_id() != GameManager.player2_id:
 		if GameManager.p2_turn and disabled:
 			disable_inputs(false, false)
 			disabled = false
@@ -174,18 +190,19 @@ func update_hero_image():
 	check_if_frozen_exists()
 
 func update_selected_card_image(_name: String):
+	print("changing img to " + _name)
 	if _name == "fart":
 		selected_card.texture = null
 		return
-	
 	var tex = GameManager.db.cards.get(_name)
 	if tex == null:
 		selected_card.texture = null
 		return
 	var img: Image = tex.get_image()
-	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
+	img.resize(300, 420, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	selected_card.texture = texture
+	card_selection_timer.start()
 
 # BUTTON LOGIC
 func discard_card_logic():
@@ -534,7 +551,7 @@ func update_player_stat_display():
 	elif prev_hp > health:
 		play_hurt()
 	prev_hp = health
-	player_label.text = "PLAYER " + str(player_num)
+	#player_label.text = "PLAYER " + str(player_num)
 	hp_label.text = "HP: " + str(health)
 	actions_label.text = "ACTIONS: " + str(actions)
 	opponent_hp_label.text = "HP: " + str(opponent_health)
@@ -553,15 +570,17 @@ func update_player_hand_display():
 		return
 	print("Player " + str(player_num) + "'s Hand:\n" + str(multiplayer.get_unique_id()))
 	
-	var max_length: float = hand.size.x
-	var increment: float = max_length / main_hand.size()
-	
 	var idx: int = 0
 	for card in main_hand:
 		var new_card = CARD.instantiate()
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
-		new_card.position.x = increment * idx
+		var card_length: float = new_card.collision_shape_2d.shape.size.x
+		var card_height: float = new_card.collision_shape_2d.shape.size.y
+		var max_length: float = hand.size.x
+		var increment: float = (max_length - card_length) / main_hand.size()
+		new_card.position.x = (increment * idx) + (card_length/2)
+		new_card.position.y += card_height/2
 		new_card.z_index = idx
 		idx += 1
 		
@@ -957,3 +976,23 @@ func _on_add_card_to_hand_pressed() -> void:
 	grab_card_from_play_logic()
 	audio.confirm_sfx.play()
 	start_selection_buffer()
+
+var og_index: Array[int] = []
+func _on_hand_mouse_entered() -> void:
+	if not hand_player.is_playing():
+		hand_player.play("fan_cards")
+		for card in hand.get_children():
+			og_index.append(card.z_index)
+			card.z_index = 99
+
+func _on_hand_mouse_exited() -> void:
+	if not hand_player.is_playing():
+		hand_player.play("unfan_cards")
+		for card in hand.get_children():
+			var idx = og_index.pop_front()
+			if idx != null:
+				card.z_index = idx
+		og_index = []
+
+func _on_card_selection_timer_timeout() -> void:
+	update_selected_card_image("fart")
