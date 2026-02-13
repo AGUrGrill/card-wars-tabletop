@@ -14,7 +14,7 @@ var deck: Array[String]
 var default_deck_choice: String
 var deck_choosen: bool = false
 
-var in_testing_mode: bool = true
+var in_testing_mode: bool = false
 var game_starting: bool = false
 
 func _ready() -> void:

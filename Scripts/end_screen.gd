@@ -22,9 +22,11 @@ func end_game_logic():
 	var losses: int = 0
 	var score: int = 0
 	if player_data.is_empty():
+		print("player data empty")
 		player_data = "Wins\n"+str(wins)+"\nLosses\n"+str(losses)+"\nScore\n"+str(score)
+	var formatted_info: PackedStringArray = player_data.split("\n", false)
 	var prev_line: String
-	for line in player_data:
+	for line in formatted_info:
 		if prev_line == "Wins":
 			wins = int(line)
 		elif prev_line == "Losses":

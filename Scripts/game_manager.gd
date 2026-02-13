@@ -344,7 +344,7 @@ func draw_card(player_num: int):
 	if player_num == 1:
 		if player1_deck.is_empty():
 			print("Out of cards in p1 deck.")
-			return
+			return {}
 		card_data = player1_deck.pop_back()
 		#player1_deck.remove_at(player1_deck.find(card_data))
 	elif player_num == 2:
@@ -621,10 +621,11 @@ func net_remove_card_from_player_hand(player_num: int, _card: Dictionary):
 
 @rpc("any_peer", "call_local")
 func net_add_card_to_player_hand(player_num: int, card: Dictionary):
-	if player_num == 1:
-		player1_hand.append(card)
-	elif player_num == 2:
-		player2_hand.append(card)
+	if not card.is_empty():
+		if player_num == 1:
+			player1_hand.append(card)
+		elif player_num == 2:
+			player2_hand.append(card)
 	net_tell_clients_to_refresh_hand.rpc()
 
 # PLAYER DISCARDS UPDATES

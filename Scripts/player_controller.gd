@@ -608,15 +608,17 @@ func update_player_discards_display():
 	if discards_hand.is_empty():
 		return
 	
-	var max_length: float = hand.size.x
-	var increment: float = max_length / discards_hand.size()
-	
 	var idx: int = 0
 	for card in discards_hand:
 		var new_card = CARD.instantiate()
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
-		new_card.position.x = increment * idx
+		var card_length: float = new_card.collision_shape_2d.shape.size.x
+		var card_height: float = new_card.collision_shape_2d.shape.size.y
+		var max_length: float = hand.size.x
+		var increment: float = (max_length - card_length) / discards_hand.size()
+		new_card.position.x = (increment * idx) + (card_length/2)
+		new_card.position.y += card_height/2
 		new_card.z_index = idx
 		idx += 1
 		
@@ -648,15 +650,17 @@ func update_player_deck_display():
 		return
 	print("Player " + str(player_num) + "'s Deck:\n" + str(multiplayer.get_unique_id()))
 	
-	var max_length: float = hand.size.x
-	var increment: float = max_length / main_hand.size()
 	var idx: int = 0
-	
 	for card in main_hand:
 		var new_card = CARD.instantiate()
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
-		new_card.position.x = increment * idx
+		var card_length: float = new_card.collision_shape_2d.shape.size.x
+		var card_height: float = new_card.collision_shape_2d.shape.size.y
+		var max_length: float = hand.size.x
+		var increment: float = (max_length - card_length) / main_hand.size()
+		new_card.position.x = (increment * idx) + (card_length/2)
+		new_card.position.y += card_height/2
 		new_card.z_index = idx
 		idx += 1
 		
@@ -686,10 +690,8 @@ func update_scry_player_deck_display(amount: int):
 		return
 	print("Player " + str(player_num) + "'s Deck:\n" + str(multiplayer.get_unique_id()))
 	
-	var max_length: float = hand.size.x
-	var increment: float = max_length / main_hand.size()
+
 	var idx: int = -1
-	
 	for card in main_hand:
 		idx += 1
 		if idx < main_hand.size() - amount:
@@ -697,7 +699,14 @@ func update_scry_player_deck_display(amount: int):
 		var new_card = CARD.instantiate()
 		new_card.is_in_hand = true
 		hand.add_child(new_card)
-		new_card.position.x = increment * idx
+		var card_length: float = new_card.collision_shape_2d.shape.size.x
+		var card_height: float = new_card.collision_shape_2d.shape.size.y
+		var max_length: float = hand.size.x
+		var increment: float = (max_length - card_length) / main_hand.size()
+		new_card.position.x = (increment * idx) + (card_length/2)
+		new_card.position.y += card_height/2
+		new_card.z_index = idx
+		idx += 1
 		
 		var card_ability: String = ""
 		for key in card:
@@ -996,3 +1005,6 @@ func _on_hand_mouse_exited() -> void:
 
 func _on_card_selection_timer_timeout() -> void:
 	update_selected_card_image("fart")
+
+func _on_go_to_rules_pressed() -> void:
+	OS.shell_open("https://upload.snakesandlattes.com/rules/a/AdventureTimeCardWarsFinnvsJake.pdf")

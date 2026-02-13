@@ -362,7 +362,7 @@ metadata/player_num = 0
 [node name="Card" parent="Hand" unique_id=2143805399 instance=ExtResource("5_x3wgy")]
 
 [node name="HeroImage" type="Sprite2D" parent="." unique_id=596994513]
-position = Vector2(-134, 143)
+position = Vector2(-118, 143)
 scale = Vector2(0.5, 0.5)
 
 [node name="SelectedCard" type="Sprite2D" parent="." unique_id=1892070561]
@@ -468,7 +468,6 @@ text = "Add Card to Bottom
 "
 
 [node name="AdditionalOptions" type="Node2D" parent="AdditionalOptions/AdditionalOptionsPanel" unique_id=679968445]
-visible = false
 
 [node name="DeleteFromGame" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1841362543]
 offset_left = 5.0
@@ -494,6 +493,14 @@ offset_bottom = 92.0
 theme_override_font_sizes/font_size = 12
 text = "Add Card to Hand
 "
+
+[node name="GoToRules" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=645268588]
+offset_left = 5.0
+offset_top = 114.0
+offset_right = 172.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 12
+text = "Open Rule Book in Browser"
 
 [node name="DeckOptionsButton" type="Button" parent="AdditionalOptions" unique_id=983974013]
 offset_left = 8.0
@@ -536,6 +543,7 @@ one_shot = true
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/DeleteFromGame" to="." method="_on_delete_from_game_pressed"]
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/GiveToOpp" to="." method="_on_give_to_opp_pressed"]
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/Add Card to Hand" to="." method="_on_add_card_to_hand_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/GoToRules" to="." method="_on_go_to_rules_pressed"]
 [connection signal="pressed" from="AdditionalOptions/DeckOptionsButton" to="." method="_on_deck_options_pressed"]
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsButton" to="." method="_on_additional_options_pressed"]
 [connection signal="timeout" from="CardSelectionTimer" to="." method="_on_card_selection_timer_timeout"]
