@@ -38,24 +38,24 @@ func end_game_logic():
 		if GameManager.who_won == false:
 			win_image.visible = true
 			result_label.text = "YOU WIN!"
-			score = calculate_score(true, GameManager.player1_health)
+			score += calculate_score(true, GameManager.player1_health)
 			wins+=1
 		elif GameManager.who_won == true:
 			lose_image.visible = true
 			result_label.text = "YOU LOSE..."
-			score = calculate_score(false, GameManager.player1_health)
+			score += calculate_score(false, GameManager.player1_health)
 			losses+=1
 	if multiplayer.get_unique_id() == GameManager.player2_id:
 		if GameManager.who_won == true:
 			win_image.visible = true
 			result_label.text = "YOU WIN!"
-			score = calculate_score(true, GameManager.player2_health)
+			score += calculate_score(true, GameManager.player2_health)
 			wins+=1
 		#p1 and p2
 		elif GameManager.who_won == false:
 			lose_image.visible = true
 			result_label.text = "YOU LOSE..."
-			score = calculate_score(false, GameManager.player2_health)
+			score += calculate_score(false, GameManager.player2_health)
 			losses+=1
 	player_data = "Wins\n"+str(wins)+"\nLosses\n"+str(losses)+"\nScore\n"+str(score)
 	save_to_file(player_data)

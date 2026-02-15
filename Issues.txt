@@ -1,10 +1,12 @@
 BUGS
-make sure its set up to accept when you are out of ur deck?
 after clicked view deck, trying to view discards takes 2 clicks
 freeze requires double place
 
 FEATURES
 fanservice-Ethan
-griddy and hedge card effects
+
 
 Issue Cards:
+griddy and hedge card effects
+crust crusher
+camel

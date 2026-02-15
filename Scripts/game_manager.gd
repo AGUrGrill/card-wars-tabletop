@@ -76,8 +76,8 @@ func start_game():
 			net_tell_clients_to_refresh_landscape.rpc(idx)
 		net_tell_clients_to_refresh_stats.rpc()
 		net_tell_clients_to_refresh_hero.rpc()
-		print(player1_landscapes)
-		print(player2_landscapes)
+		#print(player1_landscapes)
+		#print(player2_landscapes)
 		var idx: int = 0
 		for landscape in player1_landscapes:
 			net_change_player_landscape.rpc(1, idx, landscape)
@@ -136,7 +136,7 @@ func attack_phase():
 						var p2_creature_defense: int = player2_played_creatures[opponent_landscape_num]["Defense"]
 						net_update_creature_in_landscape_array.rpc(2, opponent_landscape_num, player2_played_creatures[opponent_landscape_num]["Card Type"], player2_played_creatures[opponent_landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[opponent_landscape_num]["Floop Status"])
 						net_update_creature_in_landscape_array.rpc(1, landscape_num, player1_played_creatures[landscape_num]["Card Type"], player1_played_creatures[landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[landscape_num]["Floop Status"])
-						print(str(landscape_num) + " fought " + str(opponent_landscape_num))
+						#print(str(landscape_num) + " fought " + str(opponent_landscape_num))
 			if p2_turn:
 				if player2_played_creatures[landscape_num].is_empty():
 					continue
@@ -151,7 +151,7 @@ func attack_phase():
 						var p1_creature_defense: int = player1_played_creatures[opponent_landscape_num]["Defense"]
 						net_update_creature_in_landscape_array.rpc(1, opponent_landscape_num, player1_played_creatures[opponent_landscape_num]["Card Type"], player1_played_creatures[opponent_landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[opponent_landscape_num]["Floop Status"])
 						net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[landscape_num]["Floop Status"])
-						print(str(landscape_num) + " fought " + str(opponent_landscape_num))
+						#print(str(landscape_num) + " fought " + str(opponent_landscape_num))
 		for idx in range(4):
 			net_tell_clients_to_refresh_landscape.rpc(idx)
 		net_tell_clients_to_refresh_stats.rpc()
@@ -174,11 +174,11 @@ func end_turn():
 func check_end_game():
 	if multiplayer.is_server():
 		if player1_health <= 0:
-			print("Player 2 Wins!")
+			#print("Player 2 Wins!")
 			game_ended = true
 			net_declare_game_end.rpc(true)
 		elif player2_health <= 0:
-			print("Player 1 Wins!")
+			#print("Player 1 Wins!")
 			game_ended = true
 			net_declare_game_end.rpc(false)
 
@@ -294,11 +294,11 @@ func recieve_player_deck(player_num: int, deck: Array[Dictionary]):
 	if multiplayer.is_server():
 		if player_num == 1:
 			player1_deck = deck
-			print("Loaded P1 Deck")
+			#print("Loaded P1 Deck")
 		elif player_num == 2:
-			print("Loaded P2 Deck")
+			#print("Loaded P2 Deck")
 			player2_deck = deck
-		print(deck)
+		#print(deck)
 
 @rpc("any_peer", "call_remote")
 func recieve_player_landscapes(player_num: int, landscapes: Array[String]):
@@ -316,7 +316,7 @@ func recieve_player_hero(player_num: int, hero: String):
 		elif player_num == 2:
 			player2_hero = hero
 
-@rpc("authority", "call_remote")
+@rpc("any_peer", "call_remote")
 func server_distribute_deck_info_to_client(p1_deck, p2_deck, p1_hero, p2_hero):
 	player1_deck = p1_deck
 	player2_deck = p2_deck
@@ -343,34 +343,34 @@ func draw_card(player_num: int):
 	var card_data
 	if player_num == 1:
 		if player1_deck.is_empty():
-			print("Out of cards in p1 deck.")
+			#print("Out of cards in p1 deck.")
 			return {}
 		card_data = player1_deck.pop_back()
 		#player1_deck.remove_at(player1_deck.find(card_data))
 	elif player_num == 2:
 		if player2_deck.is_empty():
-			print("Out of cards in p2 deck.")
+			#print("Out of cards in p2 deck.")
 			return
 		card_data = player2_deck.pop_back()
 		#player2_deck.remove_at(player2_deck.find(card_data))
-	print(card_data)
+	#print(card_data)
 	return card_data
 
 func draw_bottom_card(player_num: int):
 	var card_data
 	if player_num == 1:
 		if player1_deck.is_empty():
-			print("Out of cards in p1 deck.")
+			#print("Out of cards in p1 deck.")
 			return
 		card_data = player1_deck.pop_front()
 		#player1_deck.remove_at(player1_deck.find(card_data))
 	elif player_num == 2:
 		if player2_deck.is_empty():
-			print("Out of cards in p2 deck.")
+			#print("Out of cards in p2 deck.")
 			return
 		card_data = player2_deck.pop_front()
 		#player2_deck.remove_at(player2_deck.find(card_data))
-	print(card_data)
+	#print(card_data)
 	return card_data
 
 # Could be removed, made on accident
@@ -378,21 +378,21 @@ func draw_player_card_by_name(player_num: int, name: String):
 	var card_data
 	if player_num == 1:
 		if player1_deck.is_empty():
-			print("Out of cards in p1 deck.")
+			#print("Out of cards in p1 deck.")
 			return
 		for card in player1_deck:
 			if card["Name"] == name:
 				card_data = player1_deck.pop_at(player1_deck.find(card))
-				print(card_data)
+				#print(card_data)
 				return card_data
 	elif player_num == 2:
 		if player2_deck.is_empty():
-			print("Out of cards in p2 deck.")
+			#print("Out of cards in p2 deck.")
 			return
 		for card in player2_deck:
 			if card["Name"] == name:
 				card_data = player2_deck.pop_at(player2_deck.find(card))
-				print(card_data)
+				#print(card_data)
 				return card_data
 
 func draw_by_name(name: String):
@@ -436,11 +436,11 @@ func add_card_to_bottom_of_deck(player_num: int, card: Dictionary):
 func can_card_can_be_played(player_num: int, card: Dictionary) -> bool:
 	if player_num == 1:
 		if GameManager.player1_actions - int(card["Cost"]) < 0:
-			print("Card cost too high.")
+			#print("Card cost too high.")
 			return false
 	elif player_num == 2:
 		if GameManager.player2_actions - int(card["Cost"]) < 0:
-			print("Card cost too high.")
+			#print("Card cost too high.")
 			return false
 	return true
 
@@ -591,14 +591,14 @@ func net_update_player_actions(player_num: int, modifier: int):
 	if player_num == 1:
 		var temp_actions = player1_actions + modifier
 		if temp_actions > 0:
-			print("Total: " + str(player1_actions) + " + " + str(modifier) + " = " + str(temp_actions))
+			#print("Total: " + str(player1_actions) + " + " + str(modifier) + " = " + str(temp_actions))
 			player1_actions = temp_actions
 		elif temp_actions <= 0:
 			player1_actions = 0
 	elif player_num == 2:
 		var temp_actions = player2_actions + modifier
 		if temp_actions > 0:
-			print("Total: " + str(player1_actions) + " + " + str(modifier) + " = " + str(temp_actions))
+			#print("Total: " + str(player1_actions) + " + " + str(modifier) + " = " + str(temp_actions))
 			player2_actions = temp_actions
 		elif temp_actions <= 0:
 			player2_actions = 0
@@ -661,7 +661,7 @@ func net_add_card_to_player_discards(player_num: int, card: Dictionary):
 		"Landscape Played": -1,
 		"Owner": card["Owner"]
 	}
-	print(modified_card)
+	##print(modified_card)
 	if player_num == 1:
 		player1_discards.append(modified_card)
 	elif player_num == 2:
@@ -672,12 +672,12 @@ func net_add_card_to_player_discards(player_num: int, card: Dictionary):
 func net_remove_card_from_player_deck(player_num: int, _card: Dictionary):
 	if player_num == 1:
 		if player1_deck.is_empty():
-			print("Out of cards in p1 deck.")
+			#print("Out of cards in p1 deck.")
 			return
 		player1_deck.remove_at(player1_deck.find(_card))
 	elif player_num == 2:
 		if player2_deck.is_empty():
-			print("Out of cards in p2 deck.")
+			#print("Out of cards in p2 deck.")
 			return
 		player2_deck.remove_at(player2_deck.find(_card))
 

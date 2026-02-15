@@ -44,11 +44,11 @@ func change_card_data(_landscape: String, type: String, _name: String, desc: Str
 	card_landscape = _landscape
 	card_type = type
 	if type == "Creature":
-		hide_buttons(false)
+		hide_buttons(false, false)
 	elif type == "Building":
-		hide_buttons(true)
+		hide_buttons(true, false)
 	elif type == "Spell":
-		hide_buttons(true)
+		hide_buttons(true, true)
 	card_name = _name
 	card_description = desc
 	card_cost = cost
@@ -62,7 +62,7 @@ func change_card_data(_landscape: String, type: String, _name: String, desc: Str
 	elif not _is_flooped:
 		floop_card(false, false)
 	if is_in_hand:
-		hide_buttons(true)
+		hide_buttons(true, true)
 	if card_defense <= 0 and not is_in_hand and card_type == "Creature":
 		remove_card()
 
@@ -90,11 +90,12 @@ func update_played_card_info_to_server():
 	GameManager.net_tell_clients_to_refresh_hand.rpc()
 	GameManager.net_tell_clients_to_refresh_stats.rpc()
 
-func hide_buttons(should_hide: bool):
+func hide_buttons(should_hide: bool, hide_floop: bool):
 	if should_hide:
 		attack_node.visible = false
 		defense_node.visible = false
-		floop_button.visible = false
+		if hide_floop:
+			floop_button.visible = false
 		steal.visible = false
 		flip.visible = false
 	else:
@@ -105,7 +106,7 @@ func hide_buttons(should_hide: bool):
 		flip.visible = true
 
 func hide_card(should_hide: bool):
-	hide_buttons(should_hide)
+	hide_buttons(should_hide, should_hide)
 	if should_hide:
 		card.visible = false
 		card.input_pickable = false
@@ -242,7 +243,7 @@ func play_heal():
 
 func play_remove():
 	card_image.visible = false
-	hide_buttons(true)
+	hide_buttons(true, true)
 	corpse_image.visible = true
 	death_timer.start()
 	animation_player.play("remove")
@@ -311,7 +312,7 @@ func _on_flip_pressed() -> void:
 
 func _on_death_timer_timeout() -> void:
 	card_image.visible = true
-	hide_buttons(false)
+	hide_buttons(false, false)
 	corpse_image.visible = false
 	hide_card(true)
 
