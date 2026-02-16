@@ -55,25 +55,12 @@ offset_bottom = 874.0
 theme_override_font_sizes/font_size = 24
 text = "LOAD DECK"
 
-[node name="EnterDeckCode" type="TextEdit" parent="." unique_id=1365776098]
-offset_left = 272.0
-offset_top = 840.0
-offset_right = 460.0
-offset_bottom = 871.0
-
 [node name="ChooseDeck" type="OptionButton" parent="." unique_id=2005986791]
 offset_left = 72.0
 offset_top = 792.0
 offset_right = 260.0
 offset_bottom = 823.0
 allow_reselect = true
-
-[node name="CustomDeckLabel" type="Label" parent="." unique_id=918203604]
-offset_left = 270.0
-offset_top = 816.0
-offset_right = 461.0
-offset_bottom = 839.0
-text = "Enter Custom Deck Code"
 
 [node name="IPAddress" type="LineEdit" parent="." unique_id=294402506]
 offset_left = 1377.0
@@ -97,11 +84,19 @@ offset_bottom = 387.0
 text = "PLAYER STATS"
 
 [node name="CreateDeck" type="Button" parent="." unique_id=2064193469]
-offset_left = 472.0
-offset_top = 839.0
-offset_right = 589.0
-offset_bottom = 870.0
-text = "CREATE DECK"
+offset_left = 280.0
+offset_top = 840.0
+offset_right = 381.0
+offset_bottom = 871.0
+text = "BUILD DECK"
+
+[node name="ReturnToMenu" type="Button" parent="CreateDeck" unique_id=1175273687]
+layout_mode = 0
+offset_left = 1216.0
+offset_top = -52.0
+offset_right = 1307.0
+offset_bottom = -21.0
+text = "EXIT GAME"
 
 [node name="Log" parent="." unique_id=2122409897 instance=ExtResource("3_ce3w2")]
 position = Vector2(1199, 50)
@@ -120,4 +115,5 @@ one_shot = true
 [connection signal="item_selected" from="ChooseDeck" to="." method="_on_choose_deck_item_selected"]
 [connection signal="pressed" from="PlayerStatMenu" to="." method="_on_player_stat_menu_pressed"]
 [connection signal="pressed" from="CreateDeck" to="." method="_on_create_deck_pressed"]
+[connection signal="pressed" from="CreateDeck/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
 [connection signal="timeout" from="ServerWaitTimer" to="." method="_on_server_wait_timer_timeout"]

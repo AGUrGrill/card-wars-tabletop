@@ -14,7 +14,7 @@ var deck: Array[String]
 var default_deck_choice: String
 var deck_choosen: bool = false
 
-var in_testing_mode: bool = true
+var in_testing_mode: bool = false
 var game_starting: bool = false
 
 func _ready() -> void:
@@ -155,9 +155,7 @@ func _on_start_client_pressed() -> void:
 
 func _on_load_deck_pressed() -> void:
 	deck.clear()
-	if not enter_deck_code.text.is_empty():
-		parse_deck_info(enter_deck_code.text)
-	elif not default_deck_choice.is_empty():
+	if not default_deck_choice.is_empty():
 		parse_deck_info(default_deck_choice)
 	else:
 		log.make_log_message("No deck selected.")
@@ -450,3 +448,6 @@ Buildings
 3 - Learning Center
 3 - Celestial Castle
 "
+
+func _on_return_to_menu_pressed() -> void:
+	get_tree().quit()

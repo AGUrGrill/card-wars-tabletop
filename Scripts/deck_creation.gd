@@ -16,19 +16,38 @@ extends Node2D
 @onready var choosen_landscapes: HBoxContainer = $ChoosenLandscapes/CardDisplayPanel
 @onready var hero_image: Sprite2D = $HeroImage
 @onready var current_deck_build_nums: Label = $CurrentDeckBuildNums
+@onready var choose_deck: OptionButton = $ChooseDeck
+@onready var enter_deck_code: TextEdit = $EnterDeckCode
 
 var hero: String
 var landscapes: Array[String]
 var creatures: Array[String]
 var spells: Array[String]
 var buildings: Array[String]
+var choosen_deck_name: String
+var default_deck_choice: String
 
 const TEMPLATE_CARD = preload("uid://cuyc4dl7cnc3m")
 
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
-	get_cards("", "", "", "", "", "", "")
+	get_cards("", "Hero", "", "", "", "", "")
 	log.make_log_message("")
+	get_all_decks("user://Decks/")
+
+func get_all_decks(path):
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if path.contains("user://"):
+				choose_deck.add_item(file_name.trim_suffix(".dat"))
+			else:
+				choose_deck.add_item(file_name.trim_suffix(".txt"))
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
 
 func update_deck_nums():
 	var total_cards: int = creatures.size() + spells.size() + buildings.size()
@@ -94,40 +113,40 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 				has_defense = true
 		
 		if name_filter and not card_data["Name"].to_lower().contains(_name.to_lower()):
-			print(card_data["Name"] + " does not contain " + _name)
+			#print(card_data["Name"] + " does not contain " + _name)
 			continue
 		if card_type_filter and card_data["Card Type"] != card_type:
-			print(card_data["Card Type"] + " is not " + card_type)
+			#print(card_data["Card Type"] + " is not " + card_type)
 			continue
 		if card_ability_filter:
 			if not has_ability:
 				continue
 			if not card_data["Ability"].to_lower().contains(card_ability.to_lower()):
-				print(card_data["Ability"] + " is not " + card_ability)
+				#print(card_data["Ability"] + " is not " + card_ability)
 				continue
 		if landscape_type_filter:
 			if not has_landscape:
 				continue
 			if card_data["Landscape"] != landscape_type:
-				print(card_data["Landscape"] + " is not " + landscape_type)
+				#print(card_data["Landscape"] + " is not " + landscape_type)
 				continue
 		if cost_filter:
 			if not has_cost:
 				continue
 			if card_data["Cost"] != cost:
-				print(card_data["Cost"] + " is not " + cost)
+				#print(card_data["Cost"] + " is not " + cost)
 				continue
 		if attack_filter:
 			if not has_attack:
 				continue
 			if card_data["Attack"] != attack:
-				print(card_data["Attack"] + " is not " + attack)
+				#print(card_data["Attack"] + " is not " + attack)
 				continue
 		if defense_filter:
 			if not has_defense:
 				continue
 			if card_data["Defense"] != defense:
-				print(card_data["Defense"] + " is not " + defense)
+				#print(card_data["Defense"] + " is not " + defense)
 				continue
 		
 		var new_card = TEMPLATE_CARD.instantiate()
@@ -334,6 +353,7 @@ Buildings
 " + get_formatted_buildings() + "
 "
 	save_to_file(formatted_content, deck_name.text)
+	get_all_decks("user://Decks/")
 
 func save_to_file(content: String, deck_name: String):
 	var dir = DirAccess.open("user://")
@@ -342,6 +362,72 @@ func save_to_file(content: String, deck_name: String):
 	var file = FileAccess.open("user://Decks/" + deck_name + ".dat", FileAccess.WRITE)
 	file.store_string(content)
 	log.make_log_message("\"" + deck_name + "\" deck created successfully!")
+
+func load_from_file(_name: String):
+	var file = FileAccess.open("user://Decks/" + _name + ".dat", FileAccess.READ)
+	if file == null:
+		#print("Error getting file data.")
+		return ""
+	var content = file.get_as_text()
+	return content
+
+func remove_file(_name: String):
+	DirAccess.remove_absolute("user://Decks/" + _name + ".dat")
+	log.make_log_message("Removing " + _name + " from deck list...")
+
+func parse_deck_info_and_add_to_creator(deck_data: String):
+	creatures.clear()
+	spells.clear()
+	buildings.clear()
+	landscapes.clear()
+	remove_all_children()
+	var formatted_info: PackedStringArray = deck_data.split("\n", false)
+	var gathering_landscape_info: bool = false
+	var gathering_creature_info: bool = false
+	var gathering_spell_info: bool = false
+	var gathering_building_info: bool = false
+	var prev_line: String
+	for line in formatted_info:
+		if prev_line == "Hero":
+			add_hero(line)
+		if line == "Landscapes":
+			gathering_landscape_info = true
+			continue
+		if line == "Creatures":
+			gathering_landscape_info = false
+			gathering_creature_info = true
+			continue
+		if line == "Spells":
+			gathering_creature_info = false
+			gathering_spell_info = true
+			continue
+		if line == "Buildings":
+			gathering_spell_info = false
+			gathering_building_info = true
+			continue
+		if gathering_landscape_info:
+			for idx in range(int(line[0])):
+				var landscape: String = line.substr(4, line.length())
+				add_landscape(landscape, "Landscape")
+		if gathering_creature_info:
+			for idx in range(int(line[0])):
+				var creature: String = line.substr(4, line.length())
+				add_creature(creature, "Creature")
+		if gathering_spell_info:
+			for idx in range(int(line[0])):
+				var spell: String = line.substr(4, line.length())
+				add_spell(spell, "Spell")
+		if gathering_building_info:
+			for idx in range(int(line[0])):
+				var building: String = line.substr(4, line.length())
+				add_building(building, "Building")
+		prev_line = line
+
+func remove_all_children():
+	for card in choosen_cards.get_children():
+		choosen_cards.remove_child(card)
+	for card in choosen_landscapes.get_children():
+		choosen_landscapes.remove_child(card)
 
 func _on_type_card_item_selected(index: int) -> void:
 	get_cards(search_name.text, type_card.get_item_text(type_card.selected), search_ability.text, type_landscape.get_item_text(type_landscape.selected), search_cost.text, search_attack.text, search_defense.text)
@@ -370,3 +456,45 @@ func _on_search_defense_text_submitted(new_text: String) -> void:
 func _on_type_landscape_item_selected(index: int) -> void:
 	get_cards(search_name.text, type_card.get_item_text(type_card.selected), search_ability.text, type_landscape.get_item_text(type_landscape.selected), search_cost.text, search_attack.text, search_defense.text)
 	audio.confirm_sfx.play()
+
+func _on_delete_deck_pressed() -> void:
+	audio.confirm_sfx.play()
+	if choosen_deck_name != null or not choosen_deck_name.is_empty():
+		remove_file(choosen_deck_name)
+		choose_deck.remove_item(choose_deck.selected)
+
+func _on_choose_deck_item_selected(index: int) -> void:
+	
+	choosen_deck_name = choose_deck.get_item_text(index)
+	default_deck_choice = load_from_file(choosen_deck_name)
+
+func _on_edit_deck_pressed() -> void:
+	audio.confirm_sfx.play()
+	if default_deck_choice != null or not default_deck_choice.is_empty():
+		parse_deck_info_and_add_to_creator(default_deck_choice)
+
+func _on_enter_deck_code_text_changed() -> void:
+	audio.confirm_sfx.play()
+	parse_deck_info_and_add_to_creator(enter_deck_code.text)
+
+func _on_share_deck_pressed() -> void:
+	audio.confirm_sfx.play()
+	if not deck_valid():
+		return
+	var formatted_content: String
+	formatted_content = "Hero
+" + hero + "
+
+Landscapes
+" + get_formatted_landscapes() + "
+
+Creatures
+" + get_formatted_creatures() + "
+
+Spells
+" + get_formatted_spells() + "
+
+Buildings
+" + get_formatted_buildings() + "
+"
+	DisplayServer.clipboard_set(formatted_content)
