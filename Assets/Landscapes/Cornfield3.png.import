@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmenhhrlrgex1"
-path="res://.godot/imported/Blue Plains.png-2671a1b72717c136302c071b58549343.ctex"
+uid="uid://bxcvbwadktxpx"
+path="res://.godot/imported/Cornfield3.png-1ea428426c1fccef6b2448ba52767c3f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Landscapes/Blue Plains.png"
-dest_files=["res://.godot/imported/Blue Plains.png-2671a1b72717c136302c071b58549343.ctex"]
+source_file="res://Assets/Landscapes/Cornfield3.png"
+dest_files=["res://.godot/imported/Cornfield3.png-1ea428426c1fccef6b2448ba52767c3f.ctex"]
 
 [params]
 

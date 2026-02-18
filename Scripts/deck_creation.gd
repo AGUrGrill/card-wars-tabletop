@@ -376,11 +376,7 @@ func remove_file(_name: String):
 	log.make_log_message("Removing " + _name + " from deck list...")
 
 func parse_deck_info_and_add_to_creator(deck_data: String):
-	creatures.clear()
-	spells.clear()
-	buildings.clear()
-	landscapes.clear()
-	remove_all_children()
+	remove_all()
 	var formatted_info: PackedStringArray = deck_data.split("\n", false)
 	var gathering_landscape_info: bool = false
 	var gathering_creature_info: bool = false
@@ -423,11 +419,17 @@ func parse_deck_info_and_add_to_creator(deck_data: String):
 				add_building(building, "Building")
 		prev_line = line
 
-func remove_all_children():
+func remove_all():
+	creatures.clear()
+	spells.clear()
+	buildings.clear()
+	landscapes.clear()
+	remove_hero()
 	for card in choosen_cards.get_children():
 		choosen_cards.remove_child(card)
 	for card in choosen_landscapes.get_children():
 		choosen_landscapes.remove_child(card)
+	update_deck_nums()
 
 func _on_type_card_item_selected(index: int) -> void:
 	get_cards(search_name.text, type_card.get_item_text(type_card.selected), search_ability.text, type_landscape.get_item_text(type_landscape.selected), search_cost.text, search_attack.text, search_defense.text)
@@ -482,19 +484,8 @@ func _on_share_deck_pressed() -> void:
 	if not deck_valid():
 		return
 	var formatted_content: String
-	formatted_content = "Hero
-" + hero + "
-
-Landscapes
-" + get_formatted_landscapes() + "
-
-Creatures
-" + get_formatted_creatures() + "
-
-Spells
-" + get_formatted_spells() + "
-
-Buildings
-" + get_formatted_buildings() + "
-"
+	formatted_content = "Hero" + hero + "Landscapes" + get_formatted_landscapes() + "Creatures" + get_formatted_creatures() + "Spells" + get_formatted_spells() + "Buildings" + get_formatted_buildings()
 	DisplayServer.clipboard_set(formatted_content)
+
+func _on_reset_deck_pressed() -> void:
+	remove_all()

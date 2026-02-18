@@ -123,6 +123,13 @@ offset_right = 1592.0
 offset_bottom = 839.0
 text = "SHARE DECK"
 
+[node name="ResetDeck" type="Button" parent="." unique_id=1868440611]
+offset_left = 1456.0
+offset_top = 520.0
+offset_right = 1530.0
+offset_bottom = 551.0
+text = "RESET"
+
 [node name="EditDeck" type="Button" parent="." unique_id=312470294]
 offset_left = 1438.0
 offset_top = 617.0
@@ -215,6 +222,7 @@ text = "
 
 EX: 2 Cost Cornfield = 2 Cornfield Landscapes REQUIRED"
 autowrap_mode = 3
+metadata/_edit_lock_ = true
 
 [node name="CurrentDeckBuildNums" type="Label" parent="." unique_id=882961696]
 offset_left = 432.0
@@ -254,6 +262,7 @@ allow_reselect = true
 [connection signal="pressed" from="ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
 [connection signal="pressed" from="SaveDeck" to="." method="_on_save_deck_pressed"]
 [connection signal="pressed" from="ShareDeck" to="." method="_on_share_deck_pressed"]
+[connection signal="pressed" from="ResetDeck" to="." method="_on_reset_deck_pressed"]
 [connection signal="pressed" from="EditDeck" to="." method="_on_edit_deck_pressed"]
 [connection signal="pressed" from="DeleteDeck" to="." method="_on_delete_deck_pressed"]
 [connection signal="text_changed" from="EnterDeckCode" to="." method="_on_enter_deck_code_text_changed"]

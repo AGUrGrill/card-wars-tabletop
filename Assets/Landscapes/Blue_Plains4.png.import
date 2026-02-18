@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnqa061huodog"
-path="res://.godot/imported/Useless Swamp.png-553f2732da3a3f12ed5ff35092f454e4.ctex"
+uid="uid://bq5oa7mddx0lt"
+path="res://.godot/imported/Blue_Plains4.png-8e2f8334893c7ff876f7dde3bb8f2447.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Landscapes/Useless Swamp.png"
-dest_files=["res://.godot/imported/Useless Swamp.png-553f2732da3a3f12ed5ff35092f454e4.ctex"]
+source_file="res://Assets/Landscapes/Blue_Plains4.png"
+dest_files=["res://.godot/imported/Blue_Plains4.png-8e2f8334893c7ff876f7dde3bb8f2447.ctex"]
 
 [params]
 

@@ -2,8 +2,9 @@ extends Node
 
 @export var audio_type: String
 @export var disabled: bool
-@onready var sfx: AudioStreamPlayer2D = $SFX
+@onready var main_menu_sfx: AudioStreamPlayer2D = $MainMenuSFX
 @onready var bgm: AudioStreamPlayer2D = $BGM
+@onready var next_turn: AudioStreamPlayer2D = $NextTurn
 @onready var win: AudioStreamPlayer2D = $Win
 @onready var lose: AudioStreamPlayer2D = $Lose
 @onready var confirm_sfx: AudioStreamPlayer2D = $ConfirmSFX
@@ -12,22 +13,15 @@ extends Node
 @onready var panel: Panel = $Panel
 
 var sfx_enabled: bool = true
-var sfx_looping: bool = false
 
 var playing_game_end_audio: bool = false
 
 func _ready() -> void:
-	if disabled:
-		panel.visible = false
-		return
 	if audio_type == "Main Menu":
-		sfx.stream = load("res://Assets/Sounds/bird_in_forest.mp3")
-		sfx_looping = true
-		sfx.play()
+		main_menu_sfx.play()
 		bgm.stream = load("res://Assets/Sounds/island_song.mp3")
 	elif audio_type == "Player":
-		sfx.stream = load("res://Assets/Sounds/confirm.mp3")
-		bgm.stream = load("res://Assets/Sounds/island_song.mp3")
+		bgm.stream = load("res://Assets/Sounds/jazz.mp3")
 	elif audio_type == "Disabled":
 		panel.visible = false
 	elif audio_type == "End Screen":
@@ -40,6 +34,14 @@ func _ready() -> void:
 		elif GameManager.who_won == false and multiplayer.get_unique_id() == GameManager.player2_id:
 			lose.play()
 
+func disable():
+	panel.visible = false
+	enable_bgm.visible = false
+	enable_bgm.disabled = true
+	enable_sfx.visible = false
+	enable_sfx.disabled = true
+	disabled = true
+
 func _on_enable_bgm_pressed() -> void:
 	if bgm.playing:
 		bgm.playing = false
@@ -49,22 +51,18 @@ func _on_enable_bgm_pressed() -> void:
 		enable_bgm.texture_normal = load("res://Assets/music_icon.png")
 
 func _on_enable_sfx_pressed() -> void:
-	if sfx.playing:
-		if audio_type == "Player":
-			confirm_sfx.volume_db = -80
-		else:
-			sfx.playing = false
+	if sfx_enabled:
+		if audio_type == "Main Menu":
+			main_menu_sfx.stop()
+		confirm_sfx.volume_db = -300
 		enable_sfx.texture_normal = load("res://Assets/mute_icon.png")
+		sfx_enabled = false
 	else:
-		if audio_type == "Player":
-			confirm_sfx.volume_db = 0
-		else:
-			sfx.playing = true
+		if audio_type == "Main Menu":
+			main_menu_sfx.play()
+		confirm_sfx.volume_db = 0
 		enable_sfx.texture_normal = load("res://Assets/sound-icon.png")
-
-func _on_sfx_finished() -> void:
-	if sfx_looping:
-		sfx.play()
+		sfx_enabled = true
 
 func _on_bgm_finished() -> void:
 	bgm.play()

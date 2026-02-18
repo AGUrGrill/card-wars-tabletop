@@ -4,17 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://cmdybqwtote2a" path="res://Assets/icy.webp" id="2_uh3b8"]
 
 [node name="Board" type="Node2D" unique_id=134048645]
+modulate = Color(0.66656864, 0.6665687, 0.66656864, 1)
 script = ExtResource("1_2wvcj")
 
 [node name="Icy" type="Sprite2D" parent="." unique_id=768705134]
 modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+z_index = 999
 position = Vector2(802.00006, 450)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("2_uh3b8")
 metadata/_edit_lock_ = true
 
+[node name="WaitingForPlayer" type="Label" parent="Icy" unique_id=726218226]
+offset_left = -491.25
+offset_top = -36.874996
+offset_right = 488.74988
+offset_bottom = 39.125004
+theme_override_font_sizes/font_size = 64
+text = "WAITING FOR OTHER PLAYER..."
+horizontal_alignment = 1
+
 [node name="ZoomButton" type="Button" parent="." unique_id=1694270464]
-visible = false
 offset_left = 1047.0
 offset_top = 457.0
 offset_right = 1105.0
@@ -22,6 +32,7 @@ offset_bottom = 488.0
 disabled = true
 toggle_mode = true
 text = "ZOOM"
+metadata/_edit_lock_ = true
 
 [node name="Player1Container" type="Control" parent="." unique_id=1759444824]
 layout_mode = 3
@@ -37,6 +48,7 @@ offset_bottom = 895.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Player2Container" type="Control" parent="." unique_id=122309465]
 layout_mode = 3
@@ -50,14 +62,17 @@ offset_bottom = 894.1797
 grow_horizontal = 2
 rotation = 3.1415927
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="ID" type="Label" parent="." unique_id=163955622]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "ID: "
+metadata/_edit_lock_ = true
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1322162237]
 position = Vector2(800, 450)
+metadata/_edit_lock_ = true
 
 [node name="ReturnToMenu" type="Button" parent="." unique_id=1951625229]
 offset_left = 1402.0
@@ -65,6 +80,7 @@ offset_top = 3.0
 offset_right = 1598.0
 offset_bottom = 34.0
 text = "RETURN TO MAIN MENU"
+metadata/_edit_lock_ = true
 
 [connection signal="toggled" from="ZoomButton" to="." method="_on_zoom_button_toggled"]
 [connection signal="pressed" from="ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

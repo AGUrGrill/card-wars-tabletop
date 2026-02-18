@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6t8lrpxj6lsc"
-path="res://.godot/imported/IcyLands.png-a9f587326de0cc311f8ecc047556388e.ctex"
+uid="uid://b21je8vy2h5cq"
+path="res://.godot/imported/IcyLands3.png-e243b592d72cdb3f5f96027d35927625.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Landscapes/IcyLands.png"
-dest_files=["res://.godot/imported/IcyLands.png-a9f587326de0cc311f8ecc047556388e.ctex"]
+source_file="res://Assets/Landscapes/IcyLands3.png"
+dest_files=["res://.godot/imported/IcyLands3.png-e243b592d72cdb3f5f96027d35927625.ctex"]
 
 [params]
 

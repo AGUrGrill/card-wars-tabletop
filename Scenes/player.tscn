@@ -180,6 +180,7 @@ libraries/ = SubResource("AnimationLibrary_8erm5")
 audio_type = "Player"
 
 [node name="Log" parent="." unique_id=1880376055 instance=ExtResource("3_fkybt")]
+z_index = 99
 position = Vector2(1008, 3)
 
 [node name="Timers" type="Node2D" parent="." unique_id=605837408]
@@ -203,19 +204,19 @@ metadata/_edit_lock_ = true
 [node name="PlayerLabel" type="Label" parent="StatPanel" unique_id=131894417]
 modulate = Color(0.7176471, 1, 1, 1)
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 64.0
-offset_bottom = 24.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 82.0
+offset_bottom = 25.0
 text = "YOURSELF"
 
 [node name="HPLabel" type="Label" parent="StatPanel" unique_id=814487981]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 25.0
-offset_right = 43.0
-offset_bottom = 48.0
-text = "HP:"
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 45.0
+offset_bottom = 49.0
+text = "HP :"
 
 [node name="HPDown" type="Button" parent="StatPanel/HPLabel" unique_id=1311959489]
 layout_mode = 0
@@ -234,10 +235,10 @@ text = "+"
 
 [node name="ActionsLabel" type="Label" parent="StatPanel" unique_id=1599438052]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 84.0
-offset_right = 76.0
-offset_bottom = 107.0
+offset_left = 5.0
+offset_top = 85.0
+offset_right = 78.0
+offset_bottom = 108.0
 text = "ACTIONS:"
 
 [node name="ActionsDown" type="Button" parent="StatPanel/ActionsLabel" unique_id=1179005859]
@@ -257,51 +258,54 @@ text = "+"
 
 [node name="OpponentLabel" type="Label" parent="StatPanel" unique_id=1970668702]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 139.0
-offset_right = 90.0
-offset_bottom = 162.0
+offset_left = 4.0
+offset_top = 140.0
+offset_right = 92.0
+offset_bottom = 163.0
 theme_override_colors/font_color = Color(1, 0.494251, 0.42709014, 1)
 text = "OPPONENT"
 
 [node name="OpponentHPLabel" type="Label" parent="StatPanel" unique_id=752774587]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 159.0
-offset_right = 90.0
-offset_bottom = 182.0
-text = "HP: "
+offset_left = 4.0
+offset_top = 160.0
+offset_right = 92.0
+offset_bottom = 183.0
+text = "HP : "
 
 [node name="MainButtons" type="Node2D" parent="." unique_id=1618728035]
 metadata/_edit_lock_ = true
 
 [node name="MainSwitch" type="Button" parent="MainButtons" unique_id=1965120681]
-offset_left = 100.0
-offset_top = 1.0
-offset_right = 290.0
-offset_bottom = 32.0
+offset_left = 120.0
+offset_top = 96.0
+offset_right = 264.0
+offset_bottom = 129.0
 toggle_mode = true
 text = "VIEW DISCARDS"
 
 [node name="MainButton" type="Button" parent="MainButtons" unique_id=320735129]
 offset_left = 101.0
-offset_top = 39.0
+offset_top = 2.0
 offset_right = 289.0
-offset_bottom = 70.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 1, 0, 0.79607844)
 text = "DRAW CARD"
 
 [node name="SubButton" type="Button" parent="MainButtons" unique_id=1538702457]
-offset_left = 100.0
-offset_top = 80.0
-offset_right = 288.0
-offset_bottom = 111.0
+offset_left = 101.0
+offset_top = 43.0
+offset_right = 289.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.8745098, 0, 0, 0.79607844)
 text = "DISCARD CARD"
 
 [node name="EndTurn" type="Button" parent="MainButtons" unique_id=1802754405]
 offset_left = 1.0
 offset_top = 191.0
-offset_right = 91.0
+offset_right = 96.0
 offset_bottom = 222.0
+theme_override_colors/font_color = Color(0.8745098, 0.7176471, 1, 1)
 text = "END TURN"
 
 [node name="SpellArea" parent="." unique_id=491291059 instance=ExtResource("2_sweqy")]
@@ -325,21 +329,25 @@ position = Vector2(810, 109)
 landscape_num = 3
 
 [node name="Building1" parent="." unique_id=631541862 instance=ExtResource("2_sweqy")]
-position = Vector2(369, 320)
+z_index = -1
+position = Vector2(369, 303)
 designated_card_type = "Building"
 
 [node name="Building2" parent="." unique_id=1392230754 instance=ExtResource("2_sweqy")]
-position = Vector2(516, 320)
+z_index = -1
+position = Vector2(516, 303)
 landscape_num = 1
 designated_card_type = "Building"
 
 [node name="Building3" parent="." unique_id=1210950211 instance=ExtResource("2_sweqy")]
-position = Vector2(663, 320)
+z_index = -1
+position = Vector2(663, 303)
 landscape_num = 2
 designated_card_type = "Building"
 
 [node name="Building4" parent="." unique_id=1679307906 instance=ExtResource("2_sweqy")]
-position = Vector2(810, 320)
+z_index = -1
+position = Vector2(810, 303)
 landscape_num = 3
 designated_card_type = "Building"
 
@@ -467,6 +475,14 @@ theme_override_font_sizes/font_size = 12
 text = "Add Card to Bottom
 "
 
+[node name="CardsLeft" type="Label" parent="AdditionalOptions/AdditionalOptionsPanel/DeckOptions" unique_id=489303190]
+offset_left = 150.0
+offset_top = 113.0
+offset_right = 250.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 12
+text = "Cards left in deck: "
+
 [node name="AdditionalOptions" type="Node2D" parent="AdditionalOptions/AdditionalOptionsPanel" unique_id=679968445]
 
 [node name="DeleteFromGame" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1841362543]
@@ -501,6 +517,38 @@ offset_right = 172.0
 offset_bottom = 139.0
 theme_override_font_sizes/font_size = 12
 text = "Open Rule Book in Browser"
+
+[node name="SwapLandscapes" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1852057842]
+offset_left = 202.0
+offset_top = 4.0
+offset_right = 243.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 12
+text = "SWAP"
+
+[node name="SwapFirstCreature" type="LineEdit" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=219065025]
+offset_left = 162.0
+offset_top = 7.0
+offset_right = 197.5625
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 8
+placeholder_text = "Enter #"
+
+[node name="SwapSecondCreature" type="LineEdit" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=1500786582]
+offset_left = 247.0
+offset_top = 7.0
+offset_right = 282.5625
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 8
+placeholder_text = "Enter #"
+
+[node name="Mulligan" type="Button" parent="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions" unique_id=2124242711]
+offset_left = 194.0
+offset_top = 116.0
+offset_right = 281.0
+offset_bottom = 139.0
+theme_override_font_sizes/font_size = 12
+text = "Mulligan Hand"
 
 [node name="DeckOptionsButton" type="Button" parent="AdditionalOptions" unique_id=983974013]
 offset_left = 8.0
@@ -544,6 +592,8 @@ one_shot = true
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/GiveToOpp" to="." method="_on_give_to_opp_pressed"]
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/Add Card to Hand" to="." method="_on_add_card_to_hand_pressed"]
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/GoToRules" to="." method="_on_go_to_rules_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/SwapLandscapes" to="." method="_on_swap_landscapes_pressed"]
+[connection signal="pressed" from="AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/Mulligan" to="." method="_on_mulligan_pressed"]
 [connection signal="pressed" from="AdditionalOptions/DeckOptionsButton" to="." method="_on_deck_options_pressed"]
 [connection signal="pressed" from="AdditionalOptions/AdditionalOptionsButton" to="." method="_on_additional_options_pressed"]
 [connection signal="timeout" from="CardSelectionTimer" to="." method="_on_card_selection_timer_timeout"]

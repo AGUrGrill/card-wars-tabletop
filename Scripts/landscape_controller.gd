@@ -13,6 +13,7 @@ extends Area2D
 @export var designated_card_type: String = "Creature"
 
 var frozen_enabled: bool = false
+const LANDSCAPE_PATH: String = "res://Assets/Landscapes/"
 
 func _ready() -> void:
 	if designated_card_type == "Building":
@@ -214,7 +215,10 @@ func place_spell_logic(player_num: int, selected_card: Dictionary) -> bool:
 func update_landscape_image(_name: String):
 	if _name == "Facedown":
 		_name = "card_back"
-	var tex: Texture2D = GameManager.db.cards.get(_name)
+	var ran_num: int  = randi() % 4 + 1
+	var full_path: String = LANDSCAPE_PATH + "" + _name + "" + str(ran_num) + ".png"
+	print(full_path)
+	var tex: Texture2D = load(full_path)
 	if tex == null:
 		print("error printing " + _name)
 		return

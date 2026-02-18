@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fk84vutlv3ll"
-path="res://.godot/imported/SandyLands.png-cebee4f3213912fc829438d779090c40.ctex"
+uid="uid://cly1g4da4lfbb"
+path="res://.godot/imported/Useless_Swamp1.png-6de92f51e53acb15e671d104df3671b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Landscapes/SandyLands.png"
-dest_files=["res://.godot/imported/SandyLands.png-cebee4f3213912fc829438d779090c40.ctex"]
+source_file="res://Assets/Landscapes/Useless_Swamp1.png"
+dest_files=["res://.godot/imported/Useless_Swamp1.png-6de92f51e53acb15e671d104df3671b5.ctex"]
 
 [params]
 

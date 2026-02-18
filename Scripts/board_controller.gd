@@ -9,6 +9,8 @@ const PLAYER = preload("res://Scenes/player.tscn")
 var connected: bool = false
 var player_num: int
 @onready var id: Label = $ID
+@onready var icy: Sprite2D = $Icy
+@onready var waiting_for_player: Label = $Icy/WaitingForPlayer
 
 func _ready() -> void:
 	if multiplayer.get_unique_id() == GameManager.player1_id:
@@ -64,6 +66,9 @@ func _process(delta: float) -> void:
 		player2.update_player_landscape.rpc(69)
 		GameManager.landscape69_refresh_needed = false
 	if GameManager.hero_refresh_needed:
+		$".".modulate = "ffffff"
+		icy.z_index = 0
+		waiting_for_player.visible = false
 		player1.update_hero_image()
 		player2.update_hero_image()
 		GameManager.hero_refresh_needed = false

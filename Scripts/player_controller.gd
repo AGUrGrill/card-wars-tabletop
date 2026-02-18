@@ -51,11 +51,14 @@ const CARD = preload("uid://dycs2rc7imye2")
 # deck
 @onready var deck_options: Node2D = $AdditionalOptions/AdditionalOptionsPanel/DeckOptions
 @onready var scry_num: LineEdit = $AdditionalOptions/AdditionalOptionsPanel/DeckOptions/ScryNum
+@onready var cards_left: Label = $AdditionalOptions/AdditionalOptionsPanel/DeckOptions/CardsLeft
 # additional
 @onready var additional_options: Node2D = $AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions
 @onready var deck_options_button: Button = $AdditionalOptions/DeckOptionsButton
 @onready var additional_options_button: Button = $AdditionalOptions/AdditionalOptionsButton
 @onready var frozen_token: Sprite2D = $FrozenToken
+@onready var swap_first_creature: LineEdit = $AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/SwapFirstCreature
+@onready var swap_second_creature: LineEdit = $AdditionalOptions/AdditionalOptionsPanel/AdditionalOptions/SwapSecondCreature
 
 # VARIABLES
 @export var player_num: int
@@ -72,23 +75,33 @@ func _ready() -> void:
 	hand.set_meta("player_num", player_num)
 	if player_num == 1 and not multiplayer.get_unique_id() == GameManager.player1_id:
 		audio.audio_type = "Disabled"
-		disable_inputs(true, true)
-		hide_buttons(true)
+		disable_inputs(true)
+		should_modulate(true)
+		hide_buttons()
 		hero_image.rotation_degrees = 180
 		selected_card.rotation_degrees = 180
 	elif player_num == 2 and not multiplayer.get_unique_id() == GameManager.player2_id:
 		audio.audio_type = "Disabled"
-		disable_inputs(true, true)
-		hide_buttons(true)
+		disable_inputs(true)
+		should_modulate(true)
+		hide_buttons()
 		hero_image.rotation_degrees = 180
 		selected_card.rotation_degrees = 180
 	else:
-		disable_inputs(false, true)
+		disable_inputs(false)
+		should_modulate(true)
 	
 	disabled = true
 	log.make_log_message("Game Start!")
 
-# Moving this to hero image update for ease of use
+func _process(delta: float) -> void:
+	determine_which_players_turn_it_is()
+	if GameManager.game_ended:
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+	if not can_select:
+		input_timer_label.text = str(snappedf(input_timer.time_left, 0.01))
+
+# Moving this to hero image update for ease of use <- idk if this comment is right? 2/17
 func check_if_frozen_exists():
 	var ignore_frozen: bool = true
 	for idx in range(4):
@@ -101,44 +114,43 @@ func check_if_frozen_exists():
 	if not ignore_frozen:
 		frozen_token.visible = true
 
-func _process(delta: float) -> void:
-	determine_display_visibility()
-	if GameManager.game_ended:
-		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
-	if not can_select:
-		input_timer_label.text = str(snappedf(input_timer.time_left, 0.01))
-
-func determine_display_visibility():
+func determine_which_players_turn_it_is():
 	if player_num == 1 and multiplayer.get_unique_id() == GameManager.player1_id:
 		if GameManager.p1_turn and disabled:
-			disable_inputs(false, false)
+			audio.next_turn.play()
+			disable_inputs(false)
+			should_modulate(false)
 			disabled = false
 		elif not GameManager.p1_turn and not disabled:
-			disable_inputs(false, true)
+			disable_inputs(true)
+			should_modulate(true)
 			disabled = true
 	elif player_num == 1 and multiplayer.get_unique_id() != GameManager.player1_id:
 		if GameManager.p1_turn and disabled:
-			disable_inputs(false, false)
+			should_modulate(false)
 			disabled = false
 		elif not GameManager.p1_turn and not disabled:
-			disable_inputs(false, true)
+			should_modulate(true)
 			disabled = true
 	if player_num == 2 and multiplayer.get_unique_id() == GameManager.player2_id:
 		if GameManager.p2_turn and disabled:
-			disable_inputs(false, false)
+			audio.next_turn.play()
+			disable_inputs(false)
+			should_modulate(false)
 			disabled = false
 		elif not GameManager.p2_turn and not disabled:
-			disable_inputs(false, true)
+			disable_inputs(true)
+			should_modulate(true)
 			disabled = true
 	elif player_num == 2 and multiplayer.get_unique_id() != GameManager.player2_id:
 		if GameManager.p2_turn and disabled:
-			disable_inputs(false, false)
+			should_modulate(false)
 			disabled = false
 		elif not GameManager.p2_turn and not disabled:
-			disable_inputs(false, true)
+			should_modulate(true)
 			disabled = true
 
-func hide_buttons(should_hide: bool):
+func hide_buttons():
 	stat_panel.visible = false
 	main_button.visible = false
 	sub_button.visible = false
@@ -146,30 +158,18 @@ func hide_buttons(should_hide: bool):
 	end_turn.visible = false
 	input_timer_label.visible = false
 	log.visible = false
-	audio.disabled = true
+	audio.disable()
 	additional_options_panel.visible = false
 	deck_options_button.visible = false
 	additional_options_button.visible = false
 
-func disable_inputs(should_disable: bool, should_modulate: bool):
+func disable_inputs(should_disable: bool):
 	if should_disable:
-		actions_up.disabled = true
-		actions_down.disabled = true
-		hp_up.disabled = true
-		hp_down.disabled = true
-		main_button.disabled = true
-		sub_button.disabled = true
 		end_turn.disabled = true
-		main_switch.disabled = true
 	else:
-		actions_up.disabled = false
-		actions_down.disabled = false
-		hp_up.disabled = false
-		hp_down.disabled = false
-		main_button.disabled = false
-		sub_button.disabled = false
 		end_turn.disabled = false
-		main_switch.disabled = false
+
+func should_modulate(should_modulate: bool):
 	if should_modulate:
 		player.modulate = "7a7a7a"
 		modulated = true
@@ -517,6 +517,7 @@ func change_to_deck_layout():
 func enable_deck_options():
 	additional_options.visible = false
 	deck_options.visible = true
+	update_cards_left_in_deck()
 
 func enable_additional_options():
 	deck_options.visible = false
@@ -532,6 +533,12 @@ func get_real_player_num():
 func start_selection_buffer():
 	can_select = false
 	input_timer.start()
+
+func update_cards_left_in_deck():
+	if player_num == 1:
+		cards_left.text = "Cards left in deck: " + str(GameManager.player1_deck.size())
+	elif player_num == 2:
+		cards_left.text = "Cards left in deck: " + str(GameManager.player2_deck.size())
 
 # UPDATES
 func update_player_stat_display():
@@ -552,9 +559,9 @@ func update_player_stat_display():
 		play_hurt()
 	prev_hp = health
 	#player_label.text = "PLAYER " + str(player_num)
-	hp_label.text = "HP: " + str(health)
+	hp_label.text = "HP : " + str(health)
 	actions_label.text = "ACTIONS: " + str(actions)
-	opponent_hp_label.text = "HP: " + str(opponent_health)
+	opponent_hp_label.text = "HP : " + str(opponent_health)
 
 func update_player_hand_display():
 	change_to_draw_layout()
@@ -1008,3 +1015,20 @@ func _on_card_selection_timer_timeout() -> void:
 
 func _on_go_to_rules_pressed() -> void:
 	OS.shell_open("https://upload.snakesandlattes.com/rules/a/AdventureTimeCardWarsFinnvsJake.pdf")
+
+func _on_swap_landscapes_pressed() -> void:
+	var first: int = int(swap_first_creature.text) - 1
+	var second: int = int(swap_second_creature.text) - 1
+	if player_num == 1:
+		if GameManager.player1_played_creatures[first].is_empty() or GameManager.player1_played_creatures[second].is_empty():
+			log.make_log_message("Error swapping creatures.")
+			return
+	if player_num == 2:
+		if GameManager.player2_played_creatures[first].is_empty() or GameManager.player2_played_creatures[second].is_empty():
+			log.make_log_message("Error swapping creatures.")
+			return
+	GameManager.net_swap_creatures_in_landscape_array.rpc(player_num, first, second)
+	log.make_log_message("Swapped creature " + str(first + 1) + " with " + str(second + 1) + ".")
+
+func _on_mulligan_pressed() -> void:
+	GameManager.net_mulligan.rpc(player_num)

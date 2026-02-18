@@ -12,13 +12,17 @@ var hero: String
 var landscapes: Array[String]
 var deck: Array[String]
 var default_deck_choice: String
+var choosen_deck: String
 var deck_choosen: bool = false
 
-var in_testing_mode: bool = false
+var in_testing_mode: bool = true
 var game_starting: bool = false
 
 func _ready() -> void:
 	GameManager.local_client_player_num = 0
+	if NetworkHandler.IP_ADDRESS != "localhost":
+		ip_address.text = NetworkHandler.IP_ADDRESS
+		port.text = str(NetworkHandler.PORT)
 	add_premade_decks()
 	get_all_decks("user://Decks/")
 	
@@ -161,11 +165,11 @@ func _on_load_deck_pressed() -> void:
 		log.make_log_message("No deck selected.")
 		deck_choosen = false
 		return
-	log.make_log_message("Loaded \"" + hero +"\" Deck.")
+	log.make_log_message("Loaded \"" + choosen_deck +"\" Deck.")
 	confirm_sfx.play()
 
 func _on_choose_deck_item_selected(index: int) -> void:
-	var choosen_deck: String = choose_deck.get_item_text(index)
+	choosen_deck = choose_deck.get_item_text(index)
 	default_deck_choice = load_from_file(choosen_deck)
 
 func load_from_file(_name: String):

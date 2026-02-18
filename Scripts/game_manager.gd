@@ -69,7 +69,8 @@ func start_game():
 			for i in range(5):
 				net_add_card_to_player_hand.rpc(1, draw_card(1))
 				net_add_card_to_player_hand.rpc(2, draw_card(2))
-		server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
+		distribute_deck_info_to_clients.rpc(player1_deck, player2_deck)
+		server_distribute_hero_info_to_client.rpc(player1_hero, player2_hero)
 		server_update_turn_info_for_clients.rpc(p1_turn, p2_turn, round_num)
 		net_tell_clients_to_refresh_hand.rpc()
 		for idx in range(4):
@@ -159,6 +160,12 @@ func attack_phase():
 
 func end_turn():
 	if multiplayer.is_server():
+		if player1_current_spell:
+			net_add_card_to_player_discards.rpc(1, player1_current_spell)
+			net_remove_spell_from_play.rpc(1)
+		if player2_current_spell:
+			net_add_card_to_player_discards.rpc(2, player2_current_spell)
+			net_remove_spell_from_play.rpc(2)
 		if p1_turn:
 			p2_turn = true
 			p1_turn = false
@@ -317,9 +324,12 @@ func recieve_player_hero(player_num: int, hero: String):
 			player2_hero = hero
 
 @rpc("any_peer", "call_remote")
-func server_distribute_deck_info_to_client(p1_deck, p2_deck, p1_hero, p2_hero):
+func distribute_deck_info_to_clients(p1_deck, p2_deck):
 	player1_deck = p1_deck
 	player2_deck = p2_deck
+
+@rpc("any_peer", "call_remote")
+func server_distribute_hero_info_to_client(p1_hero, p2_hero):
 	player1_hero = p1_hero
 	player2_hero = p2_hero
 
@@ -345,14 +355,14 @@ func draw_card(player_num: int):
 		if player1_deck.is_empty():
 			#print("Out of cards in p1 deck.")
 			return {}
-		card_data = player1_deck.pop_back()
-		#player1_deck.remove_at(player1_deck.find(card_data))
+		card_data = player1_deck.back()
+		net_remove_card_from_player_deck_when_drawing.rpc(1)
 	elif player_num == 2:
 		if player2_deck.is_empty():
 			#print("Out of cards in p2 deck.")
 			return
-		card_data = player2_deck.pop_back()
-		#player2_deck.remove_at(player2_deck.find(card_data))
+		card_data = player2_deck.back()
+		net_remove_card_from_player_deck_when_drawing.rpc(2)
 	#print(card_data)
 	return card_data
 
@@ -414,9 +424,9 @@ func draw_by_name(name: String):
 func shuffle_deck(player_num: int):
 	if player_num == 1:
 		player1_deck.shuffle()
-	elif player_num == 1:
+	elif player_num == 2:
 		player2_deck.shuffle()
-	server_distribute_deck_info_to_client.rpc(player1_deck, player2_deck, player1_hero, player2_hero)
+	distribute_deck_info_to_clients.rpc(player1_deck, player2_deck)
 
 @rpc("any_peer", "call_local")
 func add_card_to_top_of_deck(player_num: int, card: Dictionary):
@@ -621,12 +631,51 @@ func net_remove_card_from_player_hand(player_num: int, _card: Dictionary):
 
 @rpc("any_peer", "call_local")
 func net_add_card_to_player_hand(player_num: int, card: Dictionary):
-	if not card.is_empty():
-		if player_num == 1:
-			player1_hand.append(card)
-		elif player_num == 2:
-			player2_hand.append(card)
+	if card.is_empty():
+		return
+	var card_base_data: Dictionary = get_specific_card_data_from_list(card["Name"])
+	var card_base_attack: int = 0
+	var card_base_defense: int = 0
+	if card["Card Type"] == "Creature":
+		card_base_attack = int(card_base_data["Attack"])
+		card_base_defense = int(card_base_data["Defense"])
+	var modified_card: Dictionary
+	modified_card = {
+		"Name": card["Name"],
+		"Card Type": card["Card Type"],
+		"Landscape": card["Landscape"],
+		"Ability": card["Ability"],
+		"Cost": card["Cost"],
+		"Attack": card_base_attack,
+		"Defense": card_base_defense,
+		"Floop Status": false,
+		"Landscape Played": -1,
+		"Owner": player_num
+	}
+	if player_num == 1:
+		player1_hand.append(modified_card)
+	elif player_num == 2:
+		player2_hand.append(modified_card)
 	net_tell_clients_to_refresh_hand.rpc()
+
+@rpc("any_peer", "call_local")
+func net_mulligan(player_num: int):
+	if player_num == 1:
+		player1_deck.append_array(player1_hand)
+		player1_hand.clear()
+		shuffle_deck(1)
+		for i in range(5):
+			net_add_card_to_player_hand(1, draw_card(1))
+		distribute_deck_info_to_clients.rpc(player1_deck, player2_deck)
+		net_tell_clients_to_refresh_hand.rpc()
+	elif player_num == 2:
+		player2_deck.append_array(player2_hand)
+		player2_hand.clear()
+		shuffle_deck(2)
+		for i in range(5):
+			net_add_card_to_player_hand(2, draw_card(2))
+		distribute_deck_info_to_clients.rpc(player1_deck, player2_deck)
+		net_tell_clients_to_refresh_hand.rpc()
 
 # PLAYER DISCARDS UPDATES
 @rpc("any_peer", "call_local")
@@ -681,6 +730,19 @@ func net_remove_card_from_player_deck(player_num: int, _card: Dictionary):
 			return
 		player2_deck.remove_at(player2_deck.find(_card))
 
+@rpc("any_peer", "call_local")
+func net_remove_card_from_player_deck_when_drawing(player_num: int):
+	if player_num == 1:
+		if player1_deck.is_empty():
+			#print("Out of cards in p1 deck.")
+			return
+		player1_deck.pop_back()
+	elif player_num == 2:
+		if player2_deck.is_empty():
+			#print("Out of cards in p2 deck.")
+			return
+		player2_deck.pop_back()
+
 # LANDSCAPE UPDATES
 @rpc("any_peer", "call_local") 
 func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, card: Dictionary):
@@ -689,6 +751,21 @@ func net_add_creature_to_landscape_array(player_num: int, landscape_num: int, ca
 	elif player_num == 2:
 		player2_played_creatures[landscape_num] = card
 	net_tell_clients_to_refresh_landscape.rpc(landscape_num)
+
+@rpc("any_peer", "call_local") 
+func net_swap_creatures_in_landscape_array(player_num: int, landscape_num_first_creature: int, landscape_num_second_creature: int):
+	if player_num == 1:
+		var first_creature: Dictionary = player1_played_creatures[landscape_num_first_creature]
+		var second_creature: Dictionary = player1_played_creatures[landscape_num_second_creature]
+		player1_played_creatures[landscape_num_first_creature] = second_creature
+		player1_played_creatures[landscape_num_second_creature] = first_creature
+	elif player_num == 2:
+		var first_creature: Dictionary = player2_played_creatures[landscape_num_first_creature]
+		var second_creature: Dictionary = player2_played_creatures[landscape_num_second_creature]
+		player2_played_creatures[landscape_num_first_creature] = second_creature
+		player2_played_creatures[landscape_num_second_creature] = first_creature
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num_first_creature)
+	net_tell_clients_to_refresh_landscape.rpc(landscape_num_second_creature)
 
 @rpc("any_peer", "call_local")
 func net_update_creature_in_landscape_array(player_num: int, landscape_num: int, card_type: String, new_attack: int, new_defense: int, is_flooped: bool):

@@ -275,8 +275,8 @@ func _on_mouse_entered() -> void:
 	if selection_banned:
 		return
 	play_glow()
-	var player = $"../.."
-	player.update_selected_card_image(card_name)
+	#var player = $"../.."
+	#player.update_selected_card_image(card_name)
 
 func _on_mouse_exited() -> void:
 	reset_anim()
