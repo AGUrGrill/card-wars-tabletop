@@ -215,10 +215,11 @@ func place_spell_logic(player_num: int, selected_card: Dictionary) -> bool:
 func update_landscape_image(_name: String):
 	if _name == "Facedown":
 		_name = "card_back"
-	var ran_num: int  = randi() % 4 + 1
-	var full_path: String = LANDSCAPE_PATH + "" + _name + "" + str(ran_num) + ".png"
-	print(full_path)
-	var tex: Texture2D = load(full_path)
+	#var ran_num: int  = randi() % 4 + 1
+	#var full_path: String = LANDSCAPE_PATH + "" + _name + "" + str(ran_num) + ".png"
+	#print(full_path)
+	#var tex: Texture2D = load(full_path)
+	var tex: Texture2D = GameManager.db.cards.get(_name)
 	if tex == null:
 		print("error printing " + _name)
 		return

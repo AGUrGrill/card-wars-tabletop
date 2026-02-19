@@ -17,6 +17,9 @@ var sfx_enabled: bool = true
 var playing_game_end_audio: bool = false
 
 func _ready() -> void:
+	if disabled:
+		disable()
+		return
 	if audio_type == "Main Menu":
 		main_menu_sfx.play()
 		bgm.stream = load("res://Assets/Sounds/island_song.mp3")

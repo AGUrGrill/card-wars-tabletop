@@ -484,7 +484,21 @@ func _on_share_deck_pressed() -> void:
 	if not deck_valid():
 		return
 	var formatted_content: String
-	formatted_content = "Hero" + hero + "Landscapes" + get_formatted_landscapes() + "Creatures" + get_formatted_creatures() + "Spells" + get_formatted_spells() + "Buildings" + get_formatted_buildings()
+	formatted_content = "Hero
+" + hero + "
+
+Landscapes
+" + get_formatted_landscapes() + "
+
+Creatures
+" + get_formatted_creatures() + "
+
+Spells
+" + get_formatted_spells() + "
+
+Buildings
+" + get_formatted_buildings() + "
+"
 	DisplayServer.clipboard_set(formatted_content)
 
 func _on_reset_deck_pressed() -> void:

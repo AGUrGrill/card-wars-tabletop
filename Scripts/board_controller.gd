@@ -9,11 +9,12 @@ const PLAYER = preload("res://Scenes/player.tscn")
 var connected: bool = false
 var player_num: int
 @onready var id: Label = $ID
-@onready var icy: Sprite2D = $Icy
-@onready var waiting_for_player: Label = $Icy/WaitingForPlayer
+@onready var bg_img: Sprite2D = $BGIMG
+@onready var waiting_for_player: Label = $BGIMG/WaitingForPlayer
 
 func _ready() -> void:
 	if multiplayer.get_unique_id() == GameManager.player1_id:
+		determine_bg(1)
 		player1 = PLAYER.instantiate()
 		player1.player_num = 1
 		player1.is_player_board = true
@@ -23,6 +24,7 @@ func _ready() -> void:
 		player2.is_player_board = false
 		player_2_container.add_child(player2)
 	if multiplayer.get_unique_id() == GameManager.player2_id:
+		determine_bg(2)
 		player1 = PLAYER.instantiate()
 		player1.player_num = 1
 		player1.is_player_board = false
@@ -67,11 +69,44 @@ func _process(delta: float) -> void:
 		GameManager.landscape69_refresh_needed = false
 	if GameManager.hero_refresh_needed:
 		$".".modulate = "ffffff"
-		icy.z_index = 0
+		bg_img.z_index = 0
 		waiting_for_player.visible = false
 		player1.update_hero_image()
 		player2.update_hero_image()
 		GameManager.hero_refresh_needed = false
+
+func determine_bg(player_num: int):
+	var hero: String
+	if player_num == 1:
+		hero = GameManager.player1_hero
+	elif player_num == 2:
+		hero = GameManager.player1_hero
+	if hero == "Finn" or hero == "Jake" or hero == "Fionna" or hero == "Cake":
+		bg_img.texture = load("res://Assets/finnjakefionnacakebg.jpg")
+	elif hero == "Death":
+		bg_img.texture = load("res://Assets/deadbg.png")
+	elif hero == "Princess Bubblegum" or hero == "Cinnamon Bun" or hero == "Peppermint Butler":
+		bg_img.texture = load("res://Assets/candybg.png")
+	elif hero == "Gunter" or hero == "Ice King" or hero == "Ice Queen" or hero == "Ricardio":
+		bg_img.texture = load("res://Assets/icebg.jpg")
+	elif hero == "Lemongrab":
+		bg_img.texture = load("res://Assets/lemongrabbg.jpg")
+	elif hero == "Lumpy Space Princess":
+		bg_img.texture = load("res://Assets/lumpybg.jpg")
+	elif hero == "The Lich":
+		bg_img.texture = load("res://Assets/lichbg.png")
+	elif hero == "Neptr" or hero == "James Baxter":
+		bg_img.texture = load("res://Assets/neptrjamesbg.jpg")
+	elif hero == "Charlie" or hero == "Grand Prix" or hero == "Moniker":
+		bg_img.texture = load("res://Assets/charliemonikergrandprixbg.jpg")
+	elif hero == "Marceline" or hero == "BMO":
+		bg_img.texture = load("res://Assets/treehousebg.jpeg")
+	elif hero == "Billy":
+		bg_img.texture = load("res://Assets/billybg.jpg")
+	elif hero == "Prismo" or hero == "Cosmic Owl" or hero == "Party God":
+		bg_img.texture = load("res://Assets/timeroombg.png")
+	else:
+		bg_img.texture = load("res://Assets/ladybg.jpg")
 
 func _on_zoom_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
