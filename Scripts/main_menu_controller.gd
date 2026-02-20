@@ -12,7 +12,6 @@ var hero: String
 var landscapes: Array[String]
 var deck: Array[String]
 var default_deck_choice: String
-var choosen_deck: String
 var deck_choosen: bool = false
 
 var in_testing_mode: bool = true
@@ -25,6 +24,11 @@ func _ready() -> void:
 		port.text = str(NetworkHandler.PORT)
 	add_premade_decks()
 	get_all_decks("user://Decks/")
+	if not GameManager.choosen_deck_name.is_empty():
+		for idx in choose_deck.item_count:
+			if choose_deck.get_item_text(idx) == GameManager.choosen_deck_name:
+				choose_deck.select(idx)
+		default_deck_choice = load_from_file(GameManager.choosen_deck_name)
 	
 func _process(delta: float) -> void:
 	if game_starting:
@@ -165,12 +169,12 @@ func _on_load_deck_pressed() -> void:
 		log.make_log_message("No deck selected.")
 		deck_choosen = false
 		return
-	log.make_log_message("Loaded \"" + choosen_deck +"\" Deck.")
+	log.make_log_message("Loaded \"" + GameManager.choosen_deck_name +"\" Deck.")
 	confirm_sfx.play()
 
 func _on_choose_deck_item_selected(index: int) -> void:
-	choosen_deck = choose_deck.get_item_text(index)
-	default_deck_choice = load_from_file(choosen_deck)
+	GameManager.choosen_deck_name = choose_deck.get_item_text(index)
+	default_deck_choice = load_from_file(GameManager.choosen_deck_name)
 
 func load_from_file(_name: String):
 	var file = FileAccess.open("res://Assets/Decks/" + _name + ".txt", FileAccess.READ)
@@ -455,3 +459,6 @@ Buildings
 
 func _on_return_to_menu_pressed() -> void:
 	get_tree().quit()
+
+func _on_allow_2025_expansion_toggled(toggled_on: bool) -> void:
+	GameManager.cw2025expansion_enabled = toggled_on

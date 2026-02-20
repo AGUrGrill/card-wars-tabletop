@@ -17,7 +17,7 @@ extends Node2D
 @onready var hero_image: Sprite2D = $HeroImage
 @onready var current_deck_build_nums: Label = $CurrentDeckBuildNums
 @onready var choose_deck: OptionButton = $ChooseDeck
-@onready var enter_deck_code: TextEdit = $EnterDeckCode
+@onready var enter_deck_code: LineEdit = $EnterDeckCode
 
 var hero: String
 var landscapes: Array[String]
@@ -34,6 +34,9 @@ func _ready() -> void:
 	get_cards("", "Hero", "", "", "", "", "")
 	log.make_log_message("")
 	get_all_decks("user://Decks/")
+	
+	if not GameManager.cw2025expansion_enabled:
+		type_landscape.remove_item(7)
 
 func get_all_decks(path):
 	var dir = DirAccess.open(path)
@@ -69,7 +72,9 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 	var attack_filter: bool = false
 	var defense_filter: bool = false
 	
-	var max_cards: int = GameManager.MAX_CARDS
+	var max_cards: int = GameManager.KICK_1
+	if GameManager.cw2025expansion_enabled:
+		max_cards = GameManager.KICK_2
 	var exclusions: Array[int] = [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 19, 20, 21, 567, 568]
 	for num in max_cards:
 		if num in exclusions:
@@ -158,6 +163,8 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 
 func get_card_image(_name: String) -> ImageTexture:
 	var tex = GameManager.db.cards.get(_name)
+	if tex == null:
+		tex = GameManager.db.cards.get(_name + " 1")
 	var img: Image = tex.get_image()
 	img.resize(150, 210, Image.INTERPOLATE_LANCZOS)
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
@@ -475,10 +482,6 @@ func _on_edit_deck_pressed() -> void:
 	if default_deck_choice != null or not default_deck_choice.is_empty():
 		parse_deck_info_and_add_to_creator(default_deck_choice)
 
-func _on_enter_deck_code_text_changed() -> void:
-	audio.confirm_sfx.play()
-	parse_deck_info_and_add_to_creator(enter_deck_code.text)
-
 func _on_share_deck_pressed() -> void:
 	audio.confirm_sfx.play()
 	if not deck_valid():
@@ -503,3 +506,7 @@ Buildings
 
 func _on_reset_deck_pressed() -> void:
 	remove_all()
+
+func _on_enter_deck_code_text_submitted(new_text: String) -> void:
+	audio.confirm_sfx.play()
+	parse_deck_info_and_add_to_creator(enter_deck_code.text)

@@ -14,7 +14,6 @@ var player_num: int
 
 func _ready() -> void:
 	if multiplayer.get_unique_id() == GameManager.player1_id:
-		determine_bg(1)
 		player1 = PLAYER.instantiate()
 		player1.player_num = 1
 		player1.is_player_board = true
@@ -23,12 +22,13 @@ func _ready() -> void:
 		player2.player_num = 2
 		player2.is_player_board = false
 		player_2_container.add_child(player2)
+		player2.end_turn.disabled = true
 	if multiplayer.get_unique_id() == GameManager.player2_id:
-		determine_bg(2)
 		player1 = PLAYER.instantiate()
 		player1.player_num = 1
 		player1.is_player_board = false
 		player_2_container.add_child(player1)
+		player1.end_turn.disabled = true
 		player2 = PLAYER.instantiate()
 		player2.player_num = 2
 		player2.is_player_board = true
@@ -68,7 +68,6 @@ func _process(delta: float) -> void:
 		player2.update_player_landscape.rpc(69)
 		GameManager.landscape69_refresh_needed = false
 	if GameManager.hero_refresh_needed:
-		$".".modulate = "ffffff"
 		bg_img.z_index = 0
 		waiting_for_player.visible = false
 		player1.update_hero_image()
@@ -80,7 +79,8 @@ func determine_bg(player_num: int):
 	if player_num == 1:
 		hero = GameManager.player1_hero
 	elif player_num == 2:
-		hero = GameManager.player1_hero
+		hero = GameManager.player2_hero
+	print("KYS")
 	if hero == "Finn" or hero == "Jake" or hero == "Fionna" or hero == "Cake":
 		bg_img.texture = load("res://Assets/finnjakefionnacakebg.jpg")
 	elif hero == "Death":

@@ -181,7 +181,7 @@ audio_type = "Player"
 
 [node name="Log" parent="." unique_id=1880376055 instance=ExtResource("3_fkybt")]
 z_index = 99
-position = Vector2(1008, 3)
+position = Vector2(979, 0)
 
 [node name="Timers" type="Node2D" parent="." unique_id=605837408]
 metadata/_edit_lock_ = true
@@ -370,11 +370,11 @@ metadata/player_num = 0
 [node name="Card" parent="Hand" unique_id=2143805399 instance=ExtResource("5_x3wgy")]
 
 [node name="HeroImage" type="Sprite2D" parent="." unique_id=596994513]
-position = Vector2(-118, 143)
+position = Vector2(-120, 129)
 scale = Vector2(0.5, 0.5)
 
 [node name="SelectedCard" type="Sprite2D" parent="." unique_id=1892070561]
-position = Vector2(1229.005, 190.52)
+position = Vector2(1216.0001, 191)
 scale = Vector2(0.85, 0.85)
 
 [node name="FrozenToken" type="Sprite2D" parent="." unique_id=339529098]

@@ -3,8 +3,10 @@ after clicked view deck, trying to view discards takes 2 clicks
 freeze requires double place
 cards left in deck does not dynamically update, deck creator
 
+
 FEATURES
 fanservice-Ethan
+discard random card
 
 Issue Cards:
 griddy and hedge card effects

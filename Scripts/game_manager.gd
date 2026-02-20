@@ -3,7 +3,10 @@ extends Node
 #region Variables
 const CARD_LIST = "res://card_list.json"
 var db: CardDatabase = preload("res://Assets/Database/CardDatabase.tres")
-const MAX_CARDS = 568 # 717 is newest, 568 is released
+const OG = 522
+const KICK_1 = 568
+const KICK_2 = 858
+const MAX_CARDS = KICK_2 # 717 is newest, 568 is released
 
 const DEFAULT_HP: int = 25
 const DEFAULT_ACTIONS: int = 2
@@ -12,6 +15,8 @@ var player1_id: int
 var player2_id: int
 
 var local_client_player_num: int = 0
+var choosen_deck_name: String
+var cw2025expansion_enabled: bool = false
 
 # PLAYER DATA
 var player1_hero: String
@@ -102,6 +107,20 @@ func start_turn():
 			elif player2_actions == 0:
 				net_update_player_actions.rpc(2, 2)
 			draw_phase()
+		if p1_turn:
+			for landscape_num in range(4):
+				if player1_played_creatures[landscape_num].is_empty():
+					continue
+				var burn_amt: int = player1_played_creatures[landscape_num]["Burn"]
+				if burn_amt > 0:
+					net_update_creature_in_landscape_array.rpc(1, landscape_num, player1_played_creatures[landscape_num]["Card Type"], player1_played_creatures[landscape_num]["Attack"],  player1_played_creatures[landscape_num]["Token Attack"], player1_played_creatures[landscape_num]["Burn"], player1_played_creatures[landscape_num]["Defense"] - burn_amt, player1_played_creatures[landscape_num]["Floop Status"])
+		elif p2_turn:
+			for landscape_num in range(4):
+				if player2_played_creatures[landscape_num].is_empty():
+					continue
+				var burn_amt: int = player2_played_creatures[landscape_num]["Burn"]
+				if burn_amt > 0:
+					net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"],  player2_played_creatures[landscape_num]["Token Attack"], player2_played_creatures[landscape_num]["Burn"], player2_played_creatures[landscape_num]["Defense"] - burn_amt, player2_played_creatures[landscape_num]["Floop Status"])
 
 func draw_phase():
 	if multiplayer.is_server():
@@ -128,30 +147,38 @@ func attack_phase():
 					continue
 				if player1_played_creatures[landscape_num]["Floop Status"] == false:
 					var opponent_landscape_num: int = abs(landscape_num - 3)
-					var p1_creature_attack: int = player1_played_creatures[landscape_num]["Attack"]
+					var p1_creature_normal_attack: int = player1_played_creatures[landscape_num]["Attack"]
+					var p1_creature_token_attack: int = player1_played_creatures[landscape_num]["Token Attack"]
+					var p1_creature_total_attack: int = p1_creature_normal_attack + p1_creature_token_attack
 					var p1_creature_defense: int = player1_played_creatures[landscape_num]["Defense"]
 					if player2_played_creatures[opponent_landscape_num].is_empty():
-						net_update_player_health.rpc(2, -p1_creature_attack)
+						net_update_player_health.rpc(2, -p1_creature_total_attack)
 					else:
-						var p2_creature_attack: int = player2_played_creatures[opponent_landscape_num]["Attack"]
+						var p2_creature_normal_attack: int = player2_played_creatures[opponent_landscape_num]["Attack"]
+						var p2_creature_token_attack: int = player2_played_creatures[opponent_landscape_num]["Token Attack"]
+						var p2_creature_total_attack: int = p2_creature_normal_attack + p2_creature_token_attack
 						var p2_creature_defense: int = player2_played_creatures[opponent_landscape_num]["Defense"]
-						net_update_creature_in_landscape_array.rpc(2, opponent_landscape_num, player2_played_creatures[opponent_landscape_num]["Card Type"], player2_played_creatures[opponent_landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[opponent_landscape_num]["Floop Status"])
-						net_update_creature_in_landscape_array.rpc(1, landscape_num, player1_played_creatures[landscape_num]["Card Type"], player1_played_creatures[landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[landscape_num]["Floop Status"])
+						net_update_creature_in_landscape_array.rpc(2, opponent_landscape_num, player2_played_creatures[opponent_landscape_num]["Card Type"], player2_played_creatures[opponent_landscape_num]["Attack"],  player2_played_creatures[opponent_landscape_num]["Token Attack"], player2_played_creatures[opponent_landscape_num]["Burn"], p2_creature_defense - p1_creature_total_attack, player2_played_creatures[opponent_landscape_num]["Floop Status"])
+						net_update_creature_in_landscape_array.rpc(1, landscape_num, player1_played_creatures[landscape_num]["Card Type"], player1_played_creatures[landscape_num]["Attack"],  player1_played_creatures[landscape_num]["Token Attack"], player1_played_creatures[landscape_num]["Burn"], p1_creature_defense - p2_creature_total_attack, player1_played_creatures[landscape_num]["Floop Status"])
 						#print(str(landscape_num) + " fought " + str(opponent_landscape_num))
 			if p2_turn:
 				if player2_played_creatures[landscape_num].is_empty():
 					continue
 				if player2_played_creatures[landscape_num]["Floop Status"] == false:
 					var opponent_landscape_num: int = abs(landscape_num - 3)
-					var p2_creature_attack: int = player2_played_creatures[landscape_num]["Attack"]
+					var p2_creature_normal_attack: int = player2_played_creatures[landscape_num]["Attack"]
+					var p2_creature_token_attack: int = player2_played_creatures[landscape_num]["Token Attack"]
+					var p2_creature_total_attack: int = p2_creature_normal_attack + p2_creature_token_attack
 					var p2_creature_defense: int = player2_played_creatures[landscape_num]["Defense"]
 					if player1_played_creatures[opponent_landscape_num].is_empty():
-						net_update_player_health.rpc(1, -p2_creature_attack)
+						net_update_player_health.rpc(1, -p2_creature_total_attack)
 					else:
-						var p1_creature_attack: int = player1_played_creatures[opponent_landscape_num]["Attack"]
+						var p1_creature_normal_attack: int = player1_played_creatures[opponent_landscape_num]["Attack"]
+						var p1_creature_token_attack: int = player1_played_creatures[opponent_landscape_num]["Token Attack"]
+						var p1_creature_total_attack: int = p1_creature_normal_attack + p1_creature_token_attack
 						var p1_creature_defense: int = player1_played_creatures[opponent_landscape_num]["Defense"]
-						net_update_creature_in_landscape_array.rpc(1, opponent_landscape_num, player1_played_creatures[opponent_landscape_num]["Card Type"], player1_played_creatures[opponent_landscape_num]["Attack"],  p1_creature_defense - p2_creature_attack, player1_played_creatures[opponent_landscape_num]["Floop Status"])
-						net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"],  p2_creature_defense - p1_creature_attack, player2_played_creatures[landscape_num]["Floop Status"])
+						net_update_creature_in_landscape_array.rpc(1, opponent_landscape_num, player1_played_creatures[opponent_landscape_num]["Card Type"], player1_played_creatures[opponent_landscape_num]["Attack"], player1_played_creatures[opponent_landscape_num]["Token Attack"], player1_played_creatures[opponent_landscape_num]["Burn"], p1_creature_defense - p2_creature_total_attack, player1_played_creatures[opponent_landscape_num]["Floop Status"])
+						net_update_creature_in_landscape_array.rpc(2, landscape_num, player2_played_creatures[landscape_num]["Card Type"], player2_played_creatures[landscape_num]["Attack"], player2_played_creatures[landscape_num]["Token Attack"], player2_played_creatures[landscape_num]["Burn"], p2_creature_defense - p1_creature_total_attack, player2_played_creatures[landscape_num]["Floop Status"])
 						#print(str(landscape_num) + " fought " + str(opponent_landscape_num))
 		for idx in range(4):
 			net_tell_clients_to_refresh_landscape.rpc(idx)
@@ -639,14 +666,25 @@ func net_add_card_to_player_hand(player_num: int, card: Dictionary):
 	if card["Card Type"] == "Creature":
 		card_base_attack = int(card_base_data["Attack"])
 		card_base_defense = int(card_base_data["Defense"])
+	var has_ability: bool = false
+	var ability_text: String
+	for key in card:
+		if key == "Ability":
+			has_ability = true
+	if has_ability:
+		ability_text = card["Ability"]
+	else:
+		ability_text = ""
 	var modified_card: Dictionary
 	modified_card = {
 		"Name": card["Name"],
 		"Card Type": card["Card Type"],
 		"Landscape": card["Landscape"],
-		"Ability": card["Ability"],
+		"Ability": ability_text,
 		"Cost": card["Cost"],
 		"Attack": card_base_attack,
+		"Token Attack": 0,
+		"Burn": 0,
 		"Defense": card_base_defense,
 		"Floop Status": false,
 		"Landscape Played": -1,
@@ -705,6 +743,8 @@ func net_add_card_to_player_discards(player_num: int, card: Dictionary):
 		"Ability": card["Ability"],
 		"Cost": card["Cost"],
 		"Attack": card_base_attack,
+		"Token Attack": 0,
+		"Burn": 0,
 		"Defense": card_base_defense,
 		"Floop Status": false,
 		"Landscape Played": -1,
@@ -768,17 +808,21 @@ func net_swap_creatures_in_landscape_array(player_num: int, landscape_num_first_
 	net_tell_clients_to_refresh_landscape.rpc(landscape_num_second_creature)
 
 @rpc("any_peer", "call_local")
-func net_update_creature_in_landscape_array(player_num: int, landscape_num: int, card_type: String, new_attack: int, new_defense: int, is_flooped: bool):
+func net_update_creature_in_landscape_array(player_num: int, landscape_num: int, card_type: String, new_normal_attack: int, new_token_attack: int, new_burn_amt: int, new_defense: int, is_flooped: bool):
 	if player_num == 1:
 		if card_type == "Creature":
-			player1_played_creatures[landscape_num]["Attack"] = new_attack
+			player1_played_creatures[landscape_num]["Attack"] = new_normal_attack
+			player1_played_creatures[landscape_num]["Token Attack"] = new_token_attack
+			player1_played_creatures[landscape_num]["Burn"] = new_burn_amt
 			player1_played_creatures[landscape_num]["Defense"] = new_defense
 			player1_played_creatures[landscape_num]["Floop Status"] = is_flooped
 		elif card_type == "Building":
 			player1_played_buildings[landscape_num]["Floop Status"] = is_flooped
 	elif player_num == 2:
 		if card_type == "Creature":
-			player2_played_creatures[landscape_num]["Attack"] = new_attack
+			player2_played_creatures[landscape_num]["Attack"] = new_normal_attack
+			player2_played_creatures[landscape_num]["Token Attack"] = new_token_attack
+			player2_played_creatures[landscape_num]["Burn"] = new_burn_amt
 			player2_played_creatures[landscape_num]["Defense"] = new_defense
 			player2_played_creatures[landscape_num]["Floop Status"] = is_flooped
 		elif card_type == "Building":

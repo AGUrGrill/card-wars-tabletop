@@ -1,25 +1,24 @@
 [gd_scene format=3 uid="uid://bfr8mh116oi0f"]
 
 [ext_resource type="Script" uid="uid://b6dl48d375f1o" path="res://Scripts/board_controller.gd" id="1_2wvcj"]
-[ext_resource type="Texture2D" uid="uid://cmdybqwtote2a" path="res://Assets/icy.webp" id="2_uh3b8"]
+[ext_resource type="Texture2D" uid="uid://bpcly5yyvi2l2" path="res://Assets/cwbg.webp" id="2_2wvcj"]
 
 [node name="Board" type="Node2D" unique_id=134048645]
-modulate = Color(0.66656864, 0.6665687, 0.66656864, 1)
 script = ExtResource("1_2wvcj")
 
 [node name="BGIMG" type="Sprite2D" parent="." unique_id=768705134]
-modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+modulate = Color(0.23031491, 0.23031494, 0.23031488, 1)
 z_index = 999
-position = Vector2(802.00006, 450)
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("2_uh3b8")
+position = Vector2(1000, 448)
+scale = Vector2(1.3223163, 1.3223163)
+texture = ExtResource("2_2wvcj")
 metadata/_edit_lock_ = true
 
 [node name="WaitingForPlayer" type="Label" parent="BGIMG" unique_id=726218226]
-offset_left = -491.25
-offset_top = -36.874996
-offset_right = 488.74988
-offset_bottom = 39.125004
+offset_left = -653.39886
+offset_top = -36.29994
+offset_right = 326.601
+offset_bottom = 39.70006
 theme_override_font_sizes/font_size = 64
 text = "WAITING FOR OTHER PLAYER..."
 horizontal_alignment = 1
@@ -72,6 +71,10 @@ metadata/_edit_lock_ = true
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1322162237]
 position = Vector2(800, 450)
+limit_left = 0
+limit_top = 0
+limit_right = 1600
+limit_bottom = 900
 metadata/_edit_lock_ = true
 
 [node name="ReturnToMenu" type="Button" parent="." unique_id=1951625229]

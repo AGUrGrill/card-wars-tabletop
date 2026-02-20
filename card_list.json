@@ -1,132 +1,132 @@
 {
 	"0": {
-		"Name": "Blue Plains",
+		"Name": "Blue Plains 1",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Blue_Plains1.png",
 		"Card Type": "Landscape",
 		"Landscape": "Blue Plains"
 	},
 	"1": {
-		"Name": "Blue Plains",
+		"Name": "Blue Plains 2",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Blue_Plains2.png",
 		"Card Type": "Landscape",
 		"Landscape": "Blue Plains"
 	},
 	"2": {
-		"Name": "Blue Plains",
+		"Name": "Blue Plains 3",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Blue_Plains3.png",
 		"Card Type": "Landscape",
 		"Landscape": "Blue Plains"
 	},
 	"3": {
-		"Name": "Blue Plains",
+		"Name": "Blue Plains 4",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Blue_Plains4.png",
 		"Card Type": "Landscape",
 		"Landscape": "Blue Plains"
 	},
 	"4": {
-		"Name": "Cornfield",
+		"Name": "Cornfield 1",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cornfield1.png",
 		"Card Type": "Landscape",
 		"Landscape": "Cornfield"
 	},
 	"5": {
-		"Name": "Cornfield",
+		"Name": "Cornfield 2",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cornfield2.png",
 		"Card Type": "Landscape",
 		"Landscape": "Cornfield"
 	},
 	"6": {
-		"Name": "Cornfield",
+		"Name": "Cornfield 3",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cornfield3.png",
 		"Card Type": "Landscape",
 		"Landscape": "Cornfield"
 	},
 	"7": {
-		"Name": "Cornfield",
+		"Name": "Cornfield 4",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cornfield4.png",
 		"Card Type": "Landscape",
 		"Landscape": "Cornfield"
 	},
 	"8": {
-		"Name": "Useless Swamp",
+		"Name": "Useless Swamp 1",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Useless_Swamp1.png",
 		"Card Type": "Landscape",
 		"Landscape": "Useless Swamp"
 	},
 	"9": {
-		"Name": "Useless Swamp",
+		"Name": "Useless Swamp 2",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Useless_Swamp2.png",
 		"Card Type": "Landscape",
 		"Landscape": "Useless Swamp"
 	},
 	"10": {
-		"Name": "Useless Swamp",
+		"Name": "Useless Swamp 3",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Useless_Swamp3.png",
 		"Card Type": "Landscape",
 		"Landscape": "Useless Swamp"
 	},
 	"11": {
-		"Name": "Useless Swamp",
+		"Name": "Useless Swamp 4",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Useless_Swamp4.png",
 		"Card Type": "Landscape",
 		"Landscape": "Useless Swamp"
 	},
 	"12": {
-		"Name": "SandyLands",
+		"Name": "SandyLands 1",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/SandyLands1.png",
 		"Card Type": "Landscape",
 		"Landscape": "SandyLands"
 	},
 	"13": {
-		"Name": "SandyLands",
+		"Name": "SandyLands 2",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/SandyLands2.png",
 		"Card Type": "Landscape",
 		"Landscape": "SandyLands"
 	},
 	"14": {
-		"Name": "SandyLands",
+		"Name": "SandyLands 3",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/SandyLands3.png",
 		"Card Type": "Landscape",
 		"Landscape": "SandyLands"
 	},
 	"15": {
-		"Name": "SandyLands",
+		"Name": "SandyLands 4",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/SandyLands4.png",
 		"Card Type": "Landscape",
 		"Landscape": "SandyLands"
 	},
 	"16": {
-		"Name": "NiceLands",
+		"Name": "NiceLands 1",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/NiceLands1.png",
 		"Card Type": "Landscape",
 		"Landscape": "NiceLands"
 	},
 	"17": {
-		"Name": "NiceLands",
+		"Name": "NiceLands 2",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/NiceLands2.png",
 		"Card Type": "Landscape",
 		"Landscape": "NiceLands"
 	},
 	"18": {
-		"Name": "IcyLands",
+		"Name": "IcyLands 1",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/IcyLands1.png",
 		"Card Type": "Landscape",
 		"Landscape": "IcyLands"
 	},
 	"19": {
-		"Name": "IcyLands",
+		"Name": "IcyLands 2",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/IcyLands2.png",
 		"Card Type": "Landscape",
 		"Landscape": "IcyLands"
 	},
 	"20": {
-		"Name": "IcyLands",
+		"Name": "IcyLands 3",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/IcyLands3.png",
 		"Card Type": "Landscape",
 		"Landscape": "IcyLands"
 	},
 	"21": {
-		"Name": "IcyLands",
+		"Name": "IcyLands 4",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/IcyLands4.png",
 		"Card Type": "Landscape",
 		"Landscape": "IcyLands"
@@ -5020,15 +5020,2573 @@
 		"ImageURL": null
 	},
 	"567": {
-		"Name": "NiceLands",
+		"Name": "NiceLands 3",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/NiceLands3.png",
 		"Card Type": "Landscape",
 		"Landscape": "NiceLands"
 	},
 	"568": {
-		"Name": "NiceLands",
+		"Name": "NiceLands 4",
 		"ImageURL": "https://www.carddweeb.com/CardImages/regular/NiceLands4.png",
 		"Card Type": "Landscape",
 		"Landscape": "NiceLands"
+	},
+	"569": {
+		"Name": "AbneGator",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/AbneGator.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "If this card is discarded from your hand or deck during your turn, gain 1 action. If it is discarded during an opponent's turn, draw a card instead.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "4"
+	},
+	"570": {
+		"Name": "Banana Man",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Banana_Man.png",
+		"Card Type": "Hero",
+		"Ability": "Once per turn, you may peek at the bottom card of your deck and either discard it or put it on top of your deck."
+	},
+	"571": {
+		"Name": "Bayou Surge",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Bayou_Surge.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Destroy all Creatures in a Lane. Starting with you, each player may put a Creature from their hand into play on a Landscape they control in that Lane.",
+		"Cost": "2"
+	},
+	"572": {
+		"Name": "Betty",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Betty.png",
+		"Card Type": "Hero",
+		"Ability": "Your minimum deck size is +5. Begin the game with 5 different 1-cost Spells removed from your deck. Set them aside. These are your Research Notes. Pay 1 action >>> Reveal a random card from your Research Notes and play it for free. (Limit: Once per turn.)"
+	},
+	"573": {
+		"Name": "Blizzardpaw Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Blizzardpaw_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When Blizzardpaw Avalancheetah enters play, draw 2 cards unless another player freezes one of their unfrozen Landscapes.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "2"
+	},
+	"574": {
+		"Name": "Bog Cyclone",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Bog_Cyclone.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Shuffle your discard pile. Put 2 random cards from it into your hand and the rest on the bottom of your deck. Then remove this card from the game.",
+		"Cost": "1"
+	},
+	"575": {
+		"Name": "Brilliant Discovery",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Brilliant_Discovery.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Draw 2 cards. You may shuffle up to 2 Spells from your discard pile into your Research Notes.",
+		"Cost": "1"
+	},
+	"576": {
+		"Name": "Bulkunai, the Leech",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bulkunai,_the_Leech.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "Discard a card >>> Heal 3 damage from Bulkunai. (Limit: Once per turn.)",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "9"
+	},
+	"577": {
+		"Name": "Careful Shuffle",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Careful_Shuffle.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Choose a letter of the alphabet, then reveal the top 3 cards of your deck. Put all cards with names that begin with the chosen letter into your hand and discard the rest.",
+		"Cost": "0"
+	},
+	"578": {
+		"Name": "Chancellor's Commended",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Chancellor_Commendation.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "When Chancellor's Commended enters play, choose a letter of the alphabet. Other Creatures you control whose names begin with the chosen letter have +3 ATK.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "10"
+	},
+	"579": {
+		"Name": "Cherished Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cherished_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. FLOOP >>> Remove 1 or 2 non-damage tokens from target Creature. Then, place that manyon target friendly Creature.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "4"
+	},
+	"580": {
+		"Name": "Chivalrous Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Chivalrous_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Chivalrous Armourdillo enters play, you may heal 3 damage from another Creature. If that Creature still has damage on it, draw a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"581": {
+		"Name": "Choose Goose",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Choose_Goose.png",
+		"Card Type": "Hero",
+		"Ability": "At the start of the game, choose a letter of the alphabet. The first card you play each turn with a name that starts with your chosen letter costs 1 less."
+	},
+	"582": {
+		"Name": "Cozy Kiln",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cozy_Kiln.png",
+		"Card Type": "Building",
+		"Landscape": "Rainbow",
+		"Ability": "When an opposing burning Creature in this Lane leaves play, burn that Creature's owner. (At the start of their turn, they take 1 damage for each burn token.)",
+		"Cost": "1"
+	},
+	"583": {
+		"Name": "Curse Words",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Curse_Words.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Choose a letter of the alphabet. Deal 4 damage to Creatures whose names do not begin with the chosen letter.",
+		"Cost": "2"
+	},
+	"584": {
+		"Name": "Delta Domination",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Delta_Domination.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Deal damage to target Creature equal to the combined cost of cards you control.",
+		"Cost": "0"
+	},
+	"585": {
+		"Name": "Dualcast Adept",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Dualcast_Adept.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "At the end of your turn, if you played 2 or more non-Blue Plains cards this turn, draw a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"586": {
+		"Name": "Bitterchill Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bitterchill_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "If Bitterchill Avalancheetah damages an opponent, they must discard a Spell or reveal a hand with none.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "8"
+	},
+	"587": {
+		"Name": "Bladespire Maelstrom",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bladespire_Maelstrom.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Remove all non-damage tokens from Creatures, Landscapes, and players. Then deal 2 damage to target Creature for each token removed.",
+		"Cost": "1"
+	},
+	"588": {
+		"Name": "Blizzard Born",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Blizzard_Born.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When Blizzard Born enters play, freeze all Landscapes you and target opponent control. You may play Creatures onto frozen Landscapes.",
+		"Cost": "2",
+		"Attack": "6",
+		"Defense": "5"
+	},
+	"589": {
+		"Name": "Bottlebeard, the Cool",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bottlebeard,_the_Cool.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When Bottlebeard enters play, you may put up to 2 cards with \"Potion\" in their name into your hand from your discard pile.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "7"
+	},
+	"590": {
+		"Name": "Boxing Day",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Boxing_Day.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Put anon each friendly Creature.",
+		"Cost": "1"
+	},
+	"591": {
+		"Name": "Brightheart Nexus",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Brightheart_Nexus.png",
+		"Card Type": "Building",
+		"Landscape": "NiceLands",
+		"Ability": "When you play a Spell, heal 1 damage from friendly Creatures in this Lane. If you have no Creatures in this Lane, target player gains 1 HP instead.",
+		"Cost": "1"
+	},
+	"592": {
+		"Name": "Broils Coils",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Broils_Coils.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Deal 3 damage to target Creature. If a Creature is destroyed this way, gain 1 action.",
+		"Cost": "1"
+	},
+	"593": {
+		"Name": "Bull Sigil",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bull_Sigil.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Put anon target Creature. If the Creature has 2 or moreon it, you may draw a card.",
+		"Cost": "0"
+	},
+	"594": {
+		"Name": "Chalice, the Cruel",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Chalice,_the_Cruel.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "After you play a Spell, deal 2 damage to an opposing Creature.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "11"
+	},
+	"595": {
+		"Name": "Cheat Sheet",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cheat_Sheet.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Draw a card. The next 2 cards you play with \"Potion\" in their name cost 1 less this turn.",
+		"Cost": "1"
+	},
+	"596": {
+		"Name": "Courageous Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Courageous_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. When Courageous Armourdillo defeats an opposing Creature, you heal 2 HP and deal 2 damage to target opponent.",
+		"Cost": "3",
+		"Attack": "4",
+		"Defense": "11"
+	},
+	"597": {
+		"Name": "Cranial Buttercream",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cranial_Buttercream.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Choose a Landscape type. Deal 2 damage to each Creature that is not on the chosen Landscape.",
+		"Cost": "1"
+	},
+	"598": {
+		"Name": "Dynastic Defector",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Dynastic_Defector.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Dynastic Defector leaves play, if you own it, you may play it on another player's empty Landscape.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "8"
+	},
+	"599": {
+		"Name": "Dune Bug Buggie",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Dune_Bug_Buggie.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When Dune Bug Buggie enters play, you may reveal the top card of your deck. If you reveal a non-SandyLands card, you may play it for free.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "1"
+	},
+	"600": {
+		"Name": "Duplicast Sorcerer",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Duplicast_Sorcerer.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "FLOOP >>> If you played 2 or more non-Blue Plains cards this turn, deal 2 damage to each opposing Creature.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "4"
+	},
+	"601": {
+		"Name": "LavaFlats 1",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/LavaFlats1.png",
+		"Card Type": "Landscape",
+		"Landscape": "LavaFlats"
+	},
+	"602": {
+		"Name": "LavaFlats 2",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/LavaFlats2.png",
+		"Card Type": "Landscape",
+		"Landscape": "LavaFlats"
+	},
+	"603": {
+		"Name": "LavaFlats 3",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/LavaFlats3.png",
+		"Card Type": "Landscape",
+		"Landscape": "LavaFlats"
+	},
+	"604": {
+		"Name": "LavaFlats 4",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/LavaFlats4.png",
+		"Card Type": "Landscape",
+		"Landscape": "LavaFlats"
+	},
+	"605": {
+		"Name": "Fern",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Fern.png",
+		"Card Type": "Hero",
+		"Ability": "Once per turn, when you replace a Creature, the next Creature with cost 1 you play this turn is free."
+	},
+	"606": {
+		"Name": "Flame Princess",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flame_Princess.png",
+		"Card Type": "Hero",
+		"Ability": "Burn all opposing Creatures. (Limit: Once per game.)"
+	},
+	"607": {
+		"Name": "Flameingo Burnwarden",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Burnwarden.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Remove a burn token from an opposing Creature >>> Deal 1 damage to target opponent.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "9"
+	},
+	"608": {
+		"Name": "Flameingo Flameweaver",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Flameweaver.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP >>> Burn each Creature in target Lane.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "8"
+	},
+	"609": {
+		"Name": "Flameingo Hotshot",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Hotshot.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Flameingo Hotshot attacks a burning Creature, you may deal 2 damage to another Creature. If that other Creature is not burning, burn it.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "8"
+	},
+	"610": {
+		"Name": "Frostcrown Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Frostcrown_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When Frostcrown enters play, freeze all Landscapes in its Lane. When Frostcrown leaves play, you may remove a Frozen token from one of your Landscapes.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "4"
+	},
+	"611": {
+		"Name": "Erlenmeyer, the Calm",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Erlenmeyer,_the_Calm.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "The second Spell you play each turn costs 1 less.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "5"
+	},
+	"612": {
+		"Name": "Flameingo Captain",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Captain.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Flameingo Captain damages an opponent, burn them. (At the start of their turn, they take 1 damage for each Burn token.)",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "11"
+	},
+	"613": {
+		"Name": "Flameingo Fireplume Chief",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Fireplume_Chief.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Flameingo Fireplume Chief costs 1 less for each Burn token on Creatures. When Fireplume Chief damages a Creature, burn it.",
+		"Cost": "4",
+		"Attack": "4",
+		"Defense": "10"
+	},
+	"614": {
+		"Name": "Flameingo Flame Tamer",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Flame_Tamer.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Prevent the first 2 damage dealt to Flameingo Flame Tamer from burning Creatures each turn.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "6"
+	},
+	"615": {
+		"Name": "Flameingo Heat Eater",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Heat_Eater.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "The first time you burn a Creature each turn, draw a card.",
+		"Cost": "2",
+		"Attack": "1",
+		"Defense": "9"
+	},
+	"616": {
+		"Name": "Gossamer Beam",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Gossamer_Beam.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Target opponent discards a card. You may return a Creature from your discard pile to your hand.",
+		"Cost": "1"
+	},
+	"617": {
+		"Name": "Ghost Princess",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ghost_Princess.png",
+		"Card Type": "Hero",
+		"Ability": "Chose any number of players to put 3 random cards from their discard pile into their hand, revealing any Creatures. For each one, they heal 2 HP. Finally, they shuffle their discard piles into their decks. (Limit: Once per game.)"
+	},
+	"618": {
+		"Name": "Grob Gob Glob Grod",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Grob_Gob_Glob_Grod.png",
+		"Card Type": "Hero",
+		"Ability": "While you control 4 Creatures with a combined cost of 8 or greater, your Creatures have +3 ATK on your turn."
+	},
+	"619": {
+		"Name": "Herbal Hurlers",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Herbal_Hurlers.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "When friendly Creatures deal damage this turn, heal that much damage from them.",
+		"Cost": "1"
+	},
+	"620": {
+		"Name": "Hot Dog Princess",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hot_Dog_Princess.png",
+		"Card Type": "Hero",
+		"Ability": "At the start of your turn, put anon each friendly Creature with 5 or more damage."
+	},
+	"621": {
+		"Name": "Hot Shot",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hot_Shot.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Burn target Creature and then deal 1 additional damage to it.",
+		"Cost": "0"
+	},
+	"622": {
+		"Name": "Juiced Lightning",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Juiced_Lightning.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "Heal 2 damage from each of your Creatures. If you have 3 or more Spells in your discard pile, put anon each of your Creatures.",
+		"Cost": "1"
+	},
+	"623": {
+		"Name": "Kangaroo Bat",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Kangaroo_Bat.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Kangaroo Bat damages an opponent, put anon Kangaroo Bat.",
+		"Cost": "0",
+		"Attack": "2",
+		"Defense": "1"
+	},
+	"624": {
+		"Name": "Lab Assistant",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Lab_Assistant.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When you play a Spell from anywhere other than your hand, you may resolve its effects a second time. (You may choose different targets.)",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"625": {
+		"Name": "Holographic Rabbit",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Holographic_Rabbit.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "Holographic Rabbit may share a Landscape with another Creature. When the other Creature is dealt damage, deal it to Holographic Rabbit instead.",
+		"Cost": "0",
+		"Attack": "0",
+		"Defense": "4"
+	},
+	"626": {
+		"Name": "Honeycomb Haven",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Honeycomb_Haven.png",
+		"Card Type": "Building",
+		"Landscape": "NiceLands",
+		"Ability": "When a Creature you control in this Lane deals damage to an opponent, gain that much HP.",
+		"Cost": "1"
+	},
+	"627": {
+		"Name": "Hothead",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hothead.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Hothead costs 1 less to play for each of your Creatures with cost 1.",
+		"Cost": "3",
+		"Attack": "4",
+		"Defense": "7"
+	},
+	"628": {
+		"Name": "Icefang Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Icefang_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When another player discards a card from their hand, you may draw a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"629": {
+		"Name": "Icewarden",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Icewarden.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "Opposing Creatures on frozen Landscapes take double damage.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "13"
+	},
+	"630": {
+		"Name": "Icy Hot",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Icy_Hot.png",
+		"Card Type": "Spell",
+		"Landscape": "IcyLands",
+		"Ability": "Burn each Creature on a frozen Landscape, then freeze each Landscape with a burning Creature.",
+		"Cost": "1"
+	},
+	"631": {
+		"Name": "Infernal Spade",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Infernal_Spade.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Deal 1 damage to target Creature for each Spell in your discard pile.",
+		"Cost": "1"
+	},
+	"632": {
+		"Name": "Kangaroo Cat",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Kangaroo_Cat.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "The first time Kangaroo Cat damages an opponent, put anon Kangaroo Cat.",
+		"Cost": "0",
+		"Attack": "2",
+		"Defense": "3"
+	},
+	"633": {
+		"Name": "Lifeward Tower",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Lifeward_Tower.png",
+		"Card Type": "Building",
+		"Landscape": "NiceLands",
+		"Ability": "At the start of your turn, heal 1 damage from friendly Creatures in this Lane.",
+		"Cost": "0"
+	},
+	"634": {
+		"Name": "Magic Man KS2",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Magic_Man.png",
+		"Card Type": "Hero",
+		"Ability": "Discard a Spell >>> Draw a card. (Limit: Once per turn.)"
+	},
+	"635": {
+		"Name": "Molten Ritualist",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Molten_Ritualist.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP >>> Each player with 1 or fewer cards in hand draws a card.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "4"
+	},
+	"636": {
+		"Name": "Mr. Fox",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Mr._Fox.png",
+		"Card Type": "Hero",
+		"Ability": "Once per turn, you may reveal the top card of your deck. If it costs 0, you may put it into your hand."
+	},
+	"637": {
+		"Name": "Muckatana, the Exploiter",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Muckatana,_the_Exploiter.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "Muckatana has +2 ATK for each player with 1 or fewer cards in hand.",
+		"Cost": "2",
+		"Attack": "2",
+		"Defense": "11"
+	},
+	"638": {
+		"Name": "Muscle Princess",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Muscle_Princess.png",
+		"Card Type": "Hero",
+		"Ability": "Pay 1 action >>> Place anon a friendly Creature and/or move an opposing Creature to an opponent's empty Landscape. (Limit: Once per turn.)"
+	},
+	"639": {
+		"Name": "Mushkaginawa, the Free",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Mushkaginawa,_the_Free.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "Mushkaginawa costs 2 less to play if you have no other cards in hand.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "5"
+	},
+	"640": {
+		"Name": "Math Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Math_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Draw 3 cards, then put 1 card from your hand on top of your deck.",
+		"Cost": "1"
+	},
+	"641": {
+		"Name": "Mouth Beater",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Mouth_Beater.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "Mouth Beater has +1 ATK for each card in your hand. When Mouth Beater defeats a Creature, draw a card.",
+		"Cost": "2",
+		"Attack": "0",
+		"Defense": "8"
+	},
+	"642": {
+		"Name": "Neuromancer",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Neuromancer.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "FLOOP >>> Play a cost 0 card from your discard pile. At the end of your turn, remove it from the game.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "6"
+	},
+	"643": {
+		"Name": "Oasis Guardian",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Oasis_Guardian.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When you play a non-SandyLands card, deal 1 damage to each opposing Creature.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"644": {
+		"Name": "Peppermint Butler KS2",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Peppermint_Butler.png",
+		"Card Type": "Hero",
+		"Ability": "Once per turn, if you have 1 or fewer cards in hand, you may deal 2 damage to a Creature."
+	},
+	"645": {
+		"Name": "Persuasive Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Persuasive_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. FLOOP >>> Your next Spell is free.",
+		"Cost": "4",
+		"Attack": "4",
+		"Defense": "10"
+	},
+	"646": {
+		"Name": "Platypus",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Platypus.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "Platypus has +1 ATK for each different 0-cost card in your discard pile.",
+		"Cost": "0",
+		"Attack": "0",
+		"Defense": "3"
+	},
+	"647": {
+		"Name": "Prismo KS2",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Prismo.png",
+		"Card Type": "Hero",
+		"Ability": "Once per turn, if you have played 2 cards with different Landscape types, you may put antoken on a Creature you control."
+	},
+	"648": {
+		"Name": "PropaGator",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/PropaGator.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When PropaGator enters play, name a card. Reveal the top card of your deck. If it is the named card, discard it and gain 2 actions.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "7"
+	},
+	"649": {
+		"Name": "Pyroheart Plate",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Pyroheart_Plate.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Burn target friendly Creature and heal all damage from it. Draw a card.",
+		"Cost": "1"
+	},
+	"650": {
+		"Name": "President Sweetcorn",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/President_Sweetcorn.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "When President Sweetcorn enters play, gain an action.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "4"
+	},
+	"651": {
+		"Name": "Punch Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Punch_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Deal 3 damage to target Creature or player.",
+		"Cost": "1"
+	},
+	"652": {
+		"Name": "Quaffius, the Chemist",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Quaffius,_the_Chemist.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When you play your first Spell each turn, you may resolve its effects a second time. (You may choose different targets.)",
+		"Cost": "2",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"653": {
+		"Name": "Robomination",
+		"ImageURL": "https://www.carddweeb.com/CardImages/upload/Robomination.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Robomination leaves play, target player discards a card.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "5"
+	},
+	"654": {
+		"Name": "Sunscorch Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Sunscorch_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When Sunscorch Eyesnek enters play, deal 1 damage to target Creature for each Creature in play with \"Eyesnek\" in its name.",
+		"Cost": "1",
+		"Attack": "4",
+		"Defense": "2"
+	},
+	"655": {
+		"Name": "Tentacreeper",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Tentacreeper.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "At the start of your turn, Tentacreeper has +3 ATK this turn unless another player chooses to discard a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"656": {
+		"Name": "Wand of Hexcraft",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Wand_of_Hexcraft.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Choose another player to discard 1 card. If they discard a Spell, you may play it for free as a Rainbow type.",
+		"Cost": "1"
+	},
+	"657": {
+		"Name": "Winterhide Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Winterhide_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "FLOOP >>> Each player draws and discards a card for each frozen Landscape. Then freeze an opponent's Landscape.",
+		"Cost": "2",
+		"Attack": "2",
+		"Defense": "11"
+	},
+	"658": {
+		"Name": "Yolked Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Yolked_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "Heal 2 damage from target Creature and put 2on it. Then, if that Creature has at least 5 ATK, draw a card.",
+		"Cost": "1"
+	},
+	"659": {
+		"Name": "Quality Controller",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Quality_Controller.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Quality Controller leaves play, shuffle it into your Research Notes.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "10"
+	},
+	"660": {
+		"Name": "Refined Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Refined_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "If you played a Creature with cost 2 or greater this turn, you may play Refined Armourdillo for free.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "6"
+	},
+	"661": {
+		"Name": "Resonant Spellhold",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Resonant_Spellhold.png",
+		"Card Type": "Building",
+		"Landscape": "Rainbow",
+		"Ability": "When you play a Creature in this Lane, you may return a Spell of lesser cost in your discard pile to your hand.",
+		"Cost": "1"
+	},
+	"662": {
+		"Name": "Royal Prosperity",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Royal_Prosperity.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Each player draws 2 cards.",
+		"Cost": "0"
+	},
+	"663": {
+		"Name": "Searing Insight",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Seering_Insight.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Burn target Creature. If you have 1 or fewer cards in hand, draw 3 cards.",
+		"Cost": "1"
+	},
+	"664": {
+		"Name": "Simon Petrikov",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Simon_Petrikov.png",
+		"Card Type": "Hero",
+		"Ability": "The first time a player removes a frozen token during their turn, draw a card."
+	},
+	"665": {
+		"Name": "Smoldering Phantom",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Smoldering_Phantom.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "When you play your second Spell each turn, you may ready a Creature you control.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "6"
+	},
+	"666": {
+		"Name": "Sovereign's Sanctuary",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Sovereign's_Sanctuary.png",
+		"Card Type": "Building",
+		"Landscape": "Rainbow",
+		"Ability": "FLOOP >>> Heal 3 damage from each Creature in this Lane.",
+		"Cost": "1"
+	},
+	"667": {
+		"Name": "Summon Sludge",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Summon_Sludge.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Deal 2 damage to each opposing Creature. When you discard Summon Sludge, you may play it for free.",
+		"Cost": "2"
+	},
+	"668": {
+		"Name": "Sword Horn",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Sword_Horn.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Put anon target Creature. Do this again for every 2 Spells in your discard pile.",
+		"Cost": "1"
+	},
+	"669": {
+		"Name": "The Icebox",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Icebox.png",
+		"Card Type": "Building",
+		"Landscape": "IcyLands",
+		"Ability": "When an opponent discards a card to remove a frozen token, deal 1 damage to them and heal 1 HP.",
+		"Cost": "1"
+	},
+	"670": {
+		"Name": "The Lich KS2",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Lich.png",
+		"Card Type": "Hero",
+		"Ability": "Once per turn, if you have more cards in your hand than an opponent, deal 1 damage to that opponent and heal 1 HP."
+	},
+	"671": {
+		"Name": "The Pigsty",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Pigsty.png",
+		"Card Type": "Building",
+		"Landscape": "Rainbow",
+		"Ability": "Creatures you control in this Lane have +2 DEF. If you control a creature with \"Pig\" in its name in this Lane, it has +5 DEF instead.",
+		"Cost": "1"
+	},
+	"672": {
+		"Name": "Timematron",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Timematron.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Timematron enters play, discard 2 cards. When Timematron leaves play, draw 2 cards.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "4"
+	},
+	"673": {
+		"Name": "Tinder Tyrant",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Tinder_Tyrant.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "If you have 1 or fewer cards in hand, double Tinder Tyrant's ATK.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "6"
+	},
+	"674": {
+		"Name": "Titanbane Amulet",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Titanbane_Amulet.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Destroy target Creature and lose HP equal to its ATK.",
+		"Cost": "2"
+	},
+	"675": {
+		"Name": "Treasured Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Treasured_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. FLOOP >>> Draw a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "4"
+	},
+	"676": {
+		"Name": "Trial by Fire",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Trial_by_Fire.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Reveal the top 2 cards of your deck. Discard 1 and play the other for free. If you have 1 or fewer cards in hand, you may put the discarded card into your hand instead.",
+		"Cost": "1"
+	},
+	"677": {
+		"Name": "Turtle Princess",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Turtle_Princess.png",
+		"Card Type": "Hero",
+		"Ability": "You may remove any number offrom friendly Creatures to prevent that amount of damage dealt to them."
+	},
+	"678": {
+		"Name": "Urfwurm",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Urfwurm.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Urfwurm is defeated, you may immediately play a Creature with cost 1 to this Landscape from your hand for free.",
+		"Cost": "1",
+		"Attack": "0",
+		"Defense": "6"
+	},
+	"679": {
+		"Name": "Wellspring Apartments",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Wellspring_Apartments.png",
+		"Card Type": "Building",
+		"Landscape": "SandyLands",
+		"Ability": "Your Creatures in this Lane have +1 ATK for each non-SandyLands card you have played this turn.",
+		"Cost": "1"
+	},
+	"680": {
+		"Name": "X-Ray Specs",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/X-Ray_Specs.png",
+		"Card Type": "Spell",
+		"Landscape": "Blue Plains",
+		"Ability": "Until end of turn, reveal the top card of your deck. You may play cards revealed in this way. These cards cost 1 additional action for each card that has been played in this way this turn.",
+		"Cost": "0"
+	},
+	"681": {
+		"Name": "Zebracorn Seige Shucker",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Zebracorn_Seige_Shucker.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "If you played two non-Cornfield cards this turn, double Zebracorn Seige Shucker's ATK until the end of your turn.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "6"
+	},
+	"682": {
+		"Name": "Crisis Monarch",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Crisis_Monarch.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Crisis Monarch enters play, destroy one of your Barriers and gain its effect.",
+		"Cost": "2",
+		"Attack": "9",
+		"Defense": "3"
+	},
+	"683": {
+		"Name": "Divine Right",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Divine_Right.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Each player heals 15 HP.",
+		"Cost": "2"
+	},
+	"684": {
+		"Name": "Protector of the Realm",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Protector_of_the_Realm.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "Destroy Protector of the Realm >>> Cancel the effects of a Curse.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"685": {
+		"Name": "The Snail",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Snail.png",
+		"Card Type": "Hero",
+		"Ability": "When you are at or below 15 HP, draw an additional card at the start of your turn. When you are at or below 5 HP, draw a second additional card at the start of your turn."
+	},
+	"686": {
+		"Name": "Toddler Scholar",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Toddler_Scholar.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Toddler Scholar deals damage to a player, draw that many cards.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "5"
+	},
+	"687": {
+		"Name": "Neonate Bladesmith",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Neonate_Bladesmith.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When another Creature with ATK 3 or less enters play under your control, put anon Neonate Bladesmith.",
+		"Cost": "2",
+		"Attack": "0",
+		"Defense": "15"
+	},
+	"688": {
+		"Name": "Cull-uh-bye",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cull-uh-bye.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "Destroy all Creatures with 4 or more ATK.",
+		"Cost": "2"
+	},
+	"689": {
+		"Name": "Baby Finn & Jake",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Baby_Finn_&_Jake.png",
+		"Card Type": "Hero",
+		"Ability": "Your deck cannot contain Creatures with more than 3 ATK. At the start of your Fight Phase, choose one of your Creatures. That Creature has +3 ATK this turn."
+	},
+	"690": {
+		"Name": "The Pigs",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Pigs.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When The Pigs enters or leaves play, you may deal 1 damage to target Creature.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "4"
+	},
+	"691": {
+		"Name": "The Stag",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Stag.png",
+		"Card Type": "Hero",
+		"Ability": "Discard 3 Cards >>> Remove target opposing Creature from the game if you control a Creature in the same Lane with a higher DEF than it. (Limit: Once per turn.)"
+	},
+	"692": {
+		"Name": "The Big Pig",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/The_Big_Pig.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "At the start of your turn, you may put a card with \"Pig\" in its name from your hand into play, or return it from play to your hand.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "8"
+	},
+	"693": {
+		"Name": "Hunson Abadeer",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Hunson_Abadeer.webp",
+		"Card Type": "Hero",
+		"Ability": "When you deal damage with a spell to one or more creatures, heal that much HP (Limit: 1 per turn.)"
+	},
+	"694": {
+		"Name": "Cortex Channeler",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Cortex_Channeler.webp",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "FLOOP >>> This turn your spells that deal damage to your creatures heal them instead and you may play \"Cerebral Bloodstorm\" from your discard pile for its cost.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "8"
+	},
+	"695": {
+		"Name": "Cerebral Imp",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Cerebral_Imp.webp",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Cerebral Imp enters play, you may discard a card to play Cerebral Bloodstorm from your discard pile for free.",
+		"Cost": "0",
+		"Attack": "2",
+		"Defense": "4"
+	},
+	"696": {
+		"Name": "Cerebral Blood Pact",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Cerebral_Blood_Pact.webp",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Put this under a friendly creature. After a creature attacks, it takes damage equal to this creatures attack. Whenever your \"Cerebral Bloodstorm\" deals damage, increase it by 2.",
+		"Cost": "1"
+	},
+	"697": {
+		"Name": "Woad Mobile Apartment",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Woad_Mobile_Apartment.webp",
+		"Card Type": "Building",
+		"Landscape": "Blue Plains",
+		"Ability": "FLOOP >>> Discard 5-X cards where X is the number of creatures your opponent controls. If you do, move one of your opponents creatures with the lowest cost onto your landscape in this lane (if its empty.) (Once per turn.)",
+		"Cost": "1"
+	},
+	"698": {
+		"Name": "Gnome Snot Manufacturing Facility",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Gnome_Snot_Manufacturing_Facility.webp",
+		"Card Type": "Building",
+		"Landscape": "Useless Swamp",
+		"Ability": "When you would spend an Action to draw a card, draw an additional card. (While your hand has less cards than your opponents, reduce the cost to play this building by 1 for every additional card.)",
+		"Cost": "3"
+	},
+	"699": {
+		"Name": "Spear-O-Mint-Lings",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Spear-O-Mint-Lings.webp",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "FLOOP >>> Freeze your landscape in this lane. If your opponent has a cretaure in this lane, you may freeze their landscape instead.",
+		"Cost": "0",
+		"Attack": "1",
+		"Defense": "3"
+	},
+	"700": {
+		"Name": "Lookout! Tower!",
+		"ImageURL": "https://www.carddweeb.com/CardImages/custom/Lookout_Tower.webp",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Destroy a building you control. Deal its cost to your opponent (Limit: 4) or double its cost to Target Creature.",
+		"Cost": "0"
+	},
+	"701": {
+		"Name": "Ancient Magic Pharaoh Dragon",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ancient_Magic_Pharaoh_Dragon.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When Ancient Magic Pharaoh Dragon enters or leaves play, shuffle your discard pile and swap it with your deck.",
+		"Cost": "2",
+		"Attack": "6",
+		"Defense": "6"
+	},
+	"702": {
+		"Name": "Arctic Purge",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Arctic_Purge.png",
+		"Card Type": "Spell",
+		"Landscape": "IcyLands",
+		"Ability": "Draw 2 cards. You may remove a non-damage token from a Creature or Landscape. If you do, your opponent discards a card.",
+		"Cost": "1"
+	},
+	"703": {
+		"Name": "Ascension Silo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ascension_Silo.png",
+		"Card Type": "Building",
+		"Landscape": "Cornfield",
+		"Ability": "Once per turn, when your Creature in this Lane leaves play, draw 1 card.",
+		"Cost": "1"
+	},
+	"704": {
+		"Name": "Bog Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bog_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Bog Eyesnek enters play, deal 1 damage to target opponent and heal 1 HP for each Creature in play with \"Eyesnek\" in its name.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "9"
+	},
+	"705": {
+		"Name": "Brainblades",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Brainblades.png",
+		"Card Type": "Spell",
+		"Landscape": "Blue Plains",
+		"Ability": "Put anon target Creature. Give it an additionalfor each other card in your hand.",
+		"Cost": "2"
+	},
+	"706": {
+		"Name": "Chillwave",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Chillwave.png",
+		"Card Type": "Spell",
+		"Landscape": "IcyLands",
+		"Ability": "Deal 1 damage to each opposing Creature for each non-damage token on that Creature. Chillwave deals double damage to Creatures on frozen Landscapes.",
+		"Cost": "0"
+	},
+	"707": {
+		"Name": "Cob Keep",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cob_Keep.png",
+		"Card Type": "Building",
+		"Landscape": "Cornfield",
+		"Ability": "Cob Keep is free to play if any player has 1 or fewer cards in hand. Your Creature in this Lane has +2 ATK and +2 DEF.",
+		"Cost": "2"
+	},
+	"708": {
+		"Name": "Cobnoblify",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cobnoblify.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Give a Creature Gobble this turn. (If that Creature is replaced this turn, put it under the Creature that replaced it. The new Creature gains its ATK, DEF, and any tokens on it, including damage.)",
+		"Cost": "1"
+	},
+	"709": {
+		"Name": "Killer Stilts",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Killer_Stilts.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Your Creatures with cost 1 have +1 ATK this turn. If you control 3 or more Creatures with cost 1, gain an action.",
+		"Cost": "1"
+	},
+	"710": {
+		"Name": "Kind-ling",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Kind-ling.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Your other LavaFlats Creatures have +1 ATK.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"711": {
+		"Name": "Marshuko, the Stalker",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Marshuko,_the_Stalker.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When you discard Marshuko, you may play it for free.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "2"
+	},
+	"712": {
+		"Name": "Puffy Penguin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Puffy_Penguin.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When you heal damage from Puffy Penguin, put anon each of your Creatures.",
+		"Cost": "2",
+		"Attack": "0",
+		"Defense": "10"
+	},
+	"713": {
+		"Name": "Stalk Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Stalk_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "When Stalk Eyesnek enters play, each Creature in play with \"Eyesnek\" in its name gets +1 ATK this turn for each Creature with \"Eyesnek\" in its name.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"714": {
+		"Name": "Valiant Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Valiant_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. When Valiant Armourdillo is played from your hand, destroy an opposing Creature in its Lane.",
+		"Cost": "5",
+		"Attack": "6",
+		"Defense": "14"
+	},
+	"715": {
+		"Name": "Vial of Vengeance",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Vial_of_Vengeance.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Move all damage from one of your Creatures onto target opposing Creature. Then return your Creature to your hand.",
+		"Cost": "1"
+	},
+	"716": {
+		"Name": "Waterfall of Swords",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Waterfall_of_Swords.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Deal damage to each opposing Creature equal to its ATK.",
+		"Cost": "2"
+	},
+	"717": {
+		"Name": "Scorchcrawler",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Scorchcrawler.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When an opposing burning Creature leaves play, you may burn target Creature once for each burn token on the Creature that left play.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "4"
+	},
+	"718": {
+		"Name": "Adored Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Adored_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. FLOOP >>> Reduce the cost of the next Creature you play by 1.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "4"
+	},
+	"719": {
+		"Name": "Wandering Workshop",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Wandering_Workshop.png",
+		"Card Type": "Building",
+		"Landscape": "Rainbow",
+		"Ability": "Floop >>> Put anon a Creature in this Lane. Then move Wandering Workshop below an adjacent Landscape if there is no Building there.",
+		"Cost": "1"
+	},
+	"720": {
+		"Name": "Galeblade Tornado",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Galeblade_Tornado.png",
+		"Card Type": "Spell",
+		"Landscape": "Blue Plains",
+		"Ability": "Return target friendly Creature to its owner's hand. Return target opposing Creature to its owner's hand.",
+		"Cost": "1"
+	},
+	"721": {
+		"Name": "Giant Red Salamander",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Giant_Red_Salamander.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Cost": "1",
+		"Attack": "4",
+		"Defense": "3"
+	},
+	"722": {
+		"Name": "Flameingo Ash Keeper",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Ash_Keeper.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Flameingo Ash Keeper enters play, you may discard a card to burn an opposing Creature.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"723": {
+		"Name": "Brilliant Flare",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Brilliant_Flare.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Draw 5 cards. At end of turn, discard all but 1 card.",
+		"Cost": "1"
+	},
+	"724": {
+		"Name": "Fortitude Fountain",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Fortitude_Fountain.png",
+		"Card Type": "Building",
+		"Landscape": "NiceLands",
+		"Ability": "While this card is in play, your maximum HP is increased by 5.",
+		"Cost": "1"
+	},
+	"725": {
+		"Name": "Prismatarchia",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Prismatarchia.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "Prismatarchia costs 1 less to play for each Creature of a different Landscape type you control.",
+		"Cost": "4",
+		"Attack": "4",
+		"Defense": "11"
+	},
+	"726": {
+		"Name": "Lava Lamprey Eels",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Lava_Lamprey_Eels.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Discard a card >>> Burn target Creature.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"727": {
+		"Name": "Firefly Lamplighter",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Firefly_Lamplighter.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "While you have 1 or fewer cards in hand, reveal the top card of your deck. You may play cards revealed in this way. These cards cost 1 additional action for each card that has been played in this way this turn.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "9"
+	},
+	"728": {
+		"Name": "Wasteland Wizard",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Wasteland_Wizard.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Wasteland Wizard enters play, discard a card.",
+		"Cost": "0",
+		"Attack": "2",
+		"Defense": "5"
+	},
+	"729": {
+		"Name": "Necromagus",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Necromagus.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Necromagus enters play, each player puts a Creature from their discard pile into their hand.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"730": {
+		"Name": "Surprised Shearer",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Surprised_Shearer.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "FLOOP >>> Deal 2 damage to another Creature. The controller of that Creature draws a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "5"
+	},
+	"731": {
+		"Name": "Duskama, the Betrayer",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Duskama,_the_Betrayer.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Duskama enters play, each player may discard 1 card to put anon one of their Creatures.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"732": {
+		"Name": "Fenunchaku, the Renegade",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Fenunchaku,_the_Renegade.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Fenunchaku enters play, discard your hand.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "10"
+	},
+	"733": {
+		"Name": "Unknown",
+		"ImageURL": null
+	},
+	"734": {
+		"Name": "Incinerate",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Incinerate.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Deal 2 damage to target Creature. If you have 1 or fewer cards in hand, deal 5 damage instead.",
+		"Cost": "1"
+	},
+	"735": {
+		"Name": "Triple Threat",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Triple_Threat.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Put 3on target Creature. Discard a card.",
+		"Cost": "1"
+	},
+	"736": {
+		"Name": "Unknown",
+		"ImageURL": null
+	},
+	"737": {
+		"Name": "Temple of the Torch",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Temple_of_the_Torch.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP >>> Burn a Creature in this Lane. Burn it again if you have 1 or fewer cards in hand.",
+		"Cost": "1"
+	},
+	"738": {
+		"Name": "Community Forge",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Community_Forge.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "All Creatures in this Lane have +2 ATK.",
+		"Cost": "1"
+	},
+	"739": {
+		"Name": "Phialis, the Caretaker",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Phialis,_the_Caretaker.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Phialis enters play, you may reveal any Spells from your hand. Target player heals 2 HP for each Spell revealed in this way.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "7"
+	},
+	"740": {
+		"Name": "Canopic, the Ceremonial",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Canopic,_the_Ceremonial.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Canopic enters play, put a Spell from your discard pile on top of your deck.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "4"
+	},
+	"741": {
+		"Name": "Axolotl",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Axolotl.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "FLOOP >>> Target player heals 3 HP.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "5"
+	},
+	"742": {
+		"Name": "Eye Viner",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Eye_Viner.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Eye Viner enters play, if you have 3 or more Spells in your discard pile, put 3on Eye Viner.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"743": {
+		"Name": "Heart Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Heart_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "Heal 5 damage from target Creature or have target player heal 5 HP. Then, if that Creature has no damage or that player is at max HP, draw a card.",
+		"Cost": "1"
+	},
+	"744": {
+		"Name": "Crystal Ball",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Crystal_Ball.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Name a card and reveal the top card of your deck. If it is the named card, play it for free.",
+		"Cost": "0"
+	},
+	"745": {
+		"Name": "Phoenix Talisman",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Phoenix_Talisman.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "When a friendly Creature is destroyed this turn, return it to its owner's hand.",
+		"Cost": "0"
+	},
+	"746": {
+		"Name": "Spellstorm",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Spellstorm.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Deal 2 damage to each opposing Creature. Discard the top 3 cards of your deck and gain 1 action for each Spell discarded.",
+		"Cost": "2"
+	},
+	"747": {
+		"Name": "Spellfire Conduit",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Spellfire_Conduit.png",
+		"Card Type": "Building",
+		"Landscape": "SandyLands",
+		"Ability": "When you play a Spell, deal 1 damage to each opposing Creature in this Lane. If there are no opposing Creatures in this Lane, deal 1 damage to target player instead.",
+		"Cost": "1"
+	},
+	"748": {
+		"Name": "Support Saguaro",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Support_Saguaro.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "Non-SandyLands Creatures you control have +1 ATK.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "6"
+	},
+	"749": {
+		"Name": "Prismatic War Beetle",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Prismatic_War_Beetle.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "For each non-SandyLands card you play, Prismatic War Beetle has +1 ATK this turn.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"750": {
+		"Name": "Spellbound Mystic",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Spellbound_Mystic.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "At the end of your turn, if you played 2 or more non-Blue Plains cards this turn, heal 2 damage from target Creature in an adjacent Lane.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"751": {
+		"Name": "Broog Rider",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Broog_Rider.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "When Broog Rider leaves play, put anon your Creatures with cost 1.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "3"
+	},
+	"752": {
+		"Name": "Lava Ants",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Lava_Ants.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "If you played 2 or more non-LavaFlats cards this turn, put anon Lava Ants.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"753": {
+		"Name": "Tectonic Tardigrade",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Tectonic_Tardigrade.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "If you played 2 or more non-LavaFlats cards this turn, Tectonic Tardigrade takes no damage from opposing Creatures this turn.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "3"
+	},
+	"754": {
+		"Name": "Clampire, Sanguine Shell",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Clampire,_Sanguine_Shell.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Clampire attacks, heal 1 damage from a friendly Creature.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "5"
+	},
+	"755": {
+		"Name": "Carrier Crab",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Carrier_Crab.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Carrier Crab enters play, you may play a card with cost 1 for free.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "8"
+	},
+	"756": {
+		"Name": "Chameleon",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Chameleon.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When you play Chameleon, choose its Landscape type.",
+		"Cost": "0",
+		"Attack": "2",
+		"Defense": "2"
+	},
+	"757": {
+		"Name": "Sand Synergy",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Sand_Synergy.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Draw a card for each Creature of a different Landscape type in play.",
+		"Cost": "1"
+	},
+	"758": {
+		"Name": "Cyclone",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cyclone.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Deal 4 damage to all Creatures that do not cost 1.",
+		"Cost": "1"
+	},
+	"759": {
+		"Name": "Grim Exchange",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Grim_Exchange.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Destroy a Creature you control, then reveal the top card of another player's deck. It loses its Landscape type and becomes a Rainbow card. You may play it for free.",
+		"Cost": "0"
+	},
+	"760": {
+		"Name": "Camp Kernel",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Camp_Kernel.png",
+		"Card Type": "Building",
+		"Landscape": "Cornfield",
+		"Ability": "Your Creatures with cost 1 in this Lane have +1 ATK and +1 DEF.",
+		"Cost": "1"
+	},
+	"761": {
+		"Name": "Pepper Palace",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Pepper_Palace.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "If you played 2 or more non-LavaFlats cards this turn, friendly Creatures in this Lane have +2 ATK.",
+		"Cost": "1"
+	},
+	"762": {
+		"Name": "Mudpie Zombies",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Mudpie_Zombies.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When Mudpie Zombies enters play, each player discards a card, then draws a card.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "9"
+	},
+	"763": {
+		"Name": "Night Owl",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Night_Owl.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "Night Owl has -1 ATK for each card in other players' hands.",
+		"Cost": "1",
+		"Attack": "6",
+		"Defense": "5"
+	},
+	"764": {
+		"Name": "Pit Python",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Pit_Python.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "Pit Python has +2 ATK for every 5 cards in an opponent's discard pile.",
+		"Cost": "2",
+		"Attack": "2",
+		"Defense": "12"
+	},
+	"765": {
+		"Name": "Rotroot Rooter",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Rotroot_Rooter.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "If Rotroot Rooter damages an opponent, they must discard a Creature or reveal a hand with none.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "8"
+	},
+	"766": {
+		"Name": "Filthflinger",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Filthflinger.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "When another player discards a card from their hand, put anon Filthflinger",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "7"
+	},
+	"767": {
+		"Name": "Coldclaw Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Coldclaw_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When Coldclaw Avalancheetah enters play, freeze an opponent's Landscape. When a frozen token is removed from any Landscape, heal all damage from Coldclaw Avalancheetah.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "10"
+	},
+	"768": {
+		"Name": "Lambpire, Fanged Fluff",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Lambpire,_Fanged_Fluff.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "After combat, heal 1 damage from Lambpire.",
+		"Cost": "0",
+		"Attack": "1",
+		"Defense": "4"
+	},
+	"769": {
+		"Name": "Kangaroo Pat",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Kangaroo_Pat.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Kangaroo Pat damages an opponent, put anon a friendly Creature.",
+		"Cost": "0",
+		"Attack": "1",
+		"Defense": "3"
+	},
+	"770": {
+		"Name": "Mire Madness",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Mire_Madness.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Deal 4 damage to an opposing Creature or player. Heal up to 4 damage from target friendly Creature or player. Target opponent discards a card. Draw a card.",
+		"Cost": "2"
+	},
+	"771": {
+		"Name": "Whiteout",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Whiteout.png",
+		"Card Type": "Spell",
+		"Landscape": "IcyLands",
+		"Ability": "Each player reveals their hand and discards all cards with cost 1. Then each player draws 2 cards.",
+		"Cost": "1"
+	},
+	"772": {
+		"Name": "Glacial Drift",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Glacial_Drift.png",
+		"Card Type": "Spell",
+		"Landscape": "IcyLands",
+		"Ability": "Move target friendly Creature to an empty Lane. Freeze an opposing Landscape in that Lane.",
+		"Cost": "1"
+	},
+	"773": {
+		"Name": "Wraithwood Lodge",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Wraithwood_Lodge.png",
+		"Card Type": "Building",
+		"Landscape": "Useless Swamp",
+		"Ability": "When a Creature enters this Lane, its controller discards a card. If they do, they draw a card.",
+		"Cost": "0"
+	},
+	"774": {
+		"Name": "Scrappy's Salvage Bog",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Scrappy's_Salvage_Bog.png",
+		"Card Type": "Building",
+		"Landscape": "Useless Swamp",
+		"Ability": "The first time another player discards a card from their hand each turn, put anon a friendly Creature in this Lane.",
+		"Cost": "1"
+	},
+	"775": {
+		"Name": "Cool Cone Cafe",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cool_Cone_Cafe.png",
+		"Card Type": "Building",
+		"Landscape": "IcyLands",
+		"Ability": "When Cool Cone Cafe enters play, freeze the opposing Landscape in this Lane. Opponents must discard an additional card to remove frozen tokens in this Lane.",
+		"Cost": "1"
+	},
+	"776": {
+		"Name": "Phoenix Pyre",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Phoenix_Pyre.png",
+		"Card Type": "Building",
+		"Landscape": "Rainbow",
+		"Ability": "When a Creature in this Lane is destroyed, you may destroy Phoenix Pyre to bring that Creature back into play in the same Lane.",
+		"Cost": "1"
+	},
+	"777": {
+		"Name": "Flameingo Ignisbeak",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Ignisbeak.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Flameingo Ignisbeak attacks, if an opposing Creature in this Lane is burning, Flameingo Ignisbeak targets your opponent instead of the opposing Creature.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "10"
+	},
+	"778": {
+		"Name": "Flameingo Blazeling",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Flameingo_Blazeling.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Flameingo Blazeling damages a Creature, burn that Creature if it wasn't burning.",
+		"Cost": "0",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"779": {
+		"Name": "Heat Leapers",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Heat_Leapers.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When you burn a Creature, put anon Heat Leapers.",
+		"Cost": "2",
+		"Attack": "2",
+		"Defense": "10"
+	},
+	"780": {
+		"Name": "Hot Wheel",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hot_Wheel.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Pay 1 action >>> Draw 1 card and reveal it. Then, burn a Creature in Hot Wheel's Lane as many times as the cost of the revealed card.",
+		"Cost": "2",
+		"Attack": "1",
+		"Defense": "12"
+	},
+	"781": {
+		"Name": "Furious Phoenix",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Furious_Phoenix.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "Furious Phoenis has +1 ATK for each burn token on Creatures.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"782": {
+		"Name": "Fire Dog",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Fire_Dog.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Fire Dog enters play, you may deal damage to target Creature equal to the number of burn tokens on all Creatures.",
+		"Cost": "0",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"783": {
+		"Name": "Molten Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Molten_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Burn target Creature. Deal 2 damage to each opposing burning Creature.",
+		"Cost": "1"
+	},
+	"784": {
+		"Name": "Hampire, Pig of the Night",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hampire,_Pig_of_the_Night.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Hampire attacks, you heal HP equal to it's ATK.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "1"
+	},
+	"785": {
+		"Name": "Volcanic Vitality",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Volcanic_Vitality.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Burn each opposing Creature once for each burn token they have on them.",
+		"Cost": "2"
+	},
+	"786": {
+		"Name": "Scorchstone Gateway",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Scorchstone_Gateway.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP and pay 1 action >>> Burn target Creature in this Lane.",
+		"Cost": "0"
+	},
+	"787": {
+		"Name": "Hot Huts",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hot_Huts.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "When you burn an opposing Creature, deal 1 additional damage to it.",
+		"Cost": "1"
+	},
+	"788": {
+		"Name": "Pyrovent Fortress",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Pyrovent_Fortress.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP and remove a burn token from a Creature >>> Deal 3 damage to that Creature.",
+		"Cost": "1"
+	},
+	"789": {
+		"Name": "Eloquent Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Eloquent_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Eloquent Armourdillo replaces a Creature, put anon it.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "8"
+	},
+	"790": {
+		"Name": "Gallant Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Gallant_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Gallant Armourdillo replaces a Creature, play the top card of your deck for free.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "9"
+	},
+	"791": {
+		"Name": "Rhinoceros",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Rhinoceros.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "If Rhinoceros is the first card you played this turn, put anon it.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "3"
+	},
+	"792": {
+		"Name": "Gracious Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Gracious_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. When an opposing Creature attacks, you may choose to have it attack Gracious Armourdillo instead.",
+		"Cost": "4",
+		"Attack": "4",
+		"Defense": "16"
+	},
+	"793": {
+		"Name": "Genteel Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Genteel_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. When an opposing Creature attacks, you may choose to have it attack Genteel Armourdillo instead.",
+		"Cost": "3",
+		"Attack": "3",
+		"Defense": "14"
+	},
+	"794": {
+		"Name": "Darling Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Darling_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. FLOOP >>> Place anon target friendly Creature.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "3"
+	},
+	"795": {
+		"Name": "Precious Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Precious_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. FLOOP >>> Either heal 2 damage or remove 1 non-damage token from target friendly Creature.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "3"
+	},
+	"796": {
+		"Name": "Unknown",
+		"ImageURL": null
+	},
+	"797": {
+		"Name": "Champion's Emblem",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Champion's_Emblem.png",
+		"Card Type": "Spell",
+		"Landscape": "NiceLands",
+		"Ability": "Heal 3 damage from target Creature. If that Creature still has damage on it, gain 1 action.",
+		"Cost": "1"
+	},
+	"798": {
+		"Name": "Ragepop Totem",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ragepop_Totem.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Target friendly Creature has +2 ATK this turn. If that Creature defeats another Creature this turn, draw a card.",
+		"Cost": "0"
+	},
+	"799": {
+		"Name": "Kernel Renewal",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Kernel_Renewal.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Deal damage to target Creature equal to the damage on one of your Creatures.",
+		"Cost": "1"
+	},
+	"800": {
+		"Name": "Sacred Scythe",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Sacred_Scythe.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Destroy target Creature. Its owner heals 5 HP.",
+		"Cost": "1"
+	},
+	"801": {
+		"Name": "Mossglen Retreat",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Mossglen_Retreat.png",
+		"Card Type": "Building",
+		"Landscape": "NiceLands",
+		"Ability": "At the start of your turn, you may remove 1 non-damage token from a friendly Creature or a Landscape you control.",
+		"Cost": "1"
+	},
+	"802": {
+		"Name": "Polished Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Polished_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. Your other Creatures with Whump cost 1 less to play.",
+		"Cost": "4",
+		"Attack": "4",
+		"Defense": "13"
+	},
+	"803": {
+		"Name": "Ethan the Ace",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ethan_the_Ace.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "If you played 2 or more Creatures with cost 1 this turn, Ethan the Ace is free to play.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "4"
+	},
+	"804": {
+		"Name": "Gentle Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Gentle_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. Gentle Cobnoblin cannot attack (but may defend).",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "5"
+	},
+	"805": {
+		"Name": "Kernel King Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Kernel_King_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "When Kernel King Cobnoblin is replaced, move it to an empty friendly Lane instead.",
+		"Cost": "2",
+		"Attack": "2",
+		"Defense": "10"
+	},
+	"806": {
+		"Name": "Hostile Cobnoblin",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hostile_Cobnoblin.png",
+		"Card Type": "Creature",
+		"Landscape": "Cornfield",
+		"Ability": "Gobble. When you would replace Hostile Cobnoblin, the Creature replacing it first deals damage equal to its ATK to the opposing Creature in its Lane.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "5"
+	},
+	"807": {
+		"Name": "Energy Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Energy_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Gain 2 actions on your next turn.",
+		"Cost": "1"
+	},
+	"808": {
+		"Name": "Buttering Ram",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Buttering_Ram.png",
+		"Card Type": "Spell",
+		"Landscape": "Cornfield",
+		"Ability": "Exhaust any number of Creatures you control. Deal 2 damage to target opponent for each Creature you exhausted this way.",
+		"Cost": "1"
+	},
+	"809": {
+		"Name": "Ghost Sorceress",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ghostly_Sorceress.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "After you play your first Spell each turn, draw 2 cards, then discard 1 card.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "7"
+	},
+	"810": {
+		"Name": "Cerulean Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cerulean_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "When Cerulean Eyesnek enters play, each player draws a card for each Creature they control with \"Eyesnek\" in its name.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "3"
+	},
+	"811": {
+		"Name": "Woadic Blazetrail Sprinter",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Woadic_Blazetrail_Sprinter.png",
+		"Card Type": "Creature",
+		"Landscape": "Blue Plains",
+		"Ability": "Play Woadic Blazetrail Sprinter only in your rightmost Lane. FLOOP >>> Move this Creature 1 Lane to the left if it is empty. If you do, put anon it.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "10"
+	},
+	"812": {
+		"Name": "Eye See All",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Eye_See_All.png",
+		"Card Type": "Spell",
+		"Landscape": "Blue Plains",
+		"Ability": "Reveal the top 5 cards of your deck. Put a card of each Landscape type into your hand and discard the rest.",
+		"Cost": "1"
+	},
+	"813": {
+		"Name": "Relocation Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Relocation_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "Blue Plains",
+		"Ability": "Ready a Building you control. You may move it below any friendly Landscape with no Building there.",
+		"Cost": "0"
+	},
+	"814": {
+		"Name": "Combatarium",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Combatarium.png",
+		"Card Type": "Building",
+		"Landscape": "Blue Plains",
+		"Ability": "FLOOP >>> Ready a Creature in this Lane, then deal 1 damage to it.",
+		"Cost": "1"
+	},
+	"815": {
+		"Name": "Skullshade Shanty",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Skullshade_Shanty.png",
+		"Card Type": "Building",
+		"Landscape": "SandyLands",
+		"Ability": "When an opposing Creature in this Lane deals damage to you, deal that much damage to the opposing Creature.",
+		"Cost": "2"
+	},
+	"816": {
+		"Name": "Beach Worm",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Beach_Worm.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When Beach Worm enters play, if you control Creatures of 4 different Landscape types, you may destroy target opposing Creature.",
+		"Cost": "1",
+		"Attack": "4",
+		"Defense": "4"
+	},
+	"817": {
+		"Name": "Living Desert",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Living_Desert.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "You may not play Creatures. When an opposing Creature attacks, you may choose to have it attack Living Desert instead.",
+		"Cost": "2",
+		"Attack": "1",
+		"Defense": "14"
+	},
+	"818": {
+		"Name": "Psychedelic Rock Gecko",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Psychedelic_Rock_Gecko.png",
+		"Card Type": "Creature",
+		"Landscape": "SandyLands",
+		"Ability": "When another Creature enters play, discard the top card of your deck.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "7"
+	},
+	"819": {
+		"Name": "Desert Duke Out",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Desert_Duke_Out.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Choose a Lane. Creatures in that Lane attack each other until one is defeated.",
+		"Cost": "1"
+	},
+	"820": {
+		"Name": "Heat Stroke",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Heat_Stroke.png",
+		"Card Type": "Spell",
+		"Landscape": "SandyLands",
+		"Ability": "Starting with you, each player chooses a different Creature and deals 4 damage to it.",
+		"Cost": "1"
+	},
+	"821": {
+		"Name": "Hot Box",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hot_Box.png",
+		"Card Type": "Building",
+		"Landscape": "SandyLands",
+		"Ability": "When an opposing Creature leaves this Lane, deal 2 damage to that Creature's owner and draw a card.",
+		"Cost": "1"
+	},
+	"822": {
+		"Name": "Brew Haha",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Brew_Haha.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Brew Haha enters play, search your deck for a card with \"Potion\" in its name. Play it for free and shuffle your deck.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "3"
+	},
+	"823": {
+		"Name": "Hillside Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hillside_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "When Hillside Eyesnek enters play, heal 1 damage from each friendly Creature for each Creature in play with \"Eyesnek\" in its name.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "4"
+	},
+	"824": {
+		"Name": "Dr. Pieclops",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Dr._Pieclops.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Each time you play a Spell, gain 2 HP. If you are already at maximum HP, deal 2 damage to target opponent.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "8"
+	},
+	"825": {
+		"Name": "Courtly Armourdillo",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Courtly_Armourdillo.png",
+		"Card Type": "Creature",
+		"Landscape": "NiceLands",
+		"Ability": "Whump. When Courtly Armourdillo enters play from your hand, deal 8 damage to each other Creature.",
+		"Cost": "6",
+		"Attack": "8",
+		"Defense": "16"
+	},
+	"826": {
+		"Name": "Winter Weaver",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Winter_Weaver.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "FLOOP >>> Draw a card, then each player with a frozen Landscape discards a card.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "11"
+	},
+	"827": {
+		"Name": "Snowblind Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Snowblind_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When Snowblind Eyesnek enters play, freeze a Landscape for each Creature you control with \"Eyesnek\" in its name.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "4"
+	},
+	"828": {
+		"Name": "Snowbound Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Snowbound_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "At the end of your turn, if you played 2 non-Icylands cards this turn, you may freeze a Landscape.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"829": {
+		"Name": "Iceshadow Avalancheetah",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Iceshadow_Avalancheetah.png",
+		"Card Type": "Creature",
+		"Landscape": "IcyLands",
+		"Ability": "When another player discards a card from their hand, you may deal 2 damage to target Creature.",
+		"Cost": "2",
+		"Attack": "4",
+		"Defense": "10"
+	},
+	"830": {
+		"Name": "Frostfire Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Frostfire_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "IcyLands",
+		"Ability": "Burn target Creature. Put anon another Creature. Freeze a Landscape.",
+		"Cost": "1"
+	},
+	"831": {
+		"Name": "Snowmaker Station",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Snowmaker_Station.png",
+		"Card Type": "Building",
+		"Landscape": "IcyLands",
+		"Ability": "FLOOP and remove a frozen token from any Landscape >>> Freeze a different Landscape and draw a card.",
+		"Cost": "1"
+	},
+	"832": {
+		"Name": "Bayou Boa",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Bayou_Boa.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "Destroy a Creature you control >>> Put 2on Bayou Boa and heal 2 damage from it.",
+		"Cost": "2",
+		"Attack": "2",
+		"Defense": "12"
+	},
+	"833": {
+		"Name": "Onyx Merlock",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Onyx_Merlock.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "At the end of your turn, discard the top 2 cards of target player's deck.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "7"
+	},
+	"834": {
+		"Name": "Foulwater Reviver",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Foulwater_Reviver.png",
+		"Card Type": "Creature",
+		"Landscape": "Useless Swamp",
+		"Ability": "FLOOP >>> Play a Creature with cost 1 in your discard pile for free.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "5"
+	},
+	"835": {
+		"Name": "Absorb Aether",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Absorb_Aether.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Deal 3 damage to a Creature and heal 3 HP. Repeat this effect for each player with 1 or fewer cards in hand.",
+		"Cost": "1"
+	},
+	"836": {
+		"Name": "Swamp Gas",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Swamp_Gas.png",
+		"Card Type": "Spell",
+		"Landscape": "Useless Swamp",
+		"Ability": "Deal 3 damage to target Creature. If it is destroyed, its owner discards a card.",
+		"Cost": "1"
+	},
+	"837": {
+		"Name": "Sky Burial Tower",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Sky_Burial_Tower.png",
+		"Card Type": "Building",
+		"Landscape": "Useless Swamp",
+		"Ability": "FLOOP >>> If any opponent has 1 or fewer cards in their hand, gain 1 action.",
+		"Cost": "2"
+	},
+	"838": {
+		"Name": "Ziggurat of the Darned",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ziggurat_of_the_Darned.png",
+		"Card Type": "Building",
+		"Landscape": "Useless Swamp",
+		"Ability": "Opposing Creatures in this Lane have -2 ATK.",
+		"Cost": "1"
+	},
+	"839": {
+		"Name": "Molten Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Molten_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Molten Eyesnek enters play, put anon each Creature with \"Eyesnek\" in its name.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "6"
+	},
+	"840": {
+		"Name": "Cinder Construct",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Cinder_Construct.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "While you have 1 or fewer cards in your hand, damage dealt to Cinder Construct is reduced by half (rounded up).",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "5"
+	},
+	"841": {
+		"Name": "Scorchpion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Scorchpion.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP >>> Burn Scorchpion. You may play a Spell with cost 1 from your hand for free.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "7"
+	},
+	"842": {
+		"Name": "Conflagration",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Conflagration.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Deal 1 damage to each opposing Creature for each burn token on that Creature. Draw a card.",
+		"Cost": "1"
+	},
+	"843": {
+		"Name": "Basalt Behemoth",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Basalt_Behemoth.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP >>> Burn an opposing Creature, then deal 1 damage to that Creature for each burn token on Creatures in play.",
+		"Cost": "2",
+		"Attack": "1",
+		"Defense": "12"
+	},
+	"844": {
+		"Name": "Erupting Colossus",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Erupting_Colossus.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "While you have 1 or fewer cards in your hand, double the damage dealt to all Creatures by any source.",
+		"Cost": "2",
+		"Attack": "3",
+		"Defense": "10"
+	},
+	"845": {
+		"Name": "Firestorm of Phoenixes",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Firestorm_of_Phoenixes.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Firestorm of Phoenixes enters play, if you have 1 or fewer cards in your hand, burn each opposing Creature.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "5"
+	},
+	"846": {
+		"Name": "Ashcloud",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Ashcloud.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Deal 2 damage to target opposing Creature and each opposing Creature in adjacent Lanes.",
+		"Cost": "1"
+	},
+	"847": {
+		"Name": "Pyre Dance",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Pyre_Dance.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Put a Creature from your discard pile into play, then add damage to it until it has 1 DEF remaining.",
+		"Cost": "1"
+	},
+	"848": {
+		"Name": "Magma Canals",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Magma_Canals.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "FLOOP >>> Deal 1 damage to opposing Creatures in this Lane for each burn token on Creatures in other Lanes.",
+		"Cost": "1"
+	},
+	"849": {
+		"Name": "Pyrovent Sentinel",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Pyrovent_Sentinel.png",
+		"Card Type": "Creature",
+		"Landscape": "LavaFlats",
+		"Ability": "When Pyrovent Sentinel leaves play, deal 3 damage to an opposing Creature.",
+		"Cost": "1",
+		"Attack": "3",
+		"Defense": "1"
+	},
+	"850": {
+		"Name": "Form of the Phoenix",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Form_of_the_Phoenix.png",
+		"Card Type": "Spell",
+		"Landscape": "LavaFlats",
+		"Ability": "Put 2 Creatures from your discard pile into play. At the end of your turn, destroy those Creatures.",
+		"Cost": "2"
+	},
+	"851": {
+		"Name": "Lavafall Retreat",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Lavafall_Retreat.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "When Lavafall Retreat enters play, burn a Creature in this Lane. Burn any Creature that enters this Lane.",
+		"Cost": "0"
+	},
+	"852": {
+		"Name": "Geyser Cannon",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Geyser_Cannon.png",
+		"Card Type": "Building",
+		"Landscape": "LavaFlats",
+		"Ability": "While you have 1 or fewer cards in your hand, double the ATK of friendly Creatures in this Lane.",
+		"Cost": "1"
+	},
+	"853": {
+		"Name": "Motley Otters",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Motley_Otters.webp",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Motley Otters enters play, put anon it for each different Landscape type among Creatures you control.",
+		"Cost": "1",
+		"Attack": "0",
+		"Defense": "6"
+	},
+	"854": {
+		"Name": "Dazzling Eyesnek",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Dazzling_Eyesnek.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Cost": "0",
+		"Attack": "1",
+		"Defense": "8"
+	},
+	"855": {
+		"Name": "Honey Badger",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Honey_Badger.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "When Honey Badger enters play, if you control 3 other Rainbow Creatures,  put 4on Honey Badger.  +1 DEF for eachon Honey Badger.",
+		"Cost": "1",
+		"Attack": "1",
+		"Defense": "4"
+	},
+	"856": {
+		"Name": "Hexbreeze Drifter",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Hexbreeze_Drifter.png",
+		"Card Type": "Creature",
+		"Landscape": "Rainbow",
+		"Ability": "FLOOP >>> Move a non-damage token from any Creature or Landscape to another Creature or Landscape.",
+		"Cost": "1",
+		"Attack": "2",
+		"Defense": "6"
+	},
+	"857": {
+		"Name": "Friendship Potion",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Friendship_Potion.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Heal 3 damage from target Creature you control and 3 damage from target Creature you do not control.",
+		"Cost": "0"
+	},
+	"858": {
+		"Name": "Shock Box",
+		"ImageURL": "https://www.carddweeb.com/CardImages/regular/Shock_Box.png",
+		"Card Type": "Spell",
+		"Landscape": "Rainbow",
+		"Ability": "Each player may choose up to 3 cards from their discard pile to shuffle into their deck. Heal 1 HP for each card chosen.",
+		"Cost": "0"
 	}
 }

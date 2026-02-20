@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dx3kglvyby8ra" path="res://Assets/Sounds/darkness_lich.mp3" id="8_qfbpw"]
 [ext_resource type="AudioStream" uid="uid://0daxgcyao1ox" path="res://Assets/Sounds/clearsfx2.mp3" id="9_fkw8n"]
 
-[node name="Audio" type="Node" unique_id=1384660115]
+[node name="Audio" type="Node" unique_id=501129932]
 script = ExtResource("1_etkin")
 audio_type = "Board"
 

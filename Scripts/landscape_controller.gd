@@ -13,9 +13,12 @@ extends Area2D
 @export var designated_card_type: String = "Creature"
 
 var frozen_enabled: bool = false
-const LANDSCAPE_PATH: String = "res://Assets/Landscapes/"
+const LANDSCAPE_PATH: String = "res://Assets/Cards/"
 
 func _ready() -> void:
+	if not GameManager.cw2025expansion_enabled:
+		change_landscape.remove_item(7)
+	
 	if designated_card_type == "Building":
 		remove_child(landscape_image)
 		remove_child(spell_image)
@@ -213,13 +216,31 @@ func place_spell_logic(player_num: int, selected_card: Dictionary) -> bool:
 	return false
 
 func update_landscape_image(_name: String):
-	if _name == "Facedown":
-		_name = "card_back"
+	#if landscape_type == _name:
+	#	print("Same landscape!")
+	#	return
+	#print(landscape_type)
+	#print(_name)
 	#var ran_num: int  = randi() % 4 + 1
-	#var full_path: String = LANDSCAPE_PATH + "" + _name + "" + str(ran_num) + ".png"
-	#print(full_path)
-	#var tex: Texture2D = load(full_path)
-	var tex: Texture2D = GameManager.db.cards.get(_name)
+	#var tex: Texture2D
+	#match (_name):
+	#	"Facedown":
+	#		tex = GameManager.db.cards.get("card_back")
+	#	"Blue Plains":
+	#		tex = GameManager.db.cards.get("Blue_Plains" + str(ran_num))
+	#	"Cornfield":
+	#		tex = GameManager.db.cards.get("Cornfield" + str(ran_num))
+	#	"SandyLands":
+	#		tex = GameManager.db.cards.get("SandyLands" + str(ran_num))
+	#	"NiceLands":
+	#		tex = GameManager.db.cards.get("NiceLands" + str(ran_num))
+	#	"IcyLands":
+	#		tex = GameManager.db.cards.get("IcyLands" + str(ran_num))
+	#	"Useless Swamp":
+	#		tex = GameManager.db.cards.get("Useless_Swamp" + str(ran_num))
+	var tex: Texture2D = GameManager.db.cards.get(_name + " 1")
+	if _name == "Facedown":
+		tex = GameManager.db.cards.get(_name)
 	if tex == null:
 		print("error printing " + _name)
 		return

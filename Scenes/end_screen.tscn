@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chmuw5t70mtnp"]
 
 [ext_resource type="Script" uid="uid://bm3mt0edneprk" path="res://Scripts/end_screen.gd" id="1_pmjk2"]
-[ext_resource type="Texture2D" uid="uid://bpao4ntuurwnr" path="res://Assets/kingdom.webp" id="2_d75mr"]
+[ext_resource type="Texture2D" uid="uid://y3pvc2o2dqa" path="res://Assets/win.jpg" id="2_gdxnu"]
 [ext_resource type="Texture2D" uid="uid://vt80ydya0cok" path="res://Assets/dead_world.webp" id="3_be1gp"]
 [ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="4_kaxt3"]
 
@@ -10,12 +10,13 @@ script = ExtResource("1_pmjk2")
 
 [node name="WinImage" type="Sprite2D" parent="." unique_id=1189197123]
 visible = false
+modulate = Color(0.3854925, 0.38549247, 0.38549247, 1)
 position = Vector2(800, 460.99997)
-scale = Vector2(1.2776315, 1.2776315)
-texture = ExtResource("2_d75mr")
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_gdxnu")
 
 [node name="LoseImage" type="Sprite2D" parent="." unique_id=847637608]
-visible = false
+modulate = Color(0.5890956, 0.5890956, 0.5890956, 1)
 position = Vector2(803, 454)
 scale = Vector2(0.8823709, 0.8823708)
 texture = ExtResource("3_be1gp")

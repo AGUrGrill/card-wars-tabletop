@@ -4,12 +4,23 @@ const TEMP_IMG = preload("uid://bkuqpel75myiu")
 
 @onready var card_image: Sprite2D = $Image
 @onready var corpse_image: Sprite2D = $CorpseImage
-@onready var attack_node: Control = $Attack
+
 @onready var defense_node: Control = $Defense
 @onready var floop_button: Button = $FloopButton
 @onready var card: Area2D = $"."
-@onready var attack_label: Label = $Attack/AttackLabel
+# BASE ATK
+@onready var normal_attack_node: Control = $NormalAttack
+@onready var normal_attack_label: Label = $NormalAttack/AttackLabel
+# ATK TOKEN
+@onready var token_attack_node: Control = $TokenAttack
+@onready var token_attack_label: Label = $TokenAttack/AttackLabel
+# BURN
+@onready var burn_node: Control = $Burn
+@onready var burn_label: Label = $Burn/BurnLabel
+
+# DEF 
 @onready var defense_label: Label = $Defense/DefenseLabel
+# OTHERS
 @onready var steal: Button = $Steal
 @onready var flip: Button = $Flip
 @onready var landscape = $".." # Can be hand or landscape so leave vague
@@ -17,14 +28,15 @@ const TEMP_IMG = preload("uid://bkuqpel75myiu")
 @onready var death_timer: Timer = $DeathTimer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-
 # CARD DATA
 var card_landscape: String = ""
 var card_type: String = ""
 var card_name: String = ""
 var card_description: String = ""
 var card_cost: int = 0
-var card_attack: int = 0
+var card_normal_attack: int = 0
+var card_token_attack: int = 0
+var card_burn_amount: int = 0
 var card_defense: int = 0
 var is_flooped: bool = false
 var is_in_hand: bool = true
@@ -33,9 +45,12 @@ var card_owner: int
 var selection_banned: bool = false
 
 func _ready() -> void:
+	if not GameManager.cw2025expansion_enabled:
+		token_attack_node.visible = false
+		burn_node.visible = false
 	remove_card_data()
 
-func change_card_data(_landscape: String, type: String, _name: String, desc: String, cost: int, attack: int, defense: int, _is_flooped: bool):
+func change_card_data(_landscape: String, type: String, _name: String, desc: String, cost: int, normal_attack: int, token_attack: int, burn: int, defense: int, _is_flooped: bool):
 	if card_name != "tempname": # If card was already played and now replaced, send to discards
 		return
 	
@@ -52,8 +67,12 @@ func change_card_data(_landscape: String, type: String, _name: String, desc: Str
 	card_name = _name
 	card_description = desc
 	card_cost = cost
-	card_attack = attack
-	attack_label.text = str(card_attack)
+	card_normal_attack = normal_attack
+	card_token_attack = token_attack
+	card_burn_amount = burn
+	normal_attack_label.text = str(card_normal_attack)
+	token_attack_label.text = str(card_token_attack)
+	burn_label.text = str(card_burn_amount)
 	card_defense = defense
 	defense_label.text = str(card_defense)
 	card_owner = get_card_player_num()
@@ -80,30 +99,35 @@ func remove_card_data():
 	card_name = "tempname"
 	card_description = "tempdescription"
 	card_cost = 0
-	card_attack = 0
+	card_normal_attack = 0
+	card_token_attack = 0
+	card_burn_amount = 0
 	card_defense = 0
+	card_normal_attack = 0
+	card_token_attack = 0
 	if death_timer.time_left <= 0:
 		hide_card(true)
 
 func update_played_card_info_to_server():
-	GameManager.net_update_creature_in_landscape_array.rpc(get_card_player_num(), get_card_landscape_num(), card_type, card_attack, card_defense, is_flooped)
+	GameManager.net_update_creature_in_landscape_array.rpc(get_card_player_num(), get_card_landscape_num(), card_type, card_normal_attack, card_token_attack, card_burn_amount, card_defense, is_flooped)
 	GameManager.net_tell_clients_to_refresh_hand.rpc()
 	GameManager.net_tell_clients_to_refresh_stats.rpc()
 
 func hide_buttons(should_hide: bool, hide_floop: bool):
 	if should_hide:
-		attack_node.visible = false
+		normal_attack_node.visible = false
 		defense_node.visible = false
+		token_attack_node.visible = false
+		burn_node.visible = false
 		if hide_floop:
 			floop_button.visible = false
-		steal.visible = false
-		flip.visible = false
 	else:
-		attack_node.visible = true
+		normal_attack_node.visible = true
 		defense_node.visible = true
+		if GameManager.cw2025expansion_enabled:
+			token_attack_node.visible = true
+			burn_node.visible = true
 		floop_button.visible = true
-		steal.visible = true
-		flip.visible = true
 
 func hide_card(should_hide: bool):
 	hide_buttons(should_hide, should_hide)
@@ -146,13 +170,31 @@ func old_update_card_image(_name: String):
 	var texture: ImageTexture = ImageTexture.create_from_image(img)
 	card_image.texture = texture
 
-func update_card_attack(modifier: int):
-	var temp_attack = card_attack + modifier
-	if temp_attack >= 0:
-		card_attack = temp_attack
+func update_card_normal_attack(modifier: int):
+	var temp_normal_attack = card_normal_attack + modifier
+	if temp_normal_attack >= 0:
+		card_normal_attack = temp_normal_attack
 	else:
-		card_attack = 0
-	attack_label.text = str(card_attack)
+		card_normal_attack = 0
+	normal_attack_label.text = str(card_normal_attack)
+	update_played_card_info_to_server()
+
+func update_card_token_attack(modifier: int):
+	var temp_token_attack = card_token_attack + modifier
+	if temp_token_attack >= 0:
+		card_token_attack = temp_token_attack
+	else:
+		card_token_attack = 0
+	token_attack_label.text = str(card_token_attack)
+	update_played_card_info_to_server()
+
+func update_card_burn(modifier: int):
+	var temp_burn_amt: int = card_burn_amount + modifier
+	if temp_burn_amt >= 0:
+		card_burn_amount = temp_burn_amt
+	else:
+		card_burn_amount = 0
+	burn_label.text = str(card_burn_amount)
 	update_played_card_info_to_server()
 
 func update_card_defense(modifier: int):
@@ -189,6 +231,8 @@ func get_card_data(is_base: bool) -> Dictionary:
 			"Ability": card_description,
 			"Cost": card_cost,
 			"Attack": card_base_attack,
+			"Token Attack": 0,
+			"Burn": 0,
 			"Defense": card_base_defense,
 			"Floop Status": is_flooped,
 			"Landscape Played": get_card_landscape_num(),
@@ -201,7 +245,9 @@ func get_card_data(is_base: bool) -> Dictionary:
 			"Landscape": card_landscape,
 			"Ability": card_description,
 			"Cost": card_cost,
-			"Attack": card_attack,
+			"Attack": card_normal_attack,
+			"Token Attack": card_token_attack,
+			"Burn": card_burn_amount,
 			"Defense": card_defense,
 			"Floop Status": is_flooped,
 			"Landscape Played": get_card_landscape_num(),
@@ -252,11 +298,23 @@ func reset_anim():
 	animation_player.play("RESET")
 
 # BUTTONS
+func _on_base_attack_up_pressed() -> void:
+	update_card_normal_attack(1)
+
+func _on_base_attack_down_pressed() -> void:
+	update_card_normal_attack(-1)
+
 func _on_attack_up_pressed() -> void:
-	update_card_attack(1)
+	update_card_token_attack(1)
 
 func _on_attack_down_pressed() -> void:
-	update_card_attack(-1)
+	update_card_token_attack(-1)
+
+func _on_burn_up_pressed() -> void:
+	update_card_burn(1)
+
+func _on_burn_down_pressed() -> void:
+	update_card_burn(-1)
 
 func _on_defense_up_pressed() -> void:
 	update_card_defense(1)

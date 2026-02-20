@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://dbv8myvki8wy8" path="res://Scripts/card_controller.gd" id="1_eumee"]
 [ext_resource type="Texture2D" uid="uid://bkuqpel75myiu" path="res://Assets/Evil_Eye.png" id="2_e6po8"]
 [ext_resource type="Texture2D" uid="uid://8btsowtxmc67" path="res://Assets/atk_token.png" id="3_bnspj"]
+[ext_resource type="Texture2D" uid="uid://v285b4gx0t4i" path="res://Assets/damage_token.png" id="3_e6po8"]
 [ext_resource type="Texture2D" uid="uid://regtbfytaw8b" path="res://Assets/def_token.png" id="4_xnv4g"]
+[ext_resource type="Texture2D" uid="uid://dka6fnq11gobm" path="res://Assets/burn_token.png" id="5_bnspj"]
+[ext_resource type="Texture2D" uid="uid://dryvaaqefs0w1" path="res://Assets/dbs.png" id="5_xnv4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1i5pp"]
 size = Vector2(140, 210)
@@ -162,18 +165,18 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_1i5pp")
 metadata/_edit_lock_ = true
 
-[node name="Attack" type="Control" parent="." unique_id=770650257]
+[node name="NormalAttack" type="Control" parent="." unique_id=770650257]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 109.935
 offset_right = 109.935
 
-[node name="AttackIcon" type="Sprite2D" parent="Attack" unique_id=70507550]
+[node name="AttackIcon" type="Sprite2D" parent="NormalAttack" unique_id=70507550]
 position = Vector2(-162.07785, 6.4285717)
 scale = Vector2(0.015, 0.015)
-texture = ExtResource("3_bnspj")
+texture = ExtResource("3_e6po8")
 
-[node name="AttackUP" type="Button" parent="Attack" unique_id=1765787481]
+[node name="AttackUP" type="Button" parent="NormalAttack" unique_id=1765787481]
 layout_mode = 0
 offset_left = -181.36357
 offset_top = 105.285706
@@ -181,21 +184,108 @@ offset_right = -163.36357
 offset_bottom = 136.28572
 text = "+"
 
-[node name="AttackLabel" type="Label" parent="Attack" unique_id=1948700894]
+[node name="AttackLabel" type="Label" parent="NormalAttack" unique_id=1948700894]
 layout_mode = 0
 offset_left = -177.07785
-offset_top = -5.571429
+offset_top = -2.7142859
 offset_right = -147.07785
-offset_bottom = 21.428572
-text = "1"
+offset_bottom = 24.285713
+text = "10"
 horizontal_alignment = 1
 
-[node name="AttackDOWN" type="Button" parent="Attack" unique_id=1357021314]
+[node name="AttackDOWN" type="Button" parent="NormalAttack" unique_id=1357021314]
 layout_mode = 0
 offset_left = -162.36357
 offset_top = 105.285706
 offset_right = -144.36357
 offset_bottom = 136.28572
+text = "-"
+
+[node name="TokenAttack" type="Control" parent="." unique_id=2050659239]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 109.935
+offset_right = 109.935
+
+[node name="AttackIcon" type="Sprite2D" parent="TokenAttack" unique_id=1174728161]
+position = Vector2(-162.07813, -20.714111)
+scale = Vector2(0.019, 0.019)
+texture = ExtResource("3_bnspj")
+
+[node name="SwordIcon" type="Sprite2D" parent="TokenAttack" unique_id=246682687]
+modulate = Color(1, 1, 1, 0.38431373)
+position = Vector2(-162.1004, -20.650951)
+rotation = 1.5707964
+scale = Vector2(0.01382287, 0.031292323)
+texture = ExtResource("5_xnv4g")
+
+[node name="AttackUP" type="Button" parent="TokenAttack" unique_id=1961450045]
+layout_mode = 0
+offset_left = -189.93497
+offset_top = -41.42857
+offset_right = -176.93497
+offset_bottom = -23.42857
+theme_override_font_sizes/font_size = 8
+text = "+"
+metadata/_edit_lock_ = true
+
+[node name="AttackLabel" type="Label" parent="TokenAttack" unique_id=257143789]
+layout_mode = 0
+offset_left = -177.07787
+offset_top = -30.000002
+offset_right = -147.07787
+offset_bottom = -3.000002
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "10"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="AttackDOWN" type="Button" parent="TokenAttack" unique_id=770224849]
+layout_mode = 0
+offset_left = -189.93501
+offset_top = -21.428572
+offset_right = -177.93501
+offset_bottom = -3.4285717
+theme_override_font_sizes/font_size = 8
+text = "-"
+metadata/_edit_lock_ = true
+
+[node name="Burn" type="Control" parent="." unique_id=97696310]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 214.2207
+offset_right = 214.2207
+
+[node name="BurnIcon" type="Sprite2D" parent="Burn" unique_id=636286246]
+position = Vector2(-162.07813, -29.2854)
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("5_bnspj")
+
+[node name="BurnUP" type="Button" parent="Burn" unique_id=486735589]
+layout_mode = 0
+offset_left = -147.07784
+offset_top = -41.42857
+offset_right = -134.07784
+offset_bottom = -23.42857
+theme_override_font_sizes/font_size = 8
+text = "+"
+
+[node name="BurnLabel" type="Label" parent="Burn" unique_id=1508483914]
+layout_mode = 0
+offset_left = -177.07785
+offset_top = -29.999996
+offset_right = -147.07785
+offset_bottom = -2.9999962
+text = "10"
+horizontal_alignment = 1
+
+[node name="BurnDOWN" type="Button" parent="Burn" unique_id=454685061]
+layout_mode = 0
+offset_left = -147.0779
+offset_top = -21.428566
+offset_right = -135.0779
+offset_bottom = -3.428566
+theme_override_font_sizes/font_size = 8
 text = "-"
 
 [node name="Defense" type="Control" parent="." unique_id=1308192102]
@@ -204,7 +294,7 @@ anchors_preset = 0
 
 [node name="DefenseIcon" type="Sprite2D" parent="Defense" unique_id=1122370324]
 position = Vector2(52.142838, 5.8285675)
-scale = Vector2(0.015, 0.015)
+scale = Vector2(0.012, 0.012)
 texture = ExtResource("4_xnv4g")
 
 [node name="DefenseUP" type="Button" parent="Defense" unique_id=2116602438]
@@ -218,10 +308,10 @@ text = "+"
 [node name="DefenseLabel" type="Label" parent="Defense" unique_id=2068458523]
 layout_mode = 0
 offset_left = 37.142857
-offset_top = -6.1716537
+offset_top = -3.3145118
 offset_right = 67.14285
-offset_bottom = 20.828346
-text = "1"
+offset_bottom = 23.685488
+text = "10"
 horizontal_alignment = 1
 
 [node name="DefenseDOWN" type="Button" parent="Defense" unique_id=751584064]
@@ -269,8 +359,12 @@ one_shot = true
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="pressed" from="Attack/AttackUP" to="." method="_on_attack_up_pressed"]
-[connection signal="pressed" from="Attack/AttackDOWN" to="." method="_on_attack_down_pressed"]
+[connection signal="pressed" from="NormalAttack/AttackUP" to="." method="_on_base_attack_up_pressed"]
+[connection signal="pressed" from="NormalAttack/AttackDOWN" to="." method="_on_base_attack_down_pressed"]
+[connection signal="pressed" from="TokenAttack/AttackUP" to="." method="_on_attack_up_pressed"]
+[connection signal="pressed" from="TokenAttack/AttackDOWN" to="." method="_on_attack_down_pressed"]
+[connection signal="pressed" from="Burn/BurnUP" to="." method="_on_burn_up_pressed"]
+[connection signal="pressed" from="Burn/BurnDOWN" to="." method="_on_burn_down_pressed"]
 [connection signal="pressed" from="Defense/DefenseUP" to="." method="_on_defense_up_pressed"]
 [connection signal="pressed" from="Defense/DefenseDOWN" to="." method="_on_defense_down_pressed"]
 [connection signal="pressed" from="FloopButton" to="." method="_on_floop_button_pressed"]

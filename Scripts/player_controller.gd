@@ -79,6 +79,8 @@ func _ready() -> void:
 		should_modulate(true)
 		hide_buttons()
 		hero_image.rotation_degrees = 180
+		hero_image.position = Vector2(1300, 150)
+		selected_card.position = Vector2(-36, 190)
 		selected_card.rotation_degrees = 180
 	elif player_num == 2 and not multiplayer.get_unique_id() == GameManager.player2_id:
 		audio.audio_type = "Disabled"
@@ -86,6 +88,8 @@ func _ready() -> void:
 		should_modulate(true)
 		hide_buttons()
 		hero_image.rotation_degrees = 180
+		hero_image.position = Vector2(1300, 150)
+		selected_card.position = Vector2(-36, 190)
 		selected_card.rotation_degrees = 180
 	else:
 		disable_inputs(false)
@@ -596,9 +600,9 @@ func update_player_hand_display():
 			if key == "Ability":
 				card_ability = card["Ability"]
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
 
@@ -639,9 +643,9 @@ func update_player_discards_display():
 		if card_broken_temp_fix:
 			continue
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
 
 func update_player_deck_display():
 	change_to_deck_layout()
@@ -676,9 +680,9 @@ func update_player_deck_display():
 			if key == "Ability":
 				card_ability = card["Ability"]
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
 	log.make_log_message("Switched to deck display.")
@@ -720,9 +724,9 @@ func update_scry_player_deck_display(amount: int):
 			if key == "Ability":
 				card_ability = card["Ability"]
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
 	log.make_log_message("Switched to deck display.")
@@ -782,33 +786,33 @@ func update_player_landscape(landscape_num: int):
 	# CREATURES
 	if not creatures[0].is_empty() and landscape_num == 0:
 		landscape_1_creature.is_in_hand = false
-		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Defense"], creatures[0]["Floop Status"])
+		landscape_1_creature.change_card_data(creatures[0]["Landscape"], creatures[0]["Card Type"], creatures[0]["Name"], creatures[0]["Ability"], creatures[0]["Cost"], creatures[0]["Attack"], creatures[0]["Token Attack"], creatures[0]["Burn"], creatures[0]["Defense"], creatures[0]["Floop Status"])
 	if not creatures[1].is_empty() and landscape_num == 1:
 		landscape_2_creature.is_in_hand = false
-		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Defense"], creatures[1]["Floop Status"])
+		landscape_2_creature.change_card_data(creatures[1]["Landscape"], creatures[1]["Card Type"], creatures[1]["Name"], creatures[1]["Ability"], creatures[1]["Cost"], creatures[1]["Attack"], creatures[1]["Token Attack"], creatures[1]["Burn"], creatures[1]["Defense"], creatures[1]["Floop Status"])
 	if not creatures[2].is_empty() and landscape_num == 2:
 		landscape_3_creature.is_in_hand = false
-		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Defense"], creatures[2]["Floop Status"])
+		landscape_3_creature.change_card_data(creatures[2]["Landscape"], creatures[2]["Card Type"], creatures[2]["Name"], creatures[2]["Ability"], creatures[2]["Cost"], creatures[2]["Attack"], creatures[2]["Token Attack"], creatures[2]["Burn"], creatures[2]["Defense"], creatures[2]["Floop Status"])
 	if not creatures[3].is_empty() and landscape_num == 3:
 		landscape_4_creature.is_in_hand = false
-		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Defense"], creatures[3]["Floop Status"])
+		landscape_4_creature.change_card_data(creatures[3]["Landscape"], creatures[3]["Card Type"], creatures[3]["Name"], creatures[3]["Ability"], creatures[3]["Cost"], creatures[3]["Attack"], creatures[3]["Token Attack"], creatures[3]["Burn"], creatures[3]["Defense"], creatures[3]["Floop Status"])
 	# BUILDINGS
 	if not buildings[0].is_empty() and landscape_num == 0:
 		landscape_1_building.is_in_hand = false
-		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Defense"], buildings[0]["Floop Status"])
+		landscape_1_building.change_card_data(buildings[0]["Landscape"], buildings[0]["Card Type"], buildings[0]["Name"], buildings[0]["Ability"], buildings[0]["Cost"], buildings[0]["Attack"], buildings[0]["Token Attack"], buildings[0]["Burn"], buildings[0]["Defense"], buildings[0]["Floop Status"])
 	if not buildings[1].is_empty() and landscape_num == 1:
 		landscape_2_building.is_in_hand = false
-		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Defense"], buildings[1]["Floop Status"])
+		landscape_2_building.change_card_data(buildings[1]["Landscape"], buildings[1]["Card Type"], buildings[1]["Name"], buildings[1]["Ability"], buildings[1]["Cost"], buildings[1]["Attack"], buildings[1]["Token Attack"], buildings[1]["Burn"], buildings[1]["Defense"], buildings[1]["Floop Status"])
 	if not buildings[2].is_empty() and landscape_num == 2:
 		landscape_3_building.is_in_hand = false
-		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Defense"], buildings[2]["Floop Status"])
+		landscape_3_building.change_card_data(buildings[2]["Landscape"], buildings[2]["Card Type"], buildings[2]["Name"], buildings[2]["Ability"], buildings[2]["Cost"], buildings[2]["Attack"], buildings[2]["Token Attack"], buildings[2]["Burn"], buildings[2]["Defense"], buildings[2]["Floop Status"])
 	if not buildings[3].is_empty() and landscape_num == 3:
 		landscape_4_building.is_in_hand = false
-		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Defense"], buildings[3]["Floop Status"])
+		landscape_4_building.change_card_data(buildings[3]["Landscape"], buildings[3]["Card Type"], buildings[3]["Name"], buildings[3]["Ability"], buildings[3]["Cost"], buildings[3]["Attack"], buildings[3]["Token Attack"], buildings[3]["Burn"], buildings[3]["Defense"], buildings[3]["Floop Status"])
 	
 	# SPELL
 	if not spell.is_empty() and landscape_num == 69:
-		spell_area_card.change_card_data(spell["Landscape"], spell["Card Type"], spell["Name"], spell["Ability"], spell["Cost"], spell["Attack"], spell["Defense"], spell["Floop Status"])
+		spell_area_card.change_card_data(spell["Landscape"], spell["Card Type"], spell["Name"], spell["Ability"], spell["Cost"], spell["Attack"], spell["Token Attack"], spell["Burn"], spell["Defense"], spell["Floop Status"])
 
 # ANIMATIONS
 func play_hurt():

@@ -15,21 +15,21 @@ texture = ExtResource("2_qe12f")
 metadata/_edit_lock_ = true
 
 [node name="StartServer" type="Button" parent="." unique_id=1876640724]
-offset_left = 72.0
-offset_top = 296.0
-offset_right = 260.0
-offset_bottom = 338.0
+offset_left = 1344.0
+offset_top = 104.0
+offset_right = 1532.0
+offset_bottom = 146.0
 theme_override_font_sizes/font_size = 24
 text = "START SERVER"
 
 [node name="StartClient" type="Button" parent="." unique_id=2004198776]
-offset_left = 72.0
-offset_top = 226.0
-offset_right = 260.0
-offset_bottom = 268.0
+offset_left = 64.0
+offset_top = 200.0
+offset_right = 224.0
+offset_bottom = 241.99998
 scale = Vector2(1.2, 1.2)
 theme_override_font_sizes/font_size = 24
-text = "START CLIENT"
+text = "PLAY GAME"
 
 [node name="GameName" type="Label" parent="." unique_id=1465012354]
 offset_left = 64.0
@@ -48,71 +48,92 @@ theme_override_font_sizes/font_size = 24
 text = "v1.3"
 
 [node name="LoadDeck" type="Button" parent="." unique_id=1998618438]
-offset_left = 72.0
-offset_top = 832.0
-offset_right = 260.0
-offset_bottom = 874.0
+offset_left = 64.0
+offset_top = 319.0
+offset_right = 256.0
+offset_bottom = 361.0
 theme_override_font_sizes/font_size = 24
 text = "LOAD DECK"
 
 [node name="ChooseDeck" type="OptionButton" parent="." unique_id=2005986791]
-offset_left = 72.0
-offset_top = 792.0
-offset_right = 260.0
-offset_bottom = 823.0
+offset_left = 64.0
+offset_top = 280.0
+offset_right = 256.0
+offset_bottom = 311.0
 allow_reselect = true
 
 [node name="IPAddress" type="LineEdit" parent="." unique_id=294402506]
-offset_left = 1339.0
-offset_top = 33.0
-offset_right = 1483.0
-offset_bottom = 64.0
+offset_left = 1314.0
+offset_top = 64.0
+offset_right = 1458.0
+offset_bottom = 95.0
 placeholder_text = "IP ADDRESS"
 
 [node name="Port" type="LineEdit" parent="." unique_id=947913166]
-offset_left = 1491.0
-offset_top = 33.0
-offset_right = 1559.5625
-offset_bottom = 64.0
+offset_left = 1466.0
+offset_top = 64.0
+offset_right = 1534.5625
+offset_bottom = 95.0
 placeholder_text = "PORT"
 
 [node name="PlayerStatMenu" type="Button" parent="." unique_id=1698313679]
-offset_left = 1472.0
-offset_top = 744.0
-offset_right = 1589.0
-offset_bottom = 775.0
+offset_left = 64.0
+offset_top = 440.0
+offset_right = 200.0
+offset_bottom = 479.0
 text = "PLAYER STATS"
 
 [node name="CreateDeck" type="Button" parent="." unique_id=2064193469]
-offset_left = 272.0
-offset_top = 834.0
-offset_right = 381.0
-offset_bottom = 873.0
+offset_left = 64.0
+offset_top = 392.0
+offset_right = 256.0
+offset_bottom = 431.0
+theme_override_font_sizes/font_size = 24
 text = "BUILD DECK"
 
 [node name="Log" parent="." unique_id=2122409897 instance=ExtResource("3_ce3w2")]
-position = Vector2(1161, 73)
+position = Vector2(1128, 168)
 font_size = 16
 
 [node name="Audio" parent="." unique_id=1362242447 instance=ExtResource("3_fu7sn")]
 audio_type = "Main Menu"
+metadata/_edit_lock_ = true
 
 [node name="ServerWaitTimer" type="Timer" parent="." unique_id=1560757498]
 wait_time = 10.0
 one_shot = true
 
 [node name="ReturnToMenu" type="Button" parent="." unique_id=1175273687]
-offset_left = 1472.0
-offset_top = 784.0
-offset_right = 1589.0
-offset_bottom = 815.0
-text = "EXIT GAME"
+offset_left = 208.0
+offset_top = 440.0
+offset_right = 253.0
+offset_bottom = 479.0
+text = "EXIT"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=508314145]
 limit_left = 0
 limit_top = 0
 limit_right = 1600
 limit_bottom = 900
+metadata/_edit_lock_ = true
+
+[node name="Allow2025Expansion" type="CheckBox" parent="." unique_id=1812023355]
+offset_left = 64.0
+offset_top = 808.0
+offset_right = 304.0
+offset_bottom = 835.0
+text = "Enable CW 2025 Exapansion?"
+
+[node name="Label" type="Label" parent="Allow2025Expansion" unique_id=1609459503]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 27.0
+offset_right = 94.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 12
+text = "WARNING: Some features will be missing and 
+new Card Wars cards are quite a bit more powerful!
+*Make sure opponent also enables this if doing so!"
 
 [connection signal="pressed" from="StartServer" to="." method="_on_start_server_pressed"]
 [connection signal="pressed" from="StartClient" to="." method="_on_start_client_pressed"]
@@ -122,3 +143,5 @@ limit_bottom = 900
 [connection signal="pressed" from="CreateDeck" to="." method="_on_create_deck_pressed"]
 [connection signal="timeout" from="ServerWaitTimer" to="." method="_on_server_wait_timer_timeout"]
 [connection signal="pressed" from="ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
+[connection signal="pressed" from="Allow2025Expansion" to="." method="_on_allow_2025_expansion_pressed"]
+[connection signal="toggled" from="Allow2025Expansion" to="." method="_on_allow_2025_expansion_toggled"]
