@@ -1,7 +1,7 @@
 HOW TO USE
 
 -+- MAIN MENU -+-
-<img width="1599" height="895" alt="main_menu" src="https://github.com/user-attachments/assets/21d0b5a5-c07c-48b4-aecd-8b2698ed61f6" />
+<img width="1596" height="894" alt="mainmenu1 4" src="https://github.com/user-attachments/assets/a4cc8e81-30b8-44d8-ade0-34b9d39e0dec" />
 FOR STARTING CLIENT
 1. Enter IP Address and PORT #.
 2. Select deck or add own deck (refer to deck rules for custom decks).
@@ -13,12 +13,10 @@ FOR STARTING SERVER (requires port fowarding)
 2. Select 'Start Server'.
 
 -+- GAMEPLAY -+-
-<img width="2518" height="1357" alt="gameplay2" src="https://github.com/user-attachments/assets/aadf7b11-b5fd-4f4c-b826-0978b2e7a003" />
-<img width="2515" height="1347" alt="gameplay3" src="https://github.com/user-attachments/assets/aac75c15-9527-4a27-986c-32d85fbd9f88" />
-
+<img width="1600" height="894" alt="gameplay1 4" src="https://github.com/user-attachments/assets/96d2dcd1-d61a-4137-9f4a-6754d221a265" />
 
 -+- DECK CREATOR -+-
-<img width="1592" height="891" alt="deck_creator" src="https://github.com/user-attachments/assets/ea0c3aaf-c5b0-4c58-b237-b2f318ff3e4b" />
+<img width="1591" height="889" alt="deckbuild1 4" src="https://github.com/user-attachments/assets/a1d9163e-0481-48f2-a6f8-a1114f5eb54b" />
 
 -+- WIP STATS DISPLAY -+-
 <img width="1594" height="895" alt="stats_screen" src="https://github.com/user-attachments/assets/74fa4e50-dd47-49e6-8274-79b37b8bcc4f" />
@@ -27,4 +25,17 @@ FOR STARTING SERVER (requires port fowarding)
 
 I DO NOT OWN ANY AUDIO OR IMAGES DISPLAYED, THIS IS PURLEY FOR FUN AND PERSONAL USE.
 Also, there are alot of obscure missing features that will be patched but are WIP
-and NO I will not be updating cards for the most recent 2026 drop anytime soon!!
+
+CARDS/HEROS THAT DONT WORK
+Betty
+Crust Crusher
+Ancient Magic Pharoah Dragon
+Burly Lumberjack
+Lab Assistant
+Holographic Rabbit
+Carmel Camel
+Quality Controller
+
+FEATURES THAT ARENT IMPLEMENTED BUT CAN WORK 
+Gobble
+Whump
