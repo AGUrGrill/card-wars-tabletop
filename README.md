@@ -27,6 +27,7 @@ I DO NOT OWN ANY AUDIO OR IMAGES DISPLAYED, THIS IS PURLEY FOR FUN AND PERSONAL 
 Also, there are alot of obscure missing features that will be patched but are WIP
 
 CARDS/HEROS THAT DONT WORK
+
 Betty
 Crust Crusher
 Ancient Magic Pharoah Dragon
@@ -37,5 +38,6 @@ Carmel Camel
 Quality Controller
 
 FEATURES THAT ARENT IMPLEMENTED BUT CAN WORK 
+
 Gobble
 Whump
