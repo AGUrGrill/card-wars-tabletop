@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://bcijlth0mbcxt" path="res://Scripts/game_manager.gd" id="1_70yv6"]
 
-[node name="GameManager" type="Node"]
+[node name="GameManager" type="Node" unique_id=2093879170]
 script = ExtResource("1_70yv6")

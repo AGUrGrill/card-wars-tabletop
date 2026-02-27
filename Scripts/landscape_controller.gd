@@ -38,9 +38,9 @@ func _ready() -> void:
 func check_if_frozen_exists():
 	var ignore_frozen: bool = true
 	for idx in range(4):
-		if GameManager.player1_landscapes[idx] == "IcyLands":
+		if GameManager.player1_landscapes[idx].contains("IcyLands"):
 			ignore_frozen = false
-		elif GameManager.player2_landscapes[idx] == "IcyLands":
+		elif GameManager.player2_landscapes[idx].contains("IcyLands"):
 			ignore_frozen = false
 	if not ignore_frozen:
 		freeze_landscape.visible = true
@@ -132,9 +132,9 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 		return true
 	elif player_num == 1 and playing_on_opponent:
-		#for num in potential_landscape_nums:
-		#	if selected_card["Landscape Played"] == num:
-		#		GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_creature_from_landscape_array.rpc(2, selected_card["Landscape Played"])
 		if GameManager.player1_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(1, landscape_num, selected_card)
 			return true
@@ -152,9 +152,9 @@ func place_creature_logic(player_num: int, selected_card: Dictionary, playing_on
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 		return true
 	elif player_num == 2 and playing_on_opponent:
-		#for num in potential_landscape_nums:
-		#	if selected_card["Landscape Played"] == num:
-		#		GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
+		for num in potential_landscape_nums:
+			if selected_card["Landscape Played"] == num:
+				GameManager.net_remove_creature_from_landscape_array.rpc(1, selected_card["Landscape Played"])
 		if GameManager.player2_played_creatures[landscape_num].is_empty():
 			GameManager.net_add_creature_to_landscape_array.rpc(2, landscape_num, selected_card)
 			return true
@@ -180,7 +180,7 @@ func place_building_logic(player_num: int, selected_card: Dictionary) -> bool:
 	elif player_num == 2:
 		for num in potential_landscape_nums:
 			if selected_card["Landscape Played"] == num:
-				GameManager.net_remove_building_from_landscape_array.rpc(1, selected_card["Landscape Played"])
+				GameManager.net_remove_building_from_landscape_array.rpc(2, selected_card["Landscape Played"])
 		if GameManager.player2_played_buildings[landscape_num].is_empty():
 			GameManager.net_add_building_to_landscape_array.rpc(2, landscape_num, selected_card)
 			return true
@@ -238,7 +238,11 @@ func update_landscape_image(_name: String):
 	#		tex = GameManager.db.cards.get("IcyLands" + str(ran_num))
 	#	"Useless Swamp":
 	#		tex = GameManager.db.cards.get("Useless_Swamp" + str(ran_num))
-	var tex: Texture2D = GameManager.db.cards.get(_name + " 1")
+	var tex: Texture2D
+	if _name.ends_with("1") or _name.ends_with("2") or _name.ends_with("3") or _name.ends_with("4"):
+		tex = GameManager.db.cards.get(_name)
+	else:
+		tex = GameManager.db.cards.get(_name + " 1")
 	if _name == "Facedown":
 		tex = GameManager.db.cards.get(_name)
 	if tex == null:

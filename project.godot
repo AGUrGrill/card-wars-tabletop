@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 NetworkHandler="*res://Scripts/network_handler.gd"
-GameManager="*res://Scenes/game_manager.tscn"
+GameManager="*uid://bcijlth0mbcxt"
 
 [display]
 

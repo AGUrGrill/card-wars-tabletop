@@ -7,6 +7,7 @@ extends Node2D
 @onready var port: LineEdit = $Port
 @onready var log: Node2D = $Log
 @onready var server_wait_timer: Timer = $ServerWaitTimer
+@onready var allow_2025_expansion: CheckBox = $Allow2025Expansion
 
 var hero: String
 var landscapes: Array[String]
@@ -14,7 +15,7 @@ var deck: Array[String]
 var default_deck_choice: String
 var deck_choosen: bool = false
 
-var in_testing_mode: bool = true
+var in_testing_mode: bool = false
 var game_starting: bool = false
 
 func _ready() -> void:
@@ -22,6 +23,8 @@ func _ready() -> void:
 	if NetworkHandler.IP_ADDRESS != "localhost":
 		ip_address.text = NetworkHandler.IP_ADDRESS
 		port.text = str(NetworkHandler.PORT)
+	if GameManager.cw2025expansion_enabled:
+		allow_2025_expansion.button_pressed = true
 	add_premade_decks()
 	get_all_decks("user://Decks/")
 	if not GameManager.choosen_deck_name.is_empty():
@@ -65,15 +68,26 @@ func add_premade_decks():
 	if not DirAccess.open("user://Decks/").file_exists("Finn.dat"):
 		var file6 = FileAccess.open("user://Decks/Finn.dat", FileAccess.WRITE)
 		file6.store_string(finn)
+	if GameManager.cw2025expansion_enabled:
+		if not DirAccess.open("user://Decks/").file_exists("CW25 - Choose Goose.dat"):
+			var file7 = FileAccess.open("user://Decks/CW25 - Choose Goose.dat", FileAccess.WRITE)
+			file7.store_string(cw25choose_goose)
+		if not DirAccess.open("user://Decks/").file_exists("CW25 - BMO.dat"):
+			var file8 = FileAccess.open("user://Decks/CW25 - BMO.dat", FileAccess.WRITE)
+			file8.store_string(cw25bmo)
 
 func get_all_decks(path):
+	choose_deck.clear()
 	var dir = DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			if path.contains("user://"):
-				choose_deck.add_item(file_name.trim_suffix(".dat"))
+				if file_name.contains("CW25") and GameManager.cw2025expansion_enabled:
+					choose_deck.add_item(file_name.trim_suffix(".dat"))
+				elif not file_name.contains("CW25"):
+					choose_deck.add_item(file_name.trim_suffix(".dat"))
 			else:
 				choose_deck.add_item(file_name.trim_suffix(".txt"))
 			file_name = dir.get_next()
@@ -457,8 +471,90 @@ Buildings
 3 - Celestial Castle
 "
 
+var cw25choose_goose: String = "Hero
+Choose Goose
+
+Landscapes
+1 - SandyLands 2
+1 - Cornfield 2
+1 - Cornfield 4
+1 - Cornfield 1
+
+
+Creatures
+3 - Corn Dog
+2 - Cornataur
+2 - Cowsper
+3 - Crust Crusher
+3 - Chancellor's Commended
+3 - Corn Ronin
+2 - Carrier Crab
+3 - Cactus Thug
+2 - Chalice, the Cruel
+2 - Corn Lord
+
+
+Spells
+3 - Careful Shuffle
+3 - Curse Words
+3 - Cobnoblify
+2 - Clone
+2 - Cross Pollination
+
+
+Buildings
+3 - Celestial Castle
+3 - Cob Keep
+"
+
+var cw25bmo: String = "Hero
+BMO
+
+Landscapes
+2 - Useless Swamp 1
+1 - LavaFlats 1
+1 - LavaFlats 2
+
+
+Creatures
+3 - AbneGator
+3 - Marshuko, the Stalker
+2 - Foulwater Reviver
+3 - Black Paladin
+2 - Teeth Leaf
+3 - Red Eyeling
+3 - Tinder Tyrant
+3 - Cinder Construct
+3 - Firestorm of Phoenixes
+1 - Flameingo Flameweaver
+2 - Hothead
+2 - Furious Chick
+2 - Flameingo Fireplume Chief
+1 - Flameingo Flame Tamer
+1 - Flameingo Captain
+2 - Lava Lamprey Eels
+
+
+Spells
+3 - Summon Sludge
+1 - Raise the Dead
+2 - Brilliant Flare
+2 - Trial by Fire
+2 - Beach Ball
+
+
+Buildings
+3 - Temple of the Torch
+3 - Geyser Cannon
+3 - Celestial Castle
+3 - Ziggurat of the Darned
+"
+
+
 func _on_return_to_menu_pressed() -> void:
 	get_tree().quit()
 
 func _on_allow_2025_expansion_toggled(toggled_on: bool) -> void:
 	GameManager.cw2025expansion_enabled = toggled_on
+	add_premade_decks()
+	get_all_decks("user://Decks/")

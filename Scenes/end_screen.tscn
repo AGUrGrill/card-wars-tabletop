@@ -16,6 +16,7 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_gdxnu")
 
 [node name="LoseImage" type="Sprite2D" parent="." unique_id=847637608]
+visible = false
 modulate = Color(0.5890956, 0.5890956, 0.5890956, 1)
 position = Vector2(803, 454)
 scale = Vector2(0.8823709, 0.8823708)
@@ -25,18 +26,19 @@ texture = ExtResource("3_be1gp")
 audio_type = "End Screen"
 
 [node name="ResultLabel" type="Label" parent="." unique_id=84484462]
-offset_left = 544.0
-offset_top = 309.0
-offset_right = 1120.0
-offset_bottom = 484.0
+offset_left = 6.0
+offset_top = 131.0
+offset_right = 1594.0
+offset_bottom = 630.0
 theme_override_font_sizes/font_size = 128
 text = "YOU bleh"
+horizontal_alignment = 1
 
 [node name="ReturnMenu" type="Button" parent="." unique_id=677531235]
-offset_left = 657.0
-offset_top = 744.0
-offset_right = 1060.0
-offset_bottom = 808.0
+offset_left = 641.0
+offset_top = 745.0
+offset_right = 1044.0
+offset_bottom = 809.0
 theme_override_font_sizes/font_size = 32
 text = "RETURN TO MAIN MENU"
 

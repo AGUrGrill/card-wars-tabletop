@@ -17,7 +17,7 @@ extends Node2D
 @onready var hero_image: Sprite2D = $HeroImage
 @onready var current_deck_build_nums: Label = $CurrentDeckBuildNums
 @onready var choose_deck: OptionButton = $ChooseDeck
-@onready var enter_deck_code: LineEdit = $EnterDeckCode
+@onready var enter_deck_code: TextEdit = $EnterDeckCode
 
 var hero: String
 var landscapes: Array[String]
@@ -39,6 +39,7 @@ func _ready() -> void:
 		type_landscape.remove_item(7)
 
 func get_all_decks(path):
+	choose_deck.clear()
 	var dir = DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
@@ -75,10 +76,7 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 	var max_cards: int = GameManager.KICK_1
 	if GameManager.cw2025expansion_enabled:
 		max_cards = GameManager.KICK_2
-	var exclusions: Array[int] = [1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 19, 20, 21, 567, 568]
 	for num in max_cards:
-		if num in exclusions:
-			continue
 		var card_data = json_data[str(num)]
 		if card_data["Name"] == "Unknown" or card_data == null:
 			continue
@@ -117,9 +115,11 @@ func get_cards(_name: String, card_type: String, card_ability: String, landscape
 			elif key == "Defense":
 				has_defense = true
 		
-		if name_filter and not card_data["Name"].to_lower().contains(_name.to_lower()):
-			#print(card_data["Name"] + " does not contain " + _name)
-			continue
+		if name_filter:
+			if _name.length() == 1 and not card_data["Name"].begins_with(_name):
+				continue
+			elif _name.length() > 1 and not card_data["Name"].to_lower().contains(_name.to_lower()):
+				continue
 		if card_type_filter and card_data["Card Type"] != card_type:
 			#print(card_data["Card Type"] + " is not " + card_type)
 			continue
@@ -507,6 +507,9 @@ Buildings
 func _on_reset_deck_pressed() -> void:
 	remove_all()
 
-func _on_enter_deck_code_text_submitted(new_text: String) -> void:
+func _on_enter_deck_code_text_changed() -> void:
 	audio.confirm_sfx.play()
-	parse_deck_info_and_add_to_creator(enter_deck_code.text)
+	if enter_deck_code.text.length() > 20:
+		parse_deck_info_and_add_to_creator(enter_deck_code.text)
+	else:
+		log.make_log_message("Please provide a valid code.")

@@ -12,10 +12,8 @@ Issue Cards:
 griddy and hedge card effects
 
 
-BANNED HEROS
+CARDS/HEROS THAT DONT WORK
 Betty
-
-BANNED CREATURES
 Crust Crusher
 Ancient Magic Pharoah Dragon
 Burly Lumberjack
@@ -23,6 +21,6 @@ Lab Assistant
 Holographic Rabbit
 Carmel Camel
 
-BANNED SPELLS
-
-BANNED BUILDINGS
+FEATURES THAT ARENT IMPLEMENTED BUT CAN WORK 
+Gobble
+Whump

@@ -188,9 +188,16 @@ func update_hero_image():
 		_name = GameManager.player1_hero
 	elif player_num == 2:
 		_name = GameManager.player2_hero
+
+	var tex: Texture2D = GameManager.db.cards.get(_name)
+	if tex == null:
+		print("error printing " + _name)
+		return
+	var img: Image = tex.get_image()
+	img.resize(370, 516, Image.INTERPOLATE_TRILINEAR)
+	var texture: ImageTexture = ImageTexture.create_from_image(img)
+	hero_image.texture = texture
 	
-	var tex = GameManager.db.cards.get(_name)
-	hero_image.texture = tex
 	check_if_frozen_exists()
 
 func update_selected_card_image(_name: String):
@@ -322,7 +329,7 @@ func draw_bottom_card_logic():
 		GameManager.net_add_card_to_player_hand.rpc(1, GameManager.draw_bottom_card(1))
 	if player_num == 2:
 		GameManager.net_add_card_to_player_hand.rpc(2, GameManager.draw_bottom_card(2))
-	log.make_log_message("Card drawn.")
+	log.make_log_message("Card drawn from bottom of deck.")
 
 func grab_card_from_play_logic():
 	var potential_landscape_nums: Array[int] = [0,1,2,3,69]
@@ -349,7 +356,7 @@ func grab_card_from_play_logic():
 			GameManager.net_remove_spell_from_play.rpc(player_num)
 		GameManager.net_update_player_selected_card.rpc(player_num, {})
 		player.update_selected_card_image("fart")
-		log.make_log_message("Grabbed " + selected_card["Name"] + ".")
+		log.make_log_message("Grabbed " + selected_card["Name"] + " from play.")
 	else:
 		player.update_selected_card_image("fart")
 		log.make_log_message("Invalid selection.")
@@ -367,9 +374,9 @@ func grab_card_from_discards_logic():
 	GameManager.net_remove_card_from_player_discards.rpc(player_num, selected_card)
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
 	player.update_selected_card_image("fart")
-	log.make_log_message("Grabbed " + selected_card["Name"] + ".")
+	log.make_log_message("Grabbed " + selected_card["Name"] + " from discards.")
 	update_player_hand_display()
-	log.make_log_message("Switched to hand display.")
+	#log.make_log_message("Switched to hand display.")
 
 func grab_card_from_deck_logic():
 	var selected_card: Dictionary
@@ -383,9 +390,9 @@ func grab_card_from_deck_logic():
 	GameManager.net_remove_card_from_player_deck.rpc(player_num, selected_card)
 	GameManager.net_update_player_selected_card.rpc(player_num, {})
 	player.update_selected_card_image("fart")
-	log.make_log_message("Grabbed " + selected_card["Name"] + ".")
+	log.make_log_message("Grabbed " + selected_card["Name"] + " from deck.")
 	update_player_hand_display()
-	log.make_log_message("Switched to hand display.")
+	#log.make_log_message("Switched to hand display.")
 
 func remove_card_logic():
 	var selected_card: Dictionary
@@ -434,7 +441,7 @@ func remove_card_logic():
 			GameManager.net_remove_spell_from_play.rpc(player_num)
 	#print("Removed " + selected_card["Name"] + " from P" + str(player_num))
 	player.update_selected_card_image("fart")
-	log.make_log_message("Removed " + selected_card["Name"] + ".")
+	log.make_log_message("Removed " + selected_card["Name"] + " from play.")
 
 func give_opp_card_logic():
 	if player_num == 1:
@@ -458,6 +465,7 @@ func add_card_to_top_deck_logic():
 		if can_remove:
 			GameManager.add_card_to_top_of_deck.rpc(1, GameManager.player1_selected_card)
 			GameManager.net_remove_card_from_player_hand.rpc(1, GameManager.player1_selected_card)
+			log.make_log_message("Added " + GameManager.player1_selected_card["Name"] + " to top of deck.")
 		else:
 			log.make_log_message("Please return card to hand before adding to top of deck.")
 	elif player_num == 2:
@@ -468,6 +476,7 @@ func add_card_to_top_deck_logic():
 		if can_remove:
 			GameManager.add_card_to_top_of_deck.rpc(2, GameManager.player2_selected_card)
 			GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
+			log.make_log_message("Added " + GameManager.player2_selected_card["Name"] + " to top of deck.")
 		else:
 			log.make_log_message("Please return card to hand before adding to top of deck.")
 
@@ -475,9 +484,11 @@ func add_card_to_bottom_deck_logic():
 	if player_num == 1:
 		GameManager.add_card_to_bottom_of_deck.rpc(1, GameManager.player1_selected_card)
 		GameManager.net_remove_card_from_player_hand.rpc(1, GameManager.player1_selected_card)
+		log.make_log_message("Added " + GameManager.player1_selected_card["Name"] + " to bottom of deck.")
 	elif player_num == 2:
 		GameManager.add_card_to_bottom_of_deck.rpc(2, GameManager.player2_selected_card)
 		GameManager.net_remove_card_from_player_hand.rpc(2, GameManager.player2_selected_card)
+		log.make_log_message("Added " + GameManager.player2_selected_card["Name"] + " to bottom of deck.")
 
 # LAYOUTS
 func change_to_discard_layout():
@@ -605,6 +616,7 @@ func update_player_hand_display():
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]),  int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
+		#log.make_log_message("Switched to hand display.")
 
 func update_player_discards_display():
 	change_to_discard_layout()
@@ -634,18 +646,25 @@ func update_player_discards_display():
 		idx += 1
 		
 		var card_ability: String = ""
+		var card_token_attack: int = 0
+		var card_burn: int = 0
 		var card_broken_temp_fix: bool = true
 		for key in card:
 			if key == "Ability":
 				card_ability = card["Ability"]
-			if key == "Name":
+			elif key == "Name":
 				card_broken_temp_fix = false
+			elif key == "Token Attack":
+				card_token_attack = card["Token Attack"]
+			elif key == "Burn":
+				card_burn = card["Burn"]
 		if card_broken_temp_fix:
 			continue
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), card_token_attack,  card_burn,  int(card["Defense"]), false)
+		log.make_log_message("Switched to discard display.")
 
 func update_player_deck_display():
 	change_to_deck_layout()
@@ -676,13 +695,19 @@ func update_player_deck_display():
 		idx += 1
 		
 		var card_ability: String = ""
+		var card_token_attack: int = 0
+		var card_burn: int = 0
 		for key in card:
 			if key == "Ability":
 				card_ability = card["Ability"]
+			elif key == "Token Attack":
+				card_token_attack = card["Token Attack"]
+			elif key == "Burn":
+				card_burn = card["Burn"]
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), card_token_attack,  card_burn,  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
 	log.make_log_message("Switched to deck display.")
@@ -720,16 +745,22 @@ func update_scry_player_deck_display(amount: int):
 		idx += 1
 		
 		var card_ability: String = ""
+		var card_token_attack: int = 0
+		var card_burn: int = 0
 		for key in card:
 			if key == "Ability":
 				card_ability = card["Ability"]
+			elif key == "Token Attack":
+				card_token_attack = card["Token Attack"]
+			elif key == "Burn":
+				card_burn = card["Burn"]
 		if card["Card Type"] == "Spell" or card["Card Type"] == "Building":
 			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]), 0, 0, 0, 0, false)
 		else:
-			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), int(card["Token Attack"]),  int(card["Burn"]),  int(card["Defense"]), false)
+			new_card.change_card_data(card["Landscape"], card["Card Type"], card["Name"], card_ability, int(card["Cost"]),  int(card["Attack"]), card_token_attack,  card_burn,  int(card["Defense"]), false)
 		if not is_player_board:
 			new_card.hide_image()
-	log.make_log_message("Switched to deck display.")
+	log.make_log_message("Switched to scry deck display.")
 
 @rpc("any_peer", "call_local")
 func update_player_landscape(landscape_num: int):
@@ -893,7 +924,6 @@ func _on_main_button_pressed() -> void:
 		grab_card_from_discards_logic()
 	else:
 		draw_card_logic()
-	log.make_log_message("Card drawn.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -901,7 +931,6 @@ func _on_sub_button_pressed() -> void:
 	if not can_select:
 		return
 	discard_card_logic()
-	log.make_log_message("Discarded card.")
 	audio.confirm_sfx.play()
 	start_selection_buffer()
 
@@ -910,10 +939,8 @@ func _on_main_switch_toggled(toggled_on: bool) -> void:
 		return
 	if toggled_on:
 		update_player_discards_display()
-		log.make_log_message("Switched to discard display.")
 	else:
 		update_player_hand_display()
-		log.make_log_message("Switched to hand display.")
 
 func _on_additional_options_pressed() -> void:
 	if not can_select:
@@ -1035,4 +1062,8 @@ func _on_swap_landscapes_pressed() -> void:
 	log.make_log_message("Swapped creature " + str(first + 1) + " with " + str(second + 1) + ".")
 
 func _on_mulligan_pressed() -> void:
-	GameManager.net_mulligan.rpc(player_num)
+	if GameManager.round_num < 2:
+		GameManager.net_mulligan.rpc(player_num)
+		log.make_log_message("Mulliganed hand.")
+	else:
+		log.make_log_message("Game has progressed, no longer able to mulligan.")

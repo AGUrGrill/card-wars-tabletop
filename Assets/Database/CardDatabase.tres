@@ -61,7 +61,6 @@
 [ext_resource type="Texture2D" uid="uid://cp18asd1i41sm" path="res://Assets/Cards/Blue Ogre.png" id="45_tj07c"]
 [ext_resource type="Texture2D" uid="uid://dtxow8ipgmetw" path="res://Assets/Cards/Blue Plains Drifter.png" id="46_2k0rq"]
 [ext_resource type="Texture2D" uid="uid://cslngufiy1beq" path="res://Assets/Cards/Betty.png" id="46_p4nkb"]
-[ext_resource type="Texture2D" uid="uid://b0dtpyhlil8ys" path="res://Assets/Cards/Blue Plains.png" id="47_xy6di"]
 [ext_resource type="Texture2D" uid="uid://3yhoatji4ppg" path="res://Assets/Cards/Blue Slimey.png" id="48_14mb4"]
 [ext_resource type="Texture2D" uid="uid://b0ub5453xvwd5" path="res://Assets/Cards/Blueberry Djini.png" id="49_474bl"]
 [ext_resource type="Texture2D" uid="uid://bu0l8xnkjyhxk" path="res://Assets/Cards/Bitterchill Avalancheetah.png" id="50_56ajp"]
@@ -925,7 +924,6 @@ cards = Dictionary[String, Texture2D]({
 "Blue Gnome": ExtResource("43_ppxkk"),
 "Blue Merlock": ExtResource("44_lpl1u"),
 "Blue Ogre": ExtResource("45_tj07c"),
-"Blue Plains": ExtResource("47_xy6di"),
 "Blue Plains 1": ExtResource("65_8bi1f"),
 "Blue Plains 2": ExtResource("66_hotsq"),
 "Blue Plains 3": ExtResource("67_okkup"),

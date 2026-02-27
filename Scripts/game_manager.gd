@@ -6,7 +6,7 @@ var db: CardDatabase = preload("res://Assets/Database/CardDatabase.tres")
 const OG = 522
 const KICK_1 = 568
 const KICK_2 = 858
-const MAX_CARDS = KICK_2 # 717 is newest, 568 is released
+const MAX_CARDS = KICK_2
 
 const DEFAULT_HP: int = 25
 const DEFAULT_ACTIONS: int = 2

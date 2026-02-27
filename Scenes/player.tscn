@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cm5r3w4ic0uso" path="res://Scenes/audio.tscn" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://gwxn5obxqwcy" path="res://Assets/frozen_token.png" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://dycs2rc7imye2" path="res://Scenes/card.tscn" id="5_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://b83vauhisx88o" path="res://Assets/Cards/BMO.png" id="6_3smsa"]
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
 length = 0.001
@@ -277,27 +278,30 @@ text = "HP : "
 metadata/_edit_lock_ = true
 
 [node name="MainSwitch" type="Button" parent="MainButtons" unique_id=1965120681]
-offset_left = 120.0
-offset_top = 96.0
-offset_right = 264.0
-offset_bottom = 129.0
+offset_left = 112.0
+offset_top = 120.0
+offset_right = 279.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0.5568628, 0.5568628, 1, 1)
+theme_override_font_sizes/font_size = 20
 toggle_mode = true
 text = "VIEW DISCARDS"
 
 [node name="MainButton" type="Button" parent="MainButtons" unique_id=320735129]
 offset_left = 101.0
-offset_top = 2.0
-offset_right = 289.0
-offset_bottom = 33.0
+offset_right = 291.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 1, 0, 0.79607844)
+theme_override_font_sizes/font_size = 24
 text = "DRAW CARD"
 
 [node name="SubButton" type="Button" parent="MainButtons" unique_id=1538702457]
 offset_left = 101.0
-offset_top = 43.0
-offset_right = 289.0
-offset_bottom = 74.0
+offset_top = 54.0
+offset_right = 291.0
+offset_bottom = 99.0
 theme_override_colors/font_color = Color(0.8745098, 0, 0, 0.79607844)
+theme_override_font_sizes/font_size = 24
 text = "DISCARD CARD"
 
 [node name="EndTurn" type="Button" parent="MainButtons" unique_id=1802754405]
@@ -372,6 +376,7 @@ metadata/player_num = 0
 [node name="HeroImage" type="Sprite2D" parent="." unique_id=596994513]
 position = Vector2(-120, 129)
 scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_3smsa")
 
 [node name="SelectedCard" type="Sprite2D" parent="." unique_id=1892070561]
 position = Vector2(1216.0001, 191)
@@ -567,7 +572,7 @@ theme_override_font_sizes/font_size = 12
 text = "ADDITIONAL OPTIONS"
 
 [node name="CardSelectionTimer" type="Timer" parent="." unique_id=1871507892]
-wait_time = 8.0
+wait_time = 15.0
 one_shot = true
 
 [connection signal="animation_finished" from="MainPlayer" to="." method="_on_animation_player_animation_finished"]
